@@ -90,5 +90,126 @@
     },
     "descripcion": "DATOS DE PRUEBA. Obra ficticia fuera de Argentina, para mostrar que el país es un filtro más. No tiene fotos a propósito.",
     "fotos": []
+  },
+  {
+    "id": "flatiron-building",
+    "nombre": "Flatiron Building",
+    "otros_nombres": [
+      "Fuller Building"
+    ],
+    "arquitectos": [
+      "D. H. Burnham & Company",
+      "Frederick Dinkelberg"
+    ],
+    "anio_proyecto": 1901,
+    "anio_finalizacion": 1902,
+    "estilo": "Beaux-Arts",
+    "materiales": [
+      "Acero",
+      "Piedra caliza",
+      "Terracota"
+    ],
+    "programa": "Oficinas (en conversión a viviendas)",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Flatiron District",
+      "direccion": "175 Fifth Avenue",
+      "lat": 40.7411,
+      "lng": -73.9897
+    },
+    "descripcion": "",
+    "fotos": [
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "solomon-r-guggenheim-museum",
+    "nombre": "Solomon R. Guggenheim Museum",
+    "otros_nombres": [],
+    "arquitectos": [
+      "Frank Lloyd Wright"
+    ],
+    "anio_proyecto": 1943,
+    "anio_finalizacion": 1959,
+    "estilo": "Arquitectura orgánica",
+    "materiales": [
+      "Hormigón armado"
+    ],
+    "programa": "Museo",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Upper East Side",
+      "direccion": "1071 Fifth Avenue",
+      "lat": 40.783,
+      "lng": -73.959
+    },
+    "descripcion": "",
+    "fotos": [
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
   }
 ]

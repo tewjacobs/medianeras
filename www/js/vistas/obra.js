@@ -73,7 +73,11 @@ export async function render(contenedor, { datos, partes, titulo }) {
     ),
   );
 
-  const visitas = (await entradasDiario(datos)).filter((e) => e.obra_id === obra.id);
+  // Las fotos de la visita que ya están en la galería de arriba no se repiten.
+  const enGaleria = new Set(fotos.map((f) => f.archivo));
+  const visitas = (await entradasDiario(datos))
+    .filter((e) => e.obra_id === obra.id)
+    .map((e) => ({ ...e, fotos: (e.fotos ?? []).filter((f) => !enGaleria.has(f.archivo)) }));
   contenedor.querySelector('.ficha').append(el('section', { class: 'ficha-seccion' },
     el('h3', {}, visitas.length ? `Mis visitas (${visitas.length})` : 'Mis visitas'),
     visitas.length

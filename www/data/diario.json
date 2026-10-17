@@ -24,5 +24,63 @@
     "nota": "ENTRADA DE EJEMPLO. Segunda visita a la misma obra: una obra puede tener varias entradas.",
     "puntaje": 5,
     "fotos": []
+  },
+  {
+    "id": "2026-07-11-flatiron-building",
+    "obra_id": "flatiron-building",
+    "fecha": "2026-07-11",
+    "nota": "",
+    "puntaje": null,
+    "fotos": [
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-01.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-02.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-03.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/flatiron-building/flatiron-04.jpg",
+        "pie": ""
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-solomon-r-guggenheim-museum",
+    "obra_id": "solomon-r-guggenheim-museum",
+    "fecha": "2026-07-16",
+    "nota": "",
+    "puntaje": null,
+    "fotos": [
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-01.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-02.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-03.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-04.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-05.jpg",
+        "pie": ""
+      },
+      {
+        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-06.jpg",
+        "pie": ""
+      }
+    ]
   }
 ]
