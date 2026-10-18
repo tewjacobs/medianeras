@@ -34,13 +34,16 @@ medianeras/
     │   ├── datos.js              carga de los JSON y funciones de formato
     │   ├── filtros.js            filtros generados desde los datos
     │   ├── ui.js                 piezas de interfaz compartidas
+    │   ├── grafica.js            logo, símbolos de perfil y patrones de líneas (SVG)
+    │   ├── tema.js               claro / oscuro / automático
     │   ├── exportar.js           arma el ZIP con las visitas del teléfono
     │   ├── vistas/               una por sección (inicio, mapa, obra, diario, listas, nueva-visita)
     │   ├── plataforma/           todo lo que toca el dispositivo (ver Capacitor)
     │   └── lib/zip.js            generador de ZIP sin dependencias
     ├── vendor/leaflet/           Leaflet 1.9.4 (copia local, sin CDN)
+    ├── fuentes/                  Archivo, IBM Plex Mono y Libre Caslon Text (woff2 + licencias OFL)
     ├── iconos/
-    ├── data/                     obras.json, diario.json, listas.json
+    ├── data/                     obras.json, diario.json, listas.json, simbolos.json
     └── img/
         ├── obras/<id-de-obra>/   fotos del catálogo
         └── diario/<id-de-visita>/ fotos propias de las visitas
@@ -161,6 +164,82 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `ejemplo` | `true` muestra el cartel EJEMPLO. No lo pongas en obras reales | no |
 
 Los filtros (década, estilo, material, arquitecto, programa, país → provincia → partido/ciudad → barrio) se arman solos con lo que haya en los datos: no hay que tocar código para sumar un país o un barrio nuevo.
+
+## Símbolos de perfil (`data/simbolos.json`)
+
+Cada perfil (país, arquitecto, estilo, material…) puede tener un **símbolo**: un dibujo de líneas paralelas donde lo que cuenta es el color de cada línea y el punto exacto donde cambia de color. No es código: es una "partitura" que se escribe a mano en `data/simbolos.json`.
+
+El archivo tiene una sección `colores` y una sección por tipo de perfil (`paises`, `arquitectos`, `estilos`, `materiales`, `programas`, `decadas`…). La clave es el nombre exacto tal como aparece en `obras.json`. Las décadas van agrupadas por colección (`decadas.argentina`, `decadas.mundo`, y más adelante una por país) y la clave es el año con que empieza cada una (`"1950"`):
+
+```json
+{
+  "colores": {
+    "celeste": { "claro": "#6cb0e3", "oscuro": "#79b7e6" },
+    "sol":     { "claro": "#f2b318", "oscuro": "#eaae2b" }
+  },
+  "paises": {
+    "Argentina": {
+      "nota": "Bandera: dos celestes, dos blancas con el sol en el centro, dos celestes.",
+      "direccion": "horizontal",
+      "placa": "noche",
+      "escala": 0.55,
+      "grosor": 1,
+      "separacion": 0.8,
+      "lineas": [
+        "celeste 18",
+        "celeste 18",
+        "blanco 7, sol 4, blanco 7",
+        "blanco 7, sol 4, blanco 7",
+        "celeste 18",
+        "celeste 18"
+      ]
+    }
+  }
+}
+```
+
+**Cada línea** es un texto con **tramos** `color largo`, separados por comas, que se dibujan en orden: de izquierda a derecha si la dirección es horizontal (y las líneas se apilan de arriba hacia abajo), o de arriba hacia abajo si es vertical (y las líneas van de izquierda a derecha).
+
+| Escritura | Qué hace |
+|---|---|
+| `celeste 40` | un tramo celeste de largo 40 |
+| `blanco 17, sol 6, blanco 17` | tres tramos seguidos: el sol queda en el centro |
+| `- 4` | un tramo vacío de largo 4 (se ve el fondo) |
+| `(fachada 1, vidrio 0.6) x12` | repite el grupo 12 veces |
+| `… celeste 40 …` | los `…` (o `...`) estiran el primer o el último tramo hasta el borde de la banda |
+
+Los largos son relativos: no son píxeles. El dibujo se escala entero para entrar en la banda, así que solo importa la proporción entre los largos, el `grosor` de cada línea y la `separacion` entre líneas.
+
+**Opciones del símbolo** (todas optativas salvo `lineas`):
+
+| Campo | Valores | Por defecto |
+|---|---|---|
+| `direccion` | `horizontal` o `vertical` | `horizontal` |
+| `grosor` | ancho de cada línea, en las mismas unidades que los largos | `1` |
+| `separacion` | espacio entre una línea y la siguiente | `1` |
+| `alinear` | dónde arrancan las líneas más cortas: `inicio`, `centro` o `fin` | `inicio` |
+| `fondo` | color del fondo de toda la banda | `papel` |
+| `placa` | color de un rectángulo justo detrás del dibujo (las banderas lo usan para que se vea el blanco) | ninguna |
+| `escala` | achica el dibujo dentro de la banda: `1` es lo más grande que entra, `0.55` algo más de la mitad | `1` |
+| `alto` | alto de la banda en píxeles (los verticales suelen necesitar más) | `132` |
+| `largo` | largo total fijo, para que varias partituras compartan escala | el de la línea más larga |
+| `nota` | descripción en palabras de lo que representa (no se dibuja) | |
+| `arcos` | líneas curvas paralelas para lo que no se puede dibujar recto, como el arco de un puente (ver abajo) | ninguno |
+| `obra`, `lugar`, `anio` | solo en `decadas`: qué obra representa a la década, dónde está y su fecha | |
+
+**Colores.** Se puede usar cualquiera de la paleta de la app, que cambia sola con el tema (`tinta`, `papel`, `papel-2`, `tenue`, `filete`, `rojo`, `petroleo`, `follaje`, `cielo`, `mar`), o uno propio definido en `colores`, con su valor para el tema claro y para el oscuro. Si se usa un color que no existe, la consola lo avisa y el tramo sale en el color del texto.
+
+**Arcos.** Cada arco es `{ "color", "desde", "hasta", "base", "flecha", "lineas" }`, en las mismas unidades que los tramos: va de `desde` a `hasta`, apoya en la línea número `base` (contando desde 0) y sube `flecha`. Con `"lineas": 2` se dibujan dos arcos paralelos, uno dentro del otro. Ejemplo: la Casa sobre el Arroyo, en `decadas.argentina.1940`. Con `"relleno": true` el arco es una figura llena (la parte de arriba de un portal) que apoya en el borde de arriba de la línea `base`; ejemplo: el portal de la Recoleta, en `decadas.argentina.1980`.
+
+**Sin símbolo.** Un perfil que no tiene símbolo muestra una sola línea fina en el color de su familia.
+
+**Décadas y años.** Cada década tiene el símbolo de una obra característica de esa época, en dos colecciones: `argentina` (la que usa la app; por ejemplo, 1930 → Edificio Kavanagh) y `mundo` (por ejemplo, 1960 → Congreso Nacional de Brasilia). Los años no se cargan: usan el símbolo de su década y, debajo, diez marcas, una por año, con la de ese año en rojo.
+
+**Materiales y programas** dibujan lo que representan: el aparejo del ladrillo, las tablas y tensores del hormigón visto, las vetas de la madera; una sala con cuadros para Museo, una torre de muro cortina para Oficinas.
+
+**Tamaño.** Los estilos y las décadas van grandes; las banderas y las obras de arquitectos van más chicas (`escala` menor) y con poco entorno.
+
+**Para pedir un símbolo nuevo** alcanza con describirlo en estos términos: cuántas líneas, en qué dirección y dónde cambia cada una de color. Por ejemplo: "Uruguay: nueve líneas horizontales, blancas y azules alternadas; en las cinco de arriba, a la izquierda, un sol amarillo que crece hasta la del medio y vuelve a achicarse".
 
 ## Diario y listas
 

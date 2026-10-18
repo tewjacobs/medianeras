@@ -2,6 +2,8 @@
 
 import { cargarDatos } from './datos.js';
 import { el, icono, cerrarHoja, liberarUrls, aviso, mensaje } from './ui.js';
+import { logo } from './grafica.js';
+import { iniciarTema, abrirSelectorTema } from './tema.js';
 import * as inicio from './vistas/inicio.js';
 import * as mapa from './vistas/mapa.js';
 import * as obra from './vistas/obra.js';
@@ -32,7 +34,9 @@ let rutaActual = null;
 let navegaciones = 0;
 let turno = 0;
 
+iniciarTema();
 for (const nodo of document.querySelectorAll('[data-icono]')) nodo.replaceWith(icono(nodo.dataset.icono));
+document.querySelector('.cabecera-tema').addEventListener('click', abrirSelectorTema);
 
 function leerRuta() {
   const hash = location.hash.replace(/^#\/?/, '');
@@ -46,8 +50,18 @@ function leerRuta() {
 }
 
 function ponerTitulo(texto) {
-  titulo.textContent = texto;
-  document.title = texto === 'Medianeras' ? texto : `${texto} · Medianeras`;
+  const esInicio = texto === 'Medianeras';
+  titulo.classList.toggle('cabecera-marca', esInicio);
+  if (esInicio) titulo.replaceChildren(logo(), el('span', { class: 'logo-nombre' }, texto.toLowerCase()));
+  else titulo.textContent = texto;
+  document.title = esInicio ? texto : `${texto} · Medianeras`;
+}
+
+function quitarCarga() {
+  const carga = document.getElementById('carga');
+  if (!carga) return;
+  carga.classList.add('oculta');
+  setTimeout(() => carga.remove(), 300);
 }
 
 async function mostrar({ recarga = false } = {}) {
@@ -71,11 +85,13 @@ async function mostrar({ recarga = false } = {}) {
   try {
     datos = await cargarDatos();
   } catch (error) {
+    quitarCarga();
     console.error(error);
     principal.replaceChildren(mensaje('No se pudieron cargar los datos', error.message,
       el('button', { type: 'button', class: 'boton', onclick: () => mostrar({ recarga: true }) }, 'Reintentar')));
     return;
   }
+  quitarCarga();
   if (miTurno !== turno) return;
 
   // Las vistas comunes se rehacen en cada visita; las persistentes (el mapa) se conservan ocultas.

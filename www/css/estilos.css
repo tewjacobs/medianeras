@@ -1,18 +1,96 @@
 /* Medianeras — estilos. Mobile-first: lo base es para el iPhone, las media queries agrandan. */
 
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url(../fuentes/archivo-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url(../fuentes/archivo-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/plex-mono-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/plex-mono-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fuentes/plex-mono-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fuentes/plex-mono-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/caslon-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/caslon-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/caslon-400i-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fuentes/caslon-400i-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Tema: el atributo data-tema ("claro" u "oscuro") lo pone un script en index.html antes de
+   pintar, según lo que eligió la persona o, en automático, según lo que informa el navegador.
+   Sin JavaScript queda el claro. Cualquier elemento con data-tema arma su propio tema adentro. */
+
 :root {
-  --fondo: #faf9f7;
-  --superficie: #ffffff;
-  --superficie-2: #f1efeb;
-  --texto: #1d1c1a;
-  --tenue: #6b6760;
-  --borde: #e2dfd9;
-  --acento: #b4532f;
-  --acento-texto: #ffffff;
-  --acento-suave: #f6e6df;
-  --peligro: #b3261e;
-  --ejemplo: #f2c94c;
-  --sombra: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.08);
+  --sans: 'Archivo', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
 
   --alto-cabecera: 48px;
   --alto-pestanas: 56px;
@@ -21,25 +99,65 @@
   --seguro-izq: env(safe-area-inset-left, 0px);
   --seguro-der: env(safe-area-inset-right, 0px);
   --margen: 16px;
-  --radio: 12px;
-
-  color-scheme: light dark;
+  --radio: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fondo: #151413;
-    --superficie: #1f1e1c;
-    --superficie-2: #2a2826;
-    --texto: #ece9e4;
-    --tenue: #a29d95;
-    --borde: #34312e;
-    --acento: #e07a55;
-    --acento-texto: #1a0f0a;
-    --acento-suave: #3a2219;
-    --peligro: #f2867d;
-    --sombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.4);
-  }
+:root, [data-tema="claro"] {
+  /* Claro: "Another Green World" (Eno). Blanco cálido, cielo, montañas, follaje, arena,
+     el negro de las figuras y el rojo de los gorros como acento mínimo. */
+  --papel: #f7f3eb;
+  --papel-2: #ece5d7;
+  --tinta: #1a1917;
+  --tenue: #625d55;
+  --filete: rgb(26 25 23 / 0.16);
+  /* Los cuatro colores de marco. Los nombres son lugares fijos; en cada tema cambia el color. */
+  --petroleo: #2f5b8a; /* azul de las montañas */
+  --follaje: #4c7d36;  /* verde follaje */
+  --cielo: #6fb0d3;    /* celeste cielo */
+  --mar: #d7a95c;      /* arena */
+  --rojo: #c63a22; /* toque mínimo: botón de visita y estrellas */
+  --enlace: #2a5486;
+  color-scheme: light;
+}
+
+/* Oscuro: "Pinback" (Pinback). Negro, azul violáceo de la montaña, verde pino y tierras,
+   con texto blanco. */
+[data-tema="oscuro"] {
+  --papel: #111217;
+  --papel-2: #1a1b23;
+  --tinta: #f3f1ec;
+  --tenue: #a09ea8;
+  --filete: rgb(243 241 236 / 0.14);
+  --petroleo: #6f72c4; /* azul violáceo */
+  --follaje: #3b8a63;  /* verde pino */
+  --cielo: #c07f45;    /* tierra */
+  --mar: #ddb378;      /* tierra clara */
+  --rojo: #d4583b;
+  --enlace: #aab0ea;
+  color-scheme: dark;
+}
+
+/* Colores del logo: fijos, iguales en los dos temas (el campo rojo lleva su propio negro) */
+:root {
+  --logo-rojo: #c4432c;
+  --logo-negro: #171615;
+  --logo-vidrio: #f1e9d6;
+  --logo-alto: #47443f;
+  --logo-bajo: #938b7e;
+}
+
+:root, [data-tema] {
+  --fondo: var(--papel);
+  --superficie: var(--papel);
+  --superficie-2: var(--papel-2);
+  --texto: var(--tinta);
+  --borde: var(--filete);
+  --acento: var(--rojo);
+  --acento-texto: var(--papel);
+  --acento-suave: var(--papel-2);
+  --peligro: var(--rojo);
+  --ejemplo: var(--follaje);
+  --sombra: none;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -50,7 +168,7 @@ body {
   margin: 0;
   background: var(--fondo);
   color: var(--texto);
-  font: 17px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 16px/1.45 var(--sans);
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
@@ -59,7 +177,7 @@ body.con-hoja { overflow: hidden; }
 
 img { display: block; max-width: 100%; }
 
-a { color: var(--acento); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a { color: var(--enlace); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 
 h1, h2, h3 { line-height: 1.2; margin: 0; }
 
@@ -87,6 +205,8 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 }
 
 .cabecera-titulo {
+  flex: 1;
+  min-width: 0;
   font-size: 17px;
   font-weight: 650;
   white-space: nowrap;
@@ -106,6 +226,34 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
   cursor: pointer;
 }
 .cabecera-atras .icono { width: 26px; height: 26px; }
+
+.cabecera-tema {
+  margin: 0 -10px 0 auto;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--tenue);
+  cursor: pointer;
+}
+.cabecera-tema .icono { width: 20px; height: 20px; stroke-width: 1.6; }
+
+.opciones-tema { display: grid; }
+.opcion-tema {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  border-bottom: 1px solid var(--filete);
+  cursor: pointer;
+}
+.opcion-tema:last-child { border-bottom: 0; }
+.opcion-tema input { width: 20px; min-height: 0; height: 20px; margin: 0; accent-color: var(--tinta); flex: none; }
+.opcion-tema > span { display: grid; }
+.opcion-tema strong { font-weight: 600; }
+.opcion-tema .tenue { font-family: var(--mono); font-size: 12px; }
 
 /* ---------- Contenido ---------- */
 
@@ -153,7 +301,7 @@ main {
   height: 30px;
   margin: 0;
   padding: 3px 6px;
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--acento);
   color: var(--acento-texto);
   stroke-width: 2.4;
@@ -169,7 +317,7 @@ main {
   min-height: 44px;
   padding: 0 16px;
   border: 1px solid var(--borde);
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--superficie);
   color: var(--texto);
   font: inherit;
@@ -205,7 +353,7 @@ input, select, textarea {
   min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--borde);
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--superficie);
   color: var(--texto);
   font: inherit;
@@ -237,7 +385,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--acento);
   color: var(--acento-texto);
   font-size: 12px;
@@ -255,7 +403,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   min-height: 36px;
   padding: 0 12px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 0;
   background: var(--acento-suave);
   color: var(--texto);
   font: inherit;
@@ -267,17 +415,54 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 
 .resumen { margin: 12px var(--margen) 8px; font-size: 14px; }
 
-.grilla { display: grid; gap: 24px; }
+/* Grilla de tapas: 3 columnas en el celular */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 8px;
+  padding: 0 var(--margen);
+}
 
-.tarjeta { display: block; color: inherit; text-decoration: none; }
+/* ---------- Tapa: ficha cuadrada de obra ---------- */
+
+.tarjeta { display: block; min-width: 0; color: inherit; text-decoration: none; }
 .tarjeta:active { opacity: 0.85; }
 
-.tarjeta-foto { position: relative; aspect-ratio: 4 / 3; background: var(--superficie-2); overflow: hidden; }
-.tarjeta-foto img { width: 100%; height: 100%; object-fit: cover; }
+.tapa {
+  --marco: var(--petroleo);
+  /* Rayas del patrón de una obra sin foto: del color del marco, apenas más claras */
+  --sobre-marco: color-mix(in srgb, var(--marco) 62%, var(--papel));
+  position: relative;
+  aspect-ratio: 1;
+  padding: 9%;
+  background: var(--marco);
+  overflow: hidden;
+}
+.tapa img, .tapa .sin-foto, .tapa .tapa-grafica {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: color-mix(in srgb, var(--marco) 70%, var(--tinta));
+}
+.tapa .tapa-grafica { display: block; background: none; overflow: visible; }
 
-.tarjeta-texto { padding: 10px var(--margen) 0; }
-.tarjeta-texto h3 { font-size: 18px; font-weight: 650; }
-.tarjeta-texto p { margin: 2px 0 0; font-size: 15px; }
+.marco-petroleo { --marco: var(--petroleo); }
+.marco-follaje { --marco: var(--follaje); }
+.marco-cielo { --marco: var(--cielo); }
+.marco-mar { --marco: var(--mar); }
+
+.tarjeta-texto { padding-top: 6px; }
+.tarjeta-texto h3 {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.tarjeta-texto p { margin: 2px 0 0; font-family: var(--mono); font-size: 11px; color: var(--tenue); }
 .tarjeta-descripcion { color: var(--texto); }
 
 .sin-foto {
@@ -287,27 +472,71 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   display: grid;
   place-items: center;
   color: var(--tenue);
-  font-size: 14px;
-  /* textura de ladrillo de medianera */
-  background:
-    repeating-linear-gradient(0deg, transparent 0 17px, var(--borde) 17px 18px),
-    var(--superficie-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--superficie-2);
 }
-.sin-foto span { padding: 2px 10px; border-radius: 6px; background: var(--superficie-2); }
 
 .marca-ejemplo {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 3px 8px;
-  border-radius: 6px;
-  background: var(--ejemplo);
-  color: #2a2100;
-  font-size: 12px;
-  font-weight: 750;
-  letter-spacing: 0.08em;
+  top: 0;
+  left: 0;
+  padding: 1px 4px;
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
+/* ---------- Gráfica de líneas ---------- */
+
+.grafica { display: block; width: 100%; height: 112px; }
+.separador-grafico { display: block; width: 100%; height: 14px; }
+
+
+.cabecera-marca { display: flex; align-items: center; gap: 9px; }
+.logo-simbolo { display: block; width: 22px; height: 22px; flex: none; }
+.logo-nombre { font-weight: 650; font-size: 18px; letter-spacing: 0.26em; text-transform: none; }
+.carga-nombre { font-weight: 650; letter-spacing: 0.26em; }
+
+/* Pantalla de carga: aparece solo si la carga tarda. Se dibujan los cuatro cuartos de la planta
+   de la Price Tower y sus líneas interiores, después salen los cuatro muros rojos huecos de la
+   cruz y el cuadradito del centro queda respirando. */
+.carga {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 16px;
+  background: var(--papel);
+  color: var(--tinta);
+  animation: aparecer-carga 0.2s 0.15s backwards;
+  transition: opacity 0.25s;
+}
+.carga.oculta { opacity: 0; pointer-events: none; }
+.carga-simbolo { width: 120px; height: 120px; }
+.carga-simbolo path { stroke-dasharray: 1; animation: trazar 0.7s ease-out backwards; animation-delay: calc(var(--i) * 0.09s); }
+.carga-simbolo .carga-trazo { stroke: var(--tinta); stroke-width: 1.6; }
+.carga-simbolo .carga-fina { stroke-width: 0.8; }
+.carga-simbolo .carga-brazo { stroke: var(--rojo); stroke-width: 1.4; animation-duration: 0.5s; }
+.carga-simbolo .carga-centro {
+  stroke: var(--tinta);
+  stroke-width: 1.2;
+  stroke-dasharray: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: respirar 2.6s ease-in-out 1.3s infinite alternate;
+}
+.carga-nombre { font-size: 20px; }
+
+@keyframes aparecer-carga { from { opacity: 0; } }
+@keyframes trazar { from { stroke-dashoffset: 1; } }
+@keyframes respirar { from { transform: scale(1); } to { transform: scale(0.7); } }
 
 /* ---------- Galería ---------- */
 
@@ -330,7 +559,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   top: 10px;
   right: 10px;
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: 0;
   background: rgb(0 0 0 / 0.55);
   color: #fff;
   font-size: 13px;
@@ -377,7 +606,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   min-height: 60px;
   padding: 6px 0;
   border: 0;
-  border-radius: 10px;
+  border-radius: 0;
   background: none;
   color: inherit;
   font: inherit;
@@ -388,7 +617,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .fila-obra:active { background: var(--superficie-2); }
 .filas .fila-obra { padding: 6px; margin: 0 -6px; }
 
-.fila-miniatura { flex: none; width: 56px; height: 56px; border-radius: 8px; overflow: hidden; background: var(--superficie-2); }
+.fila-miniatura { flex: none; width: 56px; height: 56px; border-radius: 0; overflow: hidden; background: var(--superficie-2); }
 .fila-miniatura img { width: 100%; height: 100%; object-fit: cover; }
 .fila-miniatura .sin-foto { min-height: 0; font-size: 0; }
 
@@ -403,7 +632,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .panel {
   margin: 8px var(--margen) 16px;
   padding: 14px 16px;
-  border-radius: var(--radio);
+  border-radius: 0;
   background: var(--acento-suave);
   display: grid;
   gap: 8px;
@@ -437,7 +666,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 
 .marca-local {
   padding: 1px 8px;
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--superficie-2);
   color: var(--tenue);
   font-size: 12px;
@@ -478,7 +707,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .fotos-visita { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .fotos-visita:not(:empty) { margin-bottom: 10px; }
 .foto-visita { position: relative; display: grid; gap: 6px; }
-.foto-visita img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; background: var(--superficie-2); }
+.foto-visita img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0; background: var(--superficie-2); }
 .foto-visita input { min-height: 38px; padding: 6px 8px; font-size: 16px; }
 .foto-quitar {
   position: absolute;
@@ -508,7 +737,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 .vista-mapa .mapa { position: absolute; inset: 0; background: var(--superficie-2); }
 
 .boton-flotante { position: absolute; z-index: 900; box-shadow: var(--sombra); }
-.boton-cerca { right: calc(12px + var(--seguro-der)); bottom: 28px; border-radius: 22px; }
+.boton-cerca { right: calc(12px + var(--seguro-der)); bottom: 28px; border-radius: 0; }
 .boton-inicio { right: calc(12px + var(--seguro-der)); top: 112px; background: var(--superficie); color: var(--texto); border: 1px solid var(--borde); }
 
 .mapa-nota {
@@ -518,7 +747,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   top: 12px;
   margin: 0;
   padding: 4px 10px;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--superficie);
   color: var(--tenue);
   font-size: 13px;
@@ -532,10 +761,8 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 .leaflet-control-attribution { background: color-mix(in srgb, var(--superficie) 80%, transparent) !important; color: var(--tenue); }
 .leaflet-control-attribution a { color: var(--tenue); }
 
-@media (prefers-color-scheme: dark) {
-  /* Atenúa los mosaicos claros de OSM en modo oscuro */
-  .leaflet-tile-pane { filter: brightness(0.75) contrast(1.1) saturate(0.8); }
-}
+/* Atenúa los mosaicos claros de OSM en modo oscuro */
+[data-tema="oscuro"] .leaflet-tile-pane { filter: brightness(0.75) contrast(1.1) saturate(0.8); }
 
 .marcador { display: grid; place-items: center; }
 .marcador span {
@@ -577,7 +804,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   max-height: 88dvh;
   display: flex;
   flex-direction: column;
-  border-radius: 16px 16px 0 0;
+  border-radius: 0;
   background: var(--superficie);
   box-shadow: var(--sombra);
   transform: translateY(100%);
@@ -602,7 +829,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   width: 40px;
   height: 5px;
   margin-left: -20px;
-  border-radius: 3px;
+  border-radius: 0;
   background: var(--borde);
 }
 
@@ -643,7 +870,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border-radius: var(--radio);
+  border-radius: 0;
   background: var(--texto);
   color: var(--fondo);
   font-size: 15px;
@@ -660,9 +887,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   font-weight: 700;
   cursor: pointer;
 }
-@media (prefers-color-scheme: dark) {
-  .aviso button { color: var(--acento-texto); filter: none; }
-}
+[data-tema="oscuro"] .aviso button { color: var(--acento-texto); }
 
 @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } }
 
@@ -674,25 +899,24 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 
 @media (min-width: 600px) {
   :root { --margen: 24px; }
-  .grilla { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; padding: 0 var(--margen); }
-  .tarjeta-foto { border-radius: var(--radio); }
+  .grilla { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 12px; }
   .tarjeta-texto { padding: 10px 0 0; }
   .vista-obra, .vista-diario, .vista-nueva { max-width: 760px; margin: 0 auto; }
   .ficha-fotos, .vista-diario .galeria { margin-top: 16px; }
-  .galeria-foto img { border-radius: var(--radio); }
+  .galeria-foto img { border-radius: 0; }
   .entrada > .galeria { margin: 0 var(--margen); }
   .fotos-visita { grid-template-columns: repeat(3, 1fr); }
-  .hoja { left: 50%; right: auto; width: min(560px, 100%); bottom: 16px; border-radius: 16px; transform: translate(-50%, calc(100% + 16px)); }
+  .hoja { left: 50%; right: auto; width: min(560px, 100%); bottom: 16px; border-radius: 0; transform: translate(-50%, calc(100% + 16px)); }
   .hoja.abierta { transform: translate(-50%, var(--arrastre)); }
   .aviso { left: 50%; right: auto; width: min(480px, calc(100% - 32px)); transform: translateX(-50%); }
 }
 
 @media (min-width: 1000px) {
-  .grilla { grid-template-columns: repeat(3, 1fr); max-width: 1400px; margin: 0 auto; }
+  .grilla { grid-template-columns: repeat(6, minmax(0, 1fr)); max-width: 1400px; margin: 0 auto; }
   .vista-inicio .barra-herramientas, .vista-inicio .chips { max-width: 1400px; margin-left: auto; margin-right: auto; }
   .resumen { max-width: 1400px; margin: 12px auto 8px; padding: 0 var(--margen); }
 }
 
 @media (min-width: 1400px) {
-  .grilla { grid-template-columns: repeat(4, 1fr); }
+  .grilla { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }

@@ -1,7 +1,8 @@
 // Piezas de interfaz compartidas. Los textos que vienen de los datos se insertan
 // siempre como texto (nunca como HTML).
 
-import { rangoAnios, lugarCorto, formatoFecha, esUrl } from './datos.js';
+import { rangoAnios, lugarCorto, formatoFecha, esUrl, colorMarco } from './datos.js';
+import { patronTapa } from './grafica.js';
 
 export function el(etiqueta, props = {}, ...hijos) {
   const nodo = document.createElement(etiqueta);
@@ -40,6 +41,7 @@ const ICONOS = {
   camara: '<path d="M4 8h3.2l1.8-2.5h6l1.8 2.5H20v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
   compartir: '<path d="M12 15V3.5M7.5 8L12 3.5 16.5 8"/><path d="M5 12.5V20h14v-7.5"/>',
   ruta: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  tema: '<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>',
   basura: '<path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/>',
 };
 
@@ -93,14 +95,22 @@ export function lineaAutoria(obra) {
   return [(obra.arquitectos ?? []).join(', '), rangoAnios(obra)].filter(Boolean).join(' · ');
 }
 
-export function tarjetaObra(obra, { extra } = {}) {
+// Tapa: la foto enmarcada en un campo de color plano; sin foto, un patrón de líneas.
+export function tapaObra(obra) {
+  const foto = obra.fotos?.[0];
+  return el('div', { class: `tapa marco-${colorMarco(obra)}` },
+    foto ? el('img', { src: foto.archivo, alt: obra.nombre, loading: 'lazy', decoding: 'async' }) : patronTapa(obra.id),
+    obra.ejemplo && marcaEjemplo(),
+  );
+}
+
+export function tarjetaObra(obra, { detalle } = {}) {
   return el('a', { class: 'tarjeta', href: rutaObra(obra.id) },
-    el('div', { class: 'tarjeta-foto' }, imagenObra(obra), obra.ejemplo && marcaEjemplo()),
+    tapaObra(obra),
     el('div', { class: 'tarjeta-texto' },
       el('h3', {}, obra.nombre),
-      el('p', { class: 'tenue' }, lineaAutoria(obra)),
-      el('p', { class: 'tenue' }, lugarCorto(obra)),
-      extra,
+      el('p', {}, rangoAnios(obra) || 's/f'),
+      detalle,
     ),
   );
 }

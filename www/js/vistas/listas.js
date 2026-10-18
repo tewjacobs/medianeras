@@ -1,6 +1,6 @@
 // Listas temáticas: índice y detalle.
 
-import { el, tarjetaObra, imagenObra, sinFoto, mensaje } from '../ui.js';
+import { el, tarjetaObra, tapaObra, sinFoto, mensaje } from '../ui.js';
 
 export function render(contenedor, { datos }) {
   if (!datos.listas.length) {
@@ -9,9 +9,9 @@ export function render(contenedor, { datos }) {
   }
   contenedor.append(el('div', { class: 'grilla' }, datos.listas.map((lista) => {
     const obras = obrasDe(lista, datos);
-    const portada = obras.find((o) => o.fotos?.length);
+    const portada = obras.find((o) => o.fotos?.length) ?? obras[0];
     return el('a', { class: 'tarjeta', href: `#/lista/${encodeURIComponent(lista.id)}` },
-      el('div', { class: 'tarjeta-foto' }, portada ? imagenObra(portada) : sinFoto()),
+      portada ? tapaObra(portada) : sinFoto(),
       el('div', { class: 'tarjeta-texto' },
         el('h3', {}, lista.titulo),
         el('p', { class: 'tenue' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),

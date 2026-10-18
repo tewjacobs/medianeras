@@ -2,6 +2,7 @@
 // No hay ningún lugar, estilo ni arquitecto escrito acá: todo sale de los datos.
 
 import { listarVisitas } from './plataforma/almacen.js';
+import { hashTexto } from './grafica.js';
 
 export const SIN_DATO = '_';
 
@@ -80,6 +81,19 @@ export function rangoAnios(obra) {
   const { anio_proyecto: p, anio_finalizacion: f } = obra;
   if (p && f && p !== f) return `${p}–${f}`;
   return String(f ?? p ?? '');
+}
+
+// ---- Color del marco ----
+
+// Cuatro marcos por tema. Los nombres son lugares fijos; el color de cada uno en cada tema
+// está en estilos.css.
+export const COLORES_MARCO = ['petroleo', 'follaje', 'cielo', 'mar'];
+
+// El color propio de la obra si lo tiene; si no, uno estable calculado desde su estilo
+// (todas las obras de un estilo comparten color) o, sin estilo, desde su id.
+export function colorMarco(obra) {
+  if (COLORES_MARCO.includes(obra.color)) return obra.color;
+  return COLORES_MARCO[hashTexto(obra.estilo ? `estilo:${obra.estilo}` : `obra:${obra.id}`) % COLORES_MARCO.length];
 }
 
 // ---- Ubicación ----

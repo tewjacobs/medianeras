@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Medianeras</title>
   <meta name="description" content="Catálogo de obras de arquitectura y diario personal de visitas.">
-  <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#151413" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f3eb">
   <meta name="color-scheme" content="light dark">
+  <script>
+    // Aplica el tema antes de pintar, para que no parpadee. La elección se guarda con
+    // js/plataforma/preferencias.js (misma clave); el resto de la lógica está en js/tema.js.
+    (function () {
+      var eleccion = 'auto';
+      try { eleccion = localStorage.getItem('medianeras-tema') || 'auto'; } catch (e) {}
+      var oscuro = eleccion === 'oscuro' || (eleccion !== 'claro' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');
+    })();
+  </script>
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Medianeras">
@@ -21,9 +30,32 @@
   <script type="module" src="js/app.js"></script>
 </head>
 <body>
+  <div class="carga" id="carga" role="status" aria-label="Cargando Medianeras">
+    <!-- Planta de la Price Tower (Wright, 1956), simplificada: un cuadrado girado 30° partido en
+         cuatro cuartos, cada uno con una sola línea interior recta; la cruz roja, derecha, de muros huecos
+         que terminan en punta cortada en diagonal; en el centro, un cuadradito vacío que respira -->
+    <svg class="carga-simbolo" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke-linecap="butt" stroke-linejoin="miter">
+      <path class="carga-trazo" style="--i:0" pathLength="1" d="M36.81 37.12L46.29 42.60L38.47 56.14L24.92 48.32L30.40 38.84L34.46 41.19Z"/>
+      <path class="carga-trazo" style="--i:1" pathLength="1" d="M26.88 36.81L21.40 46.29L7.86 38.47L15.68 24.92L25.16 30.40L22.81 34.46Z"/>
+      <path class="carga-trazo" style="--i:2" pathLength="1" d="M27.19 26.88L17.71 21.40L25.53 7.86L39.08 15.68L33.60 25.16L29.54 22.81Z"/>
+      <path class="carga-trazo" style="--i:3" pathLength="1" d="M37.12 27.19L42.60 17.71L56.14 25.53L48.32 39.08L38.84 33.60L41.19 29.54Z"/>
+      <path class="carga-trazo carga-fina" style="--i:4" pathLength="1" d="M43.30 43.40L37.67 53.15"/>
+      <path class="carga-trazo carga-fina" style="--i:5" pathLength="1" d="M20.60 43.30L10.85 37.67"/>
+      <path class="carga-trazo carga-fina" style="--i:6" pathLength="1" d="M20.70 20.60L26.33 10.85"/>
+      <path class="carga-trazo carga-fina" style="--i:7" pathLength="1" d="M43.40 20.70L53.15 26.33"/>
+      <path class="carga-brazo" style="--i:8" pathLength="1" d="M38.73 29.50L57.41 29.50L59.75 34.50L38.73 34.50"/>
+      <path class="carga-brazo" style="--i:9" pathLength="1" d="M34.50 38.73L34.50 57.41L29.50 59.75L29.50 38.73"/>
+      <path class="carga-brazo" style="--i:10" pathLength="1" d="M25.27 34.50L6.59 34.50L4.25 29.50L25.27 29.50"/>
+      <path class="carga-brazo" style="--i:11" pathLength="1" d="M29.50 25.27L29.50 6.59L34.50 4.25L34.50 25.27"/>
+      <path class="carga-centro" d="M29.88 24.09L39.91 29.88L34.12 39.91L24.09 34.12Z"/>
+    </svg>
+    <span class="carga-nombre" aria-hidden="true">medianeras</span>
+  </div>
+
   <header class="cabecera">
     <button class="cabecera-atras" type="button" aria-label="Volver" hidden><span data-icono="atras"></span></button>
     <h1 class="cabecera-titulo">Medianeras</h1>
+    <button class="cabecera-tema" type="button" aria-label="Apariencia: claro, oscuro o automático" title="Apariencia"><span data-icono="tema"></span></button>
   </header>
 
   <main id="principal"></main>

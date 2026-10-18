@@ -2,7 +2,7 @@
 // IMPORTANTE: cuando cambies archivos de la app (HTML, CSS, JS), subí VERSION
 // para que los teléfonos descarguen la versión nueva.
 
-const VERSION = 'v2';
+const VERSION = 'v11';
 const CACHE_APP = `medianeras-app-${VERSION}`;
 const CACHE_DATOS = 'medianeras-datos';
 const CACHE_FOTOS = 'medianeras-fotos';
@@ -19,17 +19,25 @@ const APP = [
   'js/filtros.js',
   'js/ui.js',
   'js/exportar.js',
+  'js/grafica.js',
+  'js/tema.js',
   'js/lib/zip.js',
   'js/plataforma/almacen.js',
   'js/plataforma/ubicacion.js',
   'js/plataforma/fotos.js',
   'js/plataforma/compartir.js',
+  'js/plataforma/preferencias.js',
   'js/vistas/inicio.js',
   'js/vistas/mapa.js',
   'js/vistas/obra.js',
   'js/vistas/diario.js',
   'js/vistas/listas.js',
   'js/vistas/nueva-visita.js',
+  'fuentes/archivo-latin.woff2',
+  'fuentes/plex-mono-400-latin.woff2',
+  'fuentes/plex-mono-500-latin.woff2',
+  'fuentes/caslon-400-latin.woff2',
+  'fuentes/caslon-400i-latin.woff2',
   'vendor/leaflet/leaflet.js',
   'vendor/leaflet/leaflet.css',
   'vendor/leaflet/images/layers.png',
