@@ -1,4 +1,4 @@
-// Preferencias chicas guardadas en el teléfono (por ahora, solo el tema).
+// Preferencias chicas guardadas en el teléfono, como texto (el tema, las décadas abiertas).
 // Para Capacitor: se puede reemplazar el interior por @capacitor/preferences manteniendo
 // estas funciones. Ojo: el script del <head> de index.html lee la misma clave directamente,
 // para aplicar el tema antes de pintar.

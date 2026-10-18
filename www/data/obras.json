@@ -93,6 +93,7 @@
   },
   {
     "id": "flatiron-building",
+    "agregada": "2026-10-17",
     "nombre": "Flatiron Building",
     "otros_nombres": [
       "Fuller Building"
@@ -150,6 +151,7 @@
   },
   {
     "id": "solomon-r-guggenheim-museum",
+    "agregada": "2026-10-17",
     "nombre": "Solomon R. Guggenheim Museum",
     "otros_nombres": [],
     "arquitectos": [

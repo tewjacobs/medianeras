@@ -169,15 +169,6 @@ export function patron(semilla, {
   DIBUJOS[elegida](r, ancho, alto, { fondo, tono, lineas, acento: acentoColor }));
 }
 
-// Patrón para la tapa de una obra sin foto: sobre el color del marco, líneas apenas más claras.
-export function patronTapa(semilla) {
-  const r = azar(`tapa:${semilla}`);
-  return patron(semilla, {
-    variante: r() < 0.5 ? 'arcos' : 'cinta', ancho: 100, alto: 100,
-    familia: 'var(--papel)', fondo: 'var(--marco)', clase: 'tapa-grafica',
-  });
-}
-
 // Separador entre bloques grandes: tres rayas finas con una loma.
 export function separador(semilla, ancho = 360) {
   return patron(semilla, {
@@ -270,8 +261,9 @@ export function simboloNeutro(familia = 'petroleo') {
 //   Con `relleno: true` el arco es una figura llena (la parte de arriba de un portal) que apoya
 //   en el borde de arriba de la línea `base`.
 // `anio` (0 a 9): debajo del dibujo, diez marcas, una por año; la de ese año en rojo.
-export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, clase = 'grafica simbolo' } = {}) {
-  const alto = partitura.alto ?? altoBanda;
+// `fijo`: usar el alto pedido aunque la partitura traiga otro (las tapas son cuadradas).
+export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, fijo = false, clase = 'grafica simbolo' } = {}) {
+  const alto = fijo ? altoBanda : (partitura.alto ?? altoBanda);
   const vertical = partitura.direccion === 'vertical';
   const grosor = partitura.grosor ?? 1;
   const separacion = partitura.separacion ?? 1;

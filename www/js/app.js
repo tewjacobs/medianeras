@@ -1,10 +1,13 @@
 // Arranque de la app: router por hash, barra de pestañas y service worker.
 
-import { cargarDatos } from './datos.js';
+import { cargarDatos, TIPOS_PERFIL } from './datos.js';
+import { FACETAS } from './filtros.js';
 import { el, icono, cerrarHoja, liberarUrls, aviso, mensaje } from './ui.js';
 import { logo } from './grafica.js';
 import { iniciarTema, abrirSelectorTema } from './tema.js';
 import * as inicio from './vistas/inicio.js';
+import * as obras from './vistas/obras.js';
+import * as perfil from './vistas/perfil.js';
 import * as mapa from './vistas/mapa.js';
 import * as obra from './vistas/obra.js';
 import * as diario from './vistas/diario.js';
@@ -14,6 +17,12 @@ import * as nuevaVisita from './vistas/nueva-visita.js';
 // pestana: qué pestaña queda marcada · atras: muestra el botón Volver (y adónde ir si no hay historial)
 const RUTAS = {
   '': { render: inicio.render, pestana: 'obras', titulo: 'Medianeras' },
+  obras: { render: obras.render, pestana: 'obras', titulo: 'Obras', atras: '#/' },
+  // Perfiles (#/arquitecto/frank-lloyd-wright) e índices (#/arquitectos)
+  ...Object.fromEntries(Object.entries(TIPOS_PERFIL).flatMap(([tipo, def]) => [
+    [tipo, { render: perfil.render, pestana: 'obras', atras: '#/' }],
+    [def.indice, { render: perfil.renderIndice, pestana: 'obras', titulo: def.plural, atras: '#/' }],
+  ])),
   obra: { render: obra.render, pestana: 'obras', atras: '#/' },
   mapa: { render: mapa.render, pestana: 'mapa', titulo: 'Mapa', persistente: true },
   diario: { render: diario.render, pestana: 'diario', titulo: 'Diario' },
@@ -37,6 +46,28 @@ let turno = 0;
 iniciarTema();
 for (const nodo of document.querySelectorAll('[data-icono]')) nodo.replaceWith(icono(nodo.dataset.icono));
 document.querySelector('.cabecera-tema').addEventListener('click', abrirSelectorTema);
+// Búsqueda de la cabecera: escribir lleva a la grilla de todas las obras; ahí, cada letra la filtra.
+const campoBusqueda = document.querySelector('.cabecera-campo');
+const enObras = () => (location.hash.replace(/^#\/?/, '').split(/[/?]/)[0] === 'obras');
+function buscar() {
+  const q = campoBusqueda.value.trim();
+  if (enObras()) window.dispatchEvent(new CustomEvent('medianeras:buscar', { detail: q }));
+  else location.hash = q ? `#/obras?${new URLSearchParams({ q })}` : '#/obras';
+}
+campoBusqueda.addEventListener('input', buscar);
+document.querySelector('.cabecera-busqueda').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!campoBusqueda.value.trim() && !enObras()) { campoBusqueda.focus(); return; }
+  buscar();
+  campoBusqueda.blur(); // cierra el teclado en el iPhone
+});
+
+// Los links viejos con filtros en el inicio (#/?pais=Argentina) pasan a la grilla completa.
+function redirigirFiltrosViejos({ partes, params }) {
+  if (partes.length || ![...FACETAS.map((f) => f.clave), 'q'].some((c) => params.has(c))) return false;
+  location.replace(`#/obras?${params}`);
+  return true;
+}
 
 function leerRuta() {
   const hash = location.hash.replace(/^#\/?/, '');
@@ -70,7 +101,9 @@ async function mostrar({ recarga = false } = {}) {
   hashActual = location.hash || '#/';
   if (!recarga) navegaciones++;
 
-  const { partes, params } = leerRuta();
+  const leida = leerRuta();
+  if (redirigirFiltrosViejos(leida)) return;
+  const { partes, params } = leida;
   const clave = partes[0] ?? '';
   const ruta = RUTAS[clave];
   rutaActual = ruta;
@@ -80,6 +113,9 @@ async function mostrar({ recarga = false } = {}) {
   for (const a of pestanas) a.toggleAttribute('aria-current', a.dataset.pestana === ruta?.pestana);
   botonAtras.hidden = !ruta?.atras;
   ponerTitulo(ruta?.titulo ?? 'Medianeras');
+  // El campo de la cabecera muestra la búsqueda de la grilla; fuera de ella, queda vacío.
+  if (clave === 'obras') campoBusqueda.value = params.get('q') ?? '';
+  else if (document.activeElement !== campoBusqueda) campoBusqueda.value = '';
 
   let datos;
   try {

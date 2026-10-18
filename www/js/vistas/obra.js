@@ -1,59 +1,57 @@
-// Ficha de una obra: fotos con crédito, datos, listas que la incluyen y mis visitas.
+// Ficha de una obra: la tapa grande, los datos (cada uno lleva a su perfil), las fotos con
+// crédito, las listas que la incluyen y mis visitas.
 
-import { el, icono, galeria, creditoFoto, sinFoto, marcaEjemplo, tarjetaEntrada, mensaje } from '../ui.js';
-import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION } from '../datos.js';
-import { rutaFiltrada, faceta } from '../filtros.js';
-
-const ESTADOS = { existente: 'Existente', demolida: 'Demolida', modificada: 'Modificada' };
+import { el, icono, galeria, creditoFoto, tarjetaEntrada, mensaje, tapaObra, enlacePerfil, enlacesPerfil } from '../ui.js';
+import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, anioReferencia } from '../datos.js';
 
 export async function render(contenedor, { datos, partes, titulo }) {
   const obra = datos.porId.get(partes[1]);
   if (!obra) {
     titulo('Obra no encontrada');
     contenedor.append(mensaje('No encontramos esa obra', `No hay ninguna obra con el id "${partes[1] ?? ''}".`,
-      el('a', { class: 'boton', href: '#/' }, 'Ver todas las obras')));
+      el('a', { class: 'boton', href: '#/obras' }, 'Ver todas las obras')));
     return;
   }
   titulo(obra.nombre);
 
   const u = obra.ubicacion ?? {};
   const fotos = obra.fotos ?? [];
-  const enlace = (clave, valor) => el('a', { href: rutaFiltrada({ [clave]: valor }) }, valor);
-  const enlaces = (clave, valores) => valores.flatMap((v, i) => (i ? [', ', enlace(clave, v)] : [enlace(clave, v)]));
+  const anio = (a) => Number.isFinite(a) && enlacePerfil('anio', String(a));
 
-  // Migas de ubicación: cada nivel lleva a la grilla filtrada hasta ese nivel.
+  // Ubicación: cada nivel lleva a su perfil.
   const migas = [];
-  const acumulado = {};
   for (const nivel of NIVELES_UBICACION) {
     if (!u[nivel]) break;
-    acumulado[nivel] = u[nivel];
     if (migas.length) migas.push(' › ');
-    migas.push(el('a', { href: rutaFiltrada({ ...acumulado }), title: faceta(nivel).etiqueta }, u[nivel]));
+    migas.push(enlacePerfil(nivel, u[nivel]));
   }
+  // Estilo con su familia: "Moderno › Arquitectura orgánica".
+  const estilo = obra.estilo && [...ancestrosEstilo(datos, obra.estilo).reverse(), obra.estilo]
+    .flatMap((e, i) => (i ? [' › ', enlacePerfil('estilo', e)] : [enlacePerfil('estilo', e)]));
 
   const filas = [
-    ['Arquitectos', obra.arquitectos?.length ? enlaces('arquitecto', obra.arquitectos) : null],
-    ['Proyecto', obra.anio_proyecto],
-    ['Finalización', obra.anio_finalizacion],
-    ['Estilo', obra.estilo && enlace('estilo', obra.estilo)],
-    ['Materiales', obra.materiales?.length ? enlaces('material', obra.materiales) : null],
-    ['Programa', obra.programa && enlace('programa', obra.programa)],
-    ['Estado', ESTADOS[obra.estado] ?? obra.estado],
+    ['Arquitectos', obra.arquitectos?.length ? enlacesPerfil('arquitecto', obra.arquitectos) : null],
+    ['Proyecto', anio(obra.anio_proyecto)],
+    ['Finalización', anio(obra.anio_finalizacion)],
+    ['Década', anioReferencia(obra) !== null && enlacePerfil('decada', decadaClave(obra))],
+    ['Estilo', estilo],
+    ['Materiales', obra.materiales?.length ? enlacesPerfil('material', obra.materiales) : null],
+    ['Programa', obra.programa && enlacePerfil('programa', obra.programa)],
+    ['Estado', obra.estado && enlacePerfil('estado', obra.estado)],
     ['Ubicación', migas.length ? migas : null],
     ['Dirección', u.direccion],
-  ].filter(([, valor]) => valor != null && valor !== '');
+  ].filter(([, valor]) => valor != null && valor !== '' && valor !== false);
+  const autoria = [rangoAnios(obra), ...(obra.arquitectos ?? [])].filter(Boolean).join(' · ');
 
   const coordenadas = tieneCoordenadas(obra);
   const listas = datos.listas.filter((l) => l.obras.includes(obra.id));
 
   contenedor.append(
-    el('div', { class: 'ficha-fotos' },
-      fotos.length ? galeria(fotos, { alt: obra.nombre, pie: creditoFoto }) : sinFoto(),
-    ),
+    el('div', { class: 'ficha-tapa' }, tapaObra(obra, { grande: true })),
     el('div', { class: 'ficha' },
       el('div', { class: 'ficha-encabezado' },
-        obra.ejemplo && marcaEjemplo(),
         el('h2', { class: 'ficha-titulo' }, obra.nombre),
+        autoria && el('p', { class: 'ficha-autoria' }, autoria),
         obra.otros_nombres?.length > 0 && el('p', { class: 'tenue' }, `También: ${obra.otros_nombres.join(' · ')}`),
       ),
       el('div', { class: 'acciones' },
@@ -66,6 +64,10 @@ export async function render(contenedor, { datos, partes, titulo }) {
       ),
       obra.descripcion && el('p', { class: 'ficha-descripcion' }, obra.descripcion),
       el('dl', { class: 'ficha-datos' }, filas.map(([nombre, valor]) => [el('dt', {}, nombre), el('dd', {}, valor)])),
+      fotos.length > 0 && el('section', { class: 'ficha-seccion ficha-galeria' },
+        el('h3', {}, fotos.length === 1 ? 'Foto' : `Fotos (${fotos.length})`),
+        galeria(fotos, { alt: obra.nombre, pie: creditoFoto }),
+      ),
       listas.length > 0 && el('section', { class: 'ficha-seccion' },
         el('h3', {}, 'En listas'),
         el('div', { class: 'chips' }, listas.map((l) => el('a', { class: 'chip', href: `#/lista/${encodeURIComponent(l.id)}` }, l.titulo))),

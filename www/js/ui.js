@@ -1,8 +1,8 @@
 // Piezas de interfaz compartidas. Los textos que vienen de los datos se insertan
 // siempre como texto (nunca como HTML).
 
-import { rangoAnios, lugarCorto, formatoFecha, esUrl, colorMarco } from './datos.js';
-import { patronTapa } from './grafica.js';
+import { rangoAnios, lugarCorto, formatoFecha, esUrl, colorMarco, datosActuales, partituraObra, partituraDe, rutaPerfil, nombrePerfil } from './datos.js';
+import { simbolo, simboloNeutro } from './grafica.js';
 
 export function el(etiqueta, props = {}, ...hijos) {
   const nodo = document.createElement(etiqueta);
@@ -18,7 +18,8 @@ export function el(etiqueta, props = {}, ...hijos) {
   return nodo;
 }
 
-function agregar(nodo, hijos) {
+// Como append, pero sin los hijos vacíos (null, false, ''), igual que el().
+export function agregar(nodo, hijos) {
   for (const hijo of hijos.flat(Infinity)) {
     if (hijo == null || hijo === false || hijo === '') continue;
     nodo.append(hijo instanceof Node ? hijo : String(hijo));
@@ -43,6 +44,8 @@ const ICONOS = {
   ruta: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   tema: '<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>',
   basura: '<path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/>',
+  buscar: '<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>',
+  flecha: '<path d="M5 12h13M13 7l5 5-5 5"/>',
 };
 
 export function icono(nombre) {
@@ -95,13 +98,77 @@ export function lineaAutoria(obra) {
   return [(obra.arquitectos ?? []).join(', '), rangoAnios(obra)].filter(Boolean).join(' · ');
 }
 
-// Tapa: la foto enmarcada en un campo de color plano; sin foto, un patrón de líneas.
-export function tapaObra(obra) {
+// Tapa: la foto entera dentro de un campo de color plano (el color del marco llena lo que sobra).
+// Si la foto tiene "encuadre", se recorta al cuadrado mostrando esa parte ("arriba", "50% 30%"…).
+// Sin foto, el símbolo de su arquitecto o, si no tiene, el de su estilo; si tampoco, el neutro.
+export function tapaObra(obra, { grande = false } = {}) {
   const foto = obra.fotos?.[0];
-  return el('div', { class: `tapa marco-${colorMarco(obra)}` },
-    foto ? el('img', { src: foto.archivo, alt: obra.nombre, loading: 'lazy', decoding: 'async' }) : patronTapa(obra.id),
+  return el('div', { class: `tapa${grande ? ' tapa-grande' : ''} marco-${colorMarco(obra)}` },
+    foto ? imagenTapa(foto, obra, grande) : simboloTapa(obra),
     obra.ejemplo && marcaEjemplo(),
   );
+}
+
+const ENCUADRES = { arriba: 'center top', abajo: 'center bottom', izquierda: 'left center', derecha: 'right center', centro: 'center' };
+
+function imagenTapa(foto, obra, grande) {
+  const encuadre = foto.encuadre && (ENCUADRES[foto.encuadre] ?? foto.encuadre);
+  return el('img', {
+    src: foto.archivo, alt: obra.nombre, loading: grande ? 'eager' : 'lazy', decoding: 'async',
+    class: encuadre ? 'con-encuadre' : null, style: encuadre ? `object-position: ${encuadre}` : null,
+  });
+}
+
+function simboloTapa(obra) {
+  const datos = datosActuales();
+  const partitura = (datos && partituraObra(datos, obra)) ?? simboloNeutro(colorMarco(obra));
+  return simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, clase: 'tapa-grafica' });
+}
+
+// ---- Perfiles ----
+
+// `query`: filtros para sumar a la dirección (por ejemplo { pais: 'Argentina' }).
+export function enlacePerfil(tipo, valor, texto, query) {
+  const extra = query ? `?${new URLSearchParams(query)}` : '';
+  return el('a', { href: rutaPerfil(tipo, valor) + extra }, texto ?? nombrePerfil(tipo, valor));
+}
+
+// Varios enlaces separados por comas.
+export function enlacesPerfil(tipo, valores, query) {
+  return valores.flatMap((v, i) => (i ? [', ', enlacePerfil(tipo, v, null, query)] : [enlacePerfil(tipo, v, null, query)]));
+}
+
+// La banda con el símbolo del perfil (o el neutro en su color). Los años, con la marca del año.
+// `pais`: el contexto, para elegir la colección de décadas.
+export function bandaPerfil(datos, tipo, valor, familia, { pais } = {}) {
+  const partitura = partituraDe(datos, tipo, valor, { pais }) ?? simboloNeutro(familia);
+  const anio = tipo === 'anio' ? Number(valor) % 10 : null;
+  return el('div', { class: 'banda-perfil' }, simbolo(partitura, { ancho: 400, alto: 132, anio }));
+}
+
+// Encabezado de fila: título chico en mayúsculas, filete y VER MÁS a la derecha.
+export function encabezadoFila(titulo, verMas, { subtitulo } = {}) {
+  return el('header', { class: 'encabezado-fila' },
+    el('h2', {}, titulo, subtitulo && el('span', { class: 'encabezado-fila-sub' }, subtitulo)),
+    verMas && el('a', { class: 'ver-mas', href: verMas }, 'Ver más', icono('flecha')),
+  );
+}
+
+// Fila de tapas con scroll horizontal.
+export function filaHorizontal(obras, { detalle } = {}) {
+  return el('div', { class: 'fila-horizontal' }, obras.map((obra) => tarjetaObra(obra, { detalle: detalle?.(obra) })));
+}
+
+export function esqueletoFila() {
+  return el('div', { class: 'fila-horizontal fila-esqueleto', 'aria-hidden': 'true' },
+    [0, 1, 2].map(() => el('div', { class: 'tarjeta' }, el('div', { class: 'tapa' }))));
+}
+
+// Collage de hasta 4 tapas, para la portada de una lista.
+export function collage(obras) {
+  const cuatro = obras.slice(0, 4);
+  const vacios = Array.from({ length: 4 - cuatro.length }, () => el('div', { class: 'collage-vacio' }));
+  return el('div', { class: 'collage' }, cuatro.map((o) => tapaObra(o)), vacios);
 }
 
 export function tarjetaObra(obra, { detalle } = {}) {
@@ -118,7 +185,7 @@ export function tarjetaObra(obra, { detalle } = {}) {
 // Fila compacta (miniatura + texto), para listas dentro de hojas y del diario.
 export function filaObra(obra, { detalle, href, alTocar } = {}) {
   const contenido = [
-    el('div', { class: 'fila-miniatura' }, imagenObra(obra)),
+    el('div', { class: 'fila-miniatura' }, tapaObra(obra)),
     el('div', { class: 'fila-texto' }, el('strong', {}, obra.nombre), el('span', { class: 'tenue' }, detalle ?? lugarCorto(obra))),
   ];
   return alTocar

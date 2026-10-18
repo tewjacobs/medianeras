@@ -1,85 +1,83 @@
-// Inicio: grilla de obras con búsqueda y filtros. El estado de los filtros vive en la URL.
+// Inicio: filas temáticas (filas.js), las décadas desplegables y el link a todas las obras.
 
-import { el, icono, tarjetaObra, mensaje, abrirHoja } from '../ui.js';
-import { compararTexto } from '../datos.js';
-import { FACETAS, leerFiltros, filtrosAQuery, conFiltro, filtrar, opciones, filtrosActivos } from '../filtros.js';
+import { el, icono, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
+import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL } from '../datos.js';
+import { separador } from '../grafica.js';
+import { ordenar } from '../filtros.js';
+import { FILAS_INICIO, MAXIMO, decadasConObras } from '../filas.js';
+import { leerPreferencia, guardarPreferencia } from '../plataforma/preferencias.js';
+import { enlacesIndices } from './perfil.js';
 
-export function render(contenedor, { datos, params }) {
-  let filtros = leerFiltros(params);
-  const obras = [...datos.obras].sort((a, b) => compararTexto(a.nombre, b.nombre));
+export function render(contenedor, { datos }) {
+  if (!datos.obras.length) {
+    contenedor.append(mensaje('Todavía no hay obras', 'Cargalas en data/obras.json (ver README).'));
+    return;
+  }
+  // Las visitas del teléfono pueden tardar: todo se pinta enseguida y las filas que dependen de
+  // las visitas se completan cuando llegan.
+  const entradas = entradasDiario(datos);
+  const ctx = { datos, estadisticas: entradas.then(estadisticasVisitas) };
 
-  const buscador = el('input', {
-    type: 'search', class: 'buscador', placeholder: 'Buscar obra, arquitecto/a…', 'aria-label': 'Buscar',
-    value: filtros.q ?? '', enterkeyhint: 'search', autocomplete: 'off',
-    oninput: () => cambiar({ ...filtros, q: buscador.value.trim() || undefined }),
-  });
-  const contadorFiltros = el('span', { class: 'insignia' });
-  const botonFiltros = el('button', { type: 'button', class: 'boton boton-filtros', onclick: abrirFiltros }, icono('filtros'), 'Filtros', contadorFiltros);
-  const chips = el('div', { class: 'chips' });
-  const resumen = el('p', { class: 'resumen tenue' });
-  const grilla = el('div', { class: 'grilla' });
+  const paises = new Set(datos.obras.flatMap(TIPOS_PERFIL.pais.valores));
+  const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
+  const resumen = (visitas) => [plural(datos.obras.length, 'obra', 'obras'), visitas, plural(paises.size, 'país', 'países')].filter(Boolean).join(' · ');
+  const linea = el('p', { class: 'resumen-inicio' }, resumen());
+  contenedor.append(linea);
+  entradas.then((lista) => { linea.textContent = resumen(plural(lista.length, 'visita', 'visitas')); });
 
-  contenedor.append(el('div', { class: 'barra-herramientas' }, buscador, botonFiltros), chips, resumen, grilla);
-
-  let hoja = null;
-
-  function cambiar(nuevos) {
-    filtros = nuevos;
-    const query = filtrosAQuery(filtros);
-    history.replaceState(null, '', query ? `#/?${query}` : '#/');
-    pintar();
+  // Cada fila tiene su lugar fijo y se pinta apenas resuelve, con un esqueleto mientras tanto.
+  for (const fila of FILAS_INICIO) {
+    const lugar = el('section', { class: 'fila' }, esqueletoFila());
+    contenedor.append(lugar);
+    pintarFila(lugar, fila, ctx);
   }
 
-  function pintar() {
-    const resultado = filtrar(obras, filtros);
-    const activos = filtrosActivos(filtros);
-
-    contadorFiltros.textContent = activos.length || '';
-    contadorFiltros.hidden = activos.length === 0;
-    chips.replaceChildren(...activos.map(({ faceta, nombre }) => el('button', {
-      type: 'button', class: 'chip', 'aria-label': `Quitar filtro ${faceta.etiqueta}: ${nombre}`,
-      onclick: () => cambiar(conFiltro(filtros, faceta.clave, null)),
-    }, nombre, el('span', { 'aria-hidden': 'true' }, '×'))));
-
-    resumen.textContent = resultado.length === 1 ? '1 obra' : `${resultado.length} obras`;
-    grilla.replaceChildren(...resultado.map((obra) => tarjetaObra(obra)));
-    if (resultado.length === 0) {
-      grilla.append(datos.obras.length === 0
-        ? mensaje('Todavía no hay obras', 'Cargalas en data/obras.json (ver README).')
-        : mensaje('Ninguna obra coincide', 'Probá sacando algún filtro.', el('button', { type: 'button', class: 'boton', onclick: limpiar }, 'Limpiar filtros')));
-    }
-    if (hoja) pintarHoja(resultado.length);
-  }
-
-  function limpiar() {
-    buscador.value = '';
-    cambiar({});
-  }
-
-  function abrirFiltros() {
-    hoja = abrirHoja({ titulo: 'Filtros', contenido: el('div', { class: 'formulario' }), pie: [], alCerrar: () => { hoja = null; } });
-    pintar();
-  }
-
-  function pintarHoja(cantidad) {
-    const campos = FACETAS.map((faceta) => {
-      const lista = opciones(obras, filtros, faceta);
-      const bloqueado = faceta.padre && !filtros[faceta.padre];
-      if (lista.length === 0 && !filtros[faceta.clave]) return null;
-      const select = el('select', {
-        id: `filtro-${faceta.clave}`, disabled: bloqueado,
-        onchange: () => cambiar(conFiltro(filtros, faceta.clave, select.value || null)),
-      },
-      el('option', { value: '' }, bloqueado ? `Elegí antes ${FACETAS.find((f) => f.clave === faceta.padre).etiqueta.toLowerCase()}` : 'Todos'),
-      lista.map(({ valor, nombre, cantidad: n }) => el('option', { value: valor, selected: filtros[faceta.clave] === valor }, `${nombre} (${n})`)));
-      return el('label', { class: 'campo', for: select.id }, el('span', {}, faceta.etiqueta), select);
-    });
-    hoja.cuerpo.firstChild.replaceChildren(...campos.filter(Boolean));
-    hoja.pie.replaceChildren(
-      el('button', { type: 'button', class: 'boton', onclick: limpiar }, 'Limpiar'),
-      el('button', { type: 'button', class: 'boton boton-primario', onclick: () => hoja.cerrar() }, cantidad === 1 ? 'Ver 1 obra' : `Ver ${cantidad} obras`),
-    );
-  }
-
-  pintar();
+  contenedor.append(separador('inicio:decadas', 360), decadas(datos), separador('inicio:todas', 360),
+    el('a', { class: 'todas-las-obras', href: '#/obras' }, `Todas las obras (${datos.obras.length})`, icono('flecha')),
+    el('nav', { class: 'explorar', 'aria-label': 'Explorar' }, encabezadoFila('Explorar'), el('div', { class: 'explorar-enlaces' }, enlacesIndices())));
 }
+
+async function pintarFila(lugar, fila, ctx) {
+  try {
+    const eleccion = fila.elegir ? fila.elegir(ctx) : undefined;
+    if (fila.elegir && eleccion == null) { lugar.remove(); return; }
+    const conVisitas = fila.visitas ? { ...ctx, estadisticas: await ctx.estadisticas } : ctx;
+    const obras = (await fila.obras(conVisitas, eleccion)).slice(0, MAXIMO);
+    if (!obras.length) { lugar.remove(); return; }
+    const valor = (x) => (typeof x === 'function' ? x(ctx, eleccion) : x);
+    lugar.replaceChildren(
+      encabezadoFila(valor(fila.titulo), valor(fila.verMas), { subtitulo: fila.subtitulo && valor(fila.subtitulo) }),
+      filaHorizontal(obras, { detalle: fila.detalle?.(conVisitas) }),
+    );
+  } catch (error) {
+    console.warn(`No se pudo armar la fila "${fila.id}"`, error);
+    lugar.remove();
+  }
+}
+
+// Una fila desplegable por década. Las que se abren se recuerdan en el teléfono.
+function decadas(datos) {
+  let guardadas = [];
+  try { guardadas = JSON.parse(leerPreferencia('decadas-abiertas', '[]')); } catch { /* se empieza con todas cerradas */ }
+  const abiertas = new Set(Array.isArray(guardadas) ? guardadas : []);
+  const guardar = () => guardarPreferencia('decadas-abiertas', JSON.stringify([...abiertas]));
+  return el('section', { class: 'fila fila-decadas' },
+    encabezadoFila('Por década'),
+    decadasConObras(datos).map(([decada, obras]) => {
+      const detalles = el('details', {
+        class: 'decada', open: abiertas.has(decada),
+        ontoggle: () => { if (detalles.open) abiertas.add(decada); else abiertas.delete(decada); guardar(); },
+      },
+      el('summary', {},
+        el('span', { class: 'decada-nombre' }, `${decada}s`),
+        el('span', { class: 'decada-puntos', 'aria-hidden': 'true' }),
+        el('span', { class: 'decada-cantidad' }, obras.length),
+      ),
+      filaHorizontal(ordenar(obras, 'anio')),
+      el('a', { class: 'ver-mas', href: rutaPerfil('decada', decada) }, `Ver la década de ${decada}`, icono('flecha')),
+      );
+      return detalles;
+    }),
+  );
+}
+

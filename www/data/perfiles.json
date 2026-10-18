@@ -1,0 +1,38 @@
+{
+  "arquitectos": {
+    "Frank Lloyd Wright": {
+      "nacimiento": 1867,
+      "muerte": 1959,
+      "pais": "Estados Unidos",
+      "descripcion": "Arquitecto estadounidense, una de las figuras centrales de la arquitectura moderna y el principal impulsor de la arquitectura orgánica. Entre sus obras están Fallingwater, la Price Tower y el Museo Guggenheim de Nueva York."
+    },
+    "D. H. Burnham & Company": {
+      "pais": "Estados Unidos",
+      "descripcion": "Estudio de Chicago dirigido por Daniel H. Burnham (1846–1912). Proyectó el Flatiron Building de Nueva York, terminado en 1902."
+    }
+  },
+  "estilos": {
+    "Moderno": {
+      "color": "petroleo",
+      "descripcion": "Movimiento del siglo XX que dejó de lado el ornamento histórico y buscó la forma en la función, la estructura y los materiales nuevos: el hormigón armado, el acero y el vidrio."
+    },
+    "Racionalismo (ejemplo)": { "padre": "Moderno" },
+    "Brutalismo (ejemplo)": { "padre": "Moderno" },
+    "Arquitectura orgánica": {
+      "padre": "Moderno",
+      "color": "follaje",
+      "descripcion": "Corriente que busca la armonía entre el edificio, su función y su entorno natural. El término lo difundió Frank Lloyd Wright."
+    },
+    "Academicismo": { "color": "mar" },
+    "Beaux-Arts": {
+      "padre": "Academicismo",
+      "descripcion": "Arquitectura académica asociada a la École des Beaux-Arts de París: composición simétrica, órdenes clásicos y ornamento. Tuvo su auge entre fines del siglo XIX y comienzos del XX."
+    },
+    "Art déco (ejemplo)": { "color": "cielo" }
+  },
+  "materiales": {},
+  "programas": {},
+  "paises": {},
+  "decadas": {},
+  "anios": {}
+}

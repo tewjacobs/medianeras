@@ -37,20 +37,31 @@ medianeras/
     │   ├── grafica.js            logo, símbolos de perfil y patrones de líneas (SVG)
     │   ├── tema.js               claro / oscuro / automático
     │   ├── exportar.js           arma el ZIP con las visitas del teléfono
-    │   ├── vistas/               una por sección (inicio, mapa, obra, diario, listas, nueva-visita)
+    │   ├── filas.js              las filas del inicio (de dónde salen sus obras y adónde lleva VER MÁS)
+    │   ├── vistas/               una por sección (inicio, obras, perfil, mapa, obra, diario, listas, nueva-visita)
     │   ├── plataforma/           todo lo que toca el dispositivo (ver Capacitor)
     │   └── lib/zip.js            generador de ZIP sin dependencias
     ├── vendor/leaflet/           Leaflet 1.9.4 (copia local, sin CDN)
     ├── fuentes/                  Archivo, IBM Plex Mono y Libre Caslon Text (woff2 + licencias OFL)
     ├── iconos/
-    ├── data/                     obras.json, diario.json, listas.json, simbolos.json
+    ├── data/                     obras.json, diario.json, listas.json, perfiles.json, simbolos.json
     └── img/
         ├── obras/<id-de-obra>/   fotos del catálogo
         └── diario/<id-de-visita>/ fotos propias de las visitas
 ```
 
-Rutas de la app: `#/` (obras), `#/mapa`, `#/obra/<id>`, `#/diario`, `#/listas`, `#/lista/<id>`, `#/nueva`.
-Los filtros quedan en la dirección (por ejemplo `#/?pais=Argentina&decada=1950`), así que se pueden guardar o compartir.
+Rutas de la app:
+
+| Ruta | Qué es |
+|---|---|
+| `#/` | inicio: filas temáticas (visitadas, agregadas, mejor puntuadas, de un arquitecto/a, por década) |
+| `#/obras` | todas las obras, con buscador, filtros y orden |
+| `#/arquitecto/<slug>`, `#/estilo/…`, `#/material/…`, `#/programa/…`, `#/estado/…`, `#/pais/…`, `#/provincia/…`, `#/ciudad/…`, `#/barrio/…`, `#/decada/1950`, `#/anio/1959` | perfil: símbolo, datos, descripción, resumen y sus obras |
+| `#/arquitectos`, `#/estilos`, `#/materiales`, `#/programas`, `#/paises`, `#/decadas`, `#/anios`… | índice de cada tipo (los estilos, como árbol) |
+| `#/obra/<id>`, `#/mapa`, `#/diario`, `#/listas`, `#/lista/<id>`, `#/nueva` | ficha, mapa, diario, listas y nueva visita |
+
+El slug es el nombre en minúsculas, sin tildes y con guiones: "Frank Lloyd Wright" → `frank-lloyd-wright`.
+Los filtros y el orden quedan en la dirección (por ejemplo `#/obras?pais=Argentina&decada=1950&orden=anio`), así que se pueden guardar o compartir. Los links viejos con filtros en el inicio (`#/?pais=Argentina`) llevan solos a `#/obras`.
 
 ## Ver el sitio en la compu
 
@@ -161,9 +172,35 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `ubicacion.pais` … `barrio` | niveles genéricos: `provincia` = provincia / estado / región; `ciudad` = partido / ciudad / municipio; `barrio` = barrio / localidad. Sirve para cualquier país | no, pero sin país no entra en el filtro de ubicación |
 | `ubicacion.lat`, `lng` | números decimales; sin ellos la obra no aparece en el mapa | no |
 | `fotos` | lista; la primera es la portada | no (`[]`) |
+| `fotos[].encuadre` | cómo se ve la portada en la tapa cuadrada. Sin encuadre, la foto entra entera y el color del marco llena lo que sobra. Con `"centro"`, `"arriba"`, `"abajo"`, `"izquierda"`, `"derecha"` o una posición como `"50% 30%"`, se recorta al cuadrado mostrando esa parte. En la ficha, las fotos siempre se ven enteras | no |
 | `ejemplo` | `true` muestra el cartel EJEMPLO. No lo pongas en obras reales | no |
+| `agregada` | fecha `AAAA-MM-DD` en que se sumó al catálogo, para "Agregadas recientemente". Si falta, vale el orden del archivo (la última es la más nueva) | no |
+| `color` | fuerza el color del marco: `petroleo`, `follaje`, `cielo` o `mar` (si no, sale del estilo; ver Perfiles) | no |
 
-Los filtros (década, estilo, material, arquitecto, programa, país → provincia → partido/ciudad → barrio) se arman solos con lo que haya en los datos: no hay que tocar código para sumar un país o un barrio nuevo.
+Los filtros (década, año, estilo, material, arquitecto, programa, estado, país → provincia → partido/ciudad → barrio) se arman solos con lo que haya en los datos: no hay que tocar código para sumar un país o un barrio nuevo.
+
+## Perfiles (`data/perfiles.json`)
+
+Cada arquitecto, estilo, material, lugar, década o año tiene su página, armada con las obras. `data/perfiles.json` es optativo y suma lo que las obras no dicen: si falta o está vacío, todo funciona igual. Las claves son el nombre exacto tal como aparece en `obras.json`:
+
+```json
+{
+  "arquitectos": {
+    "Frank Lloyd Wright": { "nacimiento": 1867, "muerte": 1959, "pais": "Estados Unidos", "descripcion": "…" }
+  },
+  "estilos": {
+    "Moderno": { "color": "petroleo", "descripcion": "…" },
+    "Arquitectura orgánica": { "padre": "Moderno", "color": "follaje", "descripcion": "…" },
+    "Racionalismo (ejemplo)": { "padre": "Moderno" }
+  },
+  "materiales": {}, "programas": {}, "paises": {}, "decadas": {}, "anios": {}
+}
+```
+
+- **Arquitectos**: `nacimiento`, `muerte`, `fundacion` (para estudios), `pais` y `descripcion`. Se muestra lo que haya.
+- **Jerarquía de estilos**: `padre` arma el árbol (`ESTILOS › Moderno › Racionalismo`). Un estilo puede existir solo acá, sin obras propias, como "Moderno": su página muestra las obras de todos sus descendientes, y filtrar por él también. Si un `padre` no existe o hay un ciclo, la consola lo avisa.
+- **Color del marco**: el `color` de un estilo lo heredan sus descendientes que no tengan uno propio, así una familia comparte color. Sin color, se calcula uno estable desde el nombre del estilo raíz.
+- **Descripción**: cualquier perfil puede tener `descripcion`. Si no tiene, la página se arma solo con las obras.
 
 ## Símbolos de perfil (`data/simbolos.json`)
 
@@ -231,7 +268,9 @@ Los largos son relativos: no son píxeles. El dibujo se escala entero para entra
 
 **Arcos.** Cada arco es `{ "color", "desde", "hasta", "base", "flecha", "lineas" }`, en las mismas unidades que los tramos: va de `desde` a `hasta`, apoya en la línea número `base` (contando desde 0) y sube `flecha`. Con `"lineas": 2` se dibujan dos arcos paralelos, uno dentro del otro. Ejemplo: la Casa sobre el Arroyo, en `decadas.argentina.1940`. Con `"relleno": true` el arco es una figura llena (la parte de arriba de un portal) que apoya en el borde de arriba de la línea `base`; ejemplo: el portal de la Recoleta, en `decadas.argentina.1980`.
 
-**Sin símbolo.** Un perfil que no tiene símbolo muestra una sola línea fina en el color de su familia.
+**Sin símbolo.** Un perfil que no tiene símbolo muestra una sola línea fina en el color de su familia. Un estilo sin símbolo usa el de su ancestro más cercano que tenga; un programa como "Oficinas (en conversión a viviendas)", si no tiene uno propio, usa el de lo que está antes del paréntesis ("Oficinas"). La década de 2020 argentina, por ahora, no tiene símbolo y usa el neutro.
+
+**Obras sin foto.** La tapa muestra el símbolo de su arquitecto/a o, si no tiene, el de su estilo; si tampoco, el neutro.
 
 **Décadas y años.** Cada década tiene el símbolo de una obra característica de esa época, en dos colecciones: `argentina` (la que usa la app; por ejemplo, 1930 → Edificio Kavanagh) y `mundo` (por ejemplo, 1960 → Congreso Nacional de Brasilia). Los años no se cargan: usan el símbolo de su década y, debajo, diez marcas, una por año, con la de ese año en rojo.
 

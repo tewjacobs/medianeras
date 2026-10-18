@@ -1,17 +1,16 @@
-// Listas temáticas: índice y detalle.
+// Listas temáticas: índice (con un collage de 4 tapas por lista) y detalle.
 
-import { el, tarjetaObra, tapaObra, sinFoto, mensaje } from '../ui.js';
+import { el, tarjetaObra, collage, mensaje } from '../ui.js';
 
 export function render(contenedor, { datos }) {
   if (!datos.listas.length) {
     contenedor.append(mensaje('Todavía no hay listas', 'Cargalas en data/listas.json (ver README).'));
     return;
   }
-  contenedor.append(el('div', { class: 'grilla' }, datos.listas.map((lista) => {
+  contenedor.append(el('div', { class: 'grilla grilla-listas' }, datos.listas.map((lista) => {
     const obras = obrasDe(lista, datos);
-    const portada = obras.find((o) => o.fotos?.length) ?? obras[0];
-    return el('a', { class: 'tarjeta', href: `#/lista/${encodeURIComponent(lista.id)}` },
-      portada ? tapaObra(portada) : sinFoto(),
+    return el('a', { class: 'tarjeta tarjeta-lista', href: `#/lista/${encodeURIComponent(lista.id)}` },
+      collage(obras),
       el('div', { class: 'tarjeta-texto' },
         el('h3', {}, lista.titulo),
         el('p', { class: 'tenue' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
@@ -33,8 +32,8 @@ export function renderDetalle(contenedor, { datos, partes, titulo }) {
   contenedor.append(
     el('div', { class: 'encabezado-lista' },
       el('h2', {}, lista.titulo),
-      lista.descripcion && el('p', { class: 'tenue' }, lista.descripcion),
-      el('p', { class: 'tenue' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
+      el('p', { class: 'perfil-datos' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
+      lista.descripcion && el('p', { class: 'perfil-descripcion abierta' }, lista.descripcion),
     ),
     el('div', { class: 'grilla' }, obras.map((obra) => tarjetaObra(obra))),
   );

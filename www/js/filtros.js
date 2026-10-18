@@ -1,23 +1,35 @@
 // Filtros de la grilla. Las opciones de cada filtro se calculan desde los datos,
 // con la cantidad de obras que quedarían al elegirlas.
 
-import { SIN_DATO, decadaClave, etiquetaDecada, normalizar, compararTexto } from './datos.js';
+import { SIN_DATO, ESTADOS, decadaClave, etiquetaDecada, normalizar, compararTexto, estiloConAncestros, anioReferencia } from './datos.js';
 
 const nivel = (clave) => (obra) => [obra.ubicacion?.[clave] || SIN_DATO];
 const nombreUbicacion = (v) => (v === SIN_DATO ? 'Sin especificar' : v);
 
+// `ruta`: el tipo de perfil al que lleva cada valor (#/<ruta>/<slug>).
 export const FACETAS = [
-  { clave: 'decada', etiqueta: 'Década', valores: (o) => [decadaClave(o)], nombre: etiquetaDecada, numerico: true },
-  { clave: 'estilo', etiqueta: 'Estilo', valores: (o) => (o.estilo ? [o.estilo] : []) },
-  { clave: 'material', etiqueta: 'Material', valores: (o) => o.materiales ?? [] },
-  { clave: 'arquitecto', etiqueta: 'Arquitecto/a', valores: (o) => o.arquitectos ?? [] },
-  { clave: 'programa', etiqueta: 'Programa', valores: (o) => (o.programa ? [o.programa] : []) },
+  { clave: 'decada', ruta: 'decada', etiqueta: 'Década', valores: (o) => [decadaClave(o)], nombre: etiquetaDecada, numerico: true },
+  { clave: 'anio', ruta: 'anio', etiqueta: 'Año', valores: (o) => { const a = anioReferencia(o); return a === null ? [] : [String(a)]; }, numerico: true },
+  { clave: 'estilo', ruta: 'estilo', etiqueta: 'Estilo', valores: (o) => (o.estilo ? estiloConAncestros(o.estilo) : []) },
+  { clave: 'material', ruta: 'material', etiqueta: 'Material', valores: (o) => o.materiales ?? [] },
+  { clave: 'arquitecto', ruta: 'arquitecto', etiqueta: 'Arquitecto/a', valores: (o) => o.arquitectos ?? [] },
+  { clave: 'programa', ruta: 'programa', etiqueta: 'Programa', valores: (o) => (o.programa ? [o.programa] : []) },
+  { clave: 'estado', ruta: 'estado', etiqueta: 'Estado', valores: (o) => (o.estado ? [o.estado] : []), nombre: (v) => ESTADOS[v] ?? v },
   // Ubicación en cascada: cada nivel se habilita cuando está elegido el anterior.
-  { clave: 'pais', etiqueta: 'País', valores: nivel('pais'), nombre: nombreUbicacion },
-  { clave: 'provincia', etiqueta: 'Provincia / estado', valores: nivel('provincia'), nombre: nombreUbicacion, padre: 'pais' },
-  { clave: 'ciudad', etiqueta: 'Partido / ciudad', valores: nivel('ciudad'), nombre: nombreUbicacion, padre: 'provincia' },
-  { clave: 'barrio', etiqueta: 'Barrio / localidad', valores: nivel('barrio'), nombre: nombreUbicacion, padre: 'ciudad' },
+  { clave: 'pais', ruta: 'pais', etiqueta: 'País', valores: nivel('pais'), nombre: nombreUbicacion },
+  { clave: 'provincia', ruta: 'provincia', etiqueta: 'Provincia / estado', valores: nivel('provincia'), nombre: nombreUbicacion, padre: 'pais' },
+  { clave: 'ciudad', ruta: 'ciudad', etiqueta: 'Partido / ciudad', valores: nivel('ciudad'), nombre: nombreUbicacion, padre: 'provincia' },
+  { clave: 'barrio', ruta: 'barrio', etiqueta: 'Barrio / localidad', valores: nivel('barrio'), nombre: nombreUbicacion, padre: 'ciudad' },
 ];
+
+// Orden de la grilla (?orden=…). "visita" y "puntaje" usan las estadísticas de visitas.
+export const ORDENES = {
+  nombre: 'Nombre',
+  anio: 'Año',
+  agregada: 'Agregadas recientemente',
+  visita: 'Visitadas recientemente',
+  puntaje: 'Mejor puntuadas',
+};
 
 const porClave = new Map(FACETAS.map((f) => [f.clave, f]));
 
@@ -37,6 +49,8 @@ export function leerFiltros(params) {
   const filtros = {};
   for (const { clave } of FACETAS) if (params.get(clave)) filtros[clave] = params.get(clave);
   if (params.get('q')) filtros.q = params.get('q');
+  if (ORDENES[params.get('orden')]) filtros.orden = params.get('orden');
+  if (params.get('visitadas') === 'si') filtros.visitadas = 'si';
   return filtros;
 }
 
@@ -44,6 +58,8 @@ export function filtrosAQuery(filtros) {
   const params = new URLSearchParams();
   for (const { clave } of FACETAS) if (filtros[clave]) params.set(clave, filtros[clave]);
   if (filtros.q) params.set('q', filtros.q);
+  if (filtros.orden) params.set('orden', filtros.orden);
+  if (filtros.visitadas) params.set('visitadas', filtros.visitadas);
   return params.toString();
 }
 
@@ -56,7 +72,9 @@ export function conFiltro(filtros, clave, valor) {
   return nuevos;
 }
 
-function cumple(obra, filtros, excluidas) {
+// `visitadas`: ids de las obras con alguna visita (para ?visitadas=si).
+function cumple(obra, filtros, excluidas, visitadas) {
+  if (filtros.visitadas && visitadas && !visitadas.has(obra.id)) return false;
   for (const faceta of FACETAS) {
     const valor = filtros[faceta.clave];
     if (valor && !excluidas.has(faceta.clave) && !faceta.valores(obra).includes(valor)) return false;
@@ -68,8 +86,24 @@ function cumple(obra, filtros, excluidas) {
   return true;
 }
 
-export function filtrar(obras, filtros) {
-  return obras.filter((o) => cumple(o, filtros, new Set()));
+export function filtrar(obras, filtros, { visitadas } = {}) {
+  return obras.filter((o) => cumple(o, filtros, new Set(), visitadas));
+}
+
+// Ordena según filtros.orden. `estadisticas`: Map obra_id → { ultima, promedio } (datos.js).
+// "Agregadas" usa el campo `agregada` y, si falta, el orden de obras.json (la última es la más nueva).
+export function ordenar(obras, orden, { estadisticas = new Map(), todas = obras } = {}) {
+  const lista = [...obras];
+  const posicion = new Map(todas.map((o, i) => [o.id, i]));
+  const porNombre = (a, b) => compararTexto(a.nombre, b.nombre);
+  const criterios = {
+    nombre: porNombre,
+    anio: (a, b) => (anioReferencia(a) ?? 9999) - (anioReferencia(b) ?? 9999) || porNombre(a, b),
+    agregada: (a, b) => (b.agregada ?? '').localeCompare(a.agregada ?? '') || posicion.get(b.id) - posicion.get(a.id),
+    visita: (a, b) => (estadisticas.get(b.id)?.ultima ?? '').localeCompare(estadisticas.get(a.id)?.ultima ?? '') || porNombre(a, b),
+    puntaje: (a, b) => (estadisticas.get(b.id)?.promedio ?? 0) - (estadisticas.get(a.id)?.promedio ?? 0) || porNombre(a, b),
+  };
+  return lista.sort(criterios[orden] ?? porNombre);
 }
 
 // Opciones de una faceta con su conteo, ignorando el valor elegido en esa faceta y en sus niveles hijos.
@@ -96,10 +130,10 @@ export function filtrosActivos(filtros) {
   }));
 }
 
-// Link a la grilla con filtros (por ejemplo, desde la ficha de una obra).
+// Link a la grilla completa con filtros.
 export function rutaFiltrada(filtros) {
   const query = filtrosAQuery(filtros);
-  return query ? `#/?${query}` : '#/';
+  return query ? `#/obras?${query}` : '#/obras';
 }
 
 export function faceta(clave) {

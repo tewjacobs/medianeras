@@ -53,9 +53,15 @@
   </div>
 
   <header class="cabecera">
-    <button class="cabecera-atras" type="button" aria-label="Volver" hidden><span data-icono="atras"></span></button>
-    <h1 class="cabecera-titulo">Medianeras</h1>
-    <button class="cabecera-tema" type="button" aria-label="Apariencia: claro, oscuro o automático" title="Apariencia"><span data-icono="tema"></span></button>
+    <div class="cabecera-fila">
+      <button class="cabecera-atras" type="button" aria-label="Volver" hidden><span data-icono="atras"></span></button>
+      <h1 class="cabecera-titulo">Medianeras</h1>
+      <button class="cabecera-tema" type="button" aria-label="Apariencia: claro, oscuro o automático" title="Apariencia"><span data-icono="tema"></span></button>
+    </div>
+    <form class="cabecera-busqueda" role="search">
+      <input class="cabecera-campo" type="search" placeholder="Buscar obra, arquitecto/a…" aria-label="Buscar obras" enterkeyhint="search" autocomplete="off">
+      <button class="cabecera-buscar" type="submit" aria-label="Buscar" title="Buscar"><span data-icono="buscar"></span></button>
+    </form>
   </header>
 
   <main id="principal"></main>

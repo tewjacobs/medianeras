@@ -2,15 +2,27 @@
 // No hay ningún lugar, estilo ni arquitecto escrito acá: todo sale de los datos.
 
 import { listarVisitas } from './plataforma/almacen.js';
-import { hashTexto } from './grafica.js';
+import { hashTexto, registrarColoresSimbolos } from './grafica.js';
 
 export const SIN_DATO = '_';
 
 let promesa = null;
+let actuales = null; // los datos ya indexados, para las funciones que no los reciben (color del marco)
 
 export function cargarDatos() {
-  promesa ??= Promise.all(['obras', 'diario', 'listas'].map(cargarJSON))
-    .then(([obras, diario, listas]) => indexar(obras, diario, listas))
+  // obras, diario y listas son obligatorios; perfiles y símbolos son optativos: si faltan o
+  // tienen un error, la app arranca igual sin ellos.
+  promesa ??= Promise.all([
+    ...['obras', 'diario', 'listas'].map(cargarJSON),
+    ...['perfiles', 'simbolos'].map(cargarOptativo),
+  ])
+    .then(([obras, diario, listas, perfiles, simbolos]) => {
+      actuales = indexar(obras, diario, listas, perfiles, simbolos);
+      // Los colores propios de los símbolos (con su valor para claro y para oscuro) se cargan
+      // como variables CSS; sin esto, los tramos de esos colores no se ven.
+      registrarColoresSimbolos(simbolos.colores ?? {});
+      return actuales;
+    })
     .catch((error) => {
       promesa = null; // permite reintentar
       throw error;
@@ -28,7 +40,21 @@ async function cargarJSON(nombre) {
   }
 }
 
-function indexar(obras, diario, listas) {
+// Los datos ya cargados (o null antes de la primera carga).
+export function datosActuales() {
+  return actuales;
+}
+
+async function cargarOptativo(nombre) {
+  try {
+    return await cargarJSON(nombre);
+  } catch (error) {
+    console.warn(`${error.message}: se sigue sin ese archivo`);
+    return {};
+  }
+}
+
+function indexar(obras, diario, listas, perfiles = {}, simbolos = {}) {
   const porId = new Map();
   for (const obra of obras) {
     if (porId.has(obra.id)) console.warn(`obras.json: el id "${obra.id}" está repetido`);
@@ -38,7 +64,9 @@ function indexar(obras, diario, listas) {
   for (const entrada of diario) if (!porId.has(entrada.obra_id)) avisar(`diario.json (${entrada.id})`, entrada.obra_id);
   for (const lista of listas) for (const id of lista.obras) if (!porId.has(id)) avisar(`listas.json (${lista.id})`, id);
 
-  return { obras, porId, diario, listas };
+  const datos = { obras, porId, diario, listas, perfiles, simbolos, slugs: indexarSlugs(obras, perfiles) };
+  revisarJerarquia(perfiles.estilos ?? {});
+  return datos;
 }
 
 // Entradas publicadas (diario.json) + visitas guardadas en este teléfono, más recientes primero.
@@ -89,11 +117,175 @@ export function rangoAnios(obra) {
 // está en estilos.css.
 export const COLORES_MARCO = ['petroleo', 'follaje', 'cielo', 'mar'];
 
-// El color propio de la obra si lo tiene; si no, uno estable calculado desde su estilo
-// (todas las obras de un estilo comparten color) o, sin estilo, desde su id.
+const colorValido = (c) => (COLORES_MARCO.includes(c) ? c : null);
+
+// 1. El color propio de la obra ("color" en obras.json).
+// 2. El "color" de su estilo o del ancestro más cercano que lo tenga (perfiles.json): así una
+//    familia de estilos comparte color.
+// 3. Si no, uno estable calculado desde el estilo raíz o, sin estilo, desde el id de la obra.
 export function colorMarco(obra) {
-  if (COLORES_MARCO.includes(obra.color)) return obra.color;
-  return COLORES_MARCO[hashTexto(obra.estilo ? `estilo:${obra.estilo}` : `obra:${obra.id}`) % COLORES_MARCO.length];
+  return colorValido(obra.color) ?? (obra.estilo ? colorEstilo(obra.estilo) : COLORES_MARCO[hashTexto(`obra:${obra.id}`) % 4]);
+}
+
+export function colorEstilo(estilo) {
+  const estilos = actuales?.perfiles?.estilos ?? {};
+  const cadena = actuales ? [estilo, ...ancestrosEstilo(actuales, estilo)] : [estilo];
+  for (const e of cadena) if (colorValido(estilos[e]?.color)) return estilos[e].color;
+  return COLORES_MARCO[hashTexto(`estilo:${cadena.at(-1)}`) % COLORES_MARCO.length];
+}
+
+// El color de un perfil: un estilo, el de su familia; los demás, el más frecuente entre sus
+// obras (en un empate, el de la obra más antigua); sin obras, uno calculado desde el nombre.
+export function colorPerfil(tipo, valor, obras) {
+  if (tipo === 'estilo') return colorEstilo(valor);
+  if (!obras.length) return COLORES_MARCO[hashTexto(`${tipo}:${valor}`) % COLORES_MARCO.length];
+  const conteo = new Map();
+  const ordenadas = [...obras].sort((a, b) => (anioReferencia(a) ?? 9999) - (anioReferencia(b) ?? 9999));
+  for (const obra of ordenadas) conteo.set(colorMarco(obra), (conteo.get(colorMarco(obra)) ?? 0) + 1);
+  return [...conteo].sort((a, b) => b[1] - a[1])[0][0];
+}
+
+// ---- Perfiles ----
+
+// Cada tipo de perfil: de dónde salen sus valores en una obra, su sección en perfiles.json y en
+// simbolos.json, y cómo se nombra. La ruta es `#/<tipo>/<slug>`; el índice, `#/<indice>`.
+export const TIPOS_PERFIL = {
+  arquitecto: { indice: 'arquitectos', seccion: 'arquitectos', singular: 'Arquitecto/a', plural: 'Arquitectos', valores: (o) => o.arquitectos ?? [] },
+  estilo: { indice: 'estilos', seccion: 'estilos', singular: 'Estilo', plural: 'Estilos', valores: (o) => (o.estilo ? [o.estilo] : []) },
+  material: { indice: 'materiales', seccion: 'materiales', singular: 'Material', plural: 'Materiales', valores: (o) => o.materiales ?? [] },
+  programa: { indice: 'programas', seccion: 'programas', singular: 'Programa', plural: 'Programas', valores: (o) => (o.programa ? [o.programa] : []) },
+  estado: { indice: 'estados', seccion: 'estados', singular: 'Estado', plural: 'Estados', valores: (o) => (o.estado ? [o.estado] : []) },
+  pais: { indice: 'paises', seccion: 'paises', singular: 'País', plural: 'Países', valores: (o) => lugar(o, 'pais') },
+  provincia: { indice: 'provincias', seccion: 'provincias', singular: 'Provincia / estado', plural: 'Provincias', valores: (o) => lugar(o, 'provincia') },
+  ciudad: { indice: 'ciudades', seccion: 'ciudades', singular: 'Partido / ciudad', plural: 'Ciudades', valores: (o) => lugar(o, 'ciudad') },
+  barrio: { indice: 'barrios', seccion: 'barrios', singular: 'Barrio / localidad', plural: 'Barrios', valores: (o) => lugar(o, 'barrio') },
+  decada: { indice: 'decadas', seccion: 'decadas', singular: 'Década', plural: 'Décadas', valores: (o) => (anioReferencia(o) === null ? [] : [decadaClave(o)]) },
+  anio: { indice: 'anios', seccion: 'anios', singular: 'Año', plural: 'Años', valores: (o) => [o.anio_proyecto, o.anio_finalizacion].filter(Number.isFinite).map(String).filter((v, i, a) => a.indexOf(v) === i) },
+};
+
+export const ESTADOS = { existente: 'Existente', demolida: 'Demolida', modificada: 'Modificada' };
+
+const lugar = (obra, nivel) => (obra.ubicacion?.[nivel] ? [obra.ubicacion[nivel]] : []);
+
+export function nombrePerfil(tipo, valor) {
+  if (tipo === 'decada') return `${valor}s`;
+  if (tipo === 'estado') return ESTADOS[valor] ?? valor;
+  return valor;
+}
+
+// "Frank Lloyd Wright" → "frank-lloyd-wright"
+export function slug(texto) {
+  return normalizar(texto).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || '-';
+}
+
+export function rutaPerfil(tipo, valor) {
+  return `#/${tipo}/${slug(valor)}`;
+}
+
+// Por tipo, slug → nombre, con todo lo que aparece en las obras y en perfiles.json.
+function indexarSlugs(obras, perfiles) {
+  const slugs = {};
+  for (const [tipo, def] of Object.entries(TIPOS_PERFIL)) {
+    const mapa = new Map();
+    const sumar = (valor) => {
+      const s = slug(valor);
+      if (mapa.has(s) && mapa.get(s) !== valor) console.warn(`perfiles: "${valor}" y "${mapa.get(s)}" dan el mismo link (${tipo}/${s})`);
+      else mapa.set(s, valor);
+    };
+    for (const obra of obras) def.valores(obra).forEach(sumar);
+    Object.keys(perfiles[def.seccion] ?? {}).forEach(sumar);
+    slugs[tipo] = mapa;
+  }
+  return slugs;
+}
+
+export function perfilDe(datos, tipo, valor) {
+  return datos.perfiles[TIPOS_PERFIL[tipo].seccion]?.[valor] ?? {};
+}
+
+// ---- Jerarquía de estilos ----
+
+function revisarJerarquia(estilos) {
+  for (const [nombre, { padre }] of Object.entries(estilos)) {
+    if (!padre) continue;
+    if (!estilos[padre]) console.warn(`perfiles.json: el estilo "${nombre}" tiene como padre "${padre}", que no está en estilos`);
+    const vistos = new Set([nombre]);
+    for (let p = padre; p; p = estilos[p]?.padre) {
+      if (vistos.has(p)) { console.warn(`perfiles.json: la jerarquía de "${nombre}" forma un ciclo`); break; }
+      vistos.add(p);
+    }
+  }
+}
+
+// Del más cercano al más lejano: Racionalismo → [Moderno].
+export function ancestrosEstilo(datos, estilo) {
+  const estilos = datos.perfiles.estilos ?? {};
+  const lista = [];
+  for (let p = estilos[estilo]?.padre; p && !lista.includes(p) && p !== estilo; p = estilos[p]?.padre) lista.push(p);
+  return lista;
+}
+
+// Para filtrar: un estilo cuenta también como todos sus ancestros (filtrar por Moderno trae
+// las obras de Racionalismo).
+export function estiloConAncestros(estilo) {
+  return actuales ? [estilo, ...ancestrosEstilo(actuales, estilo)] : [estilo];
+}
+
+export function hijosEstilo(datos, estilo) {
+  return Object.entries(datos.perfiles.estilos ?? {}).filter(([, e]) => e.padre === estilo).map(([nombre]) => nombre);
+}
+
+// ---- Estadísticas de visitas ----
+
+// Por obra: última visita (fecha), cantidad de visitas y promedio de puntaje (si hay).
+export function estadisticasVisitas(entradas) {
+  const porObra = new Map();
+  for (const e of entradas) {
+    const s = porObra.get(e.obra_id) ?? { ultima: '', visitas: 0, puntajes: [] };
+    s.visitas++;
+    if (e.fecha > s.ultima) s.ultima = e.fecha;
+    if (e.puntaje) s.puntajes.push(e.puntaje);
+    porObra.set(e.obra_id, s);
+  }
+  for (const s of porObra.values()) s.promedio = s.puntajes.length ? s.puntajes.reduce((a, b) => a + b, 0) / s.puntajes.length : null;
+  return porObra;
+}
+
+// ---- Símbolos ----
+
+// La partitura del símbolo de un perfil, o null si no tiene (y entonces va el neutro).
+// Programas: si el nombre completo no tiene, se prueba con lo de antes del paréntesis.
+// Estilos: si no tiene, el de su ancestro más cercano que tenga.
+// Décadas: la colección "mundo", salvo en el contexto de un país que tenga la suya (por ejemplo,
+// dentro del perfil de Argentina o con el filtro país = Argentina). Los años usan el de su década.
+export function partituraDe(datos, tipo, valor, { pais = null } = {}) {
+  const simbolos = datos.simbolos ?? {};
+  if (tipo === 'decada' || tipo === 'anio') {
+    const decada = tipo === 'decada' ? valor : String(Math.floor(Number(valor) / 10) * 10);
+    return simbolos.decadas?.[coleccionDecadas(datos, pais)]?.[decada] ?? null;
+  }
+  const seccion = simbolos[TIPOS_PERFIL[tipo]?.seccion] ?? {};
+  if (seccion[valor]) return seccion[valor];
+  if (tipo === 'programa') return seccion[String(valor).replace(/\s*\(.*$/, '')] ?? null;
+  if (tipo === 'estilo') {
+    for (const ancestro of ancestrosEstilo(datos, valor)) if (seccion[ancestro]) return seccion[ancestro];
+  }
+  return null;
+}
+
+// La colección de décadas de un país (su nombre normalizado: "argentina") o, si no tiene, "mundo".
+export function coleccionDecadas(datos, pais) {
+  const clave = pais ? normalizar(pais) : null;
+  return clave && datos.simbolos?.decadas?.[clave] ? clave : 'mundo';
+}
+
+// Para la tapa de una obra sin foto: el símbolo de su arquitecto o, si no tiene, el de su estilo.
+export function partituraObra(datos, obra) {
+  for (const arquitecto of obra.arquitectos ?? []) {
+    const p = partituraDe(datos, 'arquitecto', arquitecto);
+    if (p) return p;
+  }
+  return obra.estilo ? partituraDe(datos, 'estilo', obra.estilo) : null;
 }
 
 // ---- Ubicación ----

@@ -2,7 +2,7 @@
 // al cambiar de pestaña, para no perder la posición.
 
 import { el, icono, abrirHoja, cerrarHoja, imagenObra, filaObra, lineaAutoria, rutaObra, aviso } from '../ui.js';
-import { tieneCoordenadas, distanciaKm, formatoDistancia, lugarCorto } from '../datos.js';
+import { tieneCoordenadas, distanciaKm, formatoDistancia, lugarCorto, colorMarco, COLORES_MARCO } from '../datos.js';
 import { obtenerUbicacion } from '../plataforma/ubicacion.js';
 
 // Vista inicial: zona norte de Buenos Aires (entre Belgrano y Vicente López).
@@ -51,9 +51,10 @@ function iniciar(contenedor, datos) {
     attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a>',
   }).addTo(mapa);
 
-  const marcador = L.divIcon({ className: 'marcador', html: '<span></span>', iconSize: [40, 40] });
+  // Cada marcador lleva el color del marco de su obra.
+  const marcadores = new Map(COLORES_MARCO.map((c) => [c, L.divIcon({ className: `marcador marco-${c}`, html: '<span></span>', iconSize: [40, 40] })]));
   for (const obra of obras) {
-    L.marker([obra.ubicacion.lat, obra.ubicacion.lng], { icon: marcador, title: obra.nombre, alt: obra.nombre })
+    L.marker([obra.ubicacion.lat, obra.ubicacion.lng], { icon: marcadores.get(colorMarco(obra)), title: obra.nombre, alt: obra.nombre })
       .on('click', () => mostrarObra(obra))
       .addTo(mapa);
   }
