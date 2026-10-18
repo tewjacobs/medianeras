@@ -1,0 +1,36 @@
+<!doctype html><html lang="es" data-tema="claro"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fotos en las tapas</title><link rel="stylesheet" href="css/estilos.css">
+<style>
+ body { background:#8d8a85; padding:16px; }
+ .col { max-width: 760px; margin: 0 auto 16px; background: var(--papel); color: var(--tinta); padding: 16px; }
+ h1 { font-size: 22px; font-weight: 850; font-stretch: 112%; margin: 0 0 6px; }
+ p.n { font-family: var(--mono); font-size: 14px; margin: 0 0 14px; color: var(--tenue); }
+ .modos { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+ .modos h3 { font-family: var(--mono); font-size: 13px; font-weight: 500; margin: 6px 0 0; }
+</style>
+<div id="o"></div>
+<script type="module">
+import { cargarDatos } from './js/datos.js';
+import { tapaObra } from './js/ui.js';
+const datos = await cargarDatos();
+const o = document.getElementById('o');
+const h = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt) e.textContent = txt; return e; };
+for (const tema of ['claro', 'oscuro']) {
+  const col = h('div', 'col'); col.dataset.tema = tema;
+  col.append(h('h1', null, `Fotos en las tapas · ${tema}`),
+    h('p', 'n', 'A: la foto entera (contain), el color del marco llena lo que sobra (lo que queda por defecto). B y C: con "encuadre", recortada al cuadrado mostrando la parte elegida.'));
+  const ejemplos = [['flatiron-building', 0, 'foto vertical 3:4'], ['solomon-r-guggenheim-museum', 1, 'foto apaisada 2:1'], ['solomon-r-guggenheim-museum', 3, 'foto vertical 2:3']];
+  for (const [id, n, desc] of ejemplos) {
+    const obra = datos.porId.get(id);
+    const foto = obra.fotos[n];
+    const modos = h('div', 'modos');
+    for (const [titulo, encuadre] of [['A · entera (por defecto)', null], ['B · encuadre "centro"', 'centro'], ['C · encuadre "arriba" / "50% 30%"', n === 1 ? '30% 50%' : 'arriba']]) {
+      const variante = { ...obra, fotos: [{ ...foto, encuadre }] };
+      const caja = h('div'); caja.append(tapaObra(variante, { grande: true }), h('h3', null, `${titulo}`));
+      modos.append(caja);
+    }
+    col.append(h('p', 'n', `${obra.nombre} — ${desc}`), modos);
+  }
+  o.append(col);
+}
+</script>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comparar símbolos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); }
+    .cabeza { max-width: 1180px; margin: 0 auto 16px; color: #1a1917; }
+    .cabeza h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    .cabeza p { margin: 0; font-size: 14px; }
+    .fila { max-width: 1180px; margin: 0 auto 16px; display: grid; grid-template-columns: 340px 390px 390px; gap: 10px; align-items: stretch; }
+    .foto { background: #ece5d7; display: grid; gap: 4px; align-content: start; padding: 8px; }
+    .foto img { width: 100%; height: auto; display: block; }
+    .foto p, .sin-foto { font-family: var(--mono); font-size: 11px; color: #625d55; margin: 0; }
+    .sin-foto { padding: 24px 8px; }
+    .muestra { background: var(--papel); color: var(--tinta); padding: 0 0 12px; }
+    .muestra > svg { display: block; width: 100%; height: auto; }
+    .muestra h3 { font-size: 20px; font-weight: 850; font-stretch: 115%; line-height: 1.05; text-transform: uppercase; margin: 10px 16px 2px; }
+    .muestra .dato { font-family: var(--mono); font-size: 11px; margin: 0 16px; color: var(--tenue); }
+    .muestra .nota { font-family: var(--mono); font-size: 11px; color: var(--tenue); margin: 6px 16px 0; }
+    .carga-demo { position: relative; height: 240px; overflow: hidden; border-bottom: 1px solid var(--filete); }
+    .carga-demo .carga { position: absolute; inset: 0; }
+    .repetir { margin: 8px 16px 0; }
+    /* Versión B de la carga (solo en la prueba; pasa a estilos.css si la elegís) */
+    .carga-simbolo .carga-figura { stroke-width: 3.4; }
+    .carga-simbolo .carga-centro { stroke: var(--tinta); stroke-width: 1.2; stroke-dasharray: none; transform-box: fill-box; transform-origin: center;
+      animation: respirar 2.6s ease-in-out 1.3s infinite alternate; }
+    @keyframes respirar { from { transform: scale(1); } to { transform: scale(0.7); } }
+    .titulo-carga { font-family: var(--mono); font-size: 11px; color: var(--tenue); margin: 8px 16px 0; }
+  </style>
+</head>
+<body>
+  <div class="cabeza">
+    <h1>Símbolos al lado de su foto</h1>
+    <p>Arriba, la pantalla de carga. Abajo, cada símbolo con foto de referencia: foto, tema claro, tema oscuro. Otras páginas: <a href="todos.html">todos los símbolos</a> · <a href="fotos.html">fotos en las tapas</a> · <a href="completa.html">página de prueba completa</a>.</p>
+  </div>
+  <div id="filas"></div>
+  <script type="module" src="comparar.js"></script>
+</body>
+</html>

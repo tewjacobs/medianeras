@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prueba de gráfica · Medianeras</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); }
+    .controles { max-width: 820px; margin: 0 auto 16px; padding: 12px 16px; display: grid; gap: 8px; }
+    .controles h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; }
+    .controles p { margin: 0; font-size: 14px; }
+    .controles label { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+    .controles input { max-width: 360px; min-height: 36px; padding: 4px 8px; font-size: 15px; }
+    .columnas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: flex-start; }
+    .columna { width: 390px; padding: 16px 0 32px; background: var(--papel); color: var(--tinta); }
+    .columna > * { margin-left: 16px; margin-right: 16px; }
+    .columna .grilla, .columna .bandera { margin-left: 0; margin-right: 0; }
+    .columna > .separador-grafico { width: calc(100% - 32px); }
+    .columna h2 { margin-top: 32px; margin-bottom: 8px; font-size: 12px; font-weight: 600; font-stretch: 75%; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid var(--tinta); }
+    .nota { font-family: var(--mono); font-size: 11px; color: var(--tenue); margin-top: 4px; margin-bottom: 10px; }
+    .titulo-col { font-family: var(--mono); font-size: 11px; color: var(--tenue); text-transform: uppercase; }
+    .carga-demo { position: relative; height: 220px; border: 1px solid var(--filete); }
+    .carga-demo .carga { position: absolute; }
+    .bandera-texto { margin: 0 16px 16px; }
+    .bandera-texto h3 { font-size: 24px; font-weight: 850; font-stretch: 115%; line-height: 1.05; text-transform: uppercase; margin-top: 10px; }
+    .bandera-texto p { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .muestrario { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .muestrario svg { display: block; width: 100%; height: auto; aspect-ratio: 400 / 112; }
+    .muestrario span { display: block; font-family: var(--mono); font-size: 10px; color: var(--tenue); }
+    /* Logos */
+    .logo { padding: 12px 0 16px; border-bottom: 1px solid var(--filete); }
+    .logo-titulo { font-family: var(--mono); font-size: 11px; color: var(--tenue); margin: 0 0 10px; }
+    .logo-cabecera { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 12px; border: 1px solid var(--filete); margin-bottom: 12px; }
+    .logo-cabecera svg { height: 22px; width: auto; flex: none; }
+    .logo-iconos { display: flex; align-items: flex-end; gap: 14px; }
+    .logo-iconos svg { display: block; }
+    .logo-iconos figure { margin: 0; display: grid; gap: 4px; justify-items: start; }
+    .logo-iconos figcaption { font-family: var(--mono); font-size: 10px; color: var(--tenue); }
+    .icono-app { border-radius: 22%; overflow: hidden; }
+    .partitura { margin-top: 6px; }
+    .partitura summary { font-family: var(--mono); font-size: 11px; color: var(--enlace); cursor: pointer; }
+    .partitura pre { font-family: var(--mono); font-size: 10px; line-height: 1.4; white-space: pre-wrap; margin: 6px 0 0; padding: 8px; background: var(--papel-2); }
+    .bandera { padding-bottom: 8px; border-bottom: 1px solid var(--filete); margin-bottom: 8px; }
+    .bandera svg { display: block; width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <div class="controles">
+    <h1>Prueba de gráfica · versión 6</h1>
+    <p>Izquierda: claro (Eno). Derecha: oscuro (Pinback). Cada columna fuerza su tema (no depende del sistema ni de Chrome) y mide como un iPhone (390 px).</p>
+  </div>
+  <div class="columnas" id="columnas"></div>
+  <script type="module" src="completa.js"></script>
+</body>
+</html>

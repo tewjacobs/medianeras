@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="css/estilos.css">
+<style>
+ body { background:#8d8a85; margin:0; padding:8px; }
+ .fila { display:grid; grid-template-columns: 150px 1fr 1fr; gap:6px; margin-bottom:6px; align-items:center; }
+ .fila p { margin:0; font: 12px/1.2 var(--mono); color:#111; }
+ .celda { background: var(--papel); }
+ .celda svg { display:block; width:100%; height:auto; }
+</style>
+<div id="o"></div>
+<script type="module">
+import { cargarDatos } from './js/datos.js';
+import { simbolo } from './js/grafica.js';
+const datos = await cargarDatos(); // la misma carga de la app (registra los colores propios)
+const s = datos.simbolos;
+const grupos = [['paises', s.paises], ['arquitectos', s.arquitectos], ['estilos', s.estilos], ['materiales', s.materiales], ['programas', s.programas],
+  ['décadas mundo', s.decadas.mundo], ['décadas argentina', s.decadas.argentina]];
+const o = document.getElementById('o');
+for (const [g, items] of grupos) for (const [k, p] of Object.entries(items)) {
+  const fila = document.createElement('div'); fila.className = 'fila';
+  const t = document.createElement('p'); t.textContent = `${g}: ${k}`; fila.append(t);
+  for (const tema of ['claro', 'oscuro']) { const c = document.createElement('div'); c.className = 'celda'; c.dataset.tema = tema; c.append(simbolo(p, { ancho: 400, alto: 132 })); fila.append(c); }
+  o.append(fila);
+}
+</script>
