@@ -1,7 +1,7 @@
 // Mapa mundial con Leaflet + OpenStreetMap. Se crea una sola vez y se conserva
 // al cambiar de pestaña, para no perder la posición.
 
-import { el, icono, abrirHoja, cerrarHoja, imagenObra, filaObra, lineaAutoria, rutaObra, aviso } from '../ui.js';
+import { el, icono, flecha, abrirHoja, cerrarHoja, imagenObra, filaObra, lineaAutoria, rutaObra, aviso } from '../ui.js';
 import { tieneCoordenadas, distanciaKm, formatoDistancia, lugarCorto, colorMarco, COLORES_MARCO } from '../datos.js';
 import { obtenerUbicacion } from '../plataforma/ubicacion.js';
 
@@ -83,7 +83,7 @@ function mostrarObra(obra) {
       el('a', {
         class: 'boton', target: '_blank', rel: 'noopener',
         href: `https://maps.apple.com/?daddr=${obra.ubicacion.lat},${obra.ubicacion.lng}&q=${encodeURIComponent(obra.nombre)}`,
-      }, icono('ruta'), 'Cómo llegar'),
+      }, flecha('paralela'), 'Cómo llegar'),
       el('a', { class: 'boton boton-primario', href: rutaObra(obra.id) }, 'Ver ficha'),
     ],
   });
@@ -124,4 +124,31 @@ async function cercaMio(evento) {
       })))
       : el('p', { class: 'tenue' }, 'No hay obras con coordenadas cargadas.'),
   });
+}
+
+// ---- Panel de mapa (desde la ficha de una obra) ----
+
+// Un mapa en un panel grande, centrado en la obra, con un botón para agrandar que lleva a la
+// página del mapa. Es un mapa aparte del de la pestaña Mapa: se crea al abrir y se descarta.
+export function abrirMapaObra(obra) {
+  if (!window.L || !tieneCoordenadas(obra)) return;
+  const lienzo = el('div', { class: 'mapa-panel' });
+  let mapaPanel = null;
+  const agrandar = el('a', { class: 'boton boton-chico', href: `#/mapa?obra=${encodeURIComponent(obra.id)}` }, icono('mapa'), 'Agrandar');
+  abrirHoja({
+    titulo: obra.nombre, contenido: lienzo, clase: 'hoja-mapa', acciones: agrandar,
+    alCerrar: () => { mapaPanel?.remove(); mapaPanel = null; },
+  });
+  const punto = [obra.ubicacion.lat, obra.ubicacion.lng];
+  mapaPanel = L.map(lienzo, { zoomControl: false, attributionControl: true }).setView(punto, 16);
+  L.control.zoom({ position: 'topright', zoomInTitle: 'Acercar', zoomOutTitle: 'Alejar' }).addTo(mapaPanel);
+  mapaPanel.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, crossOrigin: true,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a>',
+  }).addTo(mapaPanel);
+  L.marker(punto, { icon: L.divIcon({ className: `marcador marco-${colorMarco(obra)}`, html: '<span></span>', iconSize: [40, 40] }), title: obra.nombre, alt: obra.nombre }).addTo(mapaPanel);
+  // La hoja entra con una transición: hay que avisarle a Leaflet el tamaño final.
+  // y volver a centrar en la obra, porque el centro se calculó con el tamaño de antes.
+  setTimeout(() => { mapaPanel?.invalidateSize(); mapaPanel?.setView(punto, 16); }, 320);
 }

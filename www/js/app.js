@@ -5,6 +5,7 @@ import { FACETAS } from './filtros.js';
 import { el, icono, cerrarHoja, liberarUrls, aviso, mensaje } from './ui.js';
 import { logo } from './grafica.js';
 import { iniciarTema, abrirSelectorTema } from './tema.js';
+import { leerPreferencia, guardarPreferencia } from './plataforma/preferencias.js';
 import * as inicio from './vistas/inicio.js';
 import * as obras from './vistas/obras.js';
 import * as perfil from './vistas/perfil.js';
@@ -15,20 +16,22 @@ import * as listas from './vistas/listas.js';
 import * as nuevaVisita from './vistas/nueva-visita.js';
 
 // pestana: qué pestaña queda marcada · atras: muestra el botón Volver (y adónde ir si no hay historial)
+// seccion: la palabra que acompaña a la marca en la cabecera · titulo: el título de la pestaña del navegador
+const SECCION_PERFIL = { provincia: 'Provincia', ciudad: 'Ciudad', barrio: 'Barrio', arquitecto: 'Arquitecto/a' };
 const RUTAS = {
   '': { render: inicio.render, pestana: 'obras', titulo: 'Medianeras' },
-  obras: { render: obras.render, pestana: 'obras', titulo: 'Obras', atras: '#/' },
+  obras: { render: obras.render, pestana: 'obras', titulo: 'Obras', seccion: 'Obras', atras: '#/' },
   // Perfiles (#/arquitecto/frank-lloyd-wright) e índices (#/arquitectos)
   ...Object.fromEntries(Object.entries(TIPOS_PERFIL).flatMap(([tipo, def]) => [
-    [tipo, { render: perfil.render, pestana: 'obras', atras: '#/' }],
-    [def.indice, { render: perfil.renderIndice, pestana: 'obras', titulo: def.plural, atras: '#/' }],
+    [tipo, { render: perfil.render, pestana: 'obras', seccion: SECCION_PERFIL[tipo] ?? def.singular, atras: '#/' }],
+    [def.indice, { render: perfil.renderIndice, pestana: 'obras', titulo: def.plural, seccion: def.plural, atras: '#/' }],
   ])),
-  obra: { render: obra.render, pestana: 'obras', atras: '#/' },
-  mapa: { render: mapa.render, pestana: 'mapa', titulo: 'Mapa', persistente: true },
-  diario: { render: diario.render, pestana: 'diario', titulo: 'Diario' },
-  listas: { render: listas.render, pestana: 'listas', titulo: 'Listas' },
-  lista: { render: listas.renderDetalle, pestana: 'listas', atras: '#/listas' },
-  nueva: { render: nuevaVisita.render, pestana: 'visita', titulo: 'Nueva visita', atras: '#/' },
+  obra: { render: obra.render, pestana: 'obras', seccion: 'Obra', atras: '#/' },
+  mapa: { render: mapa.render, pestana: 'mapa', titulo: 'Mapa', seccion: 'Mapa', persistente: true },
+  diario: { render: diario.render, pestana: 'diario', titulo: 'Diario', seccion: 'Diario' },
+  listas: { render: listas.render, pestana: 'listas', titulo: 'Listas', seccion: 'Listas' },
+  lista: { render: listas.renderDetalle, pestana: 'listas', seccion: 'Lista', atras: '#/listas' },
+  nueva: { render: nuevaVisita.render, pestana: 'visita', titulo: 'Nueva visita', seccion: 'Visita', atras: '#/' },
 };
 
 const principal = document.getElementById('principal');
@@ -55,8 +58,18 @@ function buscar() {
   else location.hash = q ? `#/obras?${new URLSearchParams({ q })}` : '#/obras';
 }
 campoBusqueda.addEventListener('input', buscar);
+// En el celular la búsqueda está plegada en la lupa: tocarla la despliega en la misma fila, en
+// lugar del título. Con el campo vacío y sin foco, vuelve a plegarse.
+const cabecera = document.querySelector('.cabecera');
+const plegable = () => matchMedia('(max-width: 599px)').matches;
+function desplegar(abierta) {
+  cabecera.classList.toggle('buscando', abierta);
+  if (abierta) campoBusqueda.focus();
+}
+campoBusqueda.addEventListener('blur', () => { if (!campoBusqueda.value.trim()) setTimeout(() => desplegar(false), 150); });
 document.querySelector('.cabecera-busqueda').addEventListener('submit', (e) => {
   e.preventDefault();
+  if (plegable() && !cabecera.classList.contains('buscando')) { desplegar(true); return; }
   if (!campoBusqueda.value.trim() && !enObras()) { campoBusqueda.focus(); return; }
   buscar();
   campoBusqueda.blur(); // cierra el teclado en el iPhone
@@ -80,19 +93,48 @@ function leerRuta() {
   return { partes, params: new URLSearchParams(query) };
 }
 
+// La cabecera es siempre la de la portada: la marca (lleva al inicio) y la palabra de la sección.
+function ponerCabecera(seccion) {
+  titulo.classList.add('cabecera-marca');
+  titulo.replaceChildren(
+    el('a', { class: 'marca-enlace', href: '#/', 'aria-label': 'Medianeras: ir al inicio' },
+      logo(), el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, 'medianeras'),
+        seccion && el('span', { class: 'cabecera-seccion' }, seccion))),
+  );
+}
+
+// Las vistas dan el nombre de lo que muestran: va al título de la pestaña del navegador.
 function ponerTitulo(texto) {
-  const esInicio = texto === 'Medianeras';
-  titulo.classList.toggle('cabecera-marca', esInicio);
-  if (esInicio) titulo.replaceChildren(logo(), el('span', { class: 'logo-nombre' }, texto.toLowerCase()));
-  else titulo.textContent = texto;
-  document.title = esInicio ? texto : `${texto} · Medianeras`;
+  document.title = texto === 'Medianeras' ? texto : `${texto} · Medianeras`;
+}
+
+
+// La primera vez que se entra a la app, la pantalla de carga se queda hasta que el skyline termina
+// de construirse (y se recuerda en el teléfono). Las veces siguientes se va apenas cargan los
+// datos. Con "reducir movimiento" no hay animación y no se espera.
+const primeraVez = leerPreferencia('carga-vista') !== 'si';
+
+function finDelSkyline(carga) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return 0;
+  const segundos = (t) => parseFloat(t) * (t.endsWith('ms') ? 0.001 : 1);
+  let fin = 0;
+  for (const edificio of carga.querySelectorAll('.edificio')) {
+    const estilo = getComputedStyle(edificio);
+    fin = Math.max(fin, segundos(estilo.animationDelay) + segundos(estilo.animationDuration));
+  }
+  return fin * 1000 + 400; // un instante quieto antes de irse
 }
 
 function quitarCarga() {
   const carga = document.getElementById('carga');
-  if (!carga) return;
-  carga.classList.add('oculta');
-  setTimeout(() => carga.remove(), 300);
+  if (!carga || carga.classList.contains('oculta')) return;
+  const ocultar = () => {
+    carga.classList.add('oculta');
+    setTimeout(() => carga.remove(), 300);
+  };
+  if (!primeraVez) { ocultar(); return; }
+  guardarPreferencia('carga-vista', 'si');
+  setTimeout(ocultar, Math.max(0, finDelSkyline(carga) - performance.now()));
 }
 
 async function mostrar({ recarga = false } = {}) {
@@ -112,10 +154,12 @@ async function mostrar({ recarga = false } = {}) {
   document.body.dataset.vista = ruta ? clave || 'inicio' : 'error';
   for (const a of pestanas) a.toggleAttribute('aria-current', a.dataset.pestana === ruta?.pestana);
   botonAtras.hidden = !ruta?.atras;
+  ponerCabecera(partes[0] === 'obra' && partes[2] === 'visitas' ? 'Visitas' : ruta?.seccion);
   ponerTitulo(ruta?.titulo ?? 'Medianeras');
   // El campo de la cabecera muestra la búsqueda de la grilla; fuera de ella, queda vacío.
   if (clave === 'obras') campoBusqueda.value = params.get('q') ?? '';
   else if (document.activeElement !== campoBusqueda) campoBusqueda.value = '';
+  cabecera.classList.toggle('buscando', Boolean(campoBusqueda.value) || document.activeElement === campoBusqueda);
 
   let datos;
   try {
@@ -167,6 +211,22 @@ async function mostrar({ recarga = false } = {}) {
 botonAtras.addEventListener('click', () => {
   if (navegaciones > 1) history.back();
   else location.replace(rutaActual?.atras ?? '#/');
+});
+
+// El botón VISITA abre la nueva visita en un panel. En una obra, esa obra viene elegida; en un
+// perfil, sus obras aparecen primero.
+document.querySelector('.pestanas [data-pestana="visita"]').addEventListener('click', async (e) => {
+  e.preventDefault();
+  const datos = await cargarDatos().catch(() => null);
+  if (!datos) { location.hash = '#/nueva'; return; }
+  const { partes } = leerRuta();
+  const opciones = { alGuardar: () => mostrar({ recarga: true }) };
+  if (partes[0] === 'obra' && datos.porId.has(partes[1])) opciones.obra = partes[1];
+  else if (TIPOS_PERFIL[partes[0]]) {
+    const valor = datos.slugs[partes[0]]?.get(partes[1] ?? '');
+    if (valor) opciones.sugeridas = perfil.obrasDePerfil(datos, partes[0], valor).map((o) => o.id);
+  }
+  nuevaVisita.abrirNuevaVisita(datos, opciones);
 });
 
 // Tocar la pestaña activa vuelve arriba de todo, como en las apps de iOS.

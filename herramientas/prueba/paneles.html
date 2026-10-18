@@ -1,0 +1,19 @@
+<!doctype html><html lang="es" data-tema="claro"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paneles</title><link rel="stylesheet" href="css/estilos.css"><link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<script src="vendor/leaflet/leaflet.js"></script>
+<body><main style="padding:16px"><p class="tenue">Fondo de la vista.</p></main>
+<script type="module">
+// Prueba de los paneles: ?panel=mapa o ?panel=visita (con &obra=… o &perfil=estilo:Moderno); &tema=oscuro.
+import { cargarDatos } from './js/datos.js';
+import { abrirMapaObra } from './js/vistas/mapa.js';
+import { abrirNuevaVisita } from './js/vistas/nueva-visita.js';
+import { obrasDePerfil } from './js/vistas/perfil.js';
+const q = new URLSearchParams(location.search);
+if (q.get('tema')) document.documentElement.dataset.tema = q.get('tema');
+const datos = await cargarDatos();
+if (q.get('panel') === 'mapa') abrirMapaObra(datos.porId.get(q.get('obra') ?? 'solomon-r-guggenheim-museum'));
+else {
+  const [tipo, valor] = (q.get('perfil') ?? '').split(':');
+  abrirNuevaVisita(datos, { obra: q.get('obra'), sugeridas: tipo ? obrasDePerfil(datos, tipo, valor).map((o) => o.id) : [] });
+}
+</script>

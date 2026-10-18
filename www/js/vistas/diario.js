@@ -1,7 +1,7 @@
 // Diario: visitas publicadas + guardadas en el teléfono, agrupadas por año.
 
 import { el, icono, tarjetaEntrada, mensaje, abrirHoja, aviso } from '../ui.js';
-import { entradasDiario } from '../datos.js';
+import { entradasDiario, COLORES_MARCO } from '../datos.js';
 import { listarVisitas, guardarVisita, borrarVisita } from '../plataforma/almacen.js';
 import { compartirArchivo, descargarArchivo, puedeCompartir } from '../plataforma/compartir.js';
 import { armarExportacion } from '../exportar.js';
@@ -50,10 +50,11 @@ export async function render(contenedor, ctx) {
     const anioEntrada = entrada.fecha.slice(0, 4);
     if (anioEntrada !== anio) {
       anio = anioEntrada;
-      grupo = el('div', { class: 'entradas' });
+      grupo = el('div', { class: 'entradas entradas-grilla' });
       contenedor.append(el('section', { class: 'diario-anio' }, el('h2', { class: 'separador' }, anio), grupo));
     }
-    grupo.append(tarjetaEntrada(entrada, datos));
+    // El color del recuadro va rotando por la paleta, de una entrada a la siguiente.
+    grupo.append(tarjetaEntrada(entrada, datos, { compacta: true, color: COLORES_MARCO[grupo.childElementCount % COLORES_MARCO.length] }));
   }
 }
 

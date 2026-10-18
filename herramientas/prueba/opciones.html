@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opciones para elegir</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; margin: 0; padding: 16px; }
+    .cabeza { max-width: 820px; margin: 0 auto 16px; color: #1a1917; font-family: var(--sans); }
+    .cabeza h1 { font-size: 22px; font-weight: 850; font-stretch: 112%; margin: 0 0 4px; }
+    .cabeza p { margin: 0; font-size: 15px; }
+    .seccion { max-width: 820px; margin: 0 auto 28px; }
+    .seccion > h2 { font-family: var(--sans); font-size: 18px; font-weight: 850; font-stretch: 108%; color: #1a1917; margin: 0 0 4px; }
+    .seccion > p { font-family: var(--mono); font-size: 13px; color: #2a2926; margin: 0 0 10px; }
+    .columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .telefono { background: var(--papel); color: var(--tinta); width: 390px; min-height: 100px; padding-bottom: 16px; position: relative; overflow: hidden; }
+    .opcion { padding: 14px 16px 6px; border-top: 1px solid var(--filete); }
+    .opcion:first-child { border-top: 0; }
+    .rotulo { font-family: var(--mono); font-size: 12px; color: var(--tenue); margin: 0 0 8px; text-transform: uppercase; }
+    .rotulo b { color: var(--tinta); font-weight: 500; }
+
+    /* --- 1. Barra de pestañas de muestra --- */
+    .barra { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--borde); background: var(--papel); padding: 4px 0 2px; }
+    .barra a { display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--tenue); font-size: 15px; font-weight: 600; font-stretch: 78%; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; }
+    .barra .icono { width: 24px; height: 24px; margin: 3px 0; }
+    .barra .visita-mas .icono { width: 36px; height: 30px; margin: 0; padding: 3px 6px; background: var(--acento); color: var(--acento-texto); stroke-width: 2.4; }
+    .barra svg.pt { width: 30px; height: 30px; margin: 0; }
+    .barra .visita span { color: var(--tinta); }
+    .tamanos { display: flex; gap: 18px; align-items: end; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--tenue); }
+    .tamanos figure { margin: 0; display: grid; justify-items: center; gap: 4px; }
+
+    /* --- 2. Cabecera de muestra --- */
+    .cab { border-bottom: 1px solid var(--borde); padding: 8px 16px 10px; display: grid; gap: 6px; }
+    .cab-fila { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+    .cab-fila .logo-simbolo { width: 42px; height: 42px; }
+    .cab-busca { display: flex; align-items: center; gap: 2px; }
+    .cab-busca .campo-b { flex: 1; min-width: 0; }
+    .cab-btn { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; color: var(--tinta); flex: none; }
+    .cab-btn .icono { width: 28px; height: 28px; }
+    .cab-btn.tema .icono { width: 22px; height: 22px; color: var(--tenue); }
+    .campo-b input { width: 100%; min-height: 44px; font-size: 16px; }
+    /* S1: sin caja, tres filetes finos abajo; en foco, el del medio en rojo */
+    .s1 input { border: 0; background: none; padding: 0 2px; border-radius: 0; }
+    .s1 { background:
+        linear-gradient(var(--tinta), var(--tinta)) left calc(100% - 0px) / 100% 1px no-repeat,
+        linear-gradient(var(--tinta), var(--tinta)) left calc(100% - 3px) / 100% 1px no-repeat,
+        linear-gradient(var(--tinta), var(--tinta)) left calc(100% - 6px) / 100% 1px no-repeat; padding-bottom: 7px; }
+    .s1.foco { background:
+        linear-gradient(var(--tinta), var(--tinta)) left calc(100% - 0px) / 100% 1px no-repeat,
+        linear-gradient(var(--rojo), var(--rojo)) left calc(100% - 3px) / 100% 1px no-repeat,
+        linear-gradient(var(--tinta), var(--tinta)) left calc(100% - 6px) / 100% 1px no-repeat; }
+    /* S2: caja con una banda de rayas verticales finas a la izquierda; en foco, las rayas en rojo */
+    .s2 { display: flex; border: 1px solid var(--tinta); }
+    .s2::before { content: ''; flex: none; width: 14px; background: repeating-linear-gradient(90deg, var(--tinta) 0 1px, transparent 1px 3px); }
+    .s2.foco::before { background: repeating-linear-gradient(90deg, var(--rojo) 0 1px, transparent 1px 3px); }
+    .s2 input { border: 0; background: none; border-radius: 0; }
+    /* S3: doble filete, como dos líneas paralelas; en foco, la de adentro en rojo */
+    .s3 { border: 1px solid var(--tinta); padding: 2px; }
+    .s3 input { border: 1px solid var(--filete); border-radius: 0; background: none; min-height: 38px; }
+    .s3.foco input { border-color: var(--rojo); }
+    .foco-nota { font-family: var(--mono); font-size: 11px; color: var(--tenue); margin: 4px 0 0; }
+
+    /* --- 3. Flechas, Todas las obras, chips --- */
+    .flecha { width: 22px; height: 14px; flex: none; }
+    .ver-mas-m { display: inline-flex; align-items: center; gap: 6px; color: var(--tinta); font-size: 15px; font-weight: 600; font-stretch: 75%; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+    .muestra-flechas { display: grid; gap: 10px; }
+    .muestra-flechas .fila-m { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--filete); min-height: 44px; font-size: 21px; font-weight: 700; font-stretch: 108%; }
+    .muestra-flechas .encab { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--tinta); padding-bottom: 6px; font-size: 14px; font-weight: 600; font-stretch: 75%; letter-spacing: 0.08em; text-transform: uppercase; }
+    .todas { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--tinta); }
+    .todas-texto { display: grid; gap: 2px; }
+    .todas-texto strong { font-size: 14px; font-weight: 650; font-stretch: 75%; letter-spacing: 0.08em; text-transform: uppercase; }
+    .todas-texto span { font-family: var(--mono); font-size: 13px; color: var(--tenue); }
+    .t1 { border: 1px solid var(--tinta); padding: 0 0 0 14px; min-height: 64px; overflow: hidden; }
+    .t1 .rayas { align-self: stretch; width: 120px; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(0deg, var(--tinta) 0 1px, transparent 1px 5px); }
+    .t1 .rayas .num { background: var(--papel); padding: 2px 8px; font-family: var(--mono); font-size: 18px; }
+    .t2 { padding: 14px; min-height: 64px; background: color-mix(in srgb, var(--petroleo) 16%, var(--papel)); border-top: 3px double var(--tinta); border-bottom: 3px double var(--tinta); }
+    .t3 { background: var(--tinta); color: var(--papel); padding: 12px 14px; gap: 10px; }
+    .t3 .todas-texto span { color: color-mix(in srgb, var(--papel) 65%, var(--tinta)); }
+    .t3 .mini { display: flex; gap: 3px; }
+    .t3 .mini .tapa { width: 34px; padding: 4px; }
+    .t3 .mini .marca-ejemplo { display: none; }
+    /* chips con fondo suave del color de la familia */
+    .chips-m { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip-f { display: inline-flex; align-items: center; min-height: 34px; padding: 0 11px; background: color-mix(in srgb, var(--familia) var(--intensidad, 16%), var(--papel)); color: var(--tinta); font-family: var(--mono); font-size: 14px; text-decoration: none; border: 0; }
+    [data-tema="oscuro"] .chip-f, [data-tema="oscuro"] .boton-f { --intensidad-oscuro: 1; }
+    [data-tema="oscuro"] .chip-f { background: color-mix(in srgb, var(--familia) calc(var(--intensidad, 16%) * 1.9), var(--papel)); }
+    [data-tema="oscuro"] .boton-f { background: color-mix(in srgb, var(--familia) 30%, var(--papel)); }
+    .chip-f:hover { background: color-mix(in srgb, var(--familia) 30%, var(--papel)); }
+    .boton-f { background: color-mix(in srgb, var(--familia) 16%, var(--papel)); border-color: transparent; }
+    .datos-chips { display: grid; grid-template-columns: minmax(96px, auto) 1fr; gap: 8px 12px; align-items: center; margin: 0; }
+    .datos-chips dt { font-family: var(--mono); font-size: 13px; color: var(--tenue); text-transform: uppercase; }
+    .datos-chips dd { margin: 0; }
+
+    /* --- 4. Ficha con pestañas --- */
+    .ficha-m .ficha-tapa { padding: 16px 16px 0; }
+    .ficha-m .cabecera-ficha { padding: 14px 16px 0; display: grid; gap: 6px; }
+    .ficha-m .cabecera-ficha h2 { font-size: 28px; font-weight: 850; font-stretch: 112%; line-height: 1.05; margin: 0; }
+    .ficha-m .linea { font-family: var(--mono); font-size: 16px; text-transform: uppercase; margin: 0; }
+    .ficha-m .acciones { margin-top: 8px; }
+    .pestanas-ficha { display: flex; gap: 0; margin: 18px 0 0; padding: 0 16px; border-bottom: 1px solid var(--tinta); overflow-x: auto; scrollbar-width: none; }
+    .pestanas-ficha button { flex: 1 0 auto; min-height: 44px; padding: 0 6px; border: 0; background: none; color: var(--tenue); font-size: 14px; font-weight: 650; font-stretch: 72%; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+    .pestanas-ficha button[aria-selected="true"] { color: var(--tinta); border-bottom-color: var(--tinta); background: repeating-linear-gradient(0deg, transparent 0 40px, transparent 40px); }
+    .pestanas-ficha button[aria-selected="true"]::after { content: ''; display: block; height: 0; }
+    .panel-ficha { padding: 16px; display: grid; gap: 14px; }
+    .panel-ficha[hidden] { display: none; }
+    .plano { margin: 0; background: var(--papel-2); }
+    .plano svg { display: block; width: 100%; height: auto; }
+    .plano figcaption { font-family: var(--mono); font-size: 13px; color: var(--tenue); padding: 6px 0 0; background: var(--papel); }
+    .entrada-m { display: grid; gap: 4px; border-bottom: 1px solid var(--filete); padding-bottom: 12px; }
+    .entrada-m time { font-family: var(--mono); font-size: 16px; text-transform: uppercase; }
+    .entrada-m p { margin: 0; font-family: var(--serif); line-height: 1.55; }
+    .ubicacion-coord { font-family: var(--mono); font-size: 14px; color: var(--tenue); margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="cabeza">
+    <h1>Opciones para elegir</h1>
+    <p>Izquierda: tema claro. Derecha: tema oscuro. Cada columna mide como un iPhone (390 px). Nada de esto está en la app todavía.</p>
+  </div>
+  <div id="opciones"></div>
+  <script type="module" src="opciones.js"></script>
+</body>
+</html>

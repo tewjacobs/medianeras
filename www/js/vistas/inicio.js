@@ -1,8 +1,8 @@
 // Inicio: filas temáticas (filas.js), las décadas desplegables y el link a todas las obras.
 
-import { el, icono, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
-import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL } from '../datos.js';
-import { separador } from '../grafica.js';
+import { el, flecha, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
+import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL, partituraDe, colorPerfil } from '../datos.js';
+import { separador, simbolo, simboloNeutro } from '../grafica.js';
 import { ordenar } from '../filtros.js';
 import { FILAS_INICIO, MAXIMO, decadasConObras } from '../filas.js';
 import { leerPreferencia, guardarPreferencia } from '../plataforma/preferencias.js';
@@ -33,7 +33,8 @@ export function render(contenedor, { datos }) {
   }
 
   contenedor.append(separador('inicio:decadas', 360), decadas(datos), separador('inicio:todas', 360),
-    el('a', { class: 'todas-las-obras', href: '#/obras' }, `Todas las obras (${datos.obras.length})`, icono('flecha')),
+    el('a', { class: 'todas-las-obras', href: '#/obras' },
+      el('span', { class: 'todas-texto' }, el('strong', {}, 'Todas las obras'), el('span', {}, resumen())), flecha()),
     el('nav', { class: 'explorar', 'aria-label': 'Explorar' }, encabezadoFila('Explorar'), el('div', { class: 'explorar-enlaces' }, enlacesIndices())));
 }
 
@@ -68,13 +69,16 @@ function decadas(datos) {
         class: 'decada', open: abiertas.has(decada),
         ontoggle: () => { if (detalles.open) abiertas.add(decada); else abiertas.delete(decada); guardar(); },
       },
-      el('summary', {},
+      // El símbolo de la década en chico (colección Mundo), el nombre y la cantidad en un chip
+      // del color de la década.
+      el('summary', { style: `--familia: var(--${colorPerfil('decada', decada, obras)})` },
+        el('span', { class: 'decada-simbolo' }, simbolo(partituraDe(datos, 'decada', decada) ?? simboloNeutro(colorPerfil('decada', decada, obras)),
+          { ancho: 64, alto: 44, margen: 3, fijo: true, sinFondo: true, clase: 'decada-mini' })),
         el('span', { class: 'decada-nombre' }, `${decada}s`),
-        el('span', { class: 'decada-puntos', 'aria-hidden': 'true' }),
-        el('span', { class: 'decada-cantidad' }, obras.length),
+        el('span', { class: 'chip-dato decada-cantidad' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
       ),
       filaHorizontal(ordenar(obras, 'anio')),
-      el('a', { class: 'ver-mas', href: rutaPerfil('decada', decada) }, `Ver la década de ${decada}`, icono('flecha')),
+      el('a', { class: 'ver-mas', href: rutaPerfil('decada', decada) }, `Ver la década de ${decada}`, flecha()),
       );
       return detalles;
     }),

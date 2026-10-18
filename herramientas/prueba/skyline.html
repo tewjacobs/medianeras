@@ -1,0 +1,58 @@
+<!doctype html><html lang="es" data-tema="claro"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skyline de Buenos Aires</title><link rel="stylesheet" href="css/estilos.css">
+<style>
+ body { background:#8d8a85; margin:0; padding:16px; }
+ h1 { font-family: var(--sans); font-size: 22px; font-weight: 850; font-stretch: 112%; margin: 0 auto 4px; max-width: 1180px; color:#1a1917; }
+ .intro { font-family: var(--mono); font-size: 13px; max-width: 1180px; margin: 0 auto 14px; color:#2a2926; }
+ .comp { max-width: 1180px; margin: 0 auto 20px; }
+ .comp h2 { font-family: var(--sans); font-size: 17px; font-weight: 850; font-stretch: 108%; margin: 0 0 2px; color:#1a1917; }
+ .comp > p { font-family: var(--mono); font-size: 12px; margin: 0 0 8px; color:#2a2926; }
+ .vistas { display: grid; grid-template-columns: 390px 390px 1fr; gap: 12px; align-items: stretch; }
+ .pantalla { background: var(--papel); color: var(--tinta); display: grid; place-items: center; align-content: center; gap: 18px; min-height: 360px; padding: 16px; }
+ .pantalla .rotulo { font-family: var(--mono); font-size: 11px; color: var(--tenue); justify-self: start; }
+ /* La pantalla de carga: el skyline ocupa el ancho disponible, con tope. */
+ .skyline { display: block; width: min(86vw, 340px); height: auto; overflow: visible; }
+ .ancha .skyline { width: min(100%, 560px); }
+ .vistas { grid-template-columns: 390px 390px minmax(0, 1fr); }
+ /* Cada edificio se construye desde abajo, línea por línea (steps = sus líneas); uno después del otro. */
+ .skyline .edificio { clip-path: inset(0 0 0 0); animation: construir calc(0.05s * var(--filas)) steps(var(--filas), end) backwards; animation-delay: calc(var(--i) * 0.35s); }
+ @keyframes construir { from { clip-path: inset(100% 0 0 0); } }
+ @media (prefers-reduced-motion: reduce) { .skyline .edificio { animation: none; } }
+ .pantalla .carga-nombre { font-size: 20px; }
+ button { justify-self: start; }
+</style>
+<h1>Pantalla de carga: skyline de Buenos Aires</h1>
+<p class="intro">Hecho con nuestros símbolos de la colección Argentina, sobre una misma línea de suelo; las alturas siguen las reales en proporción (aproximadas). Cada edificio se construye desde abajo, línea por línea, uno después del otro, y queda quieto; con "reducir movimiento", sin animación. Por composición: celular claro, celular oscuro y compu.</p>
+<div id="o"></div>
+<script type="module">
+import { cargarDatos } from './js/datos.js';
+import { skyline } from './js/grafica.js';
+const datos = await cargarDatos();
+const ar = datos.simbolos.decadas.argentina;
+// Alturas reales aproximadas, en metros: Kavanagh 120, Barolo 100, SOMISA 60, CCK 45 (sin la
+// cúpula), Biblioteca 40, Puente de la Mujer 39 (mástil), Molino 40, Colón 30, Banco de Londres 30,
+// Recoleta 15, Curutchet 12. La altura del dibujo es esa proporción del más alto.
+const M = { 1900: 30, 1910: 40, 1920: 100, 1930: 120, 1950: 12, 1960: 30, 1970: 60, 1980: 15, 1990: 40, 2000: 39, 2010: 45 };
+// Composición tomada de referencias/simbolos/skyline/ (solo alturas y ritmo): a la izquierda lo
+// bajo y ancho, después un pico alto y angosto, un grupo de alturas medias, el puente bajo y, a
+// la derecha, lo alto otra vez.
+const COMPOSICIONES = [
+  ['S2 · Ribera', 'Colón (bajo y ancho), Kavanagh (el pico), Biblioteca y Recoleta (el grupo medio), Puente de la Mujer (bajo) y SOMISA (alto a la derecha, como las torres de Puerto Madero).', [1900, 1930, 1990, 1980, 2000, 1970]],
+  ['S3 · El siglo', 'Diez edificios, uno por década, en orden: Colón, Molino, Barolo, Kavanagh, Curutchet, Banco de Londres, SOMISA, Recoleta, Biblioteca y CCK.', [1900, 1910, 1920, 1930, 1950, 1960, 1970, 1980, 1990, 2010]],
+];
+const o = document.getElementById('o');
+const h = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt) e.textContent = txt; return e; };
+for (const [titulo, nota, claves] of COMPOSICIONES) {
+  const max = Math.max(...claves.map((k) => M[k]));
+  const edificios = claves.map((k) => ({ partitura: ar[k], altura: Math.max(0.16, M[k] / max) }));
+  const comp = h('section', 'comp'); comp.append(h('h2', null, titulo), h('p', null, nota));
+  const vistas = h('div', 'vistas');
+  for (const [tema, ancha] of [['claro', false], ['oscuro', false], ['claro', true]]) {
+    const p = h('div', 'pantalla' + (ancha ? ' ancha' : '')); p.dataset.tema = tema;
+    const pintar = () => p.replaceChildren(h('span', 'rotulo', ancha ? 'compu' : `celular · ${tema}`), skyline(edificios, { separacion: 2.5 }), h('span', 'carga-nombre', 'medianeras'), boton);
+    const boton = h('button', 'boton boton-chico', 'Repetir animación'); boton.onclick = pintar;
+    pintar(); vistas.append(p);
+  }
+  comp.append(vistas); o.append(comp);
+}
+</script>

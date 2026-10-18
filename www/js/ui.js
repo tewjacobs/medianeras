@@ -54,6 +54,18 @@ export function icono(nombre) {
   return plantilla.content.firstChild;
 }
 
+// Flechas propias, en el lenguaje de líneas (ver "Sistema gráfico" en LOG.md):
+//   escalonada (F2): rayas apiladas de distinto largo que forman la punta. VER MÁS, Explorar, Todas las obras.
+//   paralela (F1): tres paralelas; las de afuera doblan y se juntan en la punta. Cómo llegar.
+export function flecha(tipo = 'escalonada') {
+  const plantilla = document.createElement('template');
+  const dibujo = tipo === 'paralela'
+    ? '<path d="M0 2.5H13L20.5 7L13 11.5H0M0 7H20.5" fill="none" stroke="currentColor" stroke-width="1.3"/>'
+    : [8, 13, 17, 21, 17, 13, 8].map((l, i) => `<rect x="0" y="${(0.5 + i * 1.9).toFixed(1)}" width="${l}" height="1.1" fill="currentColor"/>`).join('');
+  plantilla.innerHTML = `<svg class="flecha flecha-${tipo}" viewBox="0 0 22 14" aria-hidden="true">${dibujo}</svg>`;
+  return plantilla.content.firstChild;
+}
+
 export function botonIcono(nombre, etiqueta, alTocar, clase = '') {
   return el('button', { type: 'button', class: `boton-icono ${clase}`, 'aria-label': etiqueta, title: etiqueta, onclick: alTocar }, icono(nombre));
 }
@@ -138,6 +150,86 @@ export function enlacesPerfil(tipo, valores, query) {
   return valores.flatMap((v, i) => (i ? [', ', enlacePerfil(tipo, v, null, query)] : [enlacePerfil(tipo, v, null, query)]));
 }
 
+// Texto largo en Caslon, cortado a `lineas` con un "ver más" si no entra.
+export function textoLargo(texto, { lineas = 6, clase = '' } = {}) {
+  const parrafo = el('p', { class: `texto-largo ${clase}`, style: `--lineas: ${lineas}` }, texto);
+  const boton = el('button', { type: 'button', class: 'mas', hidden: true, onclick: () => { parrafo.classList.add('abierta'); boton.remove(); } }, 'Ver más');
+  requestAnimationFrame(() => { boton.hidden = parrafo.scrollHeight <= parrafo.clientHeight + 2; });
+  return el('div', { class: 'texto-largo-caja' }, parrafo, boton);
+}
+
+// Chips que llevan a un perfil, con el fondo suave del color de la familia (--familia).
+export function chipsPerfil(tipo, valores, query) {
+  const extra = query ? `?${new URLSearchParams(query)}` : '';
+  return el('div', { class: 'chips-datos' }, valores.map((v) => el('a', { class: 'chip-dato', href: rutaPerfil(tipo, v) + extra }, nombrePerfil(tipo, v))));
+}
+
+// ---- Fotos: grilla de miniaturas y visor a pantalla completa (como ShotDeck) ----
+
+// Miniaturas del mismo tamaño; al tocar una se abre el visor. `pie(foto)` arma el crédito.
+export function grillaFotos(fotos, { alt = '', pie } = {}) {
+  return el('div', { class: 'grilla-fotos' }, fotos.map((foto, i) => el('button', {
+    type: 'button', class: 'miniatura', 'aria-label': `Ver foto ${i + 1} de ${fotos.length}`,
+    onclick: () => abrirVisor(fotos, i, { alt, pie }),
+  }, el('img', { src: fuenteFoto(foto), alt: foto.pie || alt, loading: 'lazy', decoding: 'async' }))));
+}
+
+// La foto entera, sin recortar ni hacer scroll; flechas, deslizar con el dedo y teclado.
+export function abrirVisor(fotos, inicial = 0, { alt = '', pie } = {}) {
+  let actual = inicial;
+  const imagen = el('img', { class: 'visor-imagen', alt: '' });
+  const credito = el('div', { class: 'visor-pie' });
+  const contador = el('span', { class: 'visor-contador' });
+  const mostrar = (i) => {
+    actual = (i + fotos.length) % fotos.length;
+    const foto = fotos[actual];
+    imagen.src = fuenteFoto(foto);
+    imagen.alt = foto.pie || alt;
+    contador.textContent = `${actual + 1} / ${fotos.length}`;
+    credito.replaceChildren(contador, pie ? pie(foto) : '');
+  };
+  const varias = fotos.length > 1;
+  const cerrar = () => {
+    visor.remove();
+    document.body.classList.remove('con-visor');
+    document.removeEventListener('keydown', teclas);
+  };
+  const teclas = (e) => {
+    if (e.key === 'Escape') cerrar();
+    else if (e.key === 'ArrowRight' && varias) mostrar(actual + 1);
+    else if (e.key === 'ArrowLeft' && varias) mostrar(actual - 1);
+  };
+  const boton = (clase, etiqueta, accion, contenido) => el('button', { type: 'button', class: `visor-boton ${clase}`, 'aria-label': etiqueta, onclick: accion }, contenido);
+  const visor = el('div', { class: 'visor', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Foto' },
+    el('div', { class: 'visor-escenario', onclick: (e) => { if (e.target === e.currentTarget) cerrar(); } }, imagen),
+    varias && boton('visor-anterior', 'Foto anterior', () => mostrar(actual - 1), flechaVisor(-1)),
+    varias && boton('visor-siguiente', 'Foto siguiente', () => mostrar(actual + 1), flechaVisor(1)),
+    boton('visor-cerrar', 'Cerrar', cerrar, icono('cerrar')),
+    credito,
+  );
+  // Deslizar con el dedo: hacia la izquierda, la siguiente; hacia la derecha, la anterior.
+  let toque = null;
+  visor.addEventListener('touchstart', (e) => { toque = e.touches[0].clientX; }, { passive: true });
+  visor.addEventListener('touchend', (e) => {
+    if (toque === null || !varias) return;
+    const dx = e.changedTouches[0].clientX - toque;
+    toque = null;
+    if (Math.abs(dx) > 50) mostrar(actual + (dx < 0 ? 1 : -1));
+  });
+  document.addEventListener('keydown', teclas);
+  document.body.classList.add('con-visor');
+  document.body.append(visor);
+  mostrar(inicial);
+  visor.querySelector('.visor-cerrar').focus();
+}
+
+// Flecha del visor: la escalonada (F2), dada vuelta para la anterior.
+function flechaVisor(sentido) {
+  const f = flecha();
+  if (sentido < 0) f.style.transform = 'scaleX(-1)';
+  return f;
+}
+
 // La banda con el símbolo del perfil (o el neutro en su color). Los años, con la marca del año.
 // `pais`: el contexto, para elegir la colección de décadas.
 export function bandaPerfil(datos, tipo, valor, familia, { pais } = {}) {
@@ -150,7 +242,7 @@ export function bandaPerfil(datos, tipo, valor, familia, { pais } = {}) {
 export function encabezadoFila(titulo, verMas, { subtitulo } = {}) {
   return el('header', { class: 'encabezado-fila' },
     el('h2', {}, titulo, subtitulo && el('span', { class: 'encabezado-fila-sub' }, subtitulo)),
-    verMas && el('a', { class: 'ver-mas', href: verMas }, 'Ver más', icono('flecha')),
+    verMas && el('a', { class: 'ver-mas', href: verMas }, 'Ver más', flecha()),
   );
 }
 
@@ -231,8 +323,10 @@ export function estrellas(puntaje) {
   return el('span', { class: 'estrellas', 'aria-label': `Puntaje: ${puntaje} de 5` }, '★'.repeat(puntaje) + '☆'.repeat(5 - puntaje));
 }
 
-export function tarjetaEntrada(entrada, datos, { conObra = true } = {}) {
+// `compacta`: la versión de la grilla del diario (recuadro de color, nota cortada, fotos chicas).
+export function tarjetaEntrada(entrada, datos, { conObra = true, compacta = false, color } = {}) {
   const obra = datos.porId.get(entrada.obra_id);
+  if (compacta) return entradaCompacta(entrada, obra, color);
   return el('article', { class: 'entrada' },
     el('header', { class: 'entrada-cabecera' },
       el('time', { datetime: entrada.fecha }, formatoFecha(entrada.fecha)),
@@ -248,6 +342,26 @@ export function tarjetaEntrada(entrada, datos, { conObra = true } = {}) {
       pie: (foto) => foto.pie && el('figcaption', { class: 'credito' }, foto.pie),
     }),
     entrada.local && el('div', { class: 'entrada-acciones' },
+      el('a', { class: 'boton boton-chico', href: `#/nueva?editar=${encodeURIComponent(entrada.id)}` }, 'Editar'),
+    ),
+  );
+}
+
+function entradaCompacta(entrada, obra, color = 'petroleo') {
+  return el('article', { class: 'entrada-compacta', style: `--familia: var(--${color})` },
+    el('header', { class: 'entrada-cabecera' },
+      el('time', { datetime: entrada.fecha }, formatoFecha(entrada.fecha)),
+      estrellas(entrada.puntaje),
+    ),
+    obra
+      ? filaObra(obra)
+      : el('p', { class: 'tenue' }, `Obra "${entrada.obra_id}" (no está en el catálogo)`),
+    entrada.nota && el('p', { class: 'entrada-nota texto-largo', style: '--lineas: 4' }, entrada.nota),
+    entrada.fotos?.length > 0 && grillaFotos(entrada.fotos.slice(0, 4), {
+      alt: obra?.nombre, pie: (foto) => foto.pie && el('figcaption', { class: 'credito' }, foto.pie),
+    }),
+    entrada.local && el('div', { class: 'entrada-acciones' },
+      el('span', { class: 'marca-local' }, entrada.exportada ? 'En el teléfono · exportada' : 'Solo en este teléfono'),
       el('a', { class: 'boton boton-chico', href: `#/nueva?editar=${encodeURIComponent(entrada.id)}` }, 'Editar'),
     ),
   );
@@ -276,17 +390,19 @@ export function aviso(texto, { accion, alTocar, duracion = 4000 } = {}) {
 
 let hojaActual = null;
 
-export function abrirHoja({ titulo, contenido, pie, alCerrar }) {
+// `clase`: variante de tamaño (hoja-alta, hoja-mapa) · `acciones`: botones junto a Cerrar.
+export function abrirHoja({ titulo, contenido, pie, alCerrar, clase, acciones }) {
   cerrarHoja({ inmediato: true });
   const cuerpo = el('div', { class: 'hoja-cuerpo' }, contenido);
   const cabecera = el('div', { class: 'hoja-cabecera' },
     el('div', { class: 'hoja-asa', 'aria-hidden': 'true' }),
     el('h2', {}, titulo),
+    acciones,
     botonIcono('cerrar', 'Cerrar', () => cerrarHoja()),
   );
   const piso = pie ? el('div', { class: 'hoja-pie' }, pie) : null;
   const fondo = el('div', { class: 'hoja-fondo', onclick: () => cerrarHoja() });
-  const hoja = el('div', { class: 'hoja', role: 'dialog', 'aria-modal': 'true', 'aria-label': titulo }, cabecera, cuerpo, piso);
+  const hoja = el('div', { class: `hoja${clase ? ` ${clase}` : ''}`, role: 'dialog', 'aria-modal': 'true', 'aria-label': titulo }, cabecera, cuerpo, piso);
   deslizarParaCerrar(cabecera, hoja);
   document.body.append(fondo, hoja);
   document.body.classList.add('con-hoja');

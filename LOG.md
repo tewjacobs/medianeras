@@ -8,11 +8,10 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**18 de octubre de 2026.** Están terminados el rediseño completo (pasos 1 a 5 del plan) y las correcciones posteriores.
+**18 de octubre de 2026, noche.** Rediseño completo y varias rondas de ajustes visuales, todo publicado.
 
-- Último commit publicado: `0fc5c6c`.
-- `CLAUDE.md`, `LOG.md` y `herramientas/` están en el repo.
-- La versión del service worker es `v15`.
+- Service worker en `v21`.
+- Pantalla de carga: skyline "El siglo". Botón de visita: sigue el "+" (la Price Tower quedó para más adelante).
 
 ## Cómo retomar
 
@@ -62,9 +61,19 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Logo.**
   - Es la variante 5b·2 "Calm": campo rojo, ventanita de marco negro y dos edificios con su costado en perspectiva roja (sube 2 cada 3), sobre una grilla de 48 × 48 con coordenadas enteras.
   - Con él se hicieron los íconos de la app.
-- **Pantalla de carga.**
-  - Es la planta de la Price Tower, versión B: el cuadrado girado 30° en cuatro cuartos, cada uno con una sola línea interior recta, y una cruz roja derecha de muros huecos con punta cortada a 125°. El cuadradito del centro "respira".
-  - La versión A (molinete escalonado) no está en el repo.
+- **Pantalla de carga.** Skyline de Buenos Aires «El siglo» (S3): un edificio por década de la colección Argentina sobre una línea de suelo; cada uno se construye desde abajo, línea por línea. La primera vez que se entra a la app se muestra completa (espera a que termine el skyline; se recuerda con la preferencia `carga-vista`); las siguientes se va apenas cargan los datos. El SVG está inline en `www/index.html` (se regenera con `herramientas/prueba/exportar-skyline.html`). Las versiones de la Price Tower quedaron en `herramientas/prueba/`.
+- **Sistema gráfico: flechas** (en `flecha()` de `www/js/ui.js`, para reusar):
+  - **F2, escalonada:** rayas apiladas de distinto largo que forman la punta. Va en VER MÁS, la lista de Explorar, Todas las obras y el visor de fotos (dada vuelta para "anterior").
+  - **F1, paralela:** tres líneas paralelas; las de afuera doblan y se juntan en la punta. Va en "Cómo llegar".
+- **Cabecera y detalles.**
+  - Todo en una fila: logo (42 px) y nombre a la izquierda; búsqueda S1 (tres filetes, el del medio rojo en foco) y el botón de tema a la derecha. En el celular la búsqueda está plegada en la lupa.
+  - "Todas las obras" es la T2: franja en el rojo de Medianeras (`--logo-rojo`) entre filetes dobles, en los dos temas.
+  - Chips y botones secundarios con fondo del color de la familia al 16 % (30 % en oscuro, para que se distingan).
+- **Cabecera de la portada en todas las vistas:** logo y "medianeras" (llevan al inicio) y la palabra de la sección (OBRA, ESTILO, MAPA…) en el color de acento. En el celular, la sección va debajo del nombre; desde 600 px, al lado. El nombre de la obra o del perfil va solo en el título de la página y en el de la pestaña del navegador.
+- **Por década (inicio):** cada fila con el símbolo de la década en chico (colección Mundo), el nombre y la cantidad en un chip del color de la década. Sin líneas punteadas.
+- **Paneles en vez de páginas:** "Ver en el mapa" (desde una obra) abre un mapa en un panel con "Agrandar" a `#/mapa?obra=…`; el botón VISITA y "Registrar visita" abren la nueva visita en un panel (en una obra, viene elegida; en un perfil, sus obras primero). `#/nueva` sigue como página para links y para editar.
+- **Compu (desde 900 px):** la ficha de obra y los perfiles llevan arriba dos columnas a la misma altura (tapa e info; texto y símbolo). Debajo, bloques separados por filetes.
+- **Ficha de obra.** Arriba, siempre, la tapa, el nombre, los años y arquitectos, y los botones. Pestañas DATOS · UBICACIÓN · FOTOS · PLANOS (las vacías no aparecen). Las visitas van aparte, como reseñas: las 3 más recientes y VER MÁS a `#/obra/<id>/visitas`. Las fotos y planos van en una grilla de miniaturas que abre un visor a pantalla completa, con flechas, gesto y teclado.
 - **Símbolos.**
   - Cada perfil tiene un dibujo propio de líneas paralelas, guardado como dato en `simbolos.json`.
   - Se dibujan con el método de `CLAUDE.md`: mirar las referencias, comparar y corregir.
@@ -89,6 +98,9 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Visitas del teléfono.** Se leen de IndexedDB sin bloquear: el inicio y las grillas se pintan enseguida y las filas de visitas se completan después.
 
 ## Pendientes
+
+- Price Tower: queda para más adelante (opciones en `herramientas/prueba/price-tower2.html`, a partir de la planta). El botón de visita sigue con el "+". La pantalla de carga actual (molinete) se lee como una esvástica: se reemplaza por el skyline.
+- Revisar el `resumen` y la `descripcion` del Guggenheim y el `resumen` del Flatiron (los escribió Claude; reemplazar o corregir).
 
 - Media estrella en los puntajes: hoy se redondea (un 4,5 se ve como 5).
 - Probar el ancho de 320 px en un dispositivo real; las capturas automáticas no bajan de 500 px.
@@ -148,6 +160,10 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
   - Alineación en pantallas anchas.
 - **Perfiles sin obras:** ya no existen.
 - **Commit `0fc5c6c`:** commit y push a `main`.
+- **Ronda de la tarde:** Seagram, Villa Savoye (Moderno) y Biblioteca Nacional rehechos con sus fotos; opciones de Price Tower (descartadas por ahora) y del skyline; cabecera de la portada en todas las vistas, décadas con símbolo, ficha y perfiles en dos columnas en la compu, mapa y visita en paneles; ficha con pestañas, visor de fotos, flechas propias. Se sacó la foto 4 del Guggenheim.
+- **Última ronda:** descripción de la obra en la cabecera de la ficha (o, si no hay, chips de estilo, década y lugar); bordes exactos en los símbolos medidos (Savoye, Biblioteca); Colón y Guggenheim de Nueva York rehechos con fotos nuevas (`herramientas/simbolos/simbolos7.py`); diario en grilla de entradas compactas con recuadros de color rotando por la paleta (3 por fila en la compu, 2 en tablet, 1 en el celular).
+- **Cierre:** Guggenheim (orgánica) con vereda y calle; ficha con `resumen` y descripción completa con "Ver más"; skyline S3 en la pantalla de carga.
+- **Cierre del día:** sección "Cómo hablarme" en `CLAUDE.md`; techo de cristal centrado en el Guggenheim (orgánica); la pantalla de carga se ve completa solo la primera vez; commit y push de todo.
 - **Organización:**
   - Se crearon `CLAUDE.md` y `LOG.md`.
   - Se revisaron las skills de `mattpocock/skills`. Decisión: no instalar ninguna por ahora (ver Decisiones).

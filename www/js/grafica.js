@@ -262,7 +262,8 @@ export function simboloNeutro(familia = 'petroleo') {
 //   en el borde de arriba de la línea `base`.
 // `anio` (0 a 9): debajo del dibujo, diez marcas, una por año; la de ese año en rojo.
 // `fijo`: usar el alto pedido aunque la partitura traiga otro (las tapas son cuadradas).
-export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, fijo = false, clase = 'grafica simbolo' } = {}) {
+// `sinFondo`: sin el rectángulo de fondo (para poner varios símbolos juntos, como en el skyline).
+export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, fijo = false, sinFondo = false, clase = 'grafica simbolo' } = {}) {
   const alto = fijo ? altoBanda : (partitura.alto ?? altoBanda);
   const vertical = partitura.direccion === 'vertical';
   const grosor = partitura.grosor ?? 1;
@@ -296,7 +297,9 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
       if (k === 0 && linea.antes) desde = 0;
       if (k === linea.tramos.length - 1 && linea.despues) hasta = bordeLargo;
       if (tramo.color === '-') return;
-      const [x, y, w, h] = vertical ? [b, desde, grosor * escala, hasta - desde] : [desde, b, hasta - desde, grosor * escala];
+      // Sin separación, cada línea pisa apenas la siguiente: así no quedan juntas finas entre filas.
+      const solape = separacion === 0 ? 0.6 : 0;
+      const [x, y, w, h] = vertical ? [b, desde, grosor * escala + solape, hasta - desde] : [desde, b, hasta - desde, grosor * escala + solape];
       rects.push(svg('rect', { x: n(x), y: n(y), width: n(w), height: n(h), estilo: { fill: colorCss(tramo.color) } }));
     });
   });
@@ -351,6 +354,41 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
   }
 
   return svg('svg', { class: clase, viewBox: `0 0 ${n(ancho)} ${n(alto)}`, preserveAspectRatio: 'xMidYMid meet', 'aria-hidden': 'true', focusable: 'false' },
-    svg('rect', { x: 0, y: 0, width: ancho, height: alto, estilo: { fill: colorCss(partitura.fondo ?? 'papel') } }),
+    !sinFondo && svg('rect', { x: 0, y: 0, width: ancho, height: alto, estilo: { fill: colorCss(partitura.fondo ?? 'papel') } }),
     placa, rects, curvas, marcas);
+}
+
+// Ancho y alto del dibujo de una partitura, en sus unidades (sin márgenes ni tramos estirados).
+export function medidasSimbolo(partitura) {
+  const lineas = (partitura.lineas ?? []).map(leerLinea);
+  const largo = Math.max(1, partitura.largo ?? 0, ...lineas.map((l) => l.tramos.reduce((a, t) => a + t.largo, 0)));
+  const grosor = partitura.grosor ?? 1;
+  const separacion = partitura.separacion ?? 1;
+  const travesia = lineas.length * grosor + Math.max(0, lineas.length - 1) * separacion;
+  return partitura.direccion === 'vertical' ? { ancho: travesia, alto: largo } : { ancho: largo, alto: travesia };
+}
+
+// Skyline: varios símbolos uno al lado del otro sobre una misma línea de suelo. Cada edificio
+// es { partitura, altura } con la altura en proporción al alto total (0 a 1). Cada uno queda en
+// su propio <svg> con la clase "edificio", --i (su orden) y --filas (sus líneas), para animarlos.
+export function skyline(edificios, { alto = 100, separacion = 3, suelo = 2, clase = 'skyline' } = {}) {
+  let x = 0;
+  const piezas = edificios.map(({ partitura, altura }, i) => {
+    const m = medidasSimbolo(partitura);
+    const h = altura * (alto - suelo);
+    const w = h * (m.ancho / m.alto);
+    const pieza = simbolo(partitura, { ancho: w, alto: h, margen: 0, fijo: true, sinFondo: true, clase: 'edificio' });
+    pieza.setAttribute('x', n(x));
+    pieza.setAttribute('y', n(alto - suelo - h));
+    pieza.setAttribute('width', n(w));
+    pieza.setAttribute('height', n(h));
+    pieza.style.setProperty('--i', i);
+    pieza.style.setProperty('--filas', (partitura.lineas ?? []).length || 10); // para animarlo fila por fila
+    x += w + separacion;
+    return pieza;
+  });
+  const ancho = x - separacion;
+  return svg('svg', { class: clase, viewBox: `0 0 ${n(ancho)} ${n(alto)}`, 'aria-hidden': 'true', focusable: 'false' },
+    piezas,
+    svg('rect', { x: -2, y: n(alto - suelo), width: n(ancho + 4), height: suelo, estilo: { fill: 'var(--tinta)' } }));
 }

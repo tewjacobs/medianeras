@@ -172,6 +172,8 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `ubicacion.pais` … `barrio` | niveles genéricos: `provincia` = provincia / estado / región; `ciudad` = partido / ciudad / municipio; `barrio` = barrio / localidad. Sirve para cualquier país | no, pero sin país no entra en el filtro de ubicación |
 | `ubicacion.lat`, `lng` | números decimales; sin ellos la obra no aparece en el mapa | no |
 | `fotos` | lista; la primera es la portada | no (`[]`) |
+| `resumen` | una o dos líneas, debajo de los botones de la ficha. Con "Ver más" se reemplaza por `descripcion` | no |
+| `planos` | lista de planos (planta, corte, vista) con los mismos campos que `fotos` (`archivo`, `autor`, `licencia`, `fuente`), más `tipo` ("Planta", "Corte"…) y `pie`. Si no hay, la pestaña PLANOS no aparece | no |
 | `fotos[].encuadre` | cómo se ve la portada en la tapa cuadrada. Sin encuadre, la foto entra entera y el color del marco llena lo que sobra. Con `"centro"`, `"arriba"`, `"abajo"`, `"izquierda"`, `"derecha"` o una posición como `"50% 30%"`, se recorta al cuadrado mostrando esa parte. En la ficha, las fotos siempre se ven enteras | no |
 | `ejemplo` | `true` muestra el cartel EJEMPLO. No lo pongas en obras reales | no |
 | `agregada` | fecha `AAAA-MM-DD` en que se sumó al catálogo, para "Agregadas recientemente". Si falta, vale el orden del archivo (la última es la más nueva) | no |

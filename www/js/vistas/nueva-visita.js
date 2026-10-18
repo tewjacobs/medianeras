@@ -1,7 +1,7 @@
 // Registrar (o editar) una visita desde el teléfono. Se guarda en el dispositivo
 // hasta que se exporta desde el Diario.
 
-import { el, icono, botonIcono, filaObra, urlTemporal, mensaje, aviso } from '../ui.js';
+import { el, icono, botonIcono, filaObra, urlTemporal, mensaje, aviso, abrirHoja, cerrarHoja } from '../ui.js';
 import { hoyISO, normalizar, lugarCorto, compararTexto, tieneCoordenadas, distanciaKm, formatoDistancia } from '../datos.js';
 import { obtenerVisita, guardarVisita, borrarVisita, listarVisitas, pedirPersistencia } from '../plataforma/almacen.js';
 import { obtenerUbicacion, ultimaUbicacion } from '../plataforma/ubicacion.js';
@@ -9,7 +9,20 @@ import { elegirFotos, prepararFoto } from '../plataforma/fotos.js';
 
 const MAX_RESULTADOS = 12;
 
-export async function render(contenedor, { datos, params, titulo }) {
+// Como panel (desde el botón VISITA o desde una obra): `obra` viene elegida; `sugeridas` (ids)
+// aparecen primero en la lista. Al guardar se cierra el panel y se queda en la vista actual.
+export function abrirNuevaVisita(datos, { obra = null, sugeridas = [], alGuardar } = {}) {
+  const contenido = el('div', { class: 'visita-panel' });
+  abrirHoja({ titulo: 'Nueva visita', contenido, clase: 'hoja-alta' });
+  render(contenido, {
+    datos, params: new URLSearchParams(obra ? { obra } : {}), titulo: () => {}, sugeridas,
+    alTerminar: () => { cerrarHoja(); alGuardar?.(); },
+  });
+}
+
+// `alTerminar`: en un panel, qué hacer después de guardar (en la página, se va al Diario).
+export async function render(contenedor, { datos, params, titulo, sugeridas = [], alTerminar }) {
+  const primero = new Set(sugeridas);
   const idEditar = params.get('editar');
   const original = idEditar ? await obtenerVisita(idEditar).catch(() => null) : null;
   if (idEditar && !original) {
@@ -59,7 +72,7 @@ export async function render(contenedor, { datos, params, titulo }) {
     const km = (o) => (posicion && tieneCoordenadas(o) ? distanciaKm(posicion, o.ubicacion) : Infinity);
     const lista = datos.obras
       .filter((o) => !q || normalizar([o.nombre, ...(o.otros_nombres ?? []), ...(o.arquitectos ?? []), lugarCorto(o)].join(' ')).includes(q))
-      .sort((a, b) => (posicion ? km(a) - km(b) : 0) || compararTexto(a.nombre, b.nombre));
+      .sort((a, b) => (primero.has(b.id) - primero.has(a.id)) || (posicion ? km(a) - km(b) : 0) || compararTexto(a.nombre, b.nombre));
     resultados.replaceChildren(...lista.slice(0, MAX_RESULTADOS).map((obra) => filaObra(obra, {
       detalle: Number.isFinite(km(obra)) ? `${formatoDistancia(km(obra))} · ${lugarCorto(obra)}` : undefined,
       alTocar: () => { estado.obra = obra; pintarSelector(); },
@@ -169,7 +182,8 @@ export async function render(contenedor, { datos, params, titulo }) {
     }
     pedirPersistencia();
     aviso(original ? 'Visita actualizada' : 'Visita guardada en este teléfono');
-    location.replace('#/diario');
+    if (alTerminar) alTerminar();
+    else location.replace('#/diario');
   }
 
   async function borrar() {

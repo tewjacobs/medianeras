@@ -1,10 +1,10 @@
 // Perfil de un arquitecto, estilo, material, programa, estado, lugar, década o año, y los índices
 // de cada tipo (#/arquitectos, #/estilos…). Una sola vista que se configura por tipo.
 
-import { el, icono, mensaje, agregar, bandaPerfil, enlacePerfil, enlacesPerfil } from '../ui.js';
+import { el, flecha, mensaje, agregar, bandaPerfil, enlacePerfil, chipsPerfil } from '../ui.js';
 import {
   TIPOS_PERFIL, NIVELES_UBICACION, nombrePerfil, rutaPerfil, perfilDe, partituraDe, colorPerfil,
-  ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto,
+  ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto, anioReferencia,
 } from '../datos.js';
 import { separador } from '../grafica.js';
 import { grillaObras, cargarEstadisticas } from './obras.js';
@@ -69,13 +69,19 @@ export function render(contenedor, { datos, partes, params, titulo }) {
     alCambiar: conDecadas ? (filtros) => { if ((filtros.pais ?? null) !== paisActual) { paisActual = filtros.pais ?? null; pintarBanda(paisActual); } } : null,
   });
 
+  // Arriba, a la misma altura: el texto a la izquierda y el símbolo a la derecha (en el celular,
+  // el símbolo primero). Debajo, en bloques separados: categorías, jerarquía o años, y las obras.
   agregar(contenedor, [
-    banda,
-    el('div', { class: 'perfil' },
-      el('nav', { class: 'migas', 'aria-label': 'Ubicación' }, migas(datos, tipo, valor, obras)),
-      el('h2', { class: 'perfil-nombre' }, nombre),
-      el('p', { class: 'perfil-datos' }, lineaDatos(tipo, valor, perfil, obras)),
-      perfil.descripcion && descripcion(perfil.descripcion),
+    el('div', { class: 'perfil-arriba', style: `--familia: var(--${familia})` },
+      el('div', { class: 'perfil perfil-texto' },
+        el('nav', { class: 'migas', 'aria-label': 'Ubicación' }, migas(datos, tipo, valor, obras)),
+        el('h2', { class: 'perfil-nombre' }, nombre),
+        el('p', { class: 'perfil-datos' }, lineaDatos(tipo, valor, perfil, obras)),
+        perfil.descripcion && descripcion(perfil.descripcion),
+      ),
+      banda,
+    ),
+    el('div', { class: 'perfil perfil-bloques', style: `--familia: var(--${familia})` },
       resumen(tipo, obras, tipo === 'pais' ? valor : null),
       tipo === 'estilo' && jerarquia(datos, valor),
       conDecadas && tira(datos, tipo, valor, params.get('pais')),
@@ -109,6 +115,12 @@ function lineaDatos(tipo, valor, perfil, obras) {
     if (perfil.pais) partes.push(perfil.pais);
   }
   if (tipo === 'decada') partes.push(`Década de ${valor}`);
+  // Los años de sus obras, salvo en décadas y años (ya lo dicen).
+  const anios = obras.map(anioReferencia).filter((a) => a !== null);
+  if (anios.length && tipo !== 'decada' && tipo !== 'anio' && tipo !== 'arquitecto') {
+    const [min, max] = [Math.min(...anios), Math.max(...anios)];
+    partes.push(min === max ? String(min) : `${min}–${max}`);
+  }
   partes.push(plural(obras.length));
   return partes.join(' · ');
 }
@@ -133,7 +145,7 @@ function resumen(tipo, obras, pais) {
     if (!conteo.size) return null;
     const valores = [...conteo.keys()].sort(t === 'decada' ? (a, b) => a - b : compararTexto);
     const query = pais && (t === 'decada') ? { pais } : null;
-    return [el('dt', {}, etiqueta), el('dd', {}, enlacesPerfil(t, valores, query))];
+    return [el('dt', {}, etiqueta), el('dd', {}, chipsPerfil(t, valores, query))];
   }).filter(Boolean);
   return contenido.length ? el('dl', { class: 'perfil-resumen' }, contenido) : null;
 }
@@ -142,10 +154,12 @@ function jerarquia(datos, estilo) {
   const [padre] = ancestrosEstilo(datos, estilo);
   const hijos = hijosEstilo(datos, estilo);
   if (!padre && !hijos.length) return null;
-  const conCantidad = (e) => [enlacePerfil('estilo', e), el('span', { class: 'tenue' }, ` ${obrasDePerfil(datos, 'estilo', e).length}`)];
+  // Chips con la cantidad de obras de cada estilo.
+  const chips = (estilos) => el('div', { class: 'chips-datos' }, estilos.map((e) => el('a', { class: 'chip-dato', href: rutaPerfil('estilo', e) },
+    e, el('span', { class: 'chip-cantidad' }, obrasDePerfil(datos, 'estilo', e).length))));
   return el('dl', { class: 'perfil-resumen perfil-jerarquia' },
-    padre && [el('dt', {}, 'Viene de'), el('dd', {}, conCantidad(padre))],
-    hijos.length > 0 && [el('dt', {}, 'Incluye'), el('dd', {}, hijos.sort(compararTexto).flatMap((h, i) => (i ? [', ', ...conCantidad(h)] : conCantidad(h))))],
+    padre && [el('dt', {}, 'Viene de'), el('dd', {}, chips([padre]))],
+    hijos.length > 0 && [el('dt', {}, 'Incluye'), el('dd', {}, chips(hijos.sort(compararTexto)))],
   );
 }
 
@@ -203,6 +217,6 @@ export function renderIndice(contenedor, { datos, partes, titulo }) {
 // Enlaces a los índices, para el pie del inicio.
 export function enlacesIndices() {
   return ['arquitecto', 'estilo', 'decada', 'pais', 'material', 'programa'].map((t) =>
-    el('a', { href: `#/${TIPOS_PERFIL[t].indice}` }, TIPOS_PERFIL[t].plural, icono('flecha')));
+    el('a', { href: `#/${TIPOS_PERFIL[t].indice}` }, TIPOS_PERFIL[t].plural, flecha()));
 }
 

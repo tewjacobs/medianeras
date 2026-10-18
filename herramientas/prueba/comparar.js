@@ -21,6 +21,10 @@ const h = (etiqueta, props = {}, ...hijos) => {
 // Cada símbolo con foto de referencia. Las fotos se leen de referencias/, un enlace a
 // ~/medianeras-originales/referencias/simbolos que crea servir.sh (no entra al repo).
 const CON_FOTO = [
+  ['estilos', 'Moderno', ['savoye/images.jpeg']],
+  ['estilos', 'Arquitectura orgánica', ['guggenheim new york/guggenheim-model-6.jpg']],
+  ['argentina', '1900', ['colon/Fachada_del_Teatro_Colón_en_Buenos_Aires,_Argentina.jpg']],
+  ['argentina', '1990', ['biblioteca nacional/bibliotecanacionalcnm.jpg', 'biblioteca nacional/15998538130-Biblioteca-Nacional-773x458.jpg']],
   ['argentina', '1930', ['kavanagh/kava.webp', 'kavanagh/kavan.png']],
   ['argentina', '1940', ['casa puente/Screenshot 2026-10-18 at 02.14.53.png', 'casa puente/puente.avif']],
   ['argentina', '1960', ['banco de londres/londres.png']],
@@ -29,6 +33,7 @@ const CON_FOTO = [
   ['argentina', '1980', ['recoleta/cultu reco.jpg']],
   ['argentina', '2000', ['puente de la mujer/mujer.jpg']],
   ['argentina', '2010', ['Centro Cultural Kirschner/1081612757_0_0_3000_2000_600x0_80_0_0_5ac5d6b0bad27a749eb428dada033483.jpg', 'Centro Cultural Kirschner/U7SKV43T23MD3XO27QZNIY5YRQ.avif', 'Centro Cultural Kirschner/Buenos_Aires_Centrum_Kirchner.jpg']],
+  ['mundo', '1950', ['seagram/seagramexrt.webp', 'seagram/Seagram-Bldg.jpg']],
   ['mundo', '1900', ['stoclet/stoclet.jpg']],
   ['mundo', '1910', ['la pedrera:casa mila/Casa_Milà,_general_view.jpg']],
   ['mundo', '1930', ['paimio/paimio.jpg']],
@@ -37,6 +42,9 @@ const CON_FOTO = [
   ['mundo', '2000', ['St mary axe/790423.jpg']],
   ['mundo', '2010', ['CCTV/china.png']],
 ];
+// ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
+const solo = new URLSearchParams(location.search).get('solo');
+const elegidos = solo ? CON_FOTO.filter(([c, d]) => `${c}-${d}` === solo) : CON_FOTO;
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;
 
 function foto(archivos) {
@@ -47,8 +55,8 @@ function foto(archivos) {
 function panel(tema, partitura, decada, coleccion) {
   return h('div', { className: 'muestra', dataset: { tema } },
     simbolo(partitura, { ancho: 390, alto: 132 }),
-    h('h3', { textContent: partitura.obra }),
-    h('p', { className: 'dato', textContent: `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
+    h('h3', { textContent: partitura.obra ?? decada }),
+    h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
     tema === 'claro' && h('p', { className: 'nota', textContent: partitura.nota }));
 }
 
@@ -56,16 +64,16 @@ function cargaPanel(tema, version) {
   const original = version === 'A' ? cargaApp : cargaB;
   const caja = h('div', { className: 'carga-demo' }, document.importNode(original, true));
   return h('div', { className: 'muestra', dataset: { tema } }, caja,
-    h('h3', { textContent: 'Pantalla de carga (B)' }),
-    h('p', { className: 'dato', textContent: 'EN LA APP: MUROS HUECOS EN CRUZ, PUNTA A 125°, UNA SOLA LÍNEA RECTA POR CUARTO' }),
+    h('h3', { textContent: 'Pantalla de carga' }),
+    h('p', { className: 'dato', textContent: 'EN LA APP: SKYLINE «EL SIGLO»' }),
     h('button', { type: 'button', className: 'boton boton-chico repetir', textContent: 'Repetir animación',
       onclick: () => caja.replaceChildren(document.importNode(original, true)) }));
 }
 
-document.getElementById('filas').replaceChildren(
-  h('div', { className: 'fila' }, foto(['price tower/price.jpeg']), cargaPanel('claro', 'A'), cargaPanel('oscuro', 'A')),
-  ...CON_FOTO.map(([coleccion, decada, archivos]) => {
-    const partitura = simbolos.decadas[coleccion][decada];
+document.getElementById('filas').replaceChildren(...[
+  !solo && h('div', { className: 'fila' }, foto(['skyline/depositphotos_58959203-stock-illustration-buenos-aires.jpg']), cargaPanel('claro', 'A'), cargaPanel('oscuro', 'A')),
+  ...elegidos.map(([coleccion, decada, archivos]) => {
+    const partitura = coleccion === 'estilos' ? simbolos.estilos[decada] : simbolos.decadas[coleccion][decada];
     return h('div', { className: 'fila' }, foto(archivos), panel('claro', partitura, decada, coleccion), panel('oscuro', partitura, decada, coleccion));
   }),
-);
+].filter(Boolean));

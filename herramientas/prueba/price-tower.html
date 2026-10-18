@@ -1,0 +1,57 @@
+<!doctype html><html lang="es" data-tema="claro"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price Tower simétrica</title><link rel="stylesheet" href="css/estilos.css">
+<style>
+ body { background:#8d8a85; margin:0; padding:16px; }
+ h1 { font-family: var(--sans); font-size: 22px; font-weight: 850; font-stretch: 112%; margin: 0 auto 4px; max-width: 900px; color:#1a1917; }
+ .intro { font-family: var(--mono); font-size: 13px; max-width: 900px; margin: 0 auto 14px; color:#2a2926; }
+ .fila { display:grid; grid-template-columns: 1fr 1fr; gap:14px; max-width: 900px; margin: 0 auto 16px; }
+ .tel { background: var(--papel); color: var(--tinta); padding: 14px 16px; }
+ .tel h2 { font-size: 16px; font-weight: 850; font-stretch: 108%; margin: 0 0 2px; }
+ .tel p { font-family: var(--mono); font-size: 12px; color: var(--tenue); margin: 0 0 8px; }
+ .carga-m { display: grid; place-items: center; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--filete); }
+ .carga-m .carga-nombre { font-size: 20px; }
+ .barra { display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 0 2px; }
+ .barra a { display:flex; flex-direction:column; align-items:center; gap:2px; color: var(--tenue); font-size:15px; font-weight:600; font-stretch:78%; letter-spacing:.06em; text-transform:uppercase; }
+ .barra .icono { width:24px; height:24px; margin:3px 0; }
+ .barra .pt svg { width: 30px; height: 30px; display:block; }
+ .barra .pt span { color: var(--tinta); }
+ .tamanos { display:flex; gap:16px; align-items:end; font-family: var(--mono); font-size: 11px; color: var(--tenue); margin-top: 8px; }
+ .tamanos figure { margin:0; display:grid; justify-items:center; gap:4px; }
+ button { margin-top: 6px; }
+</style>
+<h1>Price Tower: tres versiones simétricas</h1>
+<p class="intro">Cada una como pantalla de carga (animada, con "Repetir") y como botón de visita en la barra, a 24, 32 y 48 px. Izquierda claro, derecha oscuro.</p>
+<div id="o"></div>
+<script type="module">
+import { VERSIONES, svgPriceTower } from './price-tower.js';
+import { icono } from './js/ui.js';
+const NOMBRES = {
+  rombo: ['P1 · Rombo con cruz derecha', 'Cuadrado girado 45°, partido por la cruz en cuatro triángulos. La cruz corre entre ellos y sobresale apenas de cada punta.'],
+  recto: ['P2 · Cuadrado sin girar', 'Cuatro cuartos derechos; la cruz corre entre ellos y sobresale lo mismo de cada lado.'],
+  corta30: ['P3 · Cuadrado a 30° con cruz corta', 'Se mantiene el giro de 30°; la cruz es derecha y corta, no sale del cuadrado.'],
+};
+const o = document.getElementById('o');
+const h = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; };
+for (const v of VERSIONES) {
+  const fila = document.createElement('div'); fila.className = 'fila';
+  for (const tema of ['claro', 'oscuro']) {
+    const tel = document.createElement('div'); tel.className = 'tel'; tel.dataset.tema = tema;
+    const carga = document.createElement('div'); carga.className = 'carga-m';
+    const pintar = () => carga.replaceChildren(h(svgPriceTower(v)), h('<span class="carga-nombre">medianeras</span>'));
+    pintar();
+    const repetir = document.createElement('button'); repetir.className = 'boton boton-chico'; repetir.textContent = 'Repetir animación'; repetir.onclick = pintar;
+    const barra = document.createElement('nav'); barra.className = 'barra';
+    for (const [ic, txt] of [['grilla', 'Obras'], ['mapa', 'Mapa'], [null, 'Visita'], ['diario', 'Diario'], ['listas', 'Listas']]) {
+      const a = document.createElement('a');
+      if (ic) a.append(icono(ic)); else { a.className = 'pt'; a.append(h(svgPriceTower(v, 'boton'))); }
+      const s = document.createElement('span'); s.textContent = txt; a.append(s); barra.append(a);
+    }
+    const tam = document.createElement('div'); tam.className = 'tamanos';
+    for (const px of [24, 32, 48]) { const f = document.createElement('figure'); const s = h(svgPriceTower(v, 'boton')); s.style.width = s.style.height = px + 'px'; f.append(s); const c = document.createElement('figcaption'); c.textContent = px + ' px'; f.append(c); tam.append(f); }
+    const [t, n] = NOMBRES[v];
+    tel.append(h(`<h2>${t}</h2>`), h(`<p>${n}</p>`), carga, repetir, barra, tam);
+    fila.append(tel);
+  }
+  o.append(fila);
+}
+</script>

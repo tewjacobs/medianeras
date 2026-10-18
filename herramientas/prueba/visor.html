@@ -1,0 +1,13 @@
+<!doctype html><html lang="es" data-tema="claro"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visor de fotos</title><link rel="stylesheet" href="css/estilos.css">
+<body style="padding:16px"><div id="g" style="max-width:420px"></div>
+<script type="module">
+// Prueba del visor: ?foto=N lo abre en esa foto; sin parámetro, muestra la grilla.
+import { cargarDatos } from './js/datos.js';
+import { grillaFotos, abrirVisor, creditoFoto } from './js/ui.js';
+const datos = await cargarDatos();
+const obra = datos.porId.get(new URLSearchParams(location.search).get('obra') ?? 'solomon-r-guggenheim-museum');
+document.getElementById('g').append(grillaFotos(obra.fotos, { alt: obra.nombre, pie: creditoFoto }));
+const n = new URLSearchParams(location.search).get('foto');
+if (n !== null) abrirVisor(obra.fotos, Number(n), { alt: obra.nombre, pie: creditoFoto });
+</script>

@@ -121,6 +121,7 @@
       "lat": 40.7411,
       "lng": -73.9897
     },
+    "resumen": "El edificio triangular de D. H. Burnham & Company en la esquina de la Quinta Avenida y Broadway, uno de los primeros rascacielos de Nueva York.",
     "descripcion": "",
     "fotos": [
       {
@@ -174,7 +175,8 @@
       "lat": 40.783,
       "lng": -73.959
     },
-    "descripcion": "",
+    "resumen": "El museo de Frank Lloyd Wright en la Quinta Avenida: una sola rampa en espiral alrededor de un gran vacío central, coronado por una cúpula de vidrio.",
+    "descripcion": "Solomon R. Guggenheim y su asesora, la artista Hilla Rebay, le encargaron a Wright en 1943 un edificio para la colección de arte no figurativo. El proyecto tardó dieciséis años: cambios de terreno, la guerra, los permisos de la ciudad. Wright murió en abril de 1959 y el museo se inauguró en octubre de ese año.\n\nEn lugar de salas una detrás de otra, el recorrido es una sola rampa de hormigón que sube en espiral alrededor de un vacío iluminado desde arriba. La idea era tomar el ascensor hasta el último nivel y bajar caminando, viendo las obras sobre la pared curva y, del otro lado, el atrio y a la gente en las otras vueltas. Por fuera, las bandas se ensanchan hacia arriba, al revés de un edificio común, y la masa blanca y redondeada contrasta con la grilla de Manhattan y con el parque de enfrente.\n\nLa rotonda chica de al lado era la oficina de administración. En 1992 se sumó la torre de atrás, de Gwathmey Siegel, con más salas, y entre 2005 y 2008 se restauró la fachada.",
     "fotos": [
       {
         "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-01.jpg",
@@ -190,12 +192,6 @@
       },
       {
         "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-03.jpg",
-        "autor": "tewjacobs",
-        "licencia": "Todos los derechos reservados",
-        "fuente": "Foto propia"
-      },
-      {
-        "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-04.jpg",
         "autor": "tewjacobs",
         "licencia": "Todos los derechos reservados",
         "fuente": "Foto propia"
