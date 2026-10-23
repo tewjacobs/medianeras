@@ -3,7 +3,7 @@
 // estas funciones. Ojo: el script del <head> de index.html lee la misma clave directamente,
 // para aplicar el tema antes de pintar.
 
-const PREFIJO = 'medianeras-';
+const PREFIJO = 'medianeras-'; // nombre viejo: no cambiarlo, o se pierden las preferencias
 
 export function leerPreferencia(clave, porDefecto = null) {
   try {

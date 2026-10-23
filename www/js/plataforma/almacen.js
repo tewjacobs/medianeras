@@ -5,7 +5,7 @@
 // Una visita: { id, obra_id, fecha, nota, puntaje, fotos: [{ blob, pie }], creada, modificada, exportada }
 // Las fotos se guardan como ArrayBuffer + tipo (más robusto que Blob en Safari) y se devuelven como Blob.
 
-const BASE = 'medianeras';
+const BASE = 'medianeras'; // nombre viejo de la app: no cambiarlo, o se pierden las visitas guardadas
 const VERSION = 1;
 const VISITAS = 'visitas';
 

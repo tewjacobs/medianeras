@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mezclador de nombres</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    div.juego { max-width: 980px; margin: 0 auto; display: grid; gap: 14px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    h2 { font-size: 13px; font-weight: 700; font-stretch: 75%; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .caja { background: #ece5d7; padding: 12px; }
+    .fichas { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ficha { font: 600 15px var(--sans); letter-spacing: 0.06em; border: 1px solid #1a1917; background: #f7f2e8; color: #1a1917; padding: 6px 10px; cursor: pointer; }
+    .ficha:active { background: #c4432c; color: #fff; }
+    .ficha.gris { opacity: 0.5; }
+    .agregar { display: flex; gap: 6px; margin-top: 8px; }
+    .agregar input { font: 15px var(--sans); padding: 6px 8px; border: 1px solid #1a1917; min-width: 0; flex: 1; max-width: 220px; }
+    button.accion { font: 700 13px var(--sans); font-stretch: 80%; letter-spacing: 0.08em; text-transform: uppercase; border: 0; background: #1a1917; color: #fff; padding: 8px 12px; cursor: pointer; }
+    button.accion.rojo { background: #c4432c; }
+    .piezas { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; align-items: center; }
+    .pieza { display: flex; align-items: center; border: 1px solid #1a1917; background: #f7f2e8; }
+    .pieza b { font: 600 18px var(--sans); letter-spacing: 0.06em; padding: 4px 6px; }
+    .pieza b s { color: #a59d90; text-decoration: none; }
+    .pieza button { border: 0; background: none; font: 16px var(--mono); padding: 8px 7px; cursor: pointer; color: #625d55; }
+    .pieza button:hover { color: #c4432c; }
+    .resultado { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+    .resultado input { font: 650 22px var(--sans); letter-spacing: 0.2em; padding: 6px 8px; border: 1px solid #1a1917; min-width: 0; flex: 1; max-width: 360px; }
+    .muestras { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 700px) { .muestras { grid-template-columns: 1fr; } }
+    .muestra { background: var(--fondo, var(--papel)); color: var(--tinta); padding: 14px; display: grid; gap: 16px; }
+    .muestra .grande { font-weight: 650; font-size: 44px; letter-spacing: 0.2em; line-height: 1; overflow-wrap: anywhere; }
+    .muestra .grande-icono { display: flex; align-items: center; gap: 14px; }
+    .muestra .grande-icono .logo-simbolo { width: 72px; height: 72px; }
+    .muestra .grande-icono span { font-weight: 650; font-size: 30px; letter-spacing: 0.26em; }
+    .tirada { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+    .tirada .ficha { text-align: left; font-size: 17px; }
+    .tirada small { display: block; font: 10px var(--mono); letter-spacing: 0; color: #625d55; margin-top: 2px; }
+    .guardadas li { display: flex; align-items: center; gap: 8px; font: 600 17px var(--sans); letter-spacing: 0.1em; padding: 3px 0; }
+    .guardadas li button { border: 0; background: none; cursor: pointer; font: 12px var(--mono); color: #625d55; }
+    .guardadas ul { margin: 0; padding: 0; list-style: none; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Mezclador de nombres</h1>
+    <p class="ayuda">Tocá palabras para sumarlas a la mezcla. Con ‹ y › le sacás una letra al principio o al final; ↺ la devuelve entera; × la saca. "Tirar" arma mezclas al azar. Lo que guardes queda en esta compu.</p>
+  </div>
+
+  <section class="caja">
+    <h2>Palabras</h2>
+    <div class="fichas" id="banco"></div>
+    <form class="agregar" id="form-agregar">
+      <input id="nueva" placeholder="otra palabra o pedazo" autocomplete="off">
+      <button class="accion" type="submit">Sumar</button>
+    </form>
+  </section>
+
+  <section class="caja">
+    <h2>Mezcla</h2>
+    <div class="piezas" id="piezas"></div>
+    <div class="resultado">
+      <input id="nombre" aria-label="Nombre (se puede escribir)" autocomplete="off" spellcheck="false">
+      <button class="accion rojo" id="guardar" type="button">★ Guardar</button>
+      <button class="accion" id="vaciar" type="button">Vaciar</button>
+    </div>
+  </section>
+
+  <section class="muestras" id="muestras"></section>
+
+  <section class="caja">
+    <h2>Al azar</h2>
+    <p class="ayuda" style="margin:0 0 8px">Junta el principio de una palabra con el final de otra. Tocá una para pasarla a la mezcla.</p>
+    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px">
+      <button class="accion rojo" id="tirar" type="button">Tirar</button>
+      <button class="accion" id="tirar-dos" type="button">Tirar con dos enteras</button>
+    </div>
+    <div class="tirada" id="tirada"></div>
+  </section>
+
+  <section class="caja guardadas">
+    <h2>Guardadas</h2>
+    <ul id="lista"></ul>
+    <p class="ayuda" id="sin-guardadas">Todavía ninguna.</p>
+  </section>
+</div>
+
+<script type="module">
+// Minijuego para mezclar palabras y ver el resultado con el logo, en claro y oscuro.
+import { el } from './js/ui.js';
+import { logo } from './js/grafica.js';
+
+const PALABRAS = ['jagten', 'oak', 'auster', 'neu', 'neue', 'brakhage', 'sans',
+  'parsec', 'strobo', 'orourke', 'fuses', 'prekop', 'park', 'continuum', 'usonia'];
+
+// El almacenamiento puede fallar (ventana privada): la página anda igual, sin recordar.
+function leer(clave, porDefecto) {
+  try { return JSON.parse(localStorage.getItem(clave)) ?? porDefecto; } catch { return porDefecto; }
+}
+function escribir(clave, valor) {
+  try { localStorage.setItem(clave, JSON.stringify(valor)); } catch {}
+}
+
+let extras = leer('nombres-extras', []);
+let guardadas = leer('nombres-guardadas', []);
+// Cada pieza es una palabra con cuántas letras se le sacan adelante y atrás.
+let piezas = [];
+
+const $ = (id) => document.getElementById(id);
+const textoPieza = (p) => p.palabra.slice(p.adelante, p.palabra.length - p.atras);
+
+function sumarPieza(palabra, adelante = 0, atras = 0) {
+  piezas.push({ palabra, adelante, atras });
+  pintarMezcla();
+}
+
+function pintarBanco() {
+  $('banco').replaceChildren(...[...PALABRAS, ...extras].map((p) =>
+    el('button', { class: 'ficha', type: 'button', onclick: () => sumarPieza(p) }, p)));
+}
+
+function pintarMezcla() {
+  $('piezas').replaceChildren(...piezas.map((p, i) => {
+    const largo = p.palabra.length;
+    const cambiar = (cambio) => () => {
+      Object.assign(p, cambio);
+      if (p.adelante + p.atras >= largo) Object.assign(p, cambio.adelante !== undefined ? { adelante: largo - p.atras - 1 } : { atras: largo - p.adelante - 1 });
+      pintarMezcla();
+    };
+    return el('span', { class: 'pieza' },
+      el('button', { type: 'button', title: 'Sacar la primera letra', onclick: cambiar({ adelante: p.adelante + 1 }) }, '‹'),
+      el('b', {}, el('s', {}, p.palabra.slice(0, p.adelante)), textoPieza(p), el('s', {}, p.palabra.slice(largo - p.atras))),
+      el('button', { type: 'button', title: 'Sacar la última letra', onclick: cambiar({ atras: p.atras + 1 }) }, '›'),
+      el('button', { type: 'button', title: 'Devolverla entera', onclick: cambiar({ adelante: 0, atras: 0 }) }, '↺'),
+      el('button', { type: 'button', title: 'Sacarla de la mezcla', onclick: () => { piezas.splice(i, 1); pintarMezcla(); } }, '×'));
+  }));
+  if (!piezas.length) $('piezas').append(el('span', { class: 'ayuda' }, 'Vacía: tocá palabras de arriba.'));
+  $('nombre').value = piezas.map(textoPieza).join('');
+  pintarMuestras();
+}
+
+function muestra(tema, nombre) {
+  return el('div', { class: 'muestra', 'data-tema': tema },
+    el('div', { class: 'cabecera-marca' },
+      el('span', { class: 'marca-enlace' }, logo(), el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, nombre)))),
+    el('div', { class: 'cabecera-marca' },
+      el('span', { class: 'marca-enlace' }, logo(), el('span', { class: 'marca-texto' },
+        el('span', { class: 'logo-nombre' }, nombre), el('span', { class: 'cabecera-seccion' }, 'Obra')))),
+    el('div', { class: 'grande-icono' }, logo(), el('span', {}, nombre)),
+    el('div', { class: 'grande' }, nombre));
+}
+
+function pintarMuestras() {
+  const nombre = $('nombre').value.trim().toLowerCase() || 'medianeras';
+  $('muestras').replaceChildren(muestra('claro', nombre), muestra('oscuro', nombre));
+}
+
+// Un corte "natural": entre vocal y consonante, para que la unión se pueda leer.
+const vocal = (letra) => 'aeiouy'.includes(letra);
+function cortes(palabra) {
+  const lista = [];
+  for (let i = 1; i < palabra.length; i++) if (vocal(palabra[i - 1]) !== vocal(palabra[i])) lista.push(i);
+  return lista.length ? lista : [Math.ceil(palabra.length / 2)];
+}
+const azar = (lista) => lista[Math.floor(Math.random() * lista.length)];
+
+function tirar(enteras) {
+  const todas = [...PALABRAS, ...extras];
+  const vistas = new Set();
+  const tirada = [];
+  for (let intento = 0; tirada.length < 18 && intento < 200; intento++) {
+    const a = azar(todas);
+    const b = azar(todas.filter((p) => p !== a));
+    const corteA = enteras ? a.length : azar(cortes(a));
+    const corteB = enteras ? 0 : azar(cortes(b));
+    const nombre = a.slice(0, corteA) + b.slice(corteB);
+    const tieneVocal = (texto) => [...texto].some(vocal);
+    if (nombre.length < 4 || nombre.length > 11 || vistas.has(nombre)) continue;
+    if (!tieneVocal(a.slice(0, corteA)) || !tieneVocal(b.slice(corteB))) continue; // que se pueda pronunciar
+    vistas.add(nombre);
+    tirada.push({ nombre, a, b, corteA, corteB });
+  }
+  $('tirada').replaceChildren(...tirada.map((t) =>
+    el('button', { class: 'ficha', type: 'button', onclick: () => {
+      piezas = [{ palabra: t.a, adelante: 0, atras: t.a.length - t.corteA }, { palabra: t.b, adelante: t.corteB, atras: 0 }];
+      pintarMezcla();
+      $('piezas').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } }, t.nombre, el('small', {}, `${t.a} + ${t.b}`))));
+}
+
+function pintarGuardadas() {
+  $('lista').replaceChildren(...guardadas.map((n, i) => el('li', {},
+    el('span', {}, n),
+    el('button', { type: 'button', onclick: () => { piezas = [{ palabra: n, adelante: 0, atras: 0 }]; pintarMezcla(); } }, 'ver'),
+    el('button', { type: 'button', onclick: () => { guardadas.splice(i, 1); escribir('nombres-guardadas', guardadas); pintarGuardadas(); } }, 'borrar'))));
+  $('sin-guardadas').hidden = guardadas.length > 0;
+}
+
+$('form-agregar').addEventListener('submit', (evento) => {
+  evento.preventDefault();
+  const palabra = $('nueva').value.trim().toLowerCase();
+  if (palabra && !PALABRAS.includes(palabra) && !extras.includes(palabra)) {
+    extras.push(palabra);
+    escribir('nombres-extras', extras);
+    pintarBanco();
+  }
+  $('nueva').value = '';
+});
+$('nombre').addEventListener('input', pintarMuestras);
+$('guardar').addEventListener('click', () => {
+  const nombre = $('nombre').value.trim().toLowerCase();
+  if (!nombre || guardadas.includes(nombre)) return;
+  guardadas.push(nombre);
+  escribir('nombres-guardadas', guardadas);
+  pintarGuardadas();
+});
+$('vaciar').addEventListener('click', () => { piezas = []; pintarMezcla(); });
+$('tirar').addEventListener('click', () => tirar(false));
+$('tirar-dos').addEventListener('click', () => tirar(true));
+
+pintarBanco();
+pintarMezcla();
+pintarGuardadas();
+tirar(false);
+</script>
+</body>
+</html>

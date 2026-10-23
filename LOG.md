@@ -8,6 +8,10 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**23 de octubre de 2026.** La app se llama **Sanskule** (en minúsculas en la marca: "sanskule"). Cambio hecho en local, sin commit ni push. Service worker en `v22`. El dominio sigue siendo `arqivo.com.ar`.
+
+**22 de octubre de 2026.** Segunda ronda del nombre: el usuario armó su lista definitiva de palabras (ver Pendientes). Sin cambios en la app.
+
 **20 de octubre de 2026.** La app se publica en https://arqivo.com.ar (dominio propio con https). El nombre definitivo de la app sigue abierto (ver Pendientes).
 
 **18 de octubre de 2026, noche.** Rediseño completo y varias rondas de ajustes visuales, todo publicado.
@@ -103,6 +107,29 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 ## Pendientes
 
 - **Nombre de la app.** "Medianeras" se descartó para el dominio (`medianeras.com.ar` está ocupado) y se compró `arqivo.com.ar`. La app sigue diciendo "Medianeras" hasta decidir. Gustos del usuario que salieron: nombres que hablan de cómo se mira y no de lo que se mira (como Letterboxd), lugares de paso de mediados de siglo (La Guardia, Pan Am), palabras cortas y duras, cosas que suenan a movimiento o antología (Chicago School, números de año) y una melancolía rioplatense (Cortázar, Sur). Propuestas con `.com.ar` libre al 20/10 según whois de NIC: Contrafrente (recomendada), Celosía (segunda), Pared ciega, Planta libre, Escuela del Sur, Usonia, Ochava 96. Ocupados: ochava, medianera, cota, cotacero, cenital, corte, bau, terrazo, vidriera, pulmon. El usuario vuelve con sus elegidas; el próximo paso es mostrarlas en la página de prueba con el logo y las tipografías, en claro y oscuro. No comprar otro dominio antes.
+  - **Segunda ronda (22/10).** Nuevos gustos: la época 1900–1960 (Wright, Usonia, googie, mid-century) y cómo suenan el danés, el sueco, el alemán y el holandés, con clase, ni rudo ni infantil (nada tipo "blu" o "kona"). Primero Argentina, después el mundo. No tiene que ser literal. Va en minúsculas, todas las letras parejas, como hoy "medianeras". Su favorita es **jagten** ("la caza" en danés; juega con caza/casa y con buscar en la arquitectura).
+  - **Lista definitiva del usuario para buscar la palabra final:** jagten, blik, oteo, lichtval, rear, oak, auster, school, ventum, seeland, wehrmut, neu/neue, brakhage, est, sans, trim, hollow, guard, forum, departures, haze, parsec, strobo, obermann, altc, prins, -der (como final), wilc, orourke, fuses, prekop, park, av, continuum, elementals, showrooms, usonia. Algunas las eligió solo por cómo suenan o se ven.
+  - **Notas que se le dieron (de memoria, falta verificar):**
+    - *blik*: "mirada" y "chapa" en danés y holandés.
+    - *oteo*: mirar desde lo alto para descubrir a lo lejos (RAE).
+    - *rear*: *Rear Window*, Hitchcock, 1954.
+    - *oak*: Oak Park, la casa y estudio de Wright.
+    - *auster*: el viento sur en latín.
+    - *ventum*: de *ventus* viene "ventana".
+    - *wehrmut*: con "r" evoca la Wehrmacht; *Wehmut* es melancolía y *Wermut*, vermut.
+    - *seeland*: la isla de Copenhague.
+    - *brakhage*: *Metaphors on Vision*.
+    - *lichtval*: cómo entra la luz.
+  - **Recomendación de Claude:** jagten, blik, oteo y rear (mirar y buscar).
+  - **Recorte (22/10):** jagten, oak, auster, neu/neue, brakhage, sans, parsec, strobo, orourke, fuses, prekop, park, continuum, usonia (segundo recorte; las guardadas del mezclador quedan en el navegador). Para combinarlas está el mezclador: http://127.0.0.1:8001/nombres.html (con `herramientas/prueba/servir.sh`).
+  - **Finalistas (23/10):** sanskole / sanskule (invento del usuario: "sans skule", percepción de un ceño, sin escuela), jagten, auster, brakhage, parsec, orourke, prekop, continuum. Se ven juntas en `herramientas/prueba/finalistas.html`.
+    - **Verificado (Wiktionary):** *sans* es "sentido" en danés y noruego y "sin" en francés; *skole* es "escuela" en danés y noruego; *skule* es "fruncir el ceño, mirar con enojo" en danés y noruego, y "escuela" solo en nynorsk. *Jagten* es "la caza" y también el título de la película de Vinterberg (2012), que trata de una falsa acusación de abuso infantil.
+    - **`.com.ar` (whois NIC, 23/10):** libres sanskole, sanskule, sansskule, jagten, brakhage, parsec, orourke, prekop. Ocupados: auster y continuum.
+    - **Lecturas del usuario:** el ceño es la cara que uno pone al mirar un edificio en detalle; "sin escuela" es también no atarse a una sola escuela o estilo.
+    - **Recomendación final de Claude: sanskule.** Con esas lecturas tiene las tres capas (sentido/sin, ceño, escuela), y en inglés "skule" se lee como "school".
+    - Recomendación anterior: sanskole. Es un invento propio, tiene tres lecturas y el dominio está libre. Brakhage, O'Rourke y Prekop son apellidos de personas reales (Stan Brakhage, Jim O'Rourke, Sam Prekop: de memoria).
+  - **Elegida (23/10): sanskule.** Cambiado en lo visible (cabecera, título, pantalla de carga, manifiesto, aviso de versión, exportación, créditos de ejemplo). Los nombres internos de almacenamiento (`medianeras` en IndexedDB, prefijo `medianeras-` en preferencias, cachés del service worker) quedan igual a propósito: cambiarlos borra las visitas y preferencias del teléfono.
+  - **Dominio:** `arqivo.com.ar` vence el 19/10/2027. Si se pasa a `sanskule.com.ar`, el teléfono lo toma como otro sitio: las visitas guardadas ahí no se mudan solas (no hay importar), así que antes hay que exportarlas y pasarlas a `diario.json`. Lo de devolver `arqivo` hay que consultarlo con DonWeb. Después, verificar los significados con fuentes, ver si el `.com.ar` está libre (whois de NIC) y mostrar las finalistas en la página de prueba con el logo, en claro y oscuro.
 - Price Tower: queda para más adelante (opciones en `herramientas/prueba/price-tower2.html`, a partir de la planta). El botón de visita sigue con el "+". La pantalla de carga actual (molinete) se lee como una esvástica: se reemplaza por el skyline.
 - Revisar el `resumen` y la `descripcion` del Guggenheim y el `resumen` del Flatiron (los escribió Claude; reemplazar o corregir).
 
@@ -177,3 +204,13 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 
 - **Dominio propio:** se conectó `arqivo.com.ar` (DonWeb) a GitHub Pages con https, paso a paso (detalle en Decisiones). Verificado desde la compu: certificado propio, redirecciones de `www`, `http` y la dirección vieja, y manifiesto y service worker accesibles. En el iPhone: "Cerca mío" pidió permiso de ubicación y funcionó. Antes del cambio se revisó que no hubiera visitas sin exportar en el teléfono.
 - **Nombre:** primera ronda de ideas a partir de una lista de referencias del usuario (ver Pendientes). Sin decisión todavía.
+
+### 22 de octubre de 2026
+
+- **Nombre, segunda ronda:**
+  - catálogo de palabras de idiomas nórdicos, alemán, holandés, polaco y finés, ordenado por idea (buscar, mirar, luz, amplitud, de paso, piezas de arquitectura, época);
+  - análisis de la lista propia del usuario, buscando qué conexión tiene cada palabra con la página;
+  - el usuario armó su lista definitiva (ver Pendientes);
+  - recortó a 21 palabras y se armó el **mezclador de nombres** en la página de prueba (`herramientas/prueba/nombres.html`): sumar y recortar palabras, mezclas al azar, vista con el logo en claro y oscuro, y guardadas (quedan en el navegador de la compu).
+- **23/10:** finalistas, significados verificados, whois y página `finalistas.html`. Elegido **sanskule** y cambiado en la app (sin commit).
+- Sin cambios en la app.

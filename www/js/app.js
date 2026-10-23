@@ -19,7 +19,7 @@ import * as nuevaVisita from './vistas/nueva-visita.js';
 // seccion: la palabra que acompaña a la marca en la cabecera · titulo: el título de la pestaña del navegador
 const SECCION_PERFIL = { provincia: 'Provincia', ciudad: 'Ciudad', barrio: 'Barrio', arquitecto: 'Arquitecto/a' };
 const RUTAS = {
-  '': { render: inicio.render, pestana: 'obras', titulo: 'Medianeras' },
+  '': { render: inicio.render, pestana: 'obras', titulo: 'Sanskule' },
   obras: { render: obras.render, pestana: 'obras', titulo: 'Obras', seccion: 'Obras', atras: '#/' },
   // Perfiles (#/arquitecto/frank-lloyd-wright) e índices (#/arquitectos)
   ...Object.fromEntries(Object.entries(TIPOS_PERFIL).flatMap(([tipo, def]) => [
@@ -97,15 +97,15 @@ function leerRuta() {
 function ponerCabecera(seccion) {
   titulo.classList.add('cabecera-marca');
   titulo.replaceChildren(
-    el('a', { class: 'marca-enlace', href: '#/', 'aria-label': 'Medianeras: ir al inicio' },
-      logo(), el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, 'medianeras'),
+    el('a', { class: 'marca-enlace', href: '#/', 'aria-label': 'Sanskule: ir al inicio' },
+      logo(), el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, 'sanskule'),
         seccion && el('span', { class: 'cabecera-seccion' }, seccion))),
   );
 }
 
 // Las vistas dan el nombre de lo que muestran: va al título de la pestaña del navegador.
 function ponerTitulo(texto) {
-  document.title = texto === 'Medianeras' ? texto : `${texto} · Medianeras`;
+  document.title = texto === 'Sanskule' ? texto : `${texto} · Sanskule`;
 }
 
 
@@ -155,7 +155,7 @@ async function mostrar({ recarga = false } = {}) {
   for (const a of pestanas) a.toggleAttribute('aria-current', a.dataset.pestana === ruta?.pestana);
   botonAtras.hidden = !ruta?.atras;
   ponerCabecera(partes[0] === 'obra' && partes[2] === 'visitas' ? 'Visitas' : ruta?.seccion);
-  ponerTitulo(ruta?.titulo ?? 'Medianeras');
+  ponerTitulo(ruta?.titulo ?? 'Sanskule');
   // El campo de la cabecera muestra la búsqueda de la grilla; fuera de ella, queda vacío.
   if (clave === 'obras') campoBusqueda.value = params.get('q') ?? '';
   else if (document.activeElement !== campoBusqueda) campoBusqueda.value = '';
@@ -248,7 +248,7 @@ const esNativo = window.Capacitor?.isNativePlatform?.() === true;
 if ('serviceWorker' in navigator && !esNativo) {
   let habiaControlador = Boolean(navigator.serviceWorker.controller);
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (habiaControlador) aviso('Hay una versión nueva de Medianeras.', { accion: 'Actualizar', alTocar: () => location.reload(), duracion: 0 });
+    if (habiaControlador) aviso('Hay una versión nueva de Sanskule.', { accion: 'Actualizar', alTocar: () => location.reload(), duracion: 0 });
     habiaControlador = true;
   });
   navigator.serviceWorker.register('sw.js').catch((error) => console.warn('No se pudo registrar el service worker', error));

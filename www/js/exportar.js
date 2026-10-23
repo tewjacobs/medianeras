@@ -6,7 +6,7 @@ import { hoyISO } from './datos.js';
 
 const EXTENSIONES = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/heic': 'heic', 'image/gif': 'gif' };
 
-const LEEME = `Visitas exportadas desde Medianeras
+const LEEME = `Visitas exportadas desde Sanskule
 ====================================
 
 1. Descomprimí este ZIP dentro de la carpeta www/ del repositorio.
@@ -41,5 +41,5 @@ export async function armarExportacion(visitas) {
     { nombre: 'diario-nuevas.json', datos: `${JSON.stringify(entradas, null, 2)}\n` },
     ...archivos,
   ]);
-  return new File([zip], `medianeras-visitas-${hoyISO()}.zip`, { type: 'application/zip' });
+  return new File([zip], `sanskule-visitas-${hoyISO()}.zip`, { type: 'application/zip' });
 }

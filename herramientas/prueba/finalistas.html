@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finalistas</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    .juego { max-width: 980px; margin: 0 auto; display: grid; gap: 10px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 6px; }
+    .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    @media (max-width: 700px) { .fila { grid-template-columns: 1fr; } }
+    .muestra { background: var(--fondo, var(--papel)); color: var(--tinta); padding: 14px; display: grid; gap: 12px; }
+    .muestra .grande { font-weight: 650; font-size: 40px; letter-spacing: 0.2em; line-height: 1; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Finalistas</h1>
+    <p class="ayuda">Cada nombre en la cabecera, con sección y en grande, en claro y oscuro. Para probar otro: <a href="nombres.html">mezclador</a>.</p>
+  </div>
+  <div id="filas" style="display:grid; gap:10px"></div>
+</div>
+<script type="module">
+import { el } from './js/ui.js';
+import { logo } from './js/grafica.js';
+
+const FINALISTAS = ['sanskole', 'sanskule', 'jagten', 'auster', 'brakhage', 'parsec', 'orourke', 'prekop', 'continuum'];
+
+const marca = (nombre, seccion) => el('div', { class: 'cabecera-marca' },
+  el('span', { class: 'marca-enlace' }, logo(), el('span', { class: 'marca-texto' },
+    el('span', { class: 'logo-nombre' }, nombre), seccion && el('span', { class: 'cabecera-seccion' }, seccion))));
+const muestra = (tema, nombre) => el('div', { class: 'muestra', 'data-tema': tema },
+  marca(nombre), marca(nombre, 'Obra'), el('div', { class: 'grande' }, nombre));
+
+document.getElementById('filas').append(...FINALISTAS.map((n) =>
+  el('div', { class: 'fila' }, muestra('claro', n), muestra('oscuro', n))));
+</script>
+</body>
+</html>
