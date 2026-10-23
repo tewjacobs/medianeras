@@ -144,6 +144,8 @@
   --logo-vidrio: #f1e9d6;
   --logo-alto: #47443f;
   --logo-bajo: #938b7e;
+  --logo-torre: #26272b;
+  --logo-luz: #e0a24a;
 }
 
 :root, [data-tema] {

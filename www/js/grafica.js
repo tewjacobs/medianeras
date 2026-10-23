@@ -179,23 +179,21 @@ export function separador(semilla, ancho = 360) {
 
 // ---- Logo ----
 
-// Campo rojo con una ventanita de marco negro; adentro, un edificio alto y uno bajo, cada uno
-// con su costado en perspectiva en rojo, y una línea abajo ("Calm"). Colores fijos (--logo-*).
-// Grilla de 48 × 48 con coordenadas enteras. Las dos perspectivas tienen la misma inclinación
-// (sube 2 cada 3). El costado del alto termina justo donde termina el frente del bajo, y el
-// costado del bajo termina justo en el borde del vidrio.
+// Lanzas de jagten: las luces encendidas de la mitad de arriba del Seagram (símbolo de la década
+// de 1950), cada tramo hecho lanza, sobre el vidrio oscuro. Colores fijos (--logo-*), grilla de 48 × 48.
+// Cada lanza: [desde, punta, altura]; asta fina y punta de hoja (rombo largo) de 5 de largo.
+const LANZAS = [[33.6, 40.6, 6.75], [29.3, 36.3, 9.75], [25, 32, 12.75], [27.9, 36.2, 15.75], [25, 33.4, 18.75],
+  [16.3, 23.3, 21.75], [30.7, 40.6, 21.75], [23.5, 30.5, 24.75], [9.1, 16.1, 27.75], [23.5, 33.4, 27.75], [13.5, 29, 30.75],
+  [7.7, 20.4, 33.75], [19.2, 34.8, 36.75], [22.1, 40.6, 39.75], [23.5, 30.5, 42.75]];
+
 export function logo({ clase = 'logo-simbolo' } = {}) {
-  const r = (x, y, width, height, color) => svg('rect', { x, y, width, height, estilo: { fill: `var(--logo-${color})` } });
-  const p = (points, color) => svg('polygon', { points, estilo: { fill: `var(--logo-${color})` } });
+  const fill = { fill: 'var(--logo-luz)' };
   return svg('svg', { class: clase, viewBox: '0 0 48 48', 'aria-hidden': 'true', focusable: 'false' },
-    r(0, 0, 48, 48, 'rojo'),
-    r(13, 7, 22, 26, 'negro'),         // marco: 4 de espesor
-    r(17, 11, 14, 18, 'vidrio'),       // vidrio: x 17–31, y 11–29
-    r(19, 16, 6, 13, 'alto'),          // frente del alto: x 19–25
-    p('25,16 28,18 28,22 25,22', 'rojo'), // costado del alto (medianera), sobre el bajo
-    r(25, 22, 3, 7, 'bajo'),           // frente del bajo: x 25–28
-    p('28,22 31,24 31,29 28,29', 'rojo'), // costado del bajo, hasta el borde del vidrio
-    r(17, 37, 14, 3, 'negro'));        // la línea de abajo
+    svg('rect', { width: 48, height: 48, estilo: { fill: 'var(--logo-torre)' } }),
+    ...LANZAS.flatMap(([x, punta, y]) => [
+      svg('rect', { x, y: y - 0.3, width: n(punta - x - 4.5), height: 0.6, estilo: fill }),
+      svg('polygon', { points: `${n(punta - 5)},${y} ${n(punta - 3.4)},${n(y - 0.9)} ${punta},${y} ${n(punta - 3.4)},${n(y + 0.9)}`, estilo: fill }),
+    ]));
 }
 
 // ---- Símbolos de perfil ----

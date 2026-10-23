@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logos para sanskule</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    .juego { max-width: 1000px; margin: 0 auto; display: grid; gap: 12px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    h2 { font-size: 14px; font-weight: 700; font-stretch: 75%; letter-spacing: 0.1em; text-transform: uppercase; margin: 14px 0 0; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .opcion { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    @media (max-width: 700px) { .opcion { grid-template-columns: 1fr; } }
+    .muestra { background: var(--fondo, var(--papel)); color: var(--tinta); padding: 14px; display: grid; gap: 14px; }
+    .muestra .titulo { font: 600 12px var(--mono); color: var(--tenue); }
+    .tamanos { display: flex; align-items: end; gap: 16px; flex-wrap: wrap; }
+    .icono-app { width: 150px; height: 150px; border-radius: 34px; overflow: hidden; display: block; }
+    .icono-chico { width: 60px; height: 60px; border-radius: 14px; overflow: hidden; display: block; }
+    .icono-app svg, .icono-chico svg { width: 100%; height: 100%; display: block; }
+    .muestra .logo-simbolo { width: 42px; height: 42px; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Logos para sanskule</h1>
+    <p class="ayuda">Cada opción en claro y oscuro: ícono de iPhone (grande y chico) y la cabecera de la app. Grilla de 48 × 48 y los colores del logo actual.</p>
+  </div>
+  <div id="opciones" class="juego"></div>
+</div>
+<script type="module">
+import { el } from './js/ui.js';
+
+// Formas sobre la grilla de 48 × 48. Colores: los del logo actual (iguales en los dos temas).
+const C = { rojo: 'var(--logo-rojo)', negro: 'var(--logo-negro)', vidrio: 'var(--logo-vidrio)', alto: 'var(--logo-alto)', bajo: 'var(--logo-bajo)' };
+const r = (x, y, w, h, c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${C[c]}"/>`;
+const p = (puntos, c) => `<polygon points="${puntos}" fill="${C[c]}"/>`;
+const d = (camino, c) => `<path d="${camino}" fill="${C[c]}"/>`;
+const campo = r(0, 0, 48, 48, 'rojo');
+
+// Colores sumados para los ojos y la ciudad: naranja, rojos y tierras del proyecto.
+Object.assign(C, { naranja: '#e8823a', ocre: '#c46a2e', granate: '#7a2418', noche: '#0f0f12' });
+const c = (cx, cy, radio, color) => `<circle cx="${cx}" cy="${cy}" r="${radio}" fill="${C[color]}"/>`;
+// Ojo de lente (dos arcos con punta) entrecerrado: abajo el arco entero, arriba un párpado que cae un poco.
+// La pupila es un círculo con el centro arriba del párpado: se ve solo la parte de abajo, mirando para arriba.
+const ojo = (cx, cy, ancho, alto, color) =>
+  d(`M${cx - ancho / 2} ${cy} Q${cx} ${cy + alto} ${cx + ancho / 2} ${cy} Q${cx} ${cy + alto * 0.12} ${cx - ancho / 2} ${cy} Z`, color);
+// Ciudad lejana: torres finas sobre una línea de horizonte. Cada torre: [x, ancho, alto].
+const ciudad = (y, torres, color) => torres.map(([x, ancho, alto]) => r(x, y - alto, ancho, alto, color)).join('');
+const TORRES = [[9, 3, 3], [12, 2, 6], [14, 3, 4], [17, 2, 9], [19, 4, 5], [23, 2, 7], [25, 3, 3], [28, 2, 11], [30, 3, 6], [33, 4, 4], [37, 2, 7], [39, 3, 3]];
+const pupilas = (y, color = 'noche') => c(16, y, 3.2, color) + c(32, y, 3.2, color);
+// Solo la pupila, sin el ojo: media luna con el borde recto arriba (el párpado), mirando para arriba.
+const mediaPupila = (cx, y, radio, color = 'naranja') => d(`M${cx - radio} ${y} A${radio} ${radio} 0 0 0 ${cx + radio} ${y} Z`, color);
+
+// Ronda Calm + op art: el campo de color con la ventana de marco negro (como la tapa de Calm),
+// y adentro edificios hechos con rayas. Ventana: marco x 9–39, y 6–38 (3 de espesor); vidrio x 12–36, y 9–35.
+Object.assign(C, { chartreuse: '#d3dc2e', turquesa: '#1d8c86', laguna: '#2f6b68', crema: '#f1e9d6' });
+const marco = (fondo, vidrio) => r(0, 0, 48, 48, fondo) + r(9, 6, 30, 32, 'negro') + r(12, 9, 24, 26, vidrio);
+const firma = (color = 'negro') => r(15, 41, 18, 2, color);
+// Rayas horizontales en el vidrio, de 1,5 cada 3.
+const rayas = (color, x = 12, y = 9, ancho = 24, alto = 26, desfase = 0) => {
+  let t = '';
+  for (let yy = y + desfase; yy < y + alto; yy += 3) t += r(x, yy, ancho, Math.min(1.5, y + alto - yy), color);
+  return t;
+};
+// Rayas verticales dentro de un rectángulo.
+const rayasV = (color, x, y, ancho, alto) => {
+  let t = '';
+  for (let xx = x; xx < x + ancho; xx += 3) t += r(xx, y, Math.min(1.5, x + ancho - xx), alto, color);
+  return t;
+};
+// Edificios del logo actual, más grandes: el alto y el bajo.
+const ALTO = [16, 13, 8, 22], BAJO = [25, 21, 8, 14];
+const edificioRayado = ([x, y, ancho, alto], fondo, color, vertical) =>
+  r(x, y, ancho, alto, fondo) + (vertical ? rayasV(color, x, y, ancho, alto) : rayas(color, x, y, ancho, alto, 1.5));
+// Arcos concéntricos (como los de Stereolab), que forman una bóveda.
+const arcos = (color, radios) => radios.map((radio) =>
+  `<path d="M${24 - radio} 35 V21 A${radio} ${radio} 0 0 1 ${24 + radio} 21 V35" fill="none" stroke="${C[color]}" stroke-width="1.6"/>`).join('');
+
+// Quinta ronda: horizonte lejano (folleto "Dänemark", tapa de XSVE) y letras s y k.
+Object.assign(C, { celeste: '#9cc3cf', horizonte: '#34405e', pasto: '#79a23c', pasto2: '#a7c45a', gris: '#dddcd7', coral: '#f2714a', grafito: '#3d3d3f' });
+// Ciudad finita y lejana: bloques bajos, una iglesia y chimeneas. Horizonte en y.
+const lejana = (y, color) =>
+  r(3, y - 1.5, 9, 1.5, color) + r(6, y - 5, 2, 4, color) + p(`6,${y - 5} 7,${y - 8} 8,${y - 5}`, color) +
+  r(13, y - 7, 0.8, 7, color) + r(15, y - 5.5, 0.8, 5.5, color) + r(16.5, y - 1.2, 6, 1.2, color) +
+  r(23, y - 8, 0.8, 8, color) + r(24.5, y - 2, 6, 2, color) + r(31, y - 6.5, 0.8, 6.5, color) + r(32.5, y - 4.5, 0.8, 4.5, color) +
+  r(34, y - 1, 7, 1, color) + r(43, y - 1.2, 3, 1.2, color);
+const vacas = r(14, 39, 3, 1.4, 'negro') + r(20, 39.4, 3, 1.4, 'negro');
+// Campo en rayas que se achican hacia el horizonte (op art en perspectiva).
+const campoRayado = (y) => r(0, y, 48, 48 - y, 'pasto2') +
+  [[0, 0.8], [1.8, 1.1], [4, 1.5], [7, 2], [11, 2.6]].map(([dy, alto]) => r(0, y + dy, 48, alto, 'pasto')).join('');
+// Siluetas irregulares de papel recortado, como en la tapa de XSVE.
+const SILUETAS = ['8,22 9,15 11,13 12,22', '13,22 13,17 15,12 17,16 16,22', '18,22 18,18 21,17 23,19 22,22',
+  '27,22 27.5,19 28.5,22', '31,22 32,16 34,14 36,17 36,22', '37,22 38,17 40,15 41,22'];
+// Letras s y k de bloques, sobre la grilla: la s como pisos y escalera, la k como columna con dos tensores.
+const LETRA_S = [[8, 11, 14, 4], [8, 11, 4, 15], [18, 11, 4, 6], [8, 22, 14, 4], [18, 22, 4, 15], [8, 31, 4, 6], [8, 33, 14, 4]];
+const LETRA_K = [[26, 11, 4, 26]];
+const BRAZOS_K = ['30,21 37.5,11 42.5,11 30,27', '33,22 42.5,37 37.5,37 30,27'];
+const letrasSK = (color) => [...LETRA_S, ...LETRA_K].map(([x, y, w, h]) => r(x, y, w, h, color)).join('') + BRAZOS_K.map((b) => p(b, color)).join('');
+// Las mismas letras hechas de rayas corridas media raya respecto del fondo (la técnica de la O2).
+const letrasRayadas = (fondo, raya) => {
+  const id = `sk-${fondo}-${raya}`;
+  let fuera = '', dentro = '';
+  for (let y = 0; y < 48; y += 3) fuera += r(0, y, 48, 1.5, raya);
+  for (let y = 1.5; y < 48; y += 3) dentro += r(0, y, 48, 1.5, raya);
+  return r(0, 0, 48, 48, fondo) + fuera +
+    `<clipPath id="${id}">${letrasSK('negro')}</clipPath><g clip-path="url(#${id})">${r(0, 0, 48, 48, fondo)}${dentro}</g>`;
+};
+
+
+// Séptima ronda, para jagten: la Villa Savoye de frente y tres lanzas que se curvan, en rayas paralelas (op art).
+Object.assign(C, { blanco: '#f4f1ea', sol: '#e9b949' });
+// Casa: la caja sobre pilotes con la ventana corrida, las dos curvas de la terraza y la planta baja vidriada.
+const CASA = (pared) => r(14, 15, 8, 6, pared).replace('/>', ' rx="3"/>') + r(27, 15, 7, 6, pared).replace('/>', ' rx="3"/>') +
+  r(22, 17, 5, 4, pared) + r(6, 20, 36, 8, pared) +
+  [8, 13, 19, 29, 35, 40].map((x) => r(x, 28, 1, 7, pared)).join('');
+const casa = (pared, vidrio, bajo) => r(16, 29, 16, 6, bajo) + CASA(pared) + r(7, 23, 34, 2, vidrio);
+// Lanza: curva cuadrática hecha de tres líneas paralelas (trazo ancho, hueco y trazo fino), con punta de flecha.
+const lanza = ([x0, y0], [cx, cy], [x1, y1], color, hueco) => {
+  const largo = Math.hypot(x1 - cx, y1 - cy), ux = (x1 - cx) / largo, uy = (y1 - cy) / largo;
+  const camino = `M${x0} ${y0} Q${cx} ${cy} ${x1} ${y1}`;
+  const linea = (ancho, c) => `<path d="${camino}" fill="none" stroke="${C[c]}" stroke-width="${ancho}"/>`;
+  const punta = `${x1 + ux * 4.5},${y1 + uy * 3.6} ${x1 - uy * 1.9},${y1 + ux * 1.9} ${x1 + uy * 1.9},${y1 - ux * 1.9}`;
+  return linea(2.2, color) + linea(1.1, hueco) + linea(0.4, color) + p(punta, color);
+};
+const lanzas = (trazos, color, hueco) => trazos.map(([a, b, c]) => lanza(a, b, c, color, hueco)).join('');
+const CRUZADAS = [[[3, 46], [20, 32], [41, 9]], [[45, 46], [28, 32], [7, 9]], [[24, 48], [17, 26], [24, 5]]];
+
+// Novena ronda: la mitad de arriba del símbolo del Seagram, con las luces encendidas hechas lanzas.
+Object.assign(C, { lavanda: '#9d98cc', luz: '#e0a24a', torre: '#26272b' });
+// Tramos de luz de las filas 0–34 de decadas.mundo.1950 en simbolos.json: [fila, desde, hasta], en unidades del símbolo (la torre va de 7 a 27).
+const LUCES = [[9, 22.34, 24.6], [11, 19.94, 21.4], [13, 17.54, 19.8], [15, 19.14, 23.8], [17, 17.54, 22.2], [19, 12.74, 15.8],
+  [19, 20.74, 26.2], [21, 16.74, 20.6], [23, 8.74, 10.2], [23, 16.74, 22.2], [25, 11.14, 19.8], [27, 7.94, 15], [29, 14.34, 23],
+  [31, 15.94, 26.2], [33, 16.74, 20.6]];
+// Lanza mínima: un asta fina y una punta de hoja (rombo largo), todas para el mismo lado.
+const lanzaRecta = (x0, x1, y, color) => {
+  const fin = Math.max(x1, x0 + 7);
+  return r(x0, y - 0.3, fin - x0 - 4.5, 0.6, color) + p(`${fin - 5},${y} ${fin - 3.4},${y - 0.9} ${fin},${y} ${fin - 3.4},${y + 0.9}`, color);
+};
+// sx, sy: escala en x y en y; ox, oy: dónde cae el borde izquierdo de la torre (x 7) y la fila 0.
+const lucesLanzas = (sx, sy, ox, oy, color) =>
+  LUCES.map(([fila, desde, hasta]) => lanzaRecta(ox + (desde - 7) * sx, ox + (hasta - 7) * sx, oy + (fila + 0.5) * sy, color)).join('');
+
+const OPCIONES = [
+  { grupo: 'Favoritas (sexta ronda)' },
+  { id: '1b·2', nota: 'La ventana-ojo, sin cambios.', formas: campo +
+    r(9, 9, 30, 25, 'negro') + r(12, 19, 24, 5, 'vidrio') + d('M22.5 19 A3.5 3.5 0 0 0 29.5 19 Z', 'negro') +
+    r(17, 37, 14, 3, 'negro') },
+  { id: 'H4', nota: 'Sin cambios: cielo y ciudad lejana de Dänemark en la franja, sobre el papel gris de XSVE.', formas:
+    r(0, 0, 48, 48, 'gris') + r(4, 6, 40, 20, 'celeste') + lejana(26, 'horizonte').replace(/x="(\d+(\.\d+)?)"/g, (m, x) => `x="${Math.min(43, Math.max(4, +x))}"`) + r(4, 38, 5, 1.2, 'grafito') + r(40, 38, 4, 1.2, 'grafito') },
+  { id: 'H1·2', nota: 'H1 corregida: el horizonte sube a la mitad; la ciudad más chica y más lejos, sin tocar los bordes.', formas:
+    r(0, 0, 48, 48, 'celeste') + r(0, 24, 48, 24, 'pasto') +
+    `<g transform="translate(9.5 24) scale(0.62 0.5)">${lejana(0, 'horizonte')}</g>` + r(17, 30, 2, 1, 'negro') + r(21, 30.3, 2, 1, 'negro') },
+  { id: 'H3·2', nota: 'H3 con otras formas: edificios de papel recortado, un poco torcidos, en lugar de las rocas.', formas:
+    r(0, 0, 48, 48, 'gris') + r(4, 6, 40, 20, 'coral') +
+    p('8,22 8.5,15 11,14.5 11,22', 'grafito') + p('12.5,22 12,11 14.5,10 15,22', 'grafito') + p('16.5,22 16.5,17 21,16.5 21.5,22', 'grafito') +
+    p('25,22 25.5,13 26.5,12 27,22', 'grafito') + p('29,22 29,16 33,15.5 33.5,22', 'grafito') + p('35,22 35.5,18 39.5,18.5 40,22', 'grafito') +
+    r(4, 38, 5, 1.2, 'grafito') + r(30, 38, 1, 1.2, 'grafito') + r(40, 38, 4, 1.2, 'grafito') },
+  { id: 'H3·3', nota: 'H3 con la ciudad finita de Dänemark en gris oscuro sobre el coral, en vez de las siluetas.', formas:
+    r(0, 0, 48, 48, 'gris') + r(4, 6, 40, 20, 'coral') +
+    `<g transform="translate(6.5 22) scale(0.8 0.8)">${lejana(0, 'grafito')}</g>` +
+    r(4, 38, 5, 1.2, 'grafito') + r(30, 38, 1, 1.2, 'grafito') + r(40, 38, 4, 1.2, 'grafito') },
+
+  { grupo: 'Jagten · Savoye y tres lanzas (séptima ronda): J4, la favorita' },
+  { id: 'J4', nombre: 'jagten', nota: 'Cruzadas sobre la casa, en campo rojo: la casa blanca y las lanzas en amarillo sol.', formas:
+    r(0, 0, 48, 48, 'rojo') + casa('blanco', 'noche', 'granate') + lanzas(CRUZADAS, 'sol', 'rojo') },
+
+  { grupo: 'Jagten · Las luces del Seagram hechas lanzas (novena ronda)' },
+  { id: 'L1', nombre: 'jagten', nota: 'Solo las lanzas, en el lugar exacto de las luces de la mitad de arriba del Seagram. Negras sobre lavanda.', formas:
+    r(0, 0, 48, 48, 'lavanda') + lucesLanzas(1.8, 1.5, 6, -7.5, 'noche') },
+  { id: 'L2', nombre: 'jagten', nota: 'Lo mismo con los colores del Seagram: lanzas del ámbar de las luces sobre el vidrio oscuro.', formas:
+    r(0, 0, 48, 48, 'torre') + lucesLanzas(1.8, 1.5, 6, -7.5, 'luz') },
+  { id: 'L3', nombre: 'jagten', nota: 'El recorte literal: la mitad de arriba de la torre contra el cielo lavanda, con las luces hechas lanzas.', formas:
+    r(0, 0, 48, 48, 'lavanda') + r(10.3, 0, 27.4, 48, 'torre') + lucesLanzas(1.37, 1.37, 10.3, 0, 'luz') },
+
+  { grupo: 'Horizonte lejano (quinta ronda)' },
+  { id: 'H1', nota: 'Como el folleto Dänemark: casi todo cielo, la ciudad finita y lejana sobre el horizonte, el campo y dos vacas.', formas:
+    r(0, 0, 48, 48, 'celeste') + lejana(35, 'horizonte') + r(0, 35, 48, 13, 'pasto') + vacas },
+  { id: 'H2', nota: 'H1 con el campo en rayas que se achican hacia el horizonte: op art en perspectiva, como la O2.', formas:
+    r(0, 0, 48, 48, 'celeste') + lejana(35, 'horizonte') + campoRayado(35) },
+  { id: 'H3', nota: 'Como la tapa de XSVE: papel gris, franja coral arriba con siluetas recortadas, y mucho vacío.', formas:
+    r(0, 0, 48, 48, 'gris') + r(4, 6, 40, 20, 'coral') + SILUETAS.map((s) => p(s, 'grafito')).join('') + r(4, 38, 5, 1.2, 'grafito') + r(30, 38, 1, 1.2, 'grafito') + r(40, 38, 4, 1.2, 'grafito') },
+  { id: 'H4', nota: 'Mezcla: el cielo y la ciudad lejana de Dänemark dentro de la franja, sobre el papel gris de XSVE.', formas:
+    r(0, 0, 48, 48, 'gris') + r(4, 6, 40, 20, 'celeste') + lejana(26, 'horizonte').replace(/x="(\d+(\.\d+)?)"/g, (m, x) => `x="${Math.min(43, Math.max(4, +x))}"`) + r(4, 38, 5, 1.2, 'grafito') + r(40, 38, 4, 1.2, 'grafito') },
+
+  { grupo: 'Letras s y k' },
+  { id: 'K1', nota: 'Monograma sk de bloques: la s como pisos con su escalera, la k como una columna con dos tensores.', formas:
+    r(0, 0, 48, 48, 'naranja') + letrasSK('negro') },
+  { id: 'K2', nota: 'El mismo sk hecho de rayas corridas media raya, como la O2: las letras aparecen por la vibración.', formas:
+    letrasRayadas('crema', 'negro') },
+  { id: 'K3', nota: 'sk de bloques sobre el cielo de Dänemark, con la ciudad lejana abajo.', formas:
+    r(0, 0, 48, 48, 'celeste') + letrasSK('horizonte') + r(0, 41, 48, 7, 'pasto') + lejana(41, 'horizonte') },
+
+  { grupo: 'Calm + op art + edificios (cuarta ronda)' },
+  { id: 'O1', nota: 'Bóveda de arcos concéntricos, como los de Stereolab, dentro de la ventana. Campo chartreuse.', formas:
+    marco('chartreuse', 'crema') + arcos('turquesa', [11, 8, 5, 2]) + firma() },
+  { id: 'O2', nota: 'Op art clásico: rayas horizontales; dentro de los dos edificios del logo, corridas media raya. El edificio aparece por la vibración. Campo turquesa.', formas:
+    marco('laguna', 'crema') + rayas('negro') + edificioRayado(ALTO, 'crema', 'negro') + edificioRayado(BAJO, 'crema', 'negro') + firma() },
+  { id: 'O3', nota: 'Rayas horizontales afuera y verticales en los edificios: se leen más claros. Campo naranja.', formas:
+    marco('naranja', 'crema') + rayas('negro') + edificioRayado(ALTO, 'crema', 'negro', true) + edificioRayado(BAJO, 'crema', 'negro', true) + firma() },
+  { id: 'O4', nota: 'Como O3, con los edificios en turquesa: más color, menos vibración. Campo chartreuse.', formas:
+    marco('chartreuse', 'crema') + rayas('negro') + edificioRayado(ALTO, 'crema', 'turquesa', true) + edificioRayado(BAJO, 'crema', 'turquesa', true) + firma() },
+
+  { grupo: 'Rondas anteriores' },
+  { grupo: '1b·2 · La ventana-ojo' },
+  { id: '1b·2', nota: 'La pupila redonda cuelga del borde de arriba de la ventana y mira para arriba.', formas: campo +
+    r(9, 9, 30, 25, 'negro') + r(12, 19, 24, 5, 'vidrio') + d('M22.5 19 A3.5 3.5 0 0 0 29.5 19 Z', 'negro') +
+    r(17, 37, 14, 3, 'negro') },
+
+  { grupo: 'Aparte · Ojos y ciudad lejana (tercera ronda)' },
+  { id: 'P3', nota: 'Con cielo: la ciudad lejana contra una franja roja y granate. Sin ojo: solo las pupilas naranjas, con el borde recto del párpado arriba.', formas: r(0, 0, 48, 48, 'noche') +
+    r(0, 8, 48, 13, 'rojo') + r(0, 15, 48, 6, 'granate') + ciudad(21, TORRES, 'noche') + r(0, 21, 48, 1, 'noche') +
+    mediaPupila(16, 31, 4.2) + mediaPupila(32, 31, 4.2) },
+  { id: 'P4', nota: 'Sin cielo: la ciudad lejana en rojo sobre el negro. Sin ojo: solo las pupilas naranjas, con el borde recto del párpado arriba.', formas: r(0, 0, 48, 48, 'noche') +
+    ciudad(18, TORRES, 'rojo') + r(6, 18, 36, 1, 'rojo') +
+    mediaPupila(15.5, 29, 4.6) + mediaPupila(32.5, 29, 4.6) },
+];
+
+const dibujo = (formas, clase) => {
+  const caja = el('span', { class: clase });
+  caja.innerHTML = `<svg viewBox="0 0 48 48" aria-hidden="true" class="${clase === 'cabecera' ? 'logo-simbolo' : ''}">${formas}</svg>`;
+  return clase === 'cabecera' ? caja.firstChild : caja;
+};
+
+const muestra = (tema, o) => el('div', { class: 'muestra', 'data-tema': tema },
+  el('div', { class: 'titulo' }, `${o.id} · ${o.nota}`),
+  el('div', { class: 'tamanos' }, dibujo(o.formas, 'icono-app'), dibujo(o.formas, 'icono-chico')),
+  el('div', { class: 'cabecera-marca' }, el('span', { class: 'marca-enlace' }, dibujo(o.formas, 'cabecera'),
+    el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, o.nombre || 'sanskule')))));
+
+document.getElementById('opciones').append(...OPCIONES.map((o) => o.grupo
+  ? el('h2', {}, o.grupo)
+  : el('div', { class: 'opcion' }, muestra('claro', o), muestra('oscuro', o))));
+</script>
+</body>
+</html>
