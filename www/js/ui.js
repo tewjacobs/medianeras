@@ -2,7 +2,7 @@
 // siempre como texto (nunca como HTML).
 
 import { rangoAnios, lugarCorto, formatoFecha, esUrl, colorMarco, datosActuales, partituraObra, partituraDe, rutaPerfil, nombrePerfil } from './datos.js';
-import { simbolo, simboloNeutro } from './grafica.js';
+import { simbolo, simboloNeutro, lineaFila } from './grafica.js';
 
 export function el(etiqueta, props = {}, ...hijos) {
   const nodo = document.createElement(etiqueta);
@@ -242,6 +242,7 @@ export function bandaPerfil(datos, tipo, valor, familia, { pais } = {}) {
 export function encabezadoFila(titulo, verMas, { subtitulo } = {}) {
   return el('header', { class: 'encabezado-fila' },
     el('h2', {}, titulo, subtitulo && el('span', { class: 'encabezado-fila-sub' }, subtitulo)),
+    lineaFila(),
     verMas && el('a', { class: 'ver-mas', href: verMas }, 'Ver más', flecha()),
   );
 }

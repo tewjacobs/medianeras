@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Separadores</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    .juego { max-width: 1100px; margin: 0 auto; display: grid; gap: 12px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .opcion { display: grid; grid-template-columns: 375px 1fr; gap: 6px; }
+    @media (max-width: 800px) { .opcion { grid-template-columns: 1fr; } }
+    .muestra { background: var(--papel); color: var(--tinta); padding: 14px var(--margen); display: grid; gap: 12px; align-content: start; }
+    .muestra .titulo { font: 600 12px var(--mono); color: var(--tenue); }
+    .muestra svg { display: block; width: 100%; height: 20px; }
+    .rotulo { font: 700 13px var(--sans); font-stretch: 75%; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--tinta); padding-bottom: 6px; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Separadores</h1>
+    <p class="ayuda">Cada opción en el ancho de un iPhone (375 px) y en pantalla ancha, en claro y oscuro. Debajo de cada separador, un título de fila para ver cómo conviven.</p>
+  </div>
+  <div id="opciones" class="juego"></div>
+</div>
+<script type="module">
+import { el } from './js/ui.js';
+import { svg } from './js/grafica.js';
+
+const n = (x) => Math.round(x * 100) / 100;
+// Azar con semilla (mulberry32), para que cada separador sea siempre igual.
+const azar = (semilla) => () => {
+  semilla = (semilla + 0x6d2b79f5) | 0;
+  let t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+const GRIS = 'color-mix(in srgb, var(--tinta) 28%, var(--papel))';
+const AMBAR = 'var(--logo-luz)';
+
+// Lanza como la del logo: asta y punta de hoja (rombo largo), mirando a la derecha.
+const lanza = (x, largo, y, { grosor, punta, ala, color }) => [
+  svg('rect', { x: n(x), y: n(y - grosor / 2), width: n(Math.max(0, largo - punta * 0.6)), height: grosor, estilo: { fill: color } }),
+  svg('polygon', { points: `${n(x + largo - punta)},${y} ${n(x + largo - punta * 0.38)},${n(y - ala)} ${n(x + largo)},${y} ${n(x + largo - punta * 0.38)},${n(y + ala)}`, estilo: { fill: color } }),
+];
+
+// Lanzas salpicadas en filas (tres, o las que se pidan), todas a la derecha, cortas y largas mezcladas.
+const salpicadas = (estilo, semilla, filas = [4, 10, 16]) => (w) => {
+  const r = azar(semilla);
+  return filas.flatMap((y) => {
+    const formas = [];
+    let x = r() * 40;
+    while (true) {
+      const largo = r() < 0.45 ? 18 + r() * 30 : 60 + r() * Math.min(160, w * 0.3);
+      if (x + largo > w - 1) break;
+      formas.push(...lanza(x, largo, y, estilo));
+      x += largo + 14 + r() * 50;
+    }
+    return formas;
+  });
+};
+
+// Tres líneas gruesas paralelas, sin puntas. Con `hueco`, cortadas en el medio; con `caida`,
+// al final doblan hacia abajo en paralelo (45°): la de abajo dobla antes, como un caño.
+const lineas = ({ hueco = false, caida = false, grosor = 3.6, paso = 5 }) => (w) => {
+  const ys = [5, 10, 15];
+  const fin = caida ? w - 22 : w - 1;
+  const corte = hueco ? [w * 0.42 - 14, w * 0.42 + 14] : null;
+  return ys.flatMap((y, i) => {
+    const doblez = caida ? fin - i * paso * Math.tan(Math.PI / 8) : fin;
+    const tramo = (a, b, bajar) => svg('path', {
+      d: `M${n(a)} ${y}H${n(b)}${bajar ? `L${n(b + 30)} ${y + 30}` : ''}`,
+      fill: 'none', 'stroke-width': grosor, 'stroke-linejoin': 'miter', estilo: { stroke: GRIS },
+    });
+    return corte ? [tramo(1, corte[0]), tramo(corte[1], doblez, caida)] : [tramo(1, doblez, caida)];
+  });
+};
+
+const OPCIONES = [
+  ['S1 · Lanzas del logo salpicadas, finas, en el ámbar del logo, todas a la derecha.', salpicadas({ grosor: 1.4, punta: 10, ala: 2.2, color: AMBAR }, 7)],
+  ['S2 · Más gruesas, en dos filas para que las puntas no se toquen.', salpicadas({ grosor: 2.6, punta: 14, ala: 3.4, color: AMBAR }, 7, [5, 15])],
+  ['L1 · Como ahora, sin puntas: tres líneas gruesas con el hueco en el medio.', lineas({ hueco: true })],
+  ['L2 · L1 con caída paralela al final: las tres doblan hacia abajo juntas.', lineas({ hueco: true, caida: true })],
+  ['L3 · L2 sin hueco: una sola tira que cae al final.', lineas({ caida: true })],
+];
+
+// Dibuja en píxeles al ancho real del separador, como en la app.
+const separador = (dibujo) => {
+  const nodo = svg('svg', { 'aria-hidden': 'true' });
+  new ResizeObserver(([e]) => {
+    const w = e.contentRect.width;
+    if (!w) return;
+    nodo.setAttribute('viewBox', `0 0 ${n(w)} 20`);
+    nodo.replaceChildren(...dibujo(w));
+  }).observe(nodo);
+  return nodo;
+};
+
+const muestra = (tema, [nota, dibujo]) => el('div', { class: 'muestra', 'data-tema': tema },
+  el('div', { class: 'titulo' }, nota), separador(dibujo), el('div', { class: 'rotulo' }, 'Por década'));
+
+document.getElementById('opciones').append(...OPCIONES.flatMap((o) => [
+  el('div', { class: 'opcion' }, muestra('claro', o), muestra('claro', o)),
+  el('div', { class: 'opcion' }, muestra('oscuro', o), muestra('oscuro', o)),
+]));
+</script>
+</body>
+</html>

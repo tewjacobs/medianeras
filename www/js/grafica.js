@@ -169,12 +169,59 @@ export function patron(semilla, {
   DIBUJOS[elegida](r, ancho, alto, { fondo, tono, lineas, acento: acentoColor }));
 }
 
-// Separador entre bloques grandes: tres rayas finas con una loma.
+// Separador entre bloques grandes: lanzas como las del logo, en su ámbar, salpicadas en tres filas,
+// todas a la derecha, cortas y largas. Se dibuja en píxeles al ancho real (y se redibuja si cambia),
+// para que no se estire ni se corte.
 export function separador(semilla, ancho = 360) {
-  return patron(semilla, {
-    variante: 'ondas', ancho, alto: 14, lineas: 3,
-    familia: 'color-mix(in srgb, var(--tinta) 28%, var(--papel))', clase: 'separador-grafico',
+  const nodo = svg('svg', { class: 'separador-grafico', 'aria-hidden': 'true', focusable: 'false' });
+  const dibujar = (w) => {
+    nodo.setAttribute('viewBox', `0 0 ${n(w)} 20`);
+    nodo.replaceChildren(...salpicado(w, azar(semilla)));
+  };
+  dibujar(ancho);
+  new ResizeObserver(([e]) => { if (e.contentRect.width) dibujar(e.contentRect.width); }).observe(nodo);
+  return nodo;
+}
+
+function salpicado(w, r) {
+  const color = { fill: 'var(--logo-luz)' };
+  const grosor = 1.4, punta = 10, ala = 2.2;
+  return [4, 10, 16].flatMap((y) => {
+    const formas = [];
+    for (let x = r() * 40; ; ) {
+      const largo = r() < 0.45 ? r.entre(18, 48) : r.entre(60, 60 + Math.min(160, w * 0.3));
+      if (x + largo > w - 1) break;
+      const p = x + largo;
+      formas.push(
+        svg('rect', { x: n(x), y: n(y - grosor / 2), width: n(largo - punta * 0.6), height: grosor, estilo: color }),
+        svg('polygon', { points: `${n(p - punta)},${y} ${n(p - punta * 0.38)},${n(y - ala)} ${n(p)},${y} ${n(p - punta * 0.38)},${n(y + ala)}`, estilo: color }));
+      x = p + r.entre(14, 64);
+    }
+    return formas;
   });
+}
+
+// Línea de los encabezados de fila: la caída dada vuelta. Tres líneas paralelas bajan en 45°
+// desde arriba, a la derecha del título, y siguen derechas hasta el final. Al ancho real.
+// Las tres quedan centradas en el alto (24), así VER MÁS se alinea con ellas.
+export function lineaFila() {
+  const nodo = svg('svg', { class: 'linea-fila', 'aria-hidden': 'true', focusable: 'false' });
+  const tono = 'color-mix(in srgb, var(--tinta) 28%, var(--papel))';
+  const grosor = 2.4, paso = 4, ys = [8, 12, 16];
+  const inicio = 4 + ys[2] + 2 * paso * (Math.SQRT2 - 1);
+  const dibujar = (w) => {
+    nodo.setAttribute('viewBox', `0 0 ${n(w)} 24`);
+    nodo.replaceChildren(...ys.map((y, i) => {
+      const doblez = inicio - i * paso * (Math.SQRT2 - 1);
+      return svg('path', {
+        d: `M${n(doblez - y - 4)} -4L${n(doblez)} ${y}H${n(w)}`,
+        fill: 'none', 'stroke-width': grosor, 'stroke-linejoin': 'miter', estilo: { stroke: tono },
+      });
+    }));
+  };
+  dibujar(200);
+  new ResizeObserver(([e]) => { if (e.contentRect.width) dibujar(e.contentRect.width); }).observe(nodo);
+  return nodo;
 }
 
 // ---- Logo ----

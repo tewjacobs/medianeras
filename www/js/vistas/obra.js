@@ -6,6 +6,7 @@
 import { el, icono, flecha, creditoFoto, tarjetaEntrada, mensaje, tapaObra, chipsPerfil, grillaFotos, encabezadoFila, estrellas, textoLargo } from '../ui.js';
 import { abrirMapaObra } from './mapa.js';
 import { abrirNuevaVisita } from './nueva-visita.js';
+import { botonSugerirFoto } from '../contacto.js';
 import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, anioReferencia, colorMarco, formatoFecha } from '../datos.js';
 
 const RECIENTES = 3;
@@ -52,6 +53,7 @@ export async function render(contenedor, { datos, partes, titulo, recargar }) {
           onclick: enPanel(() => abrirNuevaVisita(datos, { obra: obra.id, alGuardar: recargar })),
         }, icono('mas'), 'Registrar visita'),
         verMapa,
+        botonSugerirFoto(obra),
       ),
       // Debajo de los botones: el resumen (dos líneas) y, con "Ver más", la descripción completa.
       descripcionObra(obra),

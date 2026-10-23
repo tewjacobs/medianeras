@@ -34,6 +34,7 @@ const CON_FOTO = [
   ['argentina', '2000', ['puente de la mujer/mujer.jpg']],
   ['argentina', '2010', ['Centro Cultural Kirschner/1081612757_0_0_3000_2000_600x0_80_0_0_5ac5d6b0bad27a749eb428dada033483.jpg', 'Centro Cultural Kirschner/U7SKV43T23MD3XO27QZNIY5YRQ.avif', 'Centro Cultural Kirschner/Buenos_Aires_Centrum_Kirchner.jpg']],
   ['mundo', '1950', ['seagram/seagramexrt.webp', 'seagram/Seagram-Bldg.jpg']],
+  ['mundo', '1970', ['pompidou/IMG_3603.jpeg', 'pompidou/av_19293.webp']],
   ['mundo', '1900', ['stoclet/stoclet.jpg']],
   ['mundo', '1910', ['la pedrera:casa mila/Casa_Milà,_general_view.jpg']],
   ['mundo', '1930', ['paimio/paimio.jpg']],

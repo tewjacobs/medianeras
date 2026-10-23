@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todas las obras</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    .juego { max-width: 1000px; margin: 0 auto; display: grid; gap: 12px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .opcion { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    @media (max-width: 760px) { .opcion { grid-template-columns: 1fr; } }
+    .muestra { background: var(--papel); color: var(--tinta); padding: 14px 0; display: grid; gap: 10px; }
+    .muestra .titulo { font: 600 12px var(--mono); color: var(--tenue); padding: 0 var(--margen); }
+    .celu { width: 375px; max-width: 100%; }
+    /* Tamaño que toma en un iPhone de 375 px (el clamp de la app usa el ancho de la ventana). */
+    .celu .todas-texto strong { font-size: 24px; }
+    /* Variantes del título */
+    .v-b .todas-texto strong { letter-spacing: 0; }
+    .v-c .todas-texto strong { letter-spacing: 0; text-transform: none; }
+    .v-d .todas-texto strong { letter-spacing: 0; text-transform: none; font-stretch: 100%; font-size: 22px; }
+    .v-e .todas-texto strong { text-transform: none; font-stretch: 100%; letter-spacing: 0.16em; font-size: 20px; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Todas las obras</h1>
+    <p class="ayuda">Cada opción en claro y oscuro, al ancho de un iPhone (375 px). A es la de ahora.</p>
+  </div>
+  <div id="opciones" class="juego"></div>
+</div>
+<script type="module">
+import { el, flecha } from './js/ui.js';
+
+const OPCIONES = [
+  ['a', 'Todas las obras', 'A · La de ahora: mayúsculas condensadas, separadas.'],
+  ['b', 'Todas las obras', 'B · Mayúsculas condensadas, sin separar las letras.'],
+  ['c', 'todas las obras', 'C · Minúsculas condensadas, sin separar.'],
+  ['d', 'Todas las obras', 'D · Mayúscula inicial, ancho normal, sin separar.'],
+  ['e', 'todas las obras', 'E · Minúsculas espaciadas, como "jagten" en la cabecera.'],
+];
+
+const muestra = (tema, [v, texto, nota]) => el('div', { class: `muestra v-${v}`, 'data-tema': tema },
+  el('div', { class: 'titulo' }, nota),
+  el('div', { class: 'celu' }, el('a', { class: 'todas-las-obras', href: '#' },
+    el('span', { class: 'todas-texto' }, el('strong', {}, texto), el('span', {}, '5 obras · 3 países')), flecha())));
+
+document.getElementById('opciones').append(...OPCIONES.map((o) => el('div', { class: 'opcion' }, muestra('claro', o), muestra('oscuro', o))));
+</script>
+</body>
+</html>

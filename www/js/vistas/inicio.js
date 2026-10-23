@@ -7,6 +7,7 @@ import { ordenar } from '../filtros.js';
 import { FILAS_INICIO, MAXIMO, decadasConObras } from '../filas.js';
 import { leerPreferencia, guardarPreferencia } from '../plataforma/preferencias.js';
 import { enlacesIndices } from './perfil.js';
+import { botonSugerirObra, bloqueContacto } from '../contacto.js';
 
 export function render(contenedor, { datos }) {
   if (!datos.obras.length) {
@@ -34,8 +35,11 @@ export function render(contenedor, { datos }) {
 
   contenedor.append(separador('inicio:decadas', 360), decadas(datos), separador('inicio:todas', 360),
     el('a', { class: 'todas-las-obras', href: '#/obras' },
-      el('span', { class: 'todas-texto' }, el('strong', {}, 'Todas las obras'), el('span', {}, resumen())), flecha()),
-    el('nav', { class: 'explorar', 'aria-label': 'Explorar' }, encabezadoFila('Explorar'), el('div', { class: 'explorar-enlaces' }, enlacesIndices())));
+      el('span', { class: 'todas-texto' }, el('strong', {}, 'Todas las obras'),
+        el('span', { class: 'todas-datos' }, resumen().split(' · ').map((dato) => el('span', {}, dato)))), flecha()),
+    botonSugerirObra() && el('div', { class: 'sugerir-obra' }, botonSugerirObra()),
+    el('nav', { class: 'explorar', 'aria-label': 'Explorar' }, encabezadoFila('Explorar'), el('div', { class: 'explorar-enlaces' }, enlacesIndices())),
+    bloqueContacto());
 }
 
 async function pintarFila(lugar, fila, ctx) {
