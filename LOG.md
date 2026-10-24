@@ -8,6 +8,13 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**24 de octubre de 2026.** Todo subido (`v37`): pie de borde a borde, hover ámbar, tapas con marco invertido al pasar el mouse y "todas las obras" más alto con los símbolos de las obras. La cabecera y el pie quedan en la A (vidrio oscuro): al usuario le gustó cómo quedó.
+
+**Próxima sesión:**
+1. Probar en el iPhone la barra de arriba con el color de la franja.
+2. Mail del proyecto y edificios nuevos (ver la lista de abajo).
+3. Para decidir: si "todas las obras" también va de borde a borde en pantallas anchas (hoy queda en 1400 px) y cuántos íconos mostrar cuando haya muchas obras.
+
 **23 de octubre de 2026, cierre.** La app se llama **jagten**, con logo de lanzas (L2) e íconos nuevos: publicado en `e578ac6`. **Sin subir todavía** (service worker en `v33`): Pompidou rehecho; "todas las obras" en minúsculas espaciadas y amarillo, con los datos a la derecha; separadores de lanzas amarillas salpicadas (S1); títulos de sector con tres líneas que bajan en 45° (L2 dada vuelta) y VER MÁS centrado con ellas; botones de sugerir (ocultos hasta tener el mail) y bloque Contacto con Instagram @jagten.arq. El dominio sigue siendo `arqivo.com.ar`; `jagten.com.ar` sin registrar.
 
 **Próxima sesión:**
@@ -72,6 +79,7 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
   - Solo se usan Archivo, Plex Mono y Caslon, nunca la fuente del sistema.
   - Archivo en ancho normal se parece mucho a Arial, así que las etiquetas y pestañas van condensadas en mayúsculas y los títulos de las tapas, un poco anchos.
 - **Logo (23/10).** L2 "lanzas": las luces encendidas de la mitad de arriba del símbolo del Seagram (década de 1950, Mundo), cada tramo hecho lanza mínima (asta fina y punta de hoja), en ámbar `--logo-luz` sobre vidrio oscuro `--logo-torre`, grilla de 48 × 48. Como Letterboxd, el logo no tiene que hablar de lo que se mira. Los íconos PNG se sacaron con Chrome headless desde `www/iconos/icono.svg`; el maskable va con las lanzas al 78 %. Antes fue la 5b·2 "Calm" (campo rojo y ventanita); sus colores `--logo-*` quedan porque los usan la franja roja y las páginas de prueba.
+- **Cabecera y pie (23/10, noche).** Franja de color `--franja` (hoy el vidrio oscuro del logo) arriba y en el pie del inicio, las dos con el tema oscuro adentro (`data-tema`). La barra de estado del iPhone toma `--franja`. El pie, como el de Letterboxd: secciones, redes (solo Instagram con link; TikTok, YouTube y X tenues y sin link; mail cuando haya) y la línea de derechos. Reemplaza al bloque Contacto.
 - **Pantalla de carga.** Skyline de Buenos Aires «El siglo» (S3): un edificio por década de la colección Argentina sobre una línea de suelo; cada uno se construye desde abajo, línea por línea. La primera vez que se entra a la app se muestra completa (espera a que termine el skyline; se recuerda con la preferencia `carga-vista`); las siguientes se va apenas cargan los datos. El SVG está inline en `www/index.html` (se regenera con `herramientas/prueba/exportar-skyline.html`). Las versiones de la Price Tower quedaron en `herramientas/prueba/`.
 - **Sistema gráfico: flechas** (en `flecha()` de `www/js/ui.js`, para reusar):
   - **F2, escalonada:** rayas apiladas de distinto largo que forman la punta. Va en VER MÁS, la lista de Explorar, Todas las obras y el visor de fotos (dada vuelta para "anterior").
@@ -231,4 +239,11 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - Sin cambios en la app.
 - **23/10, tarde:** logos para jagten: Savoye con lanzas (J1–J8, queda J4 en la página de prueba), y luego las luces del Seagram hechas lanzas (L1–L3). Elegida **L2**. Nombre cambiado a jagten en la app, logo L2 en `grafica.js` e íconos rehechos; `sw.js` en `v23`. Commit y push `e578ac6`. Después, "Todas las obras" en ámbar y separadores de lanzas (`v24`). Pompidou (década de 1970, Mundo) rehecho con las fotos nuevas: de frente, 58 líneas, escalera mecánica en zigzag con panza roja; colores nuevos `pompidou-interior`, `pompidou-tubo`, `pompidou-pasarela`; sumado a `comparar.js`. Opciones de texto en `todas.html` (`v25`).
 - **23/10, cierre:** separadores en varias rondas (sándwich de lanzas, con y sin loma, más gruesas) hasta elegir en `herramientas/prueba/separadores.html` la S1 (lanzas amarillas salpicadas) para separar bloques y la L2 dada vuelta para los títulos de sector (`lineaFila()` en `grafica.js`, reemplaza el filete). Los separadores se dibujan en píxeles al ancho real con un ResizeObserver: antes se estiraban y se cortaban en pantallas anchas. "todas las obras" en la opción E, con 10 px más de aire a la izquierda y los datos uno por renglón en el celular. VER MÁS centrado con las líneas. Sugerencias por mail y Contacto (`www/js/contacto.js`, sumado a `APP` en `sw.js`). Se le explicó que el dominio no trae mail: para `@jagten.com.ar` hace falta reenvío (gratis) o casilla (paga). Todo verificado con capturas en claro y oscuro; sin commit (`v33`).
+- **23/10, noche:** commit y push `bc6a86a`. Arreglado el "null" que aparecía debajo de "todas las obras" (el botón de sugerir oculto se escribía como texto; el inicio ahora usa `agregar()`), `v34`. Pie de página nuevo (`pieDePagina()` en `contacto.js`, íconos de redes en `ui.js`) y cabecera del mismo color; opciones de color en `herramientas/prueba/franjas.html`. Verificado con capturas en claro y oscuro; sin probar en el iPhone. La captura de Letterboxd no estaba en `referencias/estetica/`: se hizo de memoria. Sin commit (`v35`).
 
+### 24 de octubre de 2026
+
+- Pie de página de borde a borde y hasta abajo de todo (con `border-image`, sin correr la página): en pantallas anchas quedaba como una isla.
+- Al pasar el mouse, todo lo que se toca se pone ámbar (`--realce`, más oscuro en claro), como el celeste de Letterboxd. Las tapas suman un marco por dentro del color invertido al de su marco (`rgb(from …)`). Solo con mouse (`hover: hover`).
+- "todas las obras": sin las lanzas de arriba, más alto (132 px) y con los símbolos de las obras en chiquito (debajo del título en el celular, al costado desde 900 px). Si varias obras comparten dibujo, va una sola vez. El símbolo neutro casi no se ve, pero el usuario prefirió dejarlo.
+- Verificado con capturas en claro, oscuro y a 1600 px; el hover no se puede capturar, lo probó el usuario. Commit y push (`v37`).

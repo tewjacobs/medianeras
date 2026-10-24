@@ -117,6 +117,7 @@
   --mar: #d7a95c;      /* arena */
   --rojo: #c63a22; /* toque mínimo: botón de visita y estrellas */
   --enlace: #2a5486;
+  --realce: #9a6212; /* ámbar de las lanzas, oscurecido para leerse sobre el blanco */
   color-scheme: light;
 }
 
@@ -134,6 +135,7 @@
   --mar: #ddb378;      /* tierra clara */
   --rojo: #d4583b;
   --enlace: #aab0ea;
+  --realce: #f3c96e;
   color-scheme: dark;
 }
 
@@ -146,6 +148,8 @@
   --logo-bajo: #938b7e;
   --logo-torre: #26272b;
   --logo-luz: #e0a24a;
+  /* Franja de la cabecera y del pie (llevan el tema oscuro adentro, con data-tema) */
+  --franja: var(--logo-torre);
 }
 
 :root, [data-tema] {
@@ -200,10 +204,9 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
   display: flex;
   align-items: center;
   gap: 4px;
-  background: color-mix(in srgb, var(--fondo) 88%, transparent);
+  background: color-mix(in srgb, var(--franja) 94%, transparent);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
   backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid var(--borde);
 }
 
 .cabecera-titulo {
@@ -1122,9 +1125,10 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 64px;
-  margin: 18px 0 0;
-  padding: 14px var(--margen) 14px calc(var(--margen) + 10px);
+  flex-wrap: wrap;
+  min-height: 132px;
+  margin: 22px 0 0;
+  padding: 22px var(--margen) 22px calc(var(--margen) + 10px);
   border-top: 3px double var(--marca);
   border-bottom: 3px double var(--marca);
   background: color-mix(in srgb, var(--marca) 18%, var(--papel));
@@ -1145,6 +1149,14 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   .todas-datos span + span::before { content: ' · '; white-space: pre; }
 }
 .todas-las-obras .flecha { color: var(--marca); }
+/* Los símbolos de las obras en chiquito: debajo del título en el celular, al costado desde 900 px. */
+.todas-iconos { order: 3; flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; }
+.todas-icono { display: block; width: 30px; height: 30px; }
+@media (min-width: 900px) {
+  .todas-las-obras { flex-wrap: nowrap; gap: 28px; }
+  .todas-iconos { order: 0; flex: 0 1 auto; justify-content: flex-end; max-width: 45%; }
+  .todas-icono { width: 36px; height: 36px; }
+}
 
 .explorar { padding: 24px 0 8px; }
 .explorar-enlaces { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; margin: 0 var(--margen); }
@@ -1158,17 +1170,23 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 .boton.boton-sugerir { background: var(--logo-luz); border-color: var(--logo-luz); color: #1a1917; }
 .sugerir-obra { margin: 14px var(--margen) 0; }
 
-/* Contacto: al pie del inicio, aparte de las sugerencias. */
-.contacto { padding: 16px 0 24px; }
-.contacto-enlaces { display: grid; margin: 0 var(--margen); }
-.contacto-enlaces a {
-  display: flex; align-items: center; justify-content: space-between; min-height: 54px;
-  border-bottom: 1px solid var(--filete); color: var(--tinta); text-decoration: none;
+/* Pie del inicio: franja de borde a borde, pegada a las pestañas (se come el aire de main). */
+.pie {
+  display: grid; gap: 18px; justify-items: start;
+  margin: 32px 0 calc(-24px - var(--seguro-abajo)); padding: 28px var(--margen) calc(28px + var(--seguro-abajo));
+  background: var(--franja); color: var(--tenue);
+  /* La franja se pinta también a los costados y hasta abajo de todo, sin que la página se corra:
+     así no queda como una isla en pantallas anchas ni con papel debajo. */
+  border-image: conic-gradient(var(--franja) 0 0) fill 0 // 0 100vw 100vh;
 }
-.contacto-enlaces a > span { display: flex; align-items: baseline; gap: 12px; }
-.contacto-enlaces strong { font-size: 21px; font-weight: 700; font-stretch: 108%; }
-.contacto-enlaces a > span span { font-family: var(--mono); font-size: 15px; color: var(--tenue); }
-.contacto-enlaces .flecha { color: var(--tenue); }
+.pie-enlaces { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.pie-enlaces a { font-size: 14px; font-weight: 700; font-stretch: 85%; text-transform: uppercase; letter-spacing: 0.06em; color: var(--tinta); text-decoration: none; }
+.pie-redes { display: flex; gap: 6px; margin-left: -10px; }
+.pie-redes > * { width: 44px; height: 44px; display: grid; place-items: center; color: var(--tinta); }
+.pie-redes .icono { width: 22px; height: 22px; stroke-width: 1.6; }
+.pie-redes .pie-sin-enlace { opacity: 0.45; }
+.pie-cuenta { margin: -14px 0 0; font-family: var(--mono); font-size: 13px; }
+.pie-legal { margin: 0; font-family: var(--mono); font-size: 11px; line-height: 1.5; }
 
 /* ---------- Perfiles ---------- */
 
@@ -1327,3 +1345,13 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 @media (min-width: 600px) { .entradas-grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
 @media (min-width: 900px) { .entradas-grilla { grid-template-columns: repeat(3, minmax(0, 1fr)); } .vista-diario { max-width: 1200px; } }
 .ficha-descripcion { white-space: pre-line; }
+
+/* ---------- Al pasar el mouse (solo con mouse; en el iPhone no hay hover) ---------- */
+
+@media (hover: hover) {
+  /* Todo lo que se toca se pone ámbar, como el celeste de Letterboxd. */
+  a, a *, button, summary { transition: color 0.12s, box-shadow 0.12s; }
+  a:hover, a:hover :not(.tapa, .tapa *), button:not(.boton):hover, summary:hover, summary:hover * { color: var(--realce); }
+  /* Las tapas suman un marco por dentro en el color opuesto al suyo (el amarillito del Flatiron da azul). */
+  a:hover .tapa { box-shadow: inset 0 0 0 4px rgb(from var(--marco) calc(255 - r) calc(255 - g) calc(255 - b)); }
+}

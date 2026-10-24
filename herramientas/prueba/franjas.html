@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabecera y pie</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    .juego { max-width: 1000px; margin: 0 auto; display: grid; gap: 12px; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0; }
+    .ayuda { font-family: var(--mono); font-size: 12px; margin: 4px 0 0; }
+    .opcion { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    @media (max-width: 760px) { .opcion { grid-template-columns: 1fr; } }
+    .muestra { background: var(--papel); color: var(--tinta); display: grid; }
+    .muestra .titulo { font: 600 12px var(--mono); color: var(--tenue); padding: 10px var(--margen); }
+    .celu { width: 375px; max-width: 100%; }
+    .celu .cabecera { position: static; padding-top: 0; height: var(--alto-cabecera); }
+    .celu .pie { margin: 0; padding-bottom: 28px; }
+    .relleno { height: 70px; }
+  </style>
+</head>
+<body>
+<div class="juego">
+  <div>
+    <h1>Cabecera y pie</h1>
+    <p class="ayuda">El mismo color arriba (cabecera) y abajo (pie), en claro y oscuro, al ancho de un iPhone. A es la que está puesta en la app.</p>
+  </div>
+  <div id="opciones" class="juego"></div>
+</div>
+<script type="module">
+import { el, icono } from './js/ui.js';
+import { logo } from './js/grafica.js';
+import { pieDePagina } from './js/contacto.js';
+
+// [letra, color, tema de adentro, nota]
+const OPCIONES = [
+  ['a', '#26272b', 'oscuro', 'A · Vidrio oscuro del logo (recomendada): las lanzas ámbar se ven como de noche.'],
+  ['b', '#2f5b8a', 'oscuro', 'B · Azul montaña (el azul del tema claro).'],
+  ['c', '#e0a24a', 'claro', 'C · Ámbar de las lanzas, con letras oscuras.'],
+];
+
+const cabecera = (adentro) => el('header', { class: 'cabecera', 'data-tema': adentro },
+  el('h1', { class: 'cabecera-titulo cabecera-marca' }, el('a', { class: 'marca-enlace', href: '#' },
+    logo(), el('span', { class: 'marca-texto' }, el('span', { class: 'logo-nombre' }, 'jagten')))),
+  el('button', { class: 'cabecera-buscar', type: 'button' }, icono('buscar')),
+  el('button', { class: 'cabecera-tema', type: 'button' }, icono('tema')));
+
+const muestra = (tema, [, color, adentro, nota]) => {
+  const pie = pieDePagina();
+  pie.dataset.tema = adentro;
+  return el('div', { class: 'muestra', 'data-tema': tema, style: `--franja: ${color}` },
+    el('div', { class: 'celu' }, cabecera(adentro), el('div', { class: 'titulo' }, nota), el('div', { class: 'relleno' }), pie));
+};
+
+document.getElementById('opciones').append(...OPCIONES.map((o) => el('div', { class: 'opcion' }, muestra('claro', o), muestra('oscuro', o))));
+</script>
+</body>
+</html>

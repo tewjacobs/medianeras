@@ -46,6 +46,12 @@ const ICONOS = {
   basura: '<path d="M4.5 7h15M10 7V4.5h4V7M6.5 7l1 13h9l1-13"/>',
   buscar: '<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>',
   flecha: '<path d="M5 12h13M13 7l5 5-5 5"/>',
+  // Redes, dibujadas con el mismo trazo (para el pie)
+  instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.4"/>',
+  youtube: '<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.6-2.7z"/>',
+  tiktok: '<path d="M14 3.5v11.5a4 4 0 1 1-4-4"/><path d="M14 3.5c.6 2.7 2.4 4.4 5 4.7"/>',
+  x: '<path d="M4.5 4.5h4L19.5 19.5h-4zM19 4.5l-5.9 6.6M10.9 12.9 5 19.5"/>',
+  mail: '<rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="M4 6.5l8 6.5 8-6.5"/>',
 };
 
 export function icono(nombre) {

@@ -1,7 +1,7 @@
 // Sugerencias (por mail, con el texto ya escrito) y contacto del proyecto.
 // Sin mail cargado, los botones de sugerir no aparecen.
 
-import { el, icono, flecha, encabezadoFila } from './ui.js';
+import { el, icono } from './ui.js';
 
 export const CONTACTO = {
   mail: null,
@@ -45,14 +45,23 @@ ${PERMISO}
   }, icono('inicio'), 'Sugerir una obra');
 }
 
-// Bloque del pie del inicio: los canales de contacto, aparte de las sugerencias.
-export function bloqueContacto() {
-  const canales = [
-    CONTACTO.instagram && ['Instagram', `@${CONTACTO.instagram}`, `https://www.instagram.com/${CONTACTO.instagram}/`],
-    CONTACTO.mail && ['Mail', CONTACTO.mail, `mailto:${CONTACTO.mail}`],
-  ].filter(Boolean);
-  return el('section', { class: 'contacto' }, encabezadoFila('Contacto'),
-    el('div', { class: 'contacto-enlaces' }, canales.map(([nombre, dato, href]) =>
-      el('a', { href, target: href.startsWith('http') ? '_blank' : null, rel: 'noopener' },
-        el('span', {}, el('strong', {}, nombre), el('span', {}, dato)), flecha()))));
+// Pie de página del inicio, como el de Letterboxd: secciones, redes y la línea de derechos.
+// Las redes sin cuenta todavía se muestran sin link.
+export function pieDePagina() {
+  const redes = [
+    ['instagram', 'Instagram', CONTACTO.instagram && `https://www.instagram.com/${CONTACTO.instagram}/`],
+    ['tiktok', 'TikTok'],
+    ['youtube', 'YouTube'],
+    ['x', 'X'],
+    ['mail', 'Mail', CONTACTO.mail && `mailto:${CONTACTO.mail}`],
+  ];
+  return el('footer', { class: 'pie', 'data-tema': 'oscuro' },
+    el('nav', { class: 'pie-enlaces', 'aria-label': 'Secciones' },
+      [['Todas las obras', '#/obras'], ['Mapa', '#/mapa'], ['Diario', '#/diario'], ['Listas', '#/listas']]
+        .map(([texto, href]) => el('a', { href }, texto))),
+    el('div', { class: 'pie-redes' }, redes.map(([nombre, etiqueta, href]) => href
+      ? el('a', { href, 'aria-label': etiqueta, title: etiqueta, target: href.startsWith('http') ? '_blank' : null, rel: 'noopener' }, icono(nombre))
+      : el('span', { class: 'pie-sin-enlace', title: `${etiqueta}: próximamente` }, icono(nombre)))),
+    CONTACTO.instagram && el('p', { class: 'pie-cuenta' }, `@${CONTACTO.instagram}`),
+    el('p', { class: 'pie-legal' }, `© ${new Date().getFullYear()} jagten. Fotos del catálogo: todos los derechos reservados.`));
 }

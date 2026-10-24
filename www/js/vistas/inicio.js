@@ -1,13 +1,13 @@
 // Inicio: filas temáticas (filas.js), las décadas desplegables y el link a todas las obras.
 
-import { el, flecha, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
-import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL, partituraDe, colorPerfil } from '../datos.js';
+import { el, agregar, flecha, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
+import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL, partituraDe, colorPerfil, partituraObra, colorMarco } from '../datos.js';
 import { separador, simbolo, simboloNeutro } from '../grafica.js';
 import { ordenar } from '../filtros.js';
 import { FILAS_INICIO, MAXIMO, decadasConObras } from '../filas.js';
 import { leerPreferencia, guardarPreferencia } from '../plataforma/preferencias.js';
 import { enlacesIndices } from './perfil.js';
-import { botonSugerirObra, bloqueContacto } from '../contacto.js';
+import { botonSugerirObra, pieDePagina } from '../contacto.js';
 
 export function render(contenedor, { datos }) {
   if (!datos.obras.length) {
@@ -33,13 +33,26 @@ export function render(contenedor, { datos }) {
     pintarFila(lugar, fila, ctx);
   }
 
-  contenedor.append(separador('inicio:decadas', 360), decadas(datos), separador('inicio:todas', 360),
+  agregar(contenedor, [separador('inicio:decadas', 360), decadas(datos),
     el('a', { class: 'todas-las-obras', href: '#/obras' },
       el('span', { class: 'todas-texto' }, el('strong', {}, 'Todas las obras'),
-        el('span', { class: 'todas-datos' }, resumen().split(' · ').map((dato) => el('span', {}, dato)))), flecha()),
+        el('span', { class: 'todas-datos' }, resumen().split(' · ').map((dato) => el('span', {}, dato)))),
+      iconosObras(datos), flecha()),
     botonSugerirObra() && el('div', { class: 'sugerir-obra' }, botonSugerirObra()),
     el('nav', { class: 'explorar', 'aria-label': 'Explorar' }, encabezadoFila('Explorar'), el('div', { class: 'explorar-enlaces' }, enlacesIndices())),
-    bloqueContacto());
+    pieDePagina()]);
+}
+
+// El símbolo de cada obra en chiquito, como una tira de íconos. Si dos obras comparten dibujo
+// (por ejemplo, el de su estilo), va una sola vez.
+function iconosObras(datos) {
+  const partituras = new Map();
+  for (const obra of datos.obras) {
+    const partitura = partituraObra(datos, obra) ?? simboloNeutro(colorMarco(obra));
+    partituras.set(JSON.stringify(partitura), partitura);
+  }
+  return el('span', { class: 'todas-iconos', 'aria-hidden': 'true' }, [...partituras.values()].map((partitura) =>
+    simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, clase: 'todas-icono' })));
 }
 
 async function pintarFila(lugar, fila, ctx) {

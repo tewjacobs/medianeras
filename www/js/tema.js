@@ -20,8 +20,8 @@ export function temaElegido() {
 export function aplicarTema(eleccion = temaElegido()) {
   const tema = eleccion === 'auto' ? (sistemaOscuro.matches ? 'oscuro' : 'claro') : eleccion;
   document.documentElement.dataset.tema = tema;
-  // La barra de estado del iPhone toma el color del fondo
-  const fondo = getComputedStyle(document.documentElement).getPropertyValue('--papel').trim();
+  // La barra de estado del iPhone toma el color de la cabecera
+  const fondo = getComputedStyle(document.documentElement).getPropertyValue('--franja').trim();
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', fondo);
 }
 
