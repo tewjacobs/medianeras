@@ -493,16 +493,19 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
   --marco: var(--petroleo);
   /* Rayas del patrón de una obra sin foto: del color del marco, apenas más claras */
   --sobre-marco: color-mix(in srgb, var(--marco) 62%, var(--papel));
+  --borde: 9%;
   position: relative;
   aspect-ratio: 1;
-  padding: 9%;
   background: var(--marco);
   overflow: hidden;
 }
+/* Posición absoluta: Safari no resuelve bien el 100 % de alto dentro de un aspect-ratio */
 .tapa img, .tapa .sin-foto, .tapa .tapa-grafica {
   display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: var(--borde);
+  width: calc(100% - 2 * var(--borde));
+  height: calc(100% - 2 * var(--borde));
   object-fit: contain; /* la foto entera; el color del marco llena lo que sobra */
 }
 .tapa img.con-encuadre { object-fit: cover; }
@@ -512,7 +515,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .marco-follaje { --marco: var(--follaje); }
 .marco-cielo { --marco: var(--cielo); }
 .marco-mar { --marco: var(--mar); }
-.tapa-grande { padding: 7%; }
+.tapa-grande { --borde: 7%; }
 
 .tarjeta-texto { padding-top: 6px; }
 .tarjeta-texto h3 {
@@ -766,7 +769,7 @@ body.con-visor { overflow: hidden; }
 .filas .fila-obra { padding: 6px; margin: 0 -6px; }
 
 .fila-miniatura { flex: none; width: 56px; }
-.fila-miniatura .tapa { padding: 7%; }
+.fila-miniatura .tapa { --borde: 7%; }
 .fila-miniatura .marca-ejemplo { display: none; }
 
 .fila-texto { display: grid; min-width: 0; }
@@ -828,7 +831,7 @@ body.con-visor { overflow: hidden; }
 .encabezado-lista { padding: 0 var(--margen) 16px; display: grid; gap: 6px; }
 .encabezado-lista h2 { font-size: 26px; font-weight: 850; font-stretch: 112%; line-height: 1.05; }
 .collage { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; aspect-ratio: 1; background: var(--tinta); padding: 2px; }
-.collage .tapa { padding: 7%; }
+.collage .tapa { --borde: 7%; }
 .collage .collage-vacio { background: var(--superficie-2); }
 .collage .marca-ejemplo { display: none; }
 .grilla-listas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
