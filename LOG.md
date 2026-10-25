@@ -8,6 +8,15 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**25 de octubre de 2026, cierre.** Todo subido (`v43`). En la sesión: publicado lo pendiente del 24/10; tapas con la foto centrada (arreglo para Safari: posición absoluta con `--borde`); Alwyn Court con la foto entera de tapa (recortada arriba); símbolos nuevos o rehechos: M+ (2020s Mundo), Templo, Hotel, Brutalismo (La Pyramide) y Moderno tardío (Auditorio de Tenerife); borrados todos los datos de ejemplo (obras, visitas, lista y perfiles; el cartel EJEMPLO queda en el código). Con eso no quedan obras argentinas: el inicio dice "1 país" y Listas está vacía.
+
+**Próxima sesión:**
+1. Más símbolos de programas, solo de los que tienen carpeta en `referencias/simbolos/`: deportes, fábrica, hospital, estudios:académico, mercado:shopping, infraestructura, político:parliaments, residencial. Todavía no hay obras con esos programas.
+2. Congreso de Brasil (1960s Mundo): rehacer con `referencias/simbolos/brasilia/`.
+3. Instagram y dominio (ver Pendientes).
+4. Probar con el mouse el hover amarillo de "Registrar visita" (claro y oscuro).
+5. Más adelante: G0 y G5 (Inglaterra), G1 (torre de ventilación de Liverpool), G3 (Catedral de Manchester) y las casas de Buenos Aires (G19–G30).
+
 **24 de octubre de 2026, tarde.** Subido en `fe3703b` (`v37`). **Sin subir (`v38`):** 7 obras nuevas de Nueva York (Trinity Church, St. Nicholas, Oculus, Vessel, Alwyn Court, The El Dorado, Ford Foundation) y 2 de Atlanta (Peachtree Summit, 30 Allen Plaza), con sus fotos en `www/img/obras/`; estilos nuevos en `perfiles.json` (Posmodernismo, Neofuturismo bajo Arquitectura contemporánea para Oculus y Vessel, Moderno tardío bajo Moderno); campo optativo `decada` para obras sin años (en `datos.js`, `filas.js`, `vistas/obra.js` y README). El usuario aprobó los resúmenes de Nueva York.
 
 **Atlanta, datos a completar:** Peachtree Summit va sin estilo ni materiales (Wikipedia no los da; a la vista, hormigón y vidrio con escaleras afuera). 30 Allen Plaza: arquitecto MSTSD, 14 pisos, posmoderno, granito y vidrio salen solo de Emporis (cerrado); sin año (comunicado de Southern Company: ocupado en abril de 2006); el usuario eligió dejarlo con `"decada": 2000`. El link de skydb "Southern Company Building" es otro edificio (270 Peachtree, 1961).
@@ -139,6 +148,8 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 
 ## Pendientes
 
+- **Instagram (@jagten.arq), para después:** planear contenido para subir. Idea del usuario: tener los íconos (símbolos) descargables para subir algunos; hace falta una forma de exportarlos como imagen (PNG cuadrado, claro y oscuro), por ejemplo desde la página de prueba con Chrome headless.
+- **Comprar el dominio, para después:** `jagten.com.ar` (libre al 23/10). Ver la mudanza desde `arqivo.com.ar` y exportar visitas antes.
 - **Mail del proyecto:** el usuario crea un Gmail; cargarlo en `CONTACTO.mail` de `www/js/contacto.js`. Con `jagten.com.ar`, pasar a `hola@jagten.com.ar` con reenvío gratis (registros MX en la zona de DonWeb, sin tocar nameservers). Más adelante, WhatsApp en el contacto (avisar: deja el número a la vista; mejor uno aparte o Business).
 - **Nombre: jagten (23/10, tarde).** Reemplaza a sanskule en todo lo visible. Recordar: *Jagten* es también la película de Vinterberg (2012). Falta registrar `jagten.com.ar` (libre al 23/10) y decidir la mudanza de dominio (ver más abajo lo de exportar visitas antes).
 - **Nombre de la app (historial).** "Medianeras" se descartó para el dominio (`medianeras.com.ar` está ocupado) y se compró `arqivo.com.ar`. La app sigue diciendo "Medianeras" hasta decidir. Gustos del usuario que salieron: nombres que hablan de cómo se mira y no de lo que se mira (como Letterboxd), lugares de paso de mediados de siglo (La Guardia, Pan Am), palabras cortas y duras, cosas que suenan a movimiento o antología (Chicago School, números de año) y una melancolía rioplatense (Cortázar, Sur). Propuestas con `.com.ar` libre al 20/10 según whois de NIC: Contrafrente (recomendada), Celosía (segunda), Pared ciega, Planta libre, Escuela del Sur, Usonia, Ochava 96. Ocupados: ochava, medianera, cota, cotacero, cenital, corte, bau, terrazo, vidriera, pulmon. El usuario vuelve con sus elegidas; el próximo paso es mostrarlas en la página de prueba con el logo y las tipografías, en claro y oscuro. No comprar otro dominio antes.
@@ -268,3 +279,18 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Edificios nuevos, primera tanda:** fotos agrupadas por fecha y hora, reconocidas en hojas de miniaturas y confirmadas por el usuario. Cargadas 6 obras de Nueva York con datos verificados en Wikipedia (materiales de Trinity y del Oculus en HDC y Architectural Record); estilos nuevos: Historicismo (Neogótico, Neorrenacimiento francés), Art déco y Arquitectura contemporánea. Fotos a 1600 px, derechas y sin metadatos. Verificado con capturas (inicio, obras, ficha en oscuro). Sin commit.
 - **Atlanta (G7):** con una captura de Street View del usuario se identificaron Peachtree Summit (Toombs, Amisano and Wells, 1974–1975, datos de Wikipedia) y 30 Allen Plaza, sede de Southern Company (datos de Emporis). Coordenadas de OpenStreetMap. Fotos: 6 y 2, preparadas con `preparar.swift` (ImageIO: endereza, 1600 px, sin metadatos; quedó en el scratchpad). Verificado con capturas de las dos fichas. Sin commit.
 - **Tarde:** 30 Allen Plaza con década 2000 (campo `decada` nuevo), Oculus y Vessel pasan a Neofuturismo, y Ford Foundation cargada (Wikipedia: Roche y Dinkeloo, 1964–1967, moderno tardío; 7 fotos). Verificado con capturas (ficha de Ford y de Allen Plaza, `#/decada/2000`, `#/estilo/neofuturismo`). `sw.js` en `v38`. Sin commit.
+
+### 25 de octubre de 2026
+
+- Commit y push de lo pendiente (obras de Nueva York y Atlanta, estilos, descripciones, hover amarillo). Se había colado `www/js/.DS_Store`: sacado del repo y `.DS_Store` sumado a `.gitignore`.
+- **Tapas:** en el iPhone las fotos verticales quedaban sin borde abajo (Safari no resuelve el 100 % de alto dentro de un `aspect-ratio`). Ahora la imagen va en posición absoluta con `inset: var(--borde)`; las variantes cambian `--borde` en vez de `padding`. Verificado en Chrome con una página temporal; el usuario lo vio bien en el iPhone.
+- **Alwyn Court:** primera foto la del edificio entero, recortada un 13 % arriba (PIL; `sips -c` con `--cropOffset` no recorta bien).
+- **Color de los marcos:** el usuario preguntó el criterio (sale del estilo, 4 colores para 6 familias). Se le propuso por época; prefirió dejarlo como está y balancear con más estilos.
+- **Símbolos** (todos comparados con su foto en `herramientas/prueba/`, claro y oscuro; `comparar.js` ahora muestra también programas):
+  - M+ (2020s Mundo): torre gris azulada con toques de terracota, casi del ancho del basamento, 15 franjas; basamento negro de 4 líneas. El "garden algo" del usuario era probablemente el jardín de la terraza del M+.
+  - Templo: gopuram del Meenakshi de Madurai (nueve pisos de figuras de colores, bóveda y remates).
+  - Hotel: Hôtel de l'Indépendance de Dakar (celdas en punta, franja de ladrillo, cornisa almenada).
+  - Brutalismo: primero se hizo con fotos de la Tribeca Synagogue sin carpeta (el usuario lo corrigió: solo símbolos con carpeta de referencias); rehecho con La Pyramide de Abiyán.
+  - Moderno tardío: Auditorio de Tenerife (Calatrava), rebanadas horizontales calculadas con curvas sobre la foto desde el mar, con placa de cielo (de noche en oscuro). Corrección del usuario: el medio son dos velas que suben hacia la derecha, no una cúpula. Aviso dado: suele clasificarse cerca del neofuturismo.
+- Racionalismo, cuando haya obras, va bajo Moderno y hereda la Villa Savoye.
+- **Ejemplos borrados:** 3 obras, 3 visitas, la lista, "Racionalismo (ejemplo)", "Brutalismo (ejemplo)", "Art déco (ejemplo)" y sus imágenes; README actualizado. Verificado con capturas del inicio y de Listas. `sw.js` en `v43`.

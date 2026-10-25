@@ -43,6 +43,10 @@ const CON_FOTO = [
   ['mundo', '2000', ['St mary axe/790423.jpg']],
   ['mundo', '2010', ['CCTV/china.png']],
   ['mundo', '2020', ['m+/av_imagen.webp', 'm+/av_imagen_vertical.webp']],
+  ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
+  ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
+  ['programas', 'Hotel', ['hotel/72_big.jpg', 'hotel/images (14).jpeg']],
+  ['programas', 'Templo', ['religioso/images (9).jpeg', 'religioso/images (10).jpeg']],
 ];
 // ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
 const solo = new URLSearchParams(location.search).get('solo');
@@ -58,7 +62,7 @@ function panel(tema, partitura, decada, coleccion) {
   return h('div', { className: 'muestra', dataset: { tema } },
     simbolo(partitura, { ancho: 390, alto: 132 }),
     h('h3', { textContent: partitura.obra ?? decada }),
-    h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
+    h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : coleccion === 'programas' ? 'PROGRAMA' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
     tema === 'claro' && h('p', { className: 'nota', textContent: partitura.nota }));
 }
 
@@ -75,7 +79,7 @@ function cargaPanel(tema, version) {
 document.getElementById('filas').replaceChildren(...[
   !solo && h('div', { className: 'fila' }, foto(['skyline/depositphotos_58959203-stock-illustration-buenos-aires.jpg']), cargaPanel('claro', 'A'), cargaPanel('oscuro', 'A')),
   ...elegidos.map(([coleccion, decada, archivos]) => {
-    const partitura = coleccion === 'estilos' ? simbolos.estilos[decada] : simbolos.decadas[coleccion][decada];
+    const partitura = simbolos[coleccion]?.[decada] ?? simbolos.decadas[coleccion][decada];
     return h('div', { className: 'fila' }, foto(archivos), panel('claro', partitura, decada, coleccion), panel('oscuro', partitura, decada, coleccion));
   }),
 ].filter(Boolean));

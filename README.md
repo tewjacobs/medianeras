@@ -4,8 +4,6 @@ Un Letterboxd de arquitectura: catálogo de obras + diario personal de visitas +
 
 Es una app web estática (HTML, CSS y JavaScript sin frameworks ni compilación), pensada para usarse desde el iPhone e instalarse en la pantalla de inicio. Funciona sin conexión para lo que ya se vio, y permite registrar visitas desde el teléfono.
 
-> Las 3 obras, las entradas del diario y la lista que vienen cargadas son **de ejemplo** (ficticias, marcadas con `"ejemplo": true` y la palabra EJEMPLO). Borralas cuando cargues las tuyas.
-
 ## Contenido
 
 - [Estructura](#estructura)
@@ -196,7 +194,7 @@ Cada arquitecto, estilo, material, lugar, década o año tiene su página, armad
   "estilos": {
     "Moderno": { "color": "petroleo", "descripcion": "…" },
     "Arquitectura orgánica": { "padre": "Moderno", "color": "follaje", "descripcion": "…" },
-    "Racionalismo (ejemplo)": { "padre": "Moderno" }
+    "Racionalismo": { "padre": "Moderno" }
   },
   "materiales": {}, "programas": {}, "paises": {}, "decadas": {}, "anios": {}
 }

@@ -1,31 +1,5 @@
 [
   {
-    "id": "2025-03-10-ejemplo-casa-belgrano",
-    "obra_id": "ejemplo-casa-belgrano",
-    "fecha": "2025-03-10",
-    "nota": "ENTRADA DE EJEMPLO. Acá va lo que viste, lo que te llamó la atención, cómo era la luz.\nPuede tener varios párrafos.",
-    "puntaje": 4,
-    "fotos": [
-      { "archivo": "img/diario/2025-03-10-ejemplo-casa-belgrano/1.svg", "pie": "Foto de ejemplo" }
-    ]
-  },
-  {
-    "id": "2025-08-02-ejemplo-edificio-olivos",
-    "obra_id": "ejemplo-edificio-olivos",
-    "fecha": "2025-08-02",
-    "nota": "ENTRADA DE EJEMPLO, sin puntaje y sin fotos.",
-    "puntaje": null,
-    "fotos": []
-  },
-  {
-    "id": "2026-01-15-ejemplo-casa-belgrano",
-    "obra_id": "ejemplo-casa-belgrano",
-    "fecha": "2026-01-15",
-    "nota": "ENTRADA DE EJEMPLO. Segunda visita a la misma obra: una obra puede tener varias entradas.",
-    "puntaje": 5,
-    "fotos": []
-  },
-  {
     "id": "2026-07-11-flatiron-building",
     "obra_id": "flatiron-building",
     "fecha": "2026-07-11",

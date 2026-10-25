@@ -16,8 +16,6 @@
       "color": "petroleo",
       "descripcion": "Movimiento del siglo XX que dejó de lado el ornamento histórico y buscó la forma en la función, la estructura y los materiales nuevos: el hormigón armado, el acero y el vidrio."
     },
-    "Racionalismo (ejemplo)": { "padre": "Moderno" },
-    "Brutalismo (ejemplo)": { "padre": "Moderno" },
     "Brutalismo": {
       "padre": "Moderno",
       "descripcion": "Corriente de mediados del siglo XX, de los años 50 a los 70, que muestra los materiales tal como son, sobre todo el hormigón a la vista (el \"béton brut\" de Le Corbusier, de donde sale el nombre). Volúmenes pesados, macizos y repetidos, con la estructura y las instalaciones sin disimular."
@@ -39,7 +37,6 @@
       "padre": "Academicismo",
       "descripcion": "Arquitectura académica asociada a la École des Beaux-Arts de París: composición simétrica, órdenes clásicos y ornamento. Tuvo su auge entre fines del siglo XIX y comienzos del XX."
     },
-    "Art déco (ejemplo)": { "color": "cielo" },
     "Art déco": {
       "color": "cielo",
       "descripcion": "Estilo de los años 20 y 30 que llegó a la arquitectura desde las artes decorativas. Geometría escalonada, zigzags, rayos de sol y remates que suben en escalones; mezcla el ornamento con la idea de modernidad, la velocidad y la máquina. Dejó muchos de los rascacielos de Nueva York y muchos edificios de Buenos Aires."

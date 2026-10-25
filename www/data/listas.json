@@ -1,8 +1,2 @@
 [
-  {
-    "id": "ejemplo-lista",
-    "titulo": "EJEMPLO — Lista de prueba",
-    "descripcion": "Lista de ejemplo con las tres obras ficticias. El orden de las obras es el de este archivo.",
-    "obras": ["ejemplo-edificio-olivos", "ejemplo-casa-belgrano", "ejemplo-pabellon-montevideo"]
-  }
 ]
