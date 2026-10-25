@@ -1353,5 +1353,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   a, a *, button, summary { transition: color 0.12s, box-shadow 0.12s; }
   a:hover, a:hover :not(.tapa, .tapa *), button:not(.boton):hover, summary:hover, summary:hover * { color: var(--realce); }
   /* Las tapas suman un marco por dentro en el color opuesto al suyo (el amarillito del Flatiron da azul). */
+  /* Sobre el rojo, el ámbar oscuro se pierde: va el amarillo claro, el mismo que "jagten" en la franja. */
+  .boton-primario:hover, :is(a, button).boton-primario:hover *, .pestanas .pestana-destacada:hover .icono { color: #f3c96e; }
   a:hover .tapa { box-shadow: inset 0 0 0 4px rgb(from var(--marco) calc(255 - r) calc(255 - g) calc(255 - b)); }
 }

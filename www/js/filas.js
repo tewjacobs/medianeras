@@ -2,7 +2,7 @@
 // `obras(ctx)` puede ser async (las filas sociales, más adelante, traerán datos de un servidor).
 // Si devuelve una lista vacía, la fila no se muestra.
 
-import { anioReferencia, rutaPerfil, hoyISO, TIPOS_PERFIL } from './datos.js';
+import { rutaPerfil, hoyISO, TIPOS_PERFIL } from './datos.js';
 import { ordenar } from './filtros.js';
 import { estrellas } from './ui.js';
 
@@ -61,8 +61,8 @@ export const FILAS_INICIO = [
 export function decadasConObras(datos) {
   const porDecada = new Map();
   for (const obra of datos.obras) {
-    if (anioReferencia(obra) === null) continue;
     const [clave] = TIPOS_PERFIL.decada.valores(obra);
+    if (!clave) continue;
     porDecada.set(clave, [...(porDecada.get(clave) ?? []), obra]);
   }
   return [...porDecada].sort((a, b) => Number(b[0]) - Number(a[0]));

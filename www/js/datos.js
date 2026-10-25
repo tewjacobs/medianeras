@@ -96,8 +96,9 @@ export function anioReferencia(obra) {
   return Number.isFinite(anio) ? anio : null;
 }
 
+// Sin años, sirve el campo optativo `decada` (por ejemplo 2000).
 export function decadaClave(obra) {
-  const anio = anioReferencia(obra);
+  const anio = anioReferencia(obra) ?? (Number.isFinite(obra.decada) ? obra.decada : null);
   return anio === null ? SIN_DATO : String(Math.floor(anio / 10) * 10);
 }
 
@@ -159,7 +160,7 @@ export const TIPOS_PERFIL = {
   provincia: { indice: 'provincias', seccion: 'provincias', singular: 'Provincia / estado', plural: 'Provincias', valores: (o) => lugar(o, 'provincia') },
   ciudad: { indice: 'ciudades', seccion: 'ciudades', singular: 'Partido / ciudad', plural: 'Ciudades', valores: (o) => lugar(o, 'ciudad') },
   barrio: { indice: 'barrios', seccion: 'barrios', singular: 'Barrio / localidad', plural: 'Barrios', valores: (o) => lugar(o, 'barrio') },
-  decada: { indice: 'decadas', seccion: 'decadas', singular: 'Década', plural: 'Décadas', valores: (o) => (anioReferencia(o) === null ? [] : [decadaClave(o)]) },
+  decada: { indice: 'decadas', seccion: 'decadas', singular: 'Década', plural: 'Décadas', valores: (o) => (decadaClave(o) === SIN_DATO ? [] : [decadaClave(o)]) },
   anio: { indice: 'anios', seccion: 'anios', singular: 'Año', plural: 'Años', valores: (o) => [o.anio_proyecto, o.anio_finalizacion].filter(Number.isFinite).map(String).filter((v, i, a) => a.indexOf(v) === i) },
 };
 

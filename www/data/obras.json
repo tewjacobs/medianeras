@@ -122,7 +122,7 @@
       "lng": -73.9897
     },
     "resumen": "El edificio triangular de D. H. Burnham & Company en la esquina de la Quinta Avenida y Broadway, uno de los primeros rascacielos de Nueva York.",
-    "descripcion": "",
+    "descripcion": "Lo levantó la Fuller Company como su sede y se llamó primero Fuller Building, pero desde el principio todos le dijeron Flatiron, \"la plancha\", por su forma. El terreno es un triángulo porque Broadway corta en diagonal la grilla de Manhattan justo donde se cruza con la Quinta Avenida, en la calle 22.\n\nLas obras empezaron en mayo de 1901 y el edificio abrió el 1 de octubre de 1902. Tenía 20 pisos sobre un esqueleto de acero calculado para aguantar mucho más viento que lo común; en 1905 se le sumó un piso más arriba. La fachada se arma como una columna clásica: una base de piedra caliza de tres pisos, un fuste de terracota con ornamento y un remate.\n\nEs monumento de la ciudad desde 1966 y monumento histórico nacional desde 1989. Después de que se fue su último inquilino de oficinas, en 2019, empezó una renovación; en 2023 se anunció que se convierte en departamentos.",
     "fotos": [
       {
         "archivo": "img/obras/flatiron-building/flatiron-01.jpg",
@@ -204,6 +204,591 @@
       },
       {
         "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "trinity-church",
+    "agregada": "2026-10-24",
+    "nombre": "Trinity Church",
+    "otros_nombres": [],
+    "arquitectos": ["Richard Upjohn"],
+    "anio_proyecto": 1839,
+    "anio_finalizacion": 1846,
+    "estilo": "Neogótico",
+    "materiales": ["Piedra arenisca"],
+    "programa": "Templo",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Financial District",
+      "direccion": "89 Broadway",
+      "lat": 40.7081,
+      "lng": -74.0122
+    },
+    "resumen": "La iglesia episcopal de Richard Upjohn frente a Wall Street, terminada en 1846 en piedra arenisca rojiza, con su cementerio alrededor.",
+    "descripcion": "Es la tercera iglesia de la parroquia en este lugar, frente a la punta de Wall Street. La primera, de 1698, se quemó en el gran incendio de 1776; la segunda, de 1790, quedó dañada por la nieve en el invierno de 1838–1839 y se demolió.\n\nRichard Upjohn la proyectó en estilo neogótico y se consagró el 1 de mayo de 1846. Con su aguja de 86 metros fue el edificio más alto de Estados Unidos hasta 1869 y de Nueva York hasta 1890, cuando los primeros rascacielos la pasaron.\n\nEn el cementerio de alrededor están enterrados, entre otros, Alexander Hamilton, su esposa Elizabeth y Robert Fulton. Es monumento de la ciudad desde 1966 y monumento histórico nacional desde 1976. Entre 2018 y 2024 se restauró el interior.",
+    "fotos": [
+      {
+        "archivo": "img/obras/trinity-church/trinity-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/trinity-church/trinity-07.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "st-nicholas-greek-orthodox-church",
+    "agregada": "2026-10-24",
+    "nombre": "St. Nicholas Greek Orthodox Church",
+    "otros_nombres": ["Iglesia ortodoxa griega de San Nicolás", "St. Nicholas National Shrine"],
+    "arquitectos": ["Santiago Calatrava"],
+    "anio_proyecto": 2014,
+    "anio_finalizacion": 2022,
+    "estilo": "Arquitectura contemporánea",
+    "materiales": ["Acero", "Hormigón", "Mármol"],
+    "programa": "Templo",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Financial District",
+      "direccion": "130 Liberty Street",
+      "lat": 40.7103,
+      "lng": -74.0139
+    },
+    "resumen": "La iglesia ortodoxa griega de Santiago Calatrava en el World Trade Center, de influencia bizantina y revestida en mármol pentélico.",
+    "descripcion": "La parroquia la fundaron en 1916 inmigrantes griegos, en una vieja taberna de tres pisos de la calle Cedar. El 11 de septiembre de 2001 la caída de la Torre Sur la destruyó: fue el único templo que se perdió en los atentados.\n\nLa nueva iglesia, de Santiago Calatrava, está en Liberty Park, mirando al memorial. Es una planta circular con una cúpula y cuatro torres, inspirada en Santa Sofía y en la iglesia de San Salvador en Chora, de Estambul. Las paredes son de placas finas de mármol pentélico, el de la Acrópolis, que de noche se iluminan.\n\nLa piedra fundamental se puso en 2014. La obra se frenó en 2017 por falta de pagos y se retomó en 2020. Abrió en parte el 11 de septiembre de 2021, se consagró en julio de 2022 y empezó a funcionar del todo en diciembre de ese año.",
+    "fotos": [
+      {
+        "archivo": "img/obras/st-nicholas-greek-orthodox-church/san-nicolas-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-nicholas-greek-orthodox-church/san-nicolas-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-nicholas-greek-orthodox-church/san-nicolas-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "oculus",
+    "agregada": "2026-10-24",
+    "nombre": "Oculus",
+    "otros_nombres": ["World Trade Center Transportation Hub"],
+    "arquitectos": ["Santiago Calatrava"],
+    "anio_proyecto": 2004,
+    "anio_finalizacion": 2016,
+    "estilo": "Neofuturismo",
+    "materiales": ["Acero", "Mármol"],
+    "programa": "Estación de transporte",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Financial District",
+      "direccion": "70 Vesey Street",
+      "lat": 40.7115,
+      "lng": -74.0114
+    },
+    "resumen": "La estación del World Trade Center de Santiago Calatrava: costillas de acero blancas que se abren sobre un gran hall de mármol blanco, con una claraboya de unos 100 metros.",
+    "descripcion": "Es la estación de tren del World Trade Center, la que reemplazó a la que se perdió el 11 de septiembre. Calatrava la presentó en 2004 como \"un pájaro que se suelta de las manos de un chico\": dos alas de costillas de acero blanco que se abren sobre el hall.\n\nTerminó costando unos 4000 millones de dólares, casi el doble de lo previsto, y abrió con casi diez años de atraso, en marzo de 2016. El acero se hizo a medida en Italia. Se había pensado que el techo se abriera cada 11 de septiembre, pero ese mecanismo se descartó por costo.\n\nAdentro, el hall de mármol blanco funciona como un gran paso que une el tren PATH a Nueva Jersey con varias líneas de subte y con un shopping. Es la estación más usada del PATH.",
+    "fotos": [
+      {
+        "archivo": "img/obras/oculus/oculus-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/oculus/oculus-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/oculus/oculus-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/oculus/oculus-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/oculus/oculus-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/oculus/oculus-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "vessel",
+    "agregada": "2026-10-24",
+    "nombre": "Vessel",
+    "otros_nombres": [],
+    "arquitectos": ["Heatherwick Studio"],
+    "anio_proyecto": 2016,
+    "anio_finalizacion": 2019,
+    "estilo": "Neofuturismo",
+    "materiales": ["Acero", "Cobre"],
+    "programa": "Mirador",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Hudson Yards",
+      "direccion": "Hudson Yards Public Square",
+      "lat": 40.7538,
+      "lng": -74.0022
+    },
+    "resumen": "La estructura de Thomas Heatherwick en Hudson Yards: 46 metros de escaleras de acero revestidas en cobre que se cruzan como un panal abierto.",
+    "descripcion": "Es una escultura que se camina: 154 tramos de escalera, unos 2500 escalones y 80 descansos que se cruzan como un panal y suben 16 pisos, hasta los 46 metros. La diseñó el estudio de Thomas Heatherwick para la plaza de Hudson Yards.\n\nLas piezas de acero se fabricaron en Monfalcone, Italia, y llegaron en barco por el río Hudson. Abrió el 15 de marzo de 2019.\n\nDespués de varios suicidios se cerró en 2021. Reabrió en octubre de 2024 con barandas de seguridad más altas, con el último nivel todavía cerrado.",
+    "fotos": [
+      {
+        "archivo": "img/obras/vessel/vessel-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/vessel/vessel-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/vessel/vessel-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "alwyn-court",
+    "agregada": "2026-10-24",
+    "nombre": "Alwyn Court",
+    "otros_nombres": [],
+    "arquitectos": ["Harde & Short"],
+    "anio_proyecto": 1907,
+    "anio_finalizacion": 1909,
+    "estilo": "Neorrenacimiento francés",
+    "materiales": ["Terracota", "Ladrillo"],
+    "programa": "Vivienda colectiva",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Midtown",
+      "direccion": "180 West 58th Street",
+      "lat": 40.7658,
+      "lng": -73.9794
+    },
+    "resumen": "Edificio de departamentos de Harde & Short en la esquina de la Séptima Avenida y la calle 58, cubierto de ornamento de terracota en estilo renacimiento francés.",
+    "descripcion": "Lo desarrolló una cooperativa fundada por el artista Walter Russell junto a Alwyn Ball Jr., que le dio el nombre. Harde & Short lo construyeron entre 1907 y 1909: doce pisos y un ático en la esquina de la Séptima Avenida y la calle 58.\n\nToda la fachada está cubierta de terracota en el estilo de Francisco I de Francia, con salamandras coronadas (su emblema), flores de lis y medallones. Casi no queda un pedazo de pared liso.\n\nAl principio tenía unos 22 departamentos enormes, dos por piso, de unas 14 habitaciones. En 1938 un banco reformó el interior y los dividió en 75 unidades más chicas. El patio interior tiene un mural de Richard Haas que imita el ornamento de la fachada. Es monumento de la ciudad desde 1966.",
+    "fotos": [
+      {
+        "archivo": "img/obras/alwyn-court/alwyn-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/alwyn-court/alwyn-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/alwyn-court/alwyn-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "el-dorado",
+    "agregada": "2026-10-24",
+    "nombre": "The El Dorado",
+    "otros_nombres": ["El Dorado"],
+    "arquitectos": ["Margon & Holder", "Emery Roth"],
+    "anio_proyecto": 1929,
+    "anio_finalizacion": 1931,
+    "estilo": "Art déco",
+    "materiales": ["Acero", "Ladrillo", "Piedra artificial"],
+    "programa": "Vivienda colectiva",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Upper West Side",
+      "direccion": "300 Central Park West",
+      "lat": 40.7883,
+      "lng": -73.9675
+    },
+    "resumen": "Torres gemelas de departamentos sobre Central Park West, de Margon & Holder con Emery Roth: art déco, con la base de piedra artificial y el resto de ladrillo.",
+    "descripcion": "En el terreno había un hotel de ocho pisos con el mismo nombre, de 1902. El desarrollador Louis Klosk lo reemplazó por este edificio, empezado en 1929: Emery Roth dibujó los primeros planos, más clásicos, y Margon & Holder lo terminaron con los detalles art déco.\n\nEs una base de 17 pisos sobre Central Park West de la que salen dos torres de 12 pisos, rematadas en agujas de metal. Abajo, la piedra artificial, los arcos de bronce de la entrada y los balcones angulosos.\n\nLa crisis de 1929 lo atrasó y Klosk lo perdió en un remate en 1931. Desde 1982 es una cooperativa de propietarios y desde 1985, monumento de la ciudad, parte del distrito histórico de Central Park West.",
+    "fotos": [
+      {
+        "archivo": "img/obras/el-dorado/eldorado-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/el-dorado/eldorado-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/el-dorado/eldorado-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "peachtree-summit",
+    "agregada": "2026-10-24",
+    "nombre": "Peachtree Summit",
+    "otros_nombres": ["Federal Building"],
+    "arquitectos": ["Toombs, Amisano and Wells"],
+    "anio_proyecto": 1974,
+    "anio_finalizacion": 1975,
+    "estilo": null,
+    "materiales": [],
+    "programa": "Oficinas",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Georgia",
+      "ciudad": "Atlanta",
+      "barrio": "Downtown",
+      "direccion": "401 West Peachtree Street NW",
+      "lat": 33.7654,
+      "lng": -84.3871
+    },
+    "resumen": "Torre de oficinas de 30 pisos de Toombs, Amisano and Wells, de planta triangular por la forma del terreno, con las escaleras a la vista en las puntas. Se conecta directo con la estación Civic Center del subte.",
+    "descripcion": "Se construyó entre 1974 y 1975 en el centro de Atlanta, en la calle West Peachtree. La forma triangular sale del terreno, encerrado entre la autopista del centro, West Peachtree y el boulevard Ivan Allen Jr.\n\nTiene 30 pisos (sin piso 13) y 125 metros. Iba a ser el primero de tres edificios parecidos en la zona, pero fue el único que se hizo. El hall de entrada tiene tres pisos de alto porque a fines de los 70 la calle se levantó para construir el subte, y el edificio quedó conectado directo con la estación Civic Center.\n\nAloja oficinas del gobierno federal. En 2025 el gobierno lo puso en la lista de edificios para vender.",
+    "fotos": [
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/peachtree-summit/peachtree-summit-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "30-allen-plaza",
+    "agregada": "2026-10-24",
+    "nombre": "30 Allen Plaza",
+    "otros_nombres": ["Southern Company Center"],
+    "arquitectos": ["MSTSD"],
+    "anio_proyecto": null,
+    "anio_finalizacion": null,
+    "decada": 2000,
+    "estilo": "Posmodernismo",
+    "materiales": ["Granito", "Vidrio"],
+    "programa": "Oficinas",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Georgia",
+      "ciudad": "Atlanta",
+      "barrio": "Downtown",
+      "direccion": "30 Ivan Allen Jr. Boulevard NW",
+      "lat": 33.7642,
+      "lng": -84.3883
+    },
+    "resumen": "Sede de Southern Company en Allen Plaza, edificio de oficinas de 14 pisos con fachada de granito y grandes ventanales en arco. Ocupado desde 2006.",
+    "descripcion": "Edificio de oficinas de 14 pisos en Allen Plaza, en el centro de Atlanta, proyectado por el estudio MSTSD. Su ocupante principal es Southern Company, una de las grandes empresas de energía del sur de Estados Unidos, que se mudó en abril de 2006.\n\nEs posmoderno: volúmenes de granito con grandes ventanales en arco, una forma de citar la arquitectura clásica con materiales y proporciones de una torre de oficinas.",
+    "fotos": [
+      {
+        "archivo": "img/obras/30-allen-plaza/allen-plaza-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/30-allen-plaza/allen-plaza-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "ford-foundation",
+    "agregada": "2026-10-24",
+    "nombre": "Ford Foundation",
+    "otros_nombres": ["Ford Foundation Center for Social Justice", "Ford Foundation Building"],
+    "arquitectos": ["Kevin Roche", "John Dinkeloo"],
+    "anio_proyecto": 1964,
+    "anio_finalizacion": 1967,
+    "estilo": "Moderno tardío",
+    "materiales": ["Granito", "Acero corten", "Vidrio", "Hormigón"],
+    "programa": "Oficinas",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Midtown",
+      "direccion": "320 East 43rd Street",
+      "lat": 40.7497,
+      "lng": -73.9711
+    },
+    "resumen": "Sede de la Fundación Ford de Kevin Roche y John Dinkeloo: un cubo de vidrio y acero corten entre pilares de hormigón revestidos de granito, alrededor de un atrio jardín de doce pisos diseñado por Dan Kiley.",
+    "descripcion": "La Fundación Ford lo encargó en los años 60. Kevin Roche y John Dinkeloo, que habían seguido con el estudio de Eero Saarinen tras su muerte, presentaron el proyecto en 1964 y el edificio se inauguró en diciembre de 1967.\n\nLa idea central es un atrio jardín de doce pisos, diseñado por el paisajista Dan Kiley, abierto al público durante el día. Las oficinas dan al atrio en forma de L, así que cada empleado ve el jardín y, del otro lado, a sus compañeros. Por fuera: pilares de hormigón revestidos en granito de Dakota del Sur, acero corten que se oxida a propósito y unos 60.000 vidrios.\n\nEl exterior y el atrio son monumento de la ciudad desde 1997. Entre 2015 y 2018 lo renovó el estudio Gensler y pasó a llamarse Ford Foundation Center for Social Justice.",
+    "fotos": [
+      {
+        "archivo": "img/obras/ford-foundation/ford-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/ford-foundation/ford-07.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "tribeca-synagogue",
+    "agregada": "2026-10-24",
+    "nombre": "Tribeca Synagogue",
+    "otros_nombres": ["Synagogue for the Arts", "Civic Center Synagogue"],
+    "arquitectos": ["William N. Breger"],
+    "anio_finalizacion": 1967,
+    "estilo": "Brutalismo",
+    "materiales": ["Hormigón"],
+    "programa": "Templo",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Tribeca",
+      "direccion": "49 White Street",
+      "lat": 40.71834,
+      "lng": -74.00423
+    },
+    "resumen": "Sinagoga de William N. Breger: una fachada curva de hormigón nervurado que se infla entre dos edificios viejos de la cuadra. Adentro, la sala con forma de llama y luz cenital se oye bien sin amplificación, que está prohibida en Shabat.",
+    "descripcion": "La congregación se fundó en 1938 y en 1957 construyó su primer edificio en la calle Duane. Tres años después la ciudad expropió ese terreno para un edificio federal, y a cambio le dio el lote de White Street.\n\nWilliam N. Breger terminó la nueva sinagoga en 1967. Desde la calle se ve solo una pared curva de hormigón nervurado, sin ventanas, que se infla entre dos edificios viejos. Adentro, la sala tiene forma de llama y se ilumina desde arriba.\n\nLa forma también resuelve el sonido: la sala se oye bien sin micrófonos, que en Shabat no se pueden usar. Fue la obra que Breger más defendió.",
+    "fotos": [
+      {
+        "archivo": "img/obras/tribeca-synagogue/tribeca-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/tribeca-synagogue/tribeca-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/tribeca-synagogue/tribeca-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "the-peregrine",
+    "agregada": "2026-10-24",
+    "nombre": "The Peregrine",
+    "otros_nombres": ["Peregrine Tower", "924 Second Avenue"],
+    "arquitectos": ["John Klausz"],
+    "anio_finalizacion": 1983,
+    "estilo": "Brutalismo",
+    "materiales": ["Ladrillo"],
+    "programa": "Vivienda colectiva",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Estados Unidos",
+      "provincia": "Nueva York",
+      "ciudad": "Nueva York",
+      "barrio": "Midtown",
+      "direccion": "303 East 49th Street",
+      "lat": 40.754206,
+      "lng": -73.968603
+    },
+    "resumen": "Edificio de departamentos de 24 pisos de John Klausz (Architects Design Group), en ladrillo marrón sobre una base baja de locales en la Segunda Avenida. Se lee como dos torres apenas distintas: una más alta y finita, con balcones redondeados apilados en la esquina desde el piso 10 u 11, y otra más baja y escalonada, rematada por un cilindro.",
+    "descripcion": "Se terminó en 1983 en la esquina de la calle 49 Este y la Segunda Avenida. Lo proyectó John Klausz, del estudio Architects Design Group, para Joseph Albani.\n\nSon 24 pisos de ladrillo marrón con apenas 20 departamentos. La torre se retira de la base baja de locales sobre la avenida y se arma como dos volúmenes apenas distintos: uno más alto y finito, y otro más bajo y escalonado, rematado por un cilindro. En la esquina sur, desde el piso 10 u 11, los balcones redondeados se apilan uno sobre otro; en la esquina noroeste son más chicos y rectos.",
+    "fotos": [
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/the-peregrine/peregrine-07.jpg",
         "autor": "tewjacobs",
         "licencia": "Todos los derechos reservados",
         "fuente": "Foto propia"

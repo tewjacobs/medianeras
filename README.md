@@ -166,6 +166,7 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `otros_nombres` | lista de nombres alternativos | no (`[]`) |
 | `arquitectos` | lista; se usan tal cual para el filtro, así que escribí cada nombre siempre igual | no |
 | `anio_proyecto`, `anio_finalizacion` | números o `null`. La década sale de la finalización (o del proyecto si no hay) | no |
+| `decada` | número (`2000`), solo para obras sin años: la década a la que pertenece | no |
 | `estilo`, `programa` | texto; el filtro agrupa por texto exacto | no |
 | `materiales` | lista | no |
 | `estado` | `existente`, `demolida` o `modificada` | sí |
@@ -180,6 +181,8 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `color` | fuerza el color del marco: `petroleo`, `follaje`, `cielo` o `mar` (si no, sale del estilo; ver Perfiles) | no |
 
 Los filtros (década, año, estilo, material, arquitecto, programa, estado, país → provincia → partido/ciudad → barrio) se arman solos con lo que haya en los datos: no hay que tocar código para sumar un país o un barrio nuevo.
+
+**Programas** (la función del edificio). Para que se agrupen, usá siempre estos nombres: Vivienda colectiva, Vivienda unifamiliar, Oficinas, Templo (iglesias, sinagogas, mezquitas), Cultural, Museo, Estación de transporte, Mirador, Deportivo (estadios, clubes), Educación (escuelas, universidades), Salud (hospitales), Comercio (galerías, shoppings, mercados), Hotel, Gobierno (parlamentos, municipios, tribunales), Industria (fábricas, silos), Infraestructura (puentes, torres de ventilación, tanques) y Monumento. Un programa aparece en la app recién cuando tiene alguna obra.
 
 ## Perfiles (`data/perfiles.json`)
 

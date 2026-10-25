@@ -18,17 +18,56 @@
     },
     "Racionalismo (ejemplo)": { "padre": "Moderno" },
     "Brutalismo (ejemplo)": { "padre": "Moderno" },
+    "Brutalismo": {
+      "padre": "Moderno",
+      "descripcion": "Corriente de mediados del siglo XX, de los años 50 a los 70, que muestra los materiales tal como son, sobre todo el hormigón a la vista (el \"béton brut\" de Le Corbusier, de donde sale el nombre). Volúmenes pesados, macizos y repetidos, con la estructura y las instalaciones sin disimular."
+    },
+    "Moderno tardío": {
+      "padre": "Moderno",
+      "descripcion": "La arquitectura moderna de los años 60 y 70, cuando la caja de vidrio simple se vuelve más expresiva: estructuras a la vista, formas esculpidas, atrios y materiales nuevos como el acero corten, sin dejar de lado los principios del movimiento moderno."
+    },
     "Arquitectura orgánica": {
       "padre": "Moderno",
       "color": "follaje",
       "descripcion": "Corriente que busca la armonía entre el edificio, su función y su entorno natural. El término lo difundió Frank Lloyd Wright."
     },
-    "Academicismo": { "color": "mar" },
+    "Academicismo": {
+      "color": "mar",
+      "descripcion": "Arquitectura enseñada en las academias de bellas artes, sobre todo en París, durante el siglo XIX y comienzos del XX: composición simétrica, ejes ordenados y el repertorio clásico de columnas, frontones y molduras."
+    },
     "Beaux-Arts": {
       "padre": "Academicismo",
       "descripcion": "Arquitectura académica asociada a la École des Beaux-Arts de París: composición simétrica, órdenes clásicos y ornamento. Tuvo su auge entre fines del siglo XIX y comienzos del XX."
     },
-    "Art déco (ejemplo)": { "color": "cielo" }
+    "Art déco (ejemplo)": { "color": "cielo" },
+    "Art déco": {
+      "color": "cielo",
+      "descripcion": "Estilo de los años 20 y 30 que llegó a la arquitectura desde las artes decorativas. Geometría escalonada, zigzags, rayos de sol y remates que suben en escalones; mezcla el ornamento con la idea de modernidad, la velocidad y la máquina. Dejó muchos de los rascacielos de Nueva York y muchos edificios de Buenos Aires."
+    },
+    "Historicismo": {
+      "color": "mar",
+      "descripcion": "Arquitectura del siglo XIX y comienzos del XX que vuelve a los estilos del pasado (gótico, renacimiento, barroco) y los aplica a edificios y técnicas nuevas. Cada estilo se elegía por lo que evocaba: el gótico para iglesias, el renacimiento para bancos y palacios."
+    },
+    "Neogótico": {
+      "padre": "Historicismo",
+      "descripcion": "Recuperación del gótico medieval que empezó en Inglaterra en el siglo XVIII y se difundió en el XIX: arcos en punta, agujas, vitrales y contrafuertes. Fue el estilo preferido para iglesias y universidades."
+    },
+    "Neorrenacimiento francés": {
+      "padre": "Historicismo",
+      "descripcion": "Revival del renacimiento francés del siglo XVI, el de los castillos del Loira y de Francisco I: techos de pizarra empinados, buhardillas, torrecillas y ornamento tallado. A fines del siglo XIX y comienzos del XX se usó en mansiones, hoteles y edificios de departamentos."
+    },
+    "Arquitectura contemporánea": {
+      "color": "petroleo",
+      "descripcion": "La arquitectura de las últimas décadas, desde fines del siglo XX hasta hoy. No es un solo estilo sino muchos caminos a la vez, con formas que hoy permiten el cálculo por computadora, la tecnología de materiales y la preocupación por el ambiente."
+    },
+    "Neofuturismo": {
+      "padre": "Arquitectura contemporánea",
+      "descripcion": "Corriente contemporánea de formas curvas, fluidas o de estructura expresiva, que busca transmitir movimiento y tecnología. Retoma el entusiasmo del futurismo de principios del siglo XX y de la arquitectura de la era espacial con herramientas digitales."
+    },
+    "Posmodernismo": {
+      "color": "follaje",
+      "descripcion": "Reacción de los años 70 y 80 contra la sobriedad del movimiento moderno. Vuelve a usar referencias históricas (arcos, frontones, columnas), el color y la ironía, muchas veces de forma simplificada o exagerada. Robert Venturi lo resumió al responder a \"menos es más\" con \"menos es aburrido\"."
+    }
   },
   "materiales": {},
   "programas": {},

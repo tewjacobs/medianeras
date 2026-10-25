@@ -7,7 +7,7 @@ import { el, icono, flecha, creditoFoto, tarjetaEntrada, mensaje, tapaObra, chip
 import { abrirMapaObra } from './mapa.js';
 import { abrirNuevaVisita } from './nueva-visita.js';
 import { botonSugerirFoto } from '../contacto.js';
-import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, anioReferencia, colorMarco, formatoFecha } from '../datos.js';
+import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, SIN_DATO, colorMarco, formatoFecha } from '../datos.js';
 
 const RECIENTES = 3;
 
@@ -102,7 +102,7 @@ function panelDatos(datos, obra) {
   const filas = [
     ['Arquitectos', obra.arquitectos?.length && chipsPerfil('arquitecto', obra.arquitectos)],
     [obra.anio_proyecto && obra.anio_finalizacion && anios.length > 1 ? 'Proyecto · fin' : 'Año', anios.length && chipsPerfil('anio', anios)],
-    ['Década', anioReferencia(obra) !== null && chipsPerfil('decada', [decadaClave(obra)])],
+    ['Década', decadaClave(obra) !== SIN_DATO && chipsPerfil('decada', [decadaClave(obra)])],
     ['Estilo', obra.estilo && chipsPerfil('estilo', [...ancestrosEstilo(datos, obra.estilo).reverse(), obra.estilo])],
     ['Materiales', obra.materiales?.length && chipsPerfil('material', obra.materiales)],
     ['Programa', obra.programa && chipsPerfil('programa', [obra.programa])],

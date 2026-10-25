@@ -8,6 +8,24 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**24 de octubre de 2026, tarde.** Subido en `fe3703b` (`v37`). **Sin subir (`v38`):** 7 obras nuevas de Nueva York (Trinity Church, St. Nicholas, Oculus, Vessel, Alwyn Court, The El Dorado, Ford Foundation) y 2 de Atlanta (Peachtree Summit, 30 Allen Plaza), con sus fotos en `www/img/obras/`; estilos nuevos en `perfiles.json` (Posmodernismo, Neofuturismo bajo Arquitectura contemporánea para Oculus y Vessel, Moderno tardío bajo Moderno); campo optativo `decada` para obras sin años (en `datos.js`, `filas.js`, `vistas/obra.js` y README). El usuario aprobó los resúmenes de Nueva York.
+
+**Atlanta, datos a completar:** Peachtree Summit va sin estilo ni materiales (Wikipedia no los da; a la vista, hormigón y vidrio con escaleras afuera). 30 Allen Plaza: arquitecto MSTSD, 14 pisos, posmoderno, granito y vidrio salen solo de Emporis (cerrado); sin año (comunicado de Southern Company: ocupado en abril de 2006); el usuario eligió dejarlo con `"decada": 2000`. El link de skydb "Southern Company Building" es otro edificio (270 Peachtree, 1961).
+
+**24/10, noche (`v40`, sin subir; el + de los botones rojos y el VISITA de la barra también se ponen amarillos):** Tribeca Synagogue cargada (William N. Breger, terminada en 1967, según Wikipedia y tribecacitizen; hormigón nervurado según thisispaper; "Moderno tardío" lo elegí yo, Wikipedia dice solo "Modernist"; programa nuevo "Sinagoga"). Fotos enderezadas y sin metadatos con un script Swift de ImageIO (`CGImageSourceCreateThumbnailAtIndex` con `WithTransform`). Botones rojos (`boton-primario`): al pasar el mouse, texto en `#f3c96e`, el amarillo de "jagten" en la franja.
+
+Después: The Peregrine (303 East 49th Street; John Klausz, Architects Design Group, 1983; 24 pisos, dato del usuario y CityRealty; Brutalismo según SkyDB): una sola obra con fotos de sus dos torres (5399–5410). Estilo nuevo "Brutalismo" (padre Moderno); la Tribeca Synagogue pasa a Brutalismo (pedido del usuario: brutalista a la vista). Programa "Templo" para iglesias y sinagogas; lista de programas en el README. Descripciones nuevas para todas las obras reales y para los estilos en uso (datos de Wikipedia en inglés, CityRealty y SkyDB). Los arquitectos siguen sin descripción (el usuario dijo que por ahora no).
+
+**Próxima sesión:**
+1. Símbolos de programas: el usuario dejó referencias en `referencias/simbolos/` (religioso, deportes, hotel, fabrica, hospital, estudios:academico, mercado:shopping, infraestructura, politico:parliaments, residencial). Gasta bastante: de a pocos. También falta el símbolo propio de Brutalismo (hoy hereda el de Moderno).
+2. Congreso de Brasil (década de 1960, Mundo): rehacer el símbolo con las fotos de `referencias/simbolos/brasilia/` (el usuario lo dejó para después).
+3. Símbolo de los 2020: el usuario recuerda un edificio "garden algo"; en Mundo es el M+ y en Argentina no hay. No aparece "garden" en el repo ni en las sesiones anteriores.
+4. Probar con el mouse el hover amarillo de "Registrar visita" (claro y oscuro).
+3. Commit y push cuando lo pida; el usuario aprobó todo lo cargado (El Dorado queda 1929–1931, confirmado por el usuario).
+4. Más adelante: G0 y G5 (Inglaterra), G1 (torre de ventilación de Liverpool, confirmada), G3 (Catedral de Manchester, confirmada) y las casas de Buenos Aires (G19–G30, sin nombre: son casas de barrio).
+
+**Fotos sueltas en `~/medianeras-originales/`:** unas 210, sin ubicación en los metadatos. Los grupos G0–G30 salen de ordenarlas por hora (cortes de 25 min). Los scripts para agruparlas y enderezarlas (Swift con ImageIO, aplica la rotación del iPhone) estaban en el scratchpad de la sesión y no quedaron guardados: se rehacen en minutos. Descartadas: G2, G4 y G15 (no son obras), y 6629, 6661 y 6662 (puente y castillo Belvedere del Central Park).
+
 **24 de octubre de 2026.** Todo subido (`v37`): pie de borde a borde, hover ámbar, tapas con marco invertido al pasar el mouse y "todas las obras" más alto con los símbolos de las obras. La cabecera y el pie quedan en la A (vidrio oscuro): al usuario le gustó cómo quedó.
 
 **Próxima sesión:**
@@ -247,3 +265,6 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - Al pasar el mouse, todo lo que se toca se pone ámbar (`--realce`, más oscuro en claro), como el celeste de Letterboxd. Las tapas suman un marco por dentro del color invertido al de su marco (`rgb(from …)`). Solo con mouse (`hover: hover`).
 - "todas las obras": sin las lanzas de arriba, más alto (132 px) y con los símbolos de las obras en chiquito (debajo del título en el celular, al costado desde 900 px). Si varias obras comparten dibujo, va una sola vez. El símbolo neutro casi no se ve, pero el usuario prefirió dejarlo.
 - Verificado con capturas en claro, oscuro y a 1600 px; el hover no se puede capturar, lo probó el usuario. Commit y push (`v37`).
+- **Edificios nuevos, primera tanda:** fotos agrupadas por fecha y hora, reconocidas en hojas de miniaturas y confirmadas por el usuario. Cargadas 6 obras de Nueva York con datos verificados en Wikipedia (materiales de Trinity y del Oculus en HDC y Architectural Record); estilos nuevos: Historicismo (Neogótico, Neorrenacimiento francés), Art déco y Arquitectura contemporánea. Fotos a 1600 px, derechas y sin metadatos. Verificado con capturas (inicio, obras, ficha en oscuro). Sin commit.
+- **Atlanta (G7):** con una captura de Street View del usuario se identificaron Peachtree Summit (Toombs, Amisano and Wells, 1974–1975, datos de Wikipedia) y 30 Allen Plaza, sede de Southern Company (datos de Emporis). Coordenadas de OpenStreetMap. Fotos: 6 y 2, preparadas con `preparar.swift` (ImageIO: endereza, 1600 px, sin metadatos; quedó en el scratchpad). Verificado con capturas de las dos fichas. Sin commit.
+- **Tarde:** 30 Allen Plaza con década 2000 (campo `decada` nuevo), Oculus y Vessel pasan a Neofuturismo, y Ford Foundation cargada (Wikipedia: Roche y Dinkeloo, 1964–1967, moderno tardío; 7 fotos). Verificado con capturas (ficha de Ford y de Allen Plaza, `#/decada/2000`, `#/estilo/neofuturismo`). `sw.js` en `v38`. Sin commit.
