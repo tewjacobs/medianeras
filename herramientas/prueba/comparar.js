@@ -42,6 +42,7 @@ const CON_FOTO = [
   ['mundo', '1990', ['bilbao guggenhiem/guggen.jpg']],
   ['mundo', '2000', ['St mary axe/790423.jpg']],
   ['mundo', '2010', ['CCTV/china.png']],
+  ['mundo', '2020', ['m+/av_imagen.webp', 'm+/av_imagen_vertical.webp']],
 ];
 // ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
 const solo = new URLSearchParams(location.search).get('solo');
