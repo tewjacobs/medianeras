@@ -8,6 +8,15 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**26 de octubre de 2026, cierre.** Todo subido (`v44`). En la sesión: Congreso de Brasil rehecho (1960s Mundo); símbolos nuevos de Salud (Royal Infirmary de Glasgow) y Vivienda unifamiliar (casa victoriana azul de San Francisco, reemplaza a la casita de dibujo). Nueva regla del usuario: los símbolos tienen que ser globales, no todo occidental.
+
+**Próxima sesión:**
+1. Más símbolos de programas con carpeta en `referencias/simbolos/`: deportes (Deportivo), fabrica (Industria), estudios:academico (Educación), mercado:shopping (Comercio), infraestructura, politico:parliaments (Gobierno). Proponer referencias de fuera de Europa y EE. UU. si las carpetas lo permiten.
+2. Instagram y dominio (ver Pendientes).
+3. Probar con el mouse el hover amarillo de "Registrar visita" (claro y oscuro).
+4. Más adelante: G0 y G5 (Inglaterra), G1 (torre de ventilación de Liverpool), G3 (Catedral de Manchester) y las casas de Buenos Aires (G19–G30).
+5. Para revisar: Salud parece más palacio que hospital (culpa del edificio, dijo el usuario); quizás cambiarlo. Vivienda unifamiliar: quizás pasar a una casa no occidental.
+
 **25 de octubre de 2026, cierre.** Todo subido (`v43`). En la sesión: publicado lo pendiente del 24/10; tapas con la foto centrada (arreglo para Safari: posición absoluta con `--borde`); Alwyn Court con la foto entera de tapa (recortada arriba); símbolos nuevos o rehechos: M+ (2020s Mundo), Templo, Hotel, Brutalismo (La Pyramide) y Moderno tardío (Auditorio de Tenerife); borrados todos los datos de ejemplo (obras, visitas, lista y perfiles; el cartel EJEMPLO queda en el código). Con eso no quedan obras argentinas: el inicio dice "1 país" y Listas está vacía.
 
 **Próxima sesión:**
@@ -294,3 +303,11 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
   - Moderno tardío: Auditorio de Tenerife (Calatrava), rebanadas horizontales calculadas con curvas sobre la foto desde el mar, con placa de cielo (de noche en oscuro). Corrección del usuario: el medio son dos velas que suben hacia la derecha, no una cúpula. Aviso dado: suele clasificarse cerca del neofuturismo.
 - Racionalismo, cuando haya obras, va bajo Moderno y hereda la Villa Savoye.
 - **Ejemplos borrados:** 3 obras, 3 visitas, la lista, "Racionalismo (ejemplo)", "Brutalismo (ejemplo)", "Art déco (ejemplo)" y sus imágenes; README actualizado. Verificado con capturas del inicio y de Listas. `sw.js` en `v43`.
+
+### 26 de octubre de 2026
+
+- **Congreso de Brasil (1960s Mundo)** rehecho sobre la foto frontal de `brasilia/`: torres altas con el puente vidriado, cúpula y cuenco redondeados (44 líneas de torre, grosor 0.8), edificio bajo vidriado con columnas, rampa, espejo de agua y pasto. Colores `br-*`.
+- **Salud** (carpeta `hospital/`): Royal Infirmary de Glasgow. La primera versión parecía oriental (cúpulas escalonadas y pabellón bajo); rehecha con torres redondas desde el piso, tambor con aberturas, cúpula de media naranja con punta, frente largo con cornisa oscura. Colores `gl-*`.
+- **Vivienda unifamiliar** (carpeta `residencial/`): pasó por tres versiones. La del reel era del hotel Coconut Lagoon (Kumarakom, Kerala), sin foto entera; después una casa de barrio del usuario (fotos HEIC, Chrome no las muestra: abrir la prueba en Safari); quedó una victoriana azul de San Francisco (`images.jpeg`): techo de atrás claro, triángulo intermedio que llega a los costados, torre cónica oscura; frisos rojos y blancos, saliente simétrica de tres ventanas, puerta de dos hojas. Colores `vi-*`. En la carpeta siguen también las fotos de antes.
+- Generadores de las partituras: scripts de Python en el scratchpad (miden sobre la foto y escriben las líneas); no se guardaron, se rehacen rápido.
+- `comparar.js` suma Brasilia, Salud y Vivienda unifamiliar. `sw.js` en `v44`.

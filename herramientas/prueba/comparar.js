@@ -34,6 +34,7 @@ const CON_FOTO = [
   ['argentina', '2000', ['puente de la mujer/mujer.jpg']],
   ['argentina', '2010', ['Centro Cultural Kirschner/1081612757_0_0_3000_2000_600x0_80_0_0_5ac5d6b0bad27a749eb428dada033483.jpg', 'Centro Cultural Kirschner/U7SKV43T23MD3XO27QZNIY5YRQ.avif', 'Centro Cultural Kirschner/Buenos_Aires_Centrum_Kirchner.jpg']],
   ['mundo', '1950', ['seagram/seagramexrt.webp', 'seagram/Seagram-Bldg.jpg']],
+  ['mundo', '1960', ['brasilia/Brazilian_National_Congress.jpg', 'brasilia/NC103.jpeg']],
   ['mundo', '1970', ['pompidou/IMG_3603.jpeg', 'pompidou/av_19293.webp']],
   ['mundo', '1900', ['stoclet/stoclet.jpg']],
   ['mundo', '1910', ['la pedrera:casa mila/Casa_Milà,_general_view.jpg']],
@@ -46,6 +47,8 @@ const CON_FOTO = [
   ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
   ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
   ['programas', 'Hotel', ['hotel/72_big.jpg', 'hotel/images (14).jpeg']],
+  ['programas', 'Vivienda unifamiliar', ['residencial/images.jpeg', 'residencial/images (4).jpeg']],
+  ['programas', 'Salud', ['hospital/images (7).jpeg']],
   ['programas', 'Templo', ['religioso/images (9).jpeg', 'religioso/images (10).jpeg']],
 ];
 // ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
