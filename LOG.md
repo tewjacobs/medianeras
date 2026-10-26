@@ -8,7 +8,7 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**26 de octubre de 2026, segunda sesión (cierre).** Sin commit ni push: los cambios están en el disco (`sw.js` en `v45`; lo último subido es `v44`). En la sesión: símbolos nuevos de Infraestructura (puente japonés de Hoi An, Vietnam) y Deportivo (Monumental de River, visto desde arriba), los dos con fondo propio (`placa`); regla nueva de **misma superficie** para los íconos cuadrados (tapas sin foto, tira de "todas las obras" y lista "Por década"); página nueva `herramientas/prueba/equilibrio.html` para comparar tamaños y fondos de todos los íconos de obras.
+**26 de octubre de 2026, segunda sesión (cierre).** Todo subido en `98c080a` (`v45`). En la sesión: símbolos nuevos de Infraestructura (puente japonés de Hoi An, Vietnam) y Deportivo (Monumental de River, visto desde arriba), los dos con fondo propio (`placa`); regla nueva de **misma superficie** para los íconos cuadrados (tapas sin foto, tira de "todas las obras" y lista "Por década"); página nueva `herramientas/prueba/equilibrio.html` para comparar tamaños y fondos de todos los íconos de obras.
 
 **Próxima sesión:**
 1. **Fondos, uno por uno** (decisión del usuario: cada símbolo con un fondo que le quede bien; nada de cielo celeste para todos, porque se parecería a Moderno tardío/Tenerife). Propuesta aceptada para arrancar, de a cuatro y con un par de colores cada uno en la página de prueba: Brasilia (cielo seco rosado del planalto), Pirámide del Louvre (piedra clara del patio), St Mary Axe (gris azulado de la City), CCTV (neblina amarillenta de Pekín). Mirar en `equilibrio.html`.
