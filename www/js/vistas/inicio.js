@@ -52,7 +52,7 @@ function iconosObras(datos) {
     partituras.set(JSON.stringify(partitura), partitura);
   }
   return el('span', { class: 'todas-iconos', 'aria-hidden': 'true' }, [...partituras.values()].map((partitura) =>
-    simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, clase: 'todas-icono' })));
+    simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, superficie: 0.42, clase: 'todas-icono' })));
 }
 
 async function pintarFila(lugar, fila, ctx) {
@@ -90,7 +90,7 @@ function decadas(datos) {
       // del color de la década.
       el('summary', { style: `--familia: var(--${colorPerfil('decada', decada, obras)})` },
         el('span', { class: 'decada-simbolo' }, simbolo(partituraDe(datos, 'decada', decada) ?? simboloNeutro(colorPerfil('decada', decada, obras)),
-          { ancho: 64, alto: 44, margen: 3, fijo: true, sinFondo: true, clase: 'decada-mini' })),
+          { ancho: 64, alto: 44, margen: 3, fijo: true, sinFondo: true, superficie: 0.42, clase: 'decada-mini' })),
         el('span', { class: 'decada-nombre' }, `${decada}s`),
         el('span', { class: 'chip-dato decada-cantidad' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
       ),

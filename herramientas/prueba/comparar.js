@@ -50,6 +50,8 @@ const CON_FOTO = [
   ['programas', 'Vivienda unifamiliar', ['residencial/images.jpeg', 'residencial/images (4).jpeg']],
   ['programas', 'Salud', ['hospital/images (7).jpeg']],
   ['programas', 'Templo', ['religioso/images (9).jpeg', 'religioso/images (10).jpeg']],
+  ['programas', 'Infraestructura', ['infraestructura/images (15).jpeg', 'infraestructura/Rennovation-of-Japanese-covered-bridge.jpg']],
+  ['programas', 'Deportivo', ['deportes/https___s3.amazonaws.com_arc-wordpress-client-uploads_infobae-wp_wp-content_uploads_2019_02_08155342_Galeria-cenital-River-Plate.avif', 'deportes/images.jpeg']],
 ];
 // ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
 const solo = new URLSearchParams(location.search).get('solo');

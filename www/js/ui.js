@@ -140,7 +140,7 @@ function imagenTapa(foto, obra, grande) {
 function simboloTapa(obra) {
   const datos = datosActuales();
   const partitura = (datos && partituraObra(datos, obra)) ?? simboloNeutro(colorMarco(obra));
-  return simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, clase: 'tapa-grafica' });
+  return simbolo(partitura, { ancho: 100, alto: 100, margen: 8, fijo: true, superficie: 0.42, clase: 'tapa-grafica' });
 }
 
 // ---- Perfiles ----

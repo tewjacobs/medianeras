@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equilibrio de símbolos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    #controles p { margin: 10px 0 4px; font-size: 14px; }
+    .botones { display: flex; gap: 6px; flex-wrap: wrap; }
+    .botones .elegido { background: #1a1917 !important; color: #f7f3eb !important; }
+    .grilla { background: var(--papel); color: var(--tinta); margin-top: 14px; padding: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+    .grilla figure { margin: 0; }
+    .grilla svg { display: block; width: 100%; height: auto; outline: 1px solid var(--filete); }
+    .grilla figcaption { font-family: var(--mono); font-size: 10px; color: var(--tenue); margin-top: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Equilibrio de tamaños y fondos</h1>
+  <p>Cada cuadrado es como una tapa sin foto. Elegí un tamaño y un fondo; arriba en claro, abajo en oscuro.</p>
+  <div id="controles"></div>
+  <div id="grillas"></div>
+  <script type="module" src="equilibrio.js"></script>
+</body>
+</html>

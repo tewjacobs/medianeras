@@ -8,6 +8,20 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**26 de octubre de 2026, segunda sesión (cierre).** Sin commit ni push: los cambios están en el disco (`sw.js` en `v45`; lo último subido es `v44`). En la sesión: símbolos nuevos de Infraestructura (puente japonés de Hoi An, Vietnam) y Deportivo (Monumental de River, visto desde arriba), los dos con fondo propio (`placa`); regla nueva de **misma superficie** para los íconos cuadrados (tapas sin foto, tira de "todas las obras" y lista "Por década"); página nueva `herramientas/prueba/equilibrio.html` para comparar tamaños y fondos de todos los íconos de obras.
+
+**Próxima sesión:**
+1. **Fondos, uno por uno** (decisión del usuario: cada símbolo con un fondo que le quede bien; nada de cielo celeste para todos, porque se parecería a Moderno tardío/Tenerife). Propuesta aceptada para arrancar, de a cuatro y con un par de colores cada uno en la página de prueba: Brasilia (cielo seco rosado del planalto), Pirámide del Louvre (piedra clara del patio), St Mary Axe (gris azulado de la City), CCTV (neblina amarillenta de Pekín). Mirar en `equilibrio.html`.
+2. **Arreglos pedidos por el usuario:**
+   - St Mary Axe apenas más gordito.
+   - Villa Savoye: sacarle el verde del piso de abajo y darle un poco más de perspectiva.
+   - Kavanagh: tiene un costado más alto que el otro y en la foto no es así; mirar mejor la imagen.
+   - Guggenheim de Nueva York: no tiene que parecer maqueta; sacarle la base (casi sin tocar el resto).
+3. **Más detalle y más líneas:** Stoclet ("quedó atrasado"), Eames ("perfecta pero con muy poquitas líneas"), CCK, Centro Cultural Recoleta, Colón y Biblioteca Nacional (la forma está bien, pero "medio fea y básica").
+4. **Banco de Londres (1960s Argentina):** al usuario le resulta muy abstracto como ícono. Reemplazo propuesto: **Teatro General San Martín** (Mario Roberto Álvarez, 1960; datos de memoria, verificar). Segunda opción: los pabellones de Ciudad Universitaria. Se le pidió crear `referencias/simbolos/teatro san martin/` con 2 o 3 fotos de la fachada sobre Corrientes; esperar a que avise.
+5. Instagram y dominio (ver Pendientes). Probar con el mouse el hover amarillo de "Registrar visita".
+6. Más adelante: Industria (Battersea), Gobierno (Budapest), Comercio y Educación (carpetas ya listas); G0 y G5 (Inglaterra), G1, G3 y las casas de Buenos Aires (G19–G30). Para revisar: Salud parece más palacio que hospital; Vivienda unifamiliar quizás no occidental.
+
 **26 de octubre de 2026, cierre.** Todo subido (`v44`). En la sesión: Congreso de Brasil rehecho (1960s Mundo); símbolos nuevos de Salud (Royal Infirmary de Glasgow) y Vivienda unifamiliar (casa victoriana azul de San Francisco, reemplaza a la casita de dibujo). Nueva regla del usuario: los símbolos tienen que ser globales, no todo occidental.
 
 **Próxima sesión:**
@@ -311,3 +325,11 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Vivienda unifamiliar** (carpeta `residencial/`): pasó por tres versiones. La del reel era del hotel Coconut Lagoon (Kumarakom, Kerala), sin foto entera; después una casa de barrio del usuario (fotos HEIC, Chrome no las muestra: abrir la prueba en Safari); quedó una victoriana azul de San Francisco (`images.jpeg`): techo de atrás claro, triángulo intermedio que llega a los costados, torre cónica oscura; frisos rojos y blancos, saliente simétrica de tres ventanas, puerta de dos hojas. Colores `vi-*`. En la carpeta siguen también las fotos de antes.
 - Generadores de las partituras: scripts de Python en el scratchpad (miden sobre la foto y escriben las líneas); no se guardaron, se rehacen rápido.
 - `comparar.js` suma Brasilia, Salud y Vivienda unifamiliar. `sw.js` en `v44`.
+
+### 26 de octubre de 2026 (segunda sesión)
+
+- **Infraestructura** (carpeta `infraestructura/`): puente japonés de Hoi An, de frente, medido sobre la foto cuadrada (`images (15).jpeg`). Techo de tejas con canales, friso rojo y blanco y guarda de puntos azules en el alero, dragones, galería con postes, faroles y baranda, tablero arqueado, arcos y agua con el reflejo de las pilas. Correcciones del usuario: agua abajo y más detalle en el techo; en claro los grises mareaban (se resolvió con placa de cielo `hoi-cielo`, noche azul en oscuro); los huecos entre pilas van sin pintar, para que se vea el fondo. Colores `hoi-*`.
+- **Deportivo** (carpeta `deportes/`): Monumental de River **visto desde arriba** (se avisó que se sale de la regla de vista frontal: de frente un estadio no se reconoce). Óvalo, banda roja, anillo oscuro, pista y cancha. Correcciones: más grada en proporción a la cancha y la pista; la banda roja se lee de la foto cenital (convertida con `sips` a jpg, en el scratchpad) y, como solo el cuarto de arriba a la derecha salía completo, se usa en espejo para los cuatro. Fondo verde de barrio (`riv-suelo`). Colores `riv-*`. La foto cenital está en `comparar.js`.
+- **Misma superficie:** `simbolo()` en `grafica.js` acepta `superficie` (0 a 1): el dibujo ocupa esa parte del área útil, sin pasarse del borde, y reemplaza a `escala`. Se usa con 0.42 en las tapas (`ui.js`), en la tira de "todas las obras" y en "Por década" (`vistas/inicio.js`). Motivo: el Templo se veía chico al lado de La Pyramide, y CCTV mucho más grande que M+. Verificado con captura del inicio en claro; falta mirarlo en oscuro y en el iPhone.
+- **`herramientas/prueba/equilibrio.html`:** todos los íconos de obras en cuadrados, en claro y oscuro, con tres tamaños (como hoy, misma superficie, mismo alto) y tres fondos (como hoy, cielo, placa neutra). El usuario eligió misma superficie y descartó el cielo para todos.
+- Generadores: `armar.py` en el scratchpad (no se guardó, como en la sesión anterior).

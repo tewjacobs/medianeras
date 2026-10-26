@@ -308,7 +308,9 @@ export function simboloNeutro(familia = 'petroleo') {
 // `anio` (0 a 9): debajo del dibujo, diez marcas, una por año; la de ese año en rojo.
 // `fijo`: usar el alto pedido aunque la partitura traiga otro (las tapas son cuadradas).
 // `sinFondo`: sin el rectángulo de fondo (para poner varios símbolos juntos, como en el skyline).
-export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, fijo = false, sinFondo = false, clase = 'grafica simbolo' } = {}) {
+// `superficie` (0 a 1): parte del área útil que ocupa el dibujo, para que todos pesen parecido en
+//   las tapas; los anchos y bajos se achican y los angostos crecen hasta donde entran. Reemplaza a `escala`.
+export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen = 16, anio = null, fijo = false, sinFondo = false, superficie = null, clase = 'grafica simbolo' } = {}) {
   const alto = fijo ? altoBanda : (partitura.alto ?? altoBanda);
   const vertical = partitura.direccion === 'vertical';
   const grosor = partitura.grosor ?? 1;
@@ -323,7 +325,10 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
   // Escala: que entre en la banda, en las dos direcciones.
   const largoDisponible = (vertical ? alto - lugarAnio : ancho) - 2 * margen;
   const travesiaDisponible = (vertical ? ancho : alto - lugarAnio) - 2 * margen;
-  const escala = Math.min(largoDisponible / largo, travesiaDisponible / Math.max(travesia, 1)) * (partitura.escala ?? 1);
+  const entra = Math.min(largoDisponible / largo, travesiaDisponible / Math.max(travesia, 1));
+  const escala = superficie
+    ? Math.min(entra, Math.sqrt((superficie * largoDisponible * travesiaDisponible) / (largo * Math.max(travesia, 1))))
+    : entra * (partitura.escala ?? 1);
   const bordeLargo = vertical ? alto : ancho;
   const inicioLargo = ((vertical ? alto - lugarAnio : ancho) - largo * escala) / 2;
   const inicioTravesia = ((vertical ? ancho : alto - lugarAnio) - travesia * escala) / 2;
