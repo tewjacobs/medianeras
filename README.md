@@ -260,16 +260,23 @@ Los largos son relativos: no son píxeles. El dibujo se escala entero para entra
 | `alinear` | dónde arrancan las líneas más cortas: `inicio`, `centro` o `fin` | `inicio` |
 | `fondo` | color del fondo de toda la banda | `papel` |
 | `placa` | color de un rectángulo justo detrás del dibujo (las banderas lo usan para que se vea el blanco) | ninguna |
+| `aire` | borde del fondo (`placa`) alrededor del dibujo, en las mismas unidades que los tramos; si se pone, el dibujo se achica para hacerle lugar | `1.5` |
+| `marco` | color de un filete alrededor del fondo; los fondos de obras usan `tinta` (oscuro en claro, claro en oscuro) | ninguno |
 | `escala` | achica el dibujo dentro de la banda: `1` es lo más grande que entra, `0.55` algo más de la mitad | `1` |
 | `alto` | alto de la banda en píxeles (los verticales suelen necesitar más) | `132` |
 | `largo` | largo total fijo, para que varias partituras compartan escala | el de la línea más larga |
 | `nota` | descripción en palabras de lo que representa (no se dibuja) | |
 | `arcos` | líneas curvas paralelas para lo que no se puede dibujar recto, como el arco de un puente (ver abajo) | ninguno |
+| `rectas` | bandas rectas inclinadas, del grosor de una línea (ver abajo) | ninguna |
 | `obra`, `lugar`, `anio` | solo en `decadas`: qué obra representa a la década, dónde está y su fecha | |
 
 **Colores.** Se puede usar cualquiera de la paleta de la app, que cambia sola con el tema (`tinta`, `papel`, `papel-2`, `tenue`, `filete`, `rojo`, `petroleo`, `follaje`, `cielo`, `mar`), o uno propio definido en `colores`, con su valor para el tema claro y para el oscuro. Si se usa un color que no existe, la consola lo avisa y el tramo sale en el color del texto.
 
 **Arcos.** Cada arco es `{ "color", "desde", "hasta", "base", "flecha", "lineas" }`, en las mismas unidades que los tramos: va de `desde` a `hasta`, apoya en la línea número `base` (contando desde 0) y sube `flecha`. Con `"lineas": 2` se dibujan dos arcos paralelos, uno dentro del otro. Ejemplo: la Casa sobre el Arroyo, en `decadas.argentina.1940`. Con `"relleno": true` el arco es una figura llena (la parte de arriba de un portal) que apoya en el borde de arriba de la línea `base`; ejemplo: el portal de la Recoleta, en `decadas.argentina.1980`.
+
+**Rectas.** Cada recta es `{ "color", "desde", "hasta", "base", "subida" }`: una banda del grosor de una línea que va de `desde` a `hasta`, centrada en la línea número `base` (puede ser 34.5) y que sube `subida` de punta a punta. Se dibuja encima de las líneas. Ejemplo: las rayas de la espiral del Guggenheim, en `estilos.Arquitectura orgánica`.
+
+**Rectas.** Cada recta es `{ "color", "desde", "hasta", "base", "subida" }`: una banda del grosor de una línea que va de `desde` a `hasta`, centrada en la línea número `base` (puede ser 34.5) y que sube `subida` de punta a punta. Se dibuja encima de las líneas. Ejemplo: las rayas de la espiral del Guggenheim, en `estilos.Arquitectura orgánica`.
 
 **Sin símbolo.** Un perfil que no tiene símbolo muestra una sola línea fina en el color de su familia. Un estilo sin símbolo usa el de su ancestro más cercano que tenga; un programa como "Oficinas (en conversión a viviendas)", si no tiene uno propio, usa el de lo que está antes del paréntesis ("Oficinas"). La década de 2020 argentina, por ahora, no tiene símbolo y usa el neutro.
 

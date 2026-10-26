@@ -11,6 +11,8 @@ herramientas/prueba/servir.sh      # http://127.0.0.1:8001/
 - `index.html`: cada símbolo que tiene foto de referencia, al lado de su foto, en claro y en oscuro, más la pantalla de carga.
 - `todos.html`: todos los símbolos de `simbolos.json`, cargados igual que en la app.
 - `equilibrio.html`: todos los íconos de obras en cuadrados (como las tapas), para comparar tamaños y fondos.
+- `fondos.html`: fondos para elegir, obra por obra: cada símbolo con su foto y tres colores de fondo, como tapa en claro y en oscuro.
+- `marcos.html`: cada símbolo con fondo, con el marco en tinta y con el color invertido de su fondo, para comparar.
 - `fotos.html`: cómo entran las fotos en las tapas (enteras o con `encuadre`).
 - `completa.html`: la página de prueba completa (logo, estilos, banderas, décadas, materiales, programas, tapas, carga).
 - `carga-a.svg.html`: la versión A de la pantalla de carga (molinete escalonado), guardada como alternativa. La B es la de `www/index.html`.

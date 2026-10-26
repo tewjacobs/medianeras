@@ -8,6 +8,17 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**26 de octubre de 2026, tercera sesión (cierre).** Subido (`v46`). En la sesión: arreglos a St Mary Axe (más ancho), Villa Savoye (ventana corrida simétrica, sin cielo ni pasto dibujados, con fondo simple), Kavanagh (simétrico, con escaloncitos y escalón intermedio) y Guggenheim de Nueva York (sin la base de maqueta, rayas de la espiral en diagonal); fondos propios (`placa`) con borde (`aire`) y marco (`marco`) para 12 íconos de obras; cancha dibujada en el Monumental; Tenerife con un celeste más suave. Opciones nuevas del dibujador: `rectas`, `aire` y `marco` (en el README).
+
+**Próxima sesión:**
+1. **Marco:** se dejó en el color invertido de su propio fondo (colores `<fondo>-marco` en `simbolos.json`), porque el usuario dijo "queda verdaderamente hermoso" mirando `marcos.html`. Confirmar que era ese y no el de tinta (oscuro en claro, claro en oscuro). Las banderas no llevan marco.
+2. **Asamblea Nacional de Bangladesh** (Louis Kahn, Daca, terminada en 1982; datos de memoria, verificar) reemplaza a la Pirámide del Louvre en los 80 de Mundo: el usuario no pudo cargar fotos todavía. Esperar `referencias/simbolos/daca/` (o el nombre que elija).
+3. **Más fondos, de a varios:** quedan sin fondo Mundo 1900 (Stoclet), 1920 (Bauhaus), 1940 (Eames), 2020 (M+), todas las de Argentina y los programas y estilos sin fondo (Brutalismo, Hotel, Templo, Museo, Salud, etc.). Mostrarlos en `herramientas/prueba/fondos.html` (cambiar la lista `OBRAS` de `fondos.js`) con tres colores cada uno, con aire y marco como los elegidos. Elegidos hasta ahora: Brasilia durazno, St Mary Axe gris azulado, CCTV neblina amarilla, Pedrera cielo mediterráneo, Paimio verde pino, Seagram atardecer naranja, Pompidou cielo gris celeste, Bilbao verde monte, Savoye celeste/azul.
+4. **Más detalle y más líneas:** Stoclet ("quedó atrasado"), Eames ("perfecta pero con muy poquitas líneas"), CCK, Centro Cultural Recoleta, Colón y Biblioteca Nacional ("medio fea y básica").
+5. Banco de Londres (1960s Argentina): reemplazo por decidir; el usuario no está seguro del Teatro San Martín.
+6. Instagram y dominio (ver Pendientes). Probar con el mouse el hover amarillo de "Registrar visita".
+7. Más adelante: Industria (Battersea), Gobierno (Budapest), Comercio y Educación (carpetas ya listas); G0, G1, G3, G5 y las casas de Buenos Aires (G19–G30). Para revisar: Salud parece más palacio que hospital; Vivienda unifamiliar quizás no occidental.
+
 **26 de octubre de 2026, segunda sesión (cierre).** Todo subido en `98c080a` (`v45`). En la sesión: símbolos nuevos de Infraestructura (puente japonés de Hoi An, Vietnam) y Deportivo (Monumental de River, visto desde arriba), los dos con fondo propio (`placa`); regla nueva de **misma superficie** para los íconos cuadrados (tapas sin foto, tira de "todas las obras" y lista "Por década"); página nueva `herramientas/prueba/equilibrio.html` para comparar tamaños y fondos de todos los íconos de obras.
 
 **Próxima sesión:**
@@ -171,6 +182,7 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 
 ## Pendientes
 
+- **Instituto del Mundo Árabe (Jean Nouvel, París, 1987; datos de memoria), guardado para más adelante:** al usuario le pareció muy interesante (la fachada de diafragmas metálicos tipo celosía). No usarlo para los 80 de Mundo (va la Asamblea de Bangladesh); buscarle lugar en otro perfil.
 - **Instagram (@jagten.arq), para después:** planear contenido para subir. Idea del usuario: tener los íconos (símbolos) descargables para subir algunos; hace falta una forma de exportarlos como imagen (PNG cuadrado, claro y oscuro), por ejemplo desde la página de prueba con Chrome headless.
 - **Comprar el dominio, para después:** `jagten.com.ar` (libre al 23/10). Ver la mudanza desde `arqivo.com.ar` y exportar visitas antes.
 - **Mail del proyecto:** el usuario crea un Gmail; cargarlo en `CONTACTO.mail` de `www/js/contacto.js`. Con `jagten.com.ar`, pasar a `hola@jagten.com.ar` con reenvío gratis (registros MX en la zona de DonWeb, sin tocar nameservers). Más adelante, WhatsApp en el contacto (avisar: deja el número a la vista; mejor uno aparte o Business).
@@ -333,3 +345,11 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Misma superficie:** `simbolo()` en `grafica.js` acepta `superficie` (0 a 1): el dibujo ocupa esa parte del área útil, sin pasarse del borde, y reemplaza a `escala`. Se usa con 0.42 en las tapas (`ui.js`), en la tira de "todas las obras" y en "Por década" (`vistas/inicio.js`). Motivo: el Templo se veía chico al lado de La Pyramide, y CCTV mucho más grande que M+. Verificado con captura del inicio en claro; falta mirarlo en oscuro y en el iPhone.
 - **`herramientas/prueba/equilibrio.html`:** todos los íconos de obras en cuadrados, en claro y oscuro, con tres tamaños (como hoy, misma superficie, mismo alto) y tres fondos (como hoy, cielo, placa neutra). El usuario eligió misma superficie y descartó el cielo para todos.
 - Generadores: `armar.py` en el scratchpad (no se guardó, como en la sesión anterior).
+
+### 26 de octubre de 2026 (tercera sesión)
+
+- Arreglos pedidos: St Mary Axe 18 % más ancho en dos pasos; Villa Savoye con la ventana corrida en 16 paños iguales y, al final, sin cielo ni pasto dibujados (fondo `savoye-fondo`, celeste en claro y azul en oscuro); Kavanagh simétrico (el lado derecho bajaba en dos escalones), con la columna de afuera de cada nivel un escaloncito más baja y un escalón intermedio entre la base y el segundo nivel; Guggenheim de Nueva York sin la tabla de la maqueta y con las tres rayas de la espiral en diagonal, del mismo grosor y a la misma distancia.
+- Dibujador (`grafica.js`): `rectas` (bandas inclinadas), `aire` (borde del fondo; el dibujo se achica para hacerle lugar) y `marco` (filete alrededor del fondo). Documentado en el README.
+- Fondos elegidos por el usuario en `herramientas/prueba/fondos.html` (página nueva) y marcos comparados en `marcos.html` (nueva). Monumental con la cancha (bordes, mitad, círculo y áreas en `riv-cal`). Tenerife: `au-cielo` claro pasa de `#3f78c4` a `#c3d6ea` ("muy fuerte, no va con la estética").
+- 80s Mundo: el Louvre sale. Se propusieron Templo del Loto y HSBC (descartados: se parecen a Tenerife y a SOMISA), después Bangladesh, Portland Building, Hundertwasserhaus e Instituto del Mundo Árabe. Elegida Bangladesh; el Instituto queda guardado (ver Pendientes).
+

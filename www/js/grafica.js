@@ -300,11 +300,16 @@ export function simboloNeutro(familia = 'petroleo') {
 // `alto` de la banda: el de la partitura si lo trae (los símbolos verticales suelen pedir más).
 // `escala` (de la partitura): achica el dibujo dentro de la banda; 1 es lo más grande que entra.
 // `placa` (de la partitura): color de un rectángulo detrás del dibujo, para las banderas.
+//   `aire`: borde de la placa alrededor del dibujo (en unidades de los tramos; 1.5 si no se pone). Si se pone,
+//   el dibujo se achica para hacerle lugar.
+//   `marco`: color de un filete alrededor de la placa (los fondos de obras usan `tinta`).
 // `arcos` (de la partitura): líneas curvas paralelas, para lo que no se puede dibujar recto
 //   (el arco de un puente). Cada arco: { color, desde, hasta, base, flecha, lineas }, en las
 //   mismas unidades que los tramos; `base` es el número de línea donde apoya y `flecha` cuánto sube.
 //   Con `relleno: true` el arco es una figura llena (la parte de arriba de un portal) que apoya
 //   en el borde de arriba de la línea `base`.
+// `rectas` (de la partitura): bandas rectas inclinadas. Cada una: { color, desde, hasta, base, subida };
+//   `base` es la línea donde está a mitad de camino y `subida`, cuánto sube de `desde` a `hasta`.
 // `anio` (0 a 9): debajo del dibujo, diez marcas, una por año; la de ese año en rojo.
 // `fijo`: usar el alto pedido aunque la partitura traiga otro (las tapas son cuadradas).
 // `sinFondo`: sin el rectángulo de fondo (para poner varios símbolos juntos, como en el skyline).
@@ -319,15 +324,16 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
   const largoDe = (linea) => linea.tramos.reduce((suma, t) => suma + t.largo, 0);
   const largo = Math.max(1, partitura.largo ?? 0, ...lineas.map(largoDe));
   const travesia = lineas.length * grosor + Math.max(0, lineas.length - 1) * separacion;
+  const aire = partitura.aire ?? 0;
   const conAnio = Number.isInteger(anio);
   const lugarAnio = conAnio ? 18 : 0;
 
   // Escala: que entre en la banda, en las dos direcciones.
   const largoDisponible = (vertical ? alto - lugarAnio : ancho) - 2 * margen;
   const travesiaDisponible = (vertical ? ancho : alto - lugarAnio) - 2 * margen;
-  const entra = Math.min(largoDisponible / largo, travesiaDisponible / Math.max(travesia, 1));
+  const entra = Math.min(largoDisponible / (largo + 2 * aire), travesiaDisponible / (Math.max(travesia, 1) + 2 * aire));
   const escala = superficie
-    ? Math.min(entra, Math.sqrt((superficie * largoDisponible * travesiaDisponible) / (largo * Math.max(travesia, 1))))
+    ? Math.min(entra, Math.sqrt((superficie * largoDisponible * travesiaDisponible) / ((largo + 2 * aire) * (Math.max(travesia, 1) + 2 * aire))))
     : entra * (partitura.escala ?? 1);
   const bordeLargo = vertical ? alto : ancho;
   const inicioLargo = ((vertical ? alto - lugarAnio : ancho) - largo * escala) / 2;
@@ -371,6 +377,13 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
       fill: 'none', 'stroke-width': n(grosor * escala), estilo: { stroke: colorCss(arco.color) },
     });
   })));
+  // Rectas: bandas inclinadas del grosor de una línea; `subida` es cuánto más arriba termina que empieza.
+  const rectas = (partitura.rectas ?? []).map((r) => {
+    const v = r.base * paso;
+    const s = (r.subida ?? 0) / 2;
+    const esquinas = [punto(r.desde, v + s), punto(r.hasta, v - s), punto(r.hasta, v - s + grosor), punto(r.desde, v + s + grosor)];
+    return svg('polygon', { points: esquinas.map(([x, y]) => `${n(x)},${n(y)}`).join(' '), estilo: { fill: colorCss(r.color) } });
+  });
   function arcoLleno(arco) {
     const [x0, y0] = punto(arco.desde, arco.base * paso);
     const [x1] = punto(arco.hasta, arco.base * paso);
@@ -385,9 +398,11 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
     ? { x: inicioTravesia, y: inicioLargo, w: travesia * escala, h: largo * escala }
     : { x: inicioLargo, y: inicioTravesia, w: largo * escala, h: travesia * escala };
 
+  const borde = (partitura.aire ?? 1.5) * escala;
   const placa = partitura.placa && svg('rect', {
-    x: n(caja.x - 1.5 * escala), y: n(caja.y - 1.5 * escala), width: n(caja.w + 3 * escala), height: n(caja.h + 3 * escala),
-    estilo: { fill: colorCss(partitura.placa) },
+    x: n(caja.x - borde), y: n(caja.y - borde), width: n(caja.w + 2 * borde), height: n(caja.h + 2 * borde),
+    ...(partitura.marco && { 'stroke-width': 1 }),
+    estilo: { fill: colorCss(partitura.placa), ...(partitura.marco && { stroke: colorCss(partitura.marco) }) },
   });
 
   const marcas = [];
@@ -396,7 +411,7 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
     for (let k = 0; k < 10; k++) {
       const elegido = k === anio;
       marcas.push(svg('rect', {
-        x: n(caja.x + k * ancho10 + ancho10 * 0.15), y: n(caja.y + caja.h + (partitura.placa ? 1.5 * escala : 0) + 9),
+        x: n(caja.x + k * ancho10 + ancho10 * 0.15), y: n(caja.y + caja.h + (partitura.placa ? borde : 0) + 9),
         width: n(ancho10 * 0.7), height: elegido ? 5 : 2.5,
         estilo: { fill: elegido ? 'var(--rojo)' : 'var(--filete)' },
       }));
@@ -405,7 +420,7 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
 
   return svg('svg', { class: clase, viewBox: `0 0 ${n(ancho)} ${n(alto)}`, preserveAspectRatio: 'xMidYMid meet', 'aria-hidden': 'true', focusable: 'false' },
     !sinFondo && svg('rect', { x: 0, y: 0, width: ancho, height: alto, estilo: { fill: colorCss(partitura.fondo ?? 'papel') } }),
-    placa, rects, curvas, marcas);
+    placa, rects, rectas, curvas, marcas);
 }
 
 // Ancho y alto del dibujo de una partitura, en sus unidades (sin márgenes ni tramos estirados).

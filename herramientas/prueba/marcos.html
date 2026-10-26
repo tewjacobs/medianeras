@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marcos de símbolos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    h2 { font-size: 16px; font-weight: 850; font-stretch: 115%; margin: 22px 0 6px; }
+    .fila { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+    .foto { display: flex; gap: 4px; flex-wrap: wrap; max-width: 420px; }
+    .foto img { display: block; height: 150px; width: auto; max-width: 100%; }
+    .foto p { font-family: var(--mono); font-size: 11px; margin: 4px 0 0; }
+    .opcion { background: #f7f3eb; padding: 8px; }
+    .opcion b { display: block; font-family: var(--mono); font-size: 11px; margin-bottom: 6px; }
+    .par { display: flex; gap: 6px; }
+    .par div { background: var(--papel); padding: 6px; }
+    .par svg { display: block; width: 140px; height: 140px; outline: 1px solid var(--filete); }
+  </style>
+</head>
+<body>
+  <h1>Marcos: tinta o invertido</h1>
+  <p>Cada símbolo con fondo, con el marco de hoy (tinta: oscuro en claro, claro en oscuro) y con el color invertido de su propio fondo.</p>
+  <div id="obras"></div>
+  <script type="module" src="marcos.js"></script>
+</body>
+</html>
