@@ -8,6 +8,15 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**27 de octubre de 2026 (cierre).** Subido (`v47`). En la sesión: opción nueva del dibujador, **`zonas`** (rectángulos llenos o con rayas en la otra dirección, encima de las líneas; en `grafica.js` y el README), para mezclar texturas. Rehechos con zonas: **Eames** (galería abierta a la izquierda, más alta), **Bauhaus** (ahora el frente de la entrada: bloque gris lleno, letras, cuatro ventanas iguales rojo oscuro, alero, puerta naranja, anexo que tapa apenas), **Stoclet** (más detalle, simétrico y en grilla) y, un poco, la **Casa sobre el Arroyo** (vidrio oscuro transparente, hormigón y pilares llenos, pasto en rayitas). Armadores en `herramientas/simbolos/` (`eames.py`, `bauhaus.py`, `stoclet.py`). Fondos elegidos: Stoclet ciruela (primero fue verde oliva, pero se confundía con el mármol), Eames arcilla rosada, M+ jardín, Bauhaus ocre dorado, Kavanagh gris plomo cálido, Arroyo ladrillo suave, Curutchet terracota, SOMISA óxido. Página nueva `herramientas/prueba/detalle.html` (símbolo rehecho al lado de su foto; lista `OBRAS` en `detalle.js`); `fondos.js` ahora pone el marco invertido y separa colores por colección.
+
+**Reglas nuevas del usuario:** no todo en líneas horizontales (mezclar verticales y formas llenas, para todos los íconos); simétrico y prolijo cuando el edificio lo amerita (ventanas iguales, grilla).
+
+**Próxima sesión:**
+1. **Más fondos** con gamas nuevas (mostaza, lila, ladrillo, malva, óxido): quedan Argentina 1900 (Colón), 1910 (Molino), 1920 (Barolo), 1960 (Banco de Londres), 1980 (Recoleta), 1990 (Biblioteca), 2000 (Puente de la Mujer), 2010 (CCK) y los programas y estilos. Ojo: Paimio, Bilbao y M+ ya son verdes.
+2. **Más detalle con zonas:** CCK, Centro Cultural Recoleta, Colón y Biblioteca Nacional.
+3. Asamblea de Bangladesh (esperar fotos), Banco de Londres (reemplazo), Instagram y dominio, hover de "Registrar visita". Más adelante: Industria, Gobierno, Comercio, Educación; G0–G30.
+
 **26 de octubre de 2026, tercera sesión (cierre).** Subido (`v46`). En la sesión: arreglos a St Mary Axe (más ancho), Villa Savoye (ventana corrida simétrica, sin cielo ni pasto dibujados, con fondo simple), Kavanagh (simétrico, con escaloncitos y escalón intermedio) y Guggenheim de Nueva York (sin la base de maqueta, rayas de la espiral en diagonal); fondos propios (`placa`) con borde (`aire`) y marco (`marco`) para 12 íconos de obras; cancha dibujada en el Monumental; Tenerife con un celeste más suave. Opciones nuevas del dibujador: `rectas`, `aire` y `marco` (en el README).
 
 **Próxima sesión:**

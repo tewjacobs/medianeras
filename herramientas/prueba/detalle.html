@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Símbolos con más detalle</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    h2 { font-size: 16px; font-weight: 850; font-stretch: 115%; margin: 22px 0 6px; }
+    .fila { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+    .foto img { display: block; height: 260px; width: auto; max-width: 100%; }
+    .par { display: flex; gap: 6px; flex-wrap: wrap; }
+    .par div { background: var(--papel); padding: 6px; }
+    .par svg { display: block; width: 260px; height: 260px; }
+  </style>
+</head>
+<body>
+  <h1>Símbolos con más detalle</h1>
+  <p>Cada símbolo rehecho al lado de su foto, grande y en tapa, en claro y en oscuro.</p>
+  <div id="obras"></div>
+  <script type="module" src="detalle.js"></script>
+</body>
+</html>

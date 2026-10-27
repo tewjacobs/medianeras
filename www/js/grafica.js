@@ -310,6 +310,9 @@ export function simboloNeutro(familia = 'petroleo') {
 //   en el borde de arriba de la línea `base`.
 // `rectas` (de la partitura): bandas rectas inclinadas. Cada una: { color, desde, hasta, base, subida };
 //   `base` es la línea donde está a mitad de camino y `subida`, cuánto sube de `desde` a `hasta`.
+// `zonas` (de la partitura): rectángulos encima de las líneas. Cada una: { color, desde, hasta, primera, ultima,
+//   relleno, fondo }; va de `desde` a `hasta` a lo largo y de la línea `primera` a la `ultima`. Llena, o con
+//   `relleno: "rayas"`, rayas en la otra dirección, del grosor y la separación de las líneas, sobre `fondo`.
 // `anio` (0 a 9): debajo del dibujo, diez marcas, una por año; la de ese año en rojo.
 // `fijo`: usar el alto pedido aunque la partitura traiga otro (las tapas son cuadradas).
 // `sinFondo`: sin el rectángulo de fondo (para poner varios símbolos juntos, como en el skyline).
@@ -384,6 +387,26 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
     const esquinas = [punto(r.desde, v + s), punto(r.hasta, v - s), punto(r.hasta, v - s + grosor), punto(r.desde, v + s + grosor)];
     return svg('polygon', { points: esquinas.map(([x, y]) => `${n(x)},${n(y)}`).join(' '), estilo: { fill: colorCss(r.color) } });
   });
+  // Zonas: rectángulos encima del rayado, llenos o con rayas en la otra dirección.
+  const zonas = (partitura.zonas ?? []).flatMap((z) => {
+    const v0 = z.primera * paso;
+    const v1 = (z.ultima ?? z.primera) * paso + grosor;
+    const rect = (u0, u1) => {
+      const [xa, ya] = punto(u0, v0);
+      const [xb, yb] = punto(u1, v1);
+      return [Math.min(xa, xb), Math.min(ya, yb), Math.abs(xb - xa), Math.abs(yb - ya)];
+    };
+    const pieza = (u0, u1, color) => {
+      const [x, y, w, h] = rect(u0, u1);
+      return svg('rect', { x: n(x), y: n(y), width: n(w), height: n(h), estilo: { fill: colorCss(color) } });
+    };
+    if (z.relleno !== 'rayas') return [pieza(z.desde, z.hasta, z.color)];
+    // Rayas del grosor de una línea, centradas en la zona; `fondo` opcional detrás.
+    const cuantas = Math.max(1, Math.floor((z.hasta - z.desde + separacion) / paso));
+    const inicio = z.desde + (z.hasta - z.desde - (cuantas * paso - separacion)) / 2;
+    return [z.fondo && pieza(z.desde, z.hasta, z.fondo),
+      ...Array.from({ length: cuantas }, (_, k) => pieza(inicio + k * paso, inicio + k * paso + grosor, z.color))].filter(Boolean);
+  });
   function arcoLleno(arco) {
     const [x0, y0] = punto(arco.desde, arco.base * paso);
     const [x1] = punto(arco.hasta, arco.base * paso);
@@ -420,7 +443,7 @@ export function simbolo(partitura, { ancho = 400, alto: altoBanda = 132, margen 
 
   return svg('svg', { class: clase, viewBox: `0 0 ${n(ancho)} ${n(alto)}`, preserveAspectRatio: 'xMidYMid meet', 'aria-hidden': 'true', focusable: 'false' },
     !sinFondo && svg('rect', { x: 0, y: 0, width: ancho, height: alto, estilo: { fill: colorCss(partitura.fondo ?? 'papel') } }),
-    placa, rects, rectas, curvas, marcas);
+    placa, rects, zonas, rectas, curvas, marcas);
 }
 
 // Ancho y alto del dibujo de una partitura, en sus unidades (sin márgenes ni tramos estirados).

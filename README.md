@@ -268,6 +268,7 @@ Los largos son relativos: no son píxeles. El dibujo se escala entero para entra
 | `nota` | descripción en palabras de lo que representa (no se dibuja) | |
 | `arcos` | líneas curvas paralelas para lo que no se puede dibujar recto, como el arco de un puente (ver abajo) | ninguno |
 | `rectas` | bandas rectas inclinadas, del grosor de una línea (ver abajo) | ninguna |
+| `zonas` | rectángulos llenos o con rayas en la otra dirección, para mezclar texturas (ver abajo) | ninguna |
 | `obra`, `lugar`, `anio` | solo en `decadas`: qué obra representa a la década, dónde está y su fecha | |
 
 **Colores.** Se puede usar cualquiera de la paleta de la app, que cambia sola con el tema (`tinta`, `papel`, `papel-2`, `tenue`, `filete`, `rojo`, `petroleo`, `follaje`, `cielo`, `mar`), o uno propio definido en `colores`, con su valor para el tema claro y para el oscuro. Si se usa un color que no existe, la consola lo avisa y el tramo sale en el color del texto.
@@ -276,7 +277,7 @@ Los largos son relativos: no son píxeles. El dibujo se escala entero para entra
 
 **Rectas.** Cada recta es `{ "color", "desde", "hasta", "base", "subida" }`: una banda del grosor de una línea que va de `desde` a `hasta`, centrada en la línea número `base` (puede ser 34.5) y que sube `subida` de punta a punta. Se dibuja encima de las líneas. Ejemplo: las rayas de la espiral del Guggenheim, en `estilos.Arquitectura orgánica`.
 
-**Rectas.** Cada recta es `{ "color", "desde", "hasta", "base", "subida" }`: una banda del grosor de una línea que va de `desde` a `hasta`, centrada en la línea número `base` (puede ser 34.5) y que sube `subida` de punta a punta. Se dibuja encima de las líneas. Ejemplo: las rayas de la espiral del Guggenheim, en `estilos.Arquitectura orgánica`.
+**Zonas.** Cada zona es `{ "color", "desde", "hasta", "primera", "ultima" }`: un rectángulo lleno que va de `desde` a `hasta` a lo largo y de la línea `primera` a la `ultima` (contando desde 0), encima de las líneas. Con `"relleno": "rayas"` en vez de lleno lleva rayas en la otra dirección, del grosor y la separación de las líneas (y `"fondo"` opcional detrás). Sirve para no hacer todo con el mismo rayado: un paño de color lleno, un vidrio en rayas verticales dentro de un dibujo horizontal. Ejemplo: la Casa Eames, en `decadas.mundo.1940`.
 
 **Sin símbolo.** Un perfil que no tiene símbolo muestra una sola línea fina en el color de su familia. Un estilo sin símbolo usa el de su ancestro más cercano que tenga; un programa como "Oficinas (en conversión a viviendas)", si no tiene uno propio, usa el de lo que está antes del paréntesis ("Oficinas"). La década de 2020 argentina, por ahora, no tiene símbolo y usa el neutro.
 
