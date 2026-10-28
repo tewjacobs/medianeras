@@ -10,10 +10,25 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['argentina', '1960', 'Colegio Manuel Belgrano (Córdoba): hormigón, cielorraso de madera y ventana corrida roja', ['60s argentina/Belgrano_por_fuera_027.jpg', '60s argentina/IMG-20200918-WA0002-1024x738.jpg'], {
-    'A · algarrobo': ['#a9b08e', '#2a2d20'],
-    'B · arena serrana': ['#ddd0b0', '#38331f'],
-    'C · durazno': ['#e8c4a4', '#45332a'],
+  ['estilos', 'Brutalismo', 'Brutalismo · La Pyramide (Abiyán): hormigón claro escalonado', ['brutalismo/pyramide.jpg', 'brutalismo/La_Pyramide_Abidjan.png'], {
+    'A · laterita': ['#c98a6a', '#3d2620'],
+    'B · laguna': ['#9fb3a0', '#1f2b25'],
+    'C · harmatán': ['#d9c7a8', '#3a3226'],
+  }],
+  ['programas', 'Hotel', "Hotel · Hôtel de l'Indépendance (Dakar): celdas en punta y ladrillo", ['hotel/01_07_Hotel Independence Dakar_02.jpg.3069039.jpg', 'hotel/72_big.jpg'], {
+    'A · buganvilla': ['#e3a7b4', '#41262d'],
+    'B · baobab': ['#a8ab95', '#2c2d24'],
+    'C · cola': ['#b9655a', '#3a1f1c'],
+  }],
+  ['programas', 'Templo', 'Templo · gopuram del Meenakshi (Madurai): pisos de figuras de colores', ['religioso/images (9).jpeg', 'religioso/images (10).jpeg'], {
+    'A · azafrán': ['#e8a85a', '#43301a'],
+    'B · granito rosado': ['#d5b8ab', '#3b2e2a'],
+    'C · hoja de banano': ['#8fa070', '#252d1d'],
+  }],
+  ['programas', 'Museo', 'Museo · pared de sala con tres cuadros (dibujo, sin foto)', [], {
+    'A · verde salón': ['#7d977b', '#1d2620'],
+    'B · rojo pompeyano': ['#a8483a', '#2f1714'],
+    'C · gris paloma': ['#cfc9c0', '#33302c'],
   }],
 ];
 

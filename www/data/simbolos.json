@@ -181,6 +181,12 @@
     "rec-mostaza-marco": { "claro": "#29408c", "oscuro": "#c5cddf" },
     "belg-arena": { "claro": "#ddd0b0", "oscuro": "#38331f" },
     "belg-arena-marco": { "claro": "#222f4f", "oscuro": "#c7cce0" },
+    "brut-laterita": { "claro": "#c98a6a", "oscuro": "#3d2620" },
+    "brut-laterita-marco": { "claro": "#367595", "oscuro": "#c2d9df" },
+    "hotel-cola": { "claro": "#b9655a", "oscuro": "#3a1f1c" },
+    "hotel-cola-marco": { "claro": "#469aa5", "oscuro": "#c5e0e3" },
+    "templo-granito": { "claro": "#d5b8ab", "oscuro": "#3b2e2a" },
+    "templo-granito-marco": { "claro": "#2a4754", "oscuro": "#c4d1d5" },
     "belg-hormigon": { "claro": "#b8b2a6", "oscuro": "#b8b2a6" },
     "belg-madera": { "claro": "#9a6b45", "oscuro": "#9a6b45" },
     "belg-sombra": { "claro": "#6e6a62", "oscuro": "#6e6a62" },
@@ -448,7 +454,10 @@
         "- 0.8, b-base 13.2, b-medio 12, b-base 13.2, - 0.8",
         "- 2, b-base 1, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 12, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 1, - 2",
         "- 2, b-base 1, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 12, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 3, b-medio 0.6, b-base 1, - 2"
-      ]
+      ],
+      "placa": "brut-laterita",
+      "aire": 4.1,
+      "marco": "brut-laterita-marco"
     },
     "Moderno": {
       "nota": "La Villa Savoye (Le Corbusier, 1928–1931), de frente, medida sobre la foto: el solario con sus dos volúmenes curvos arriba, la caja blanca con la ventana corrida, la planta baja retirada con el vidrio curvo y los pilotis, sobre un fondo celeste.",
@@ -769,7 +778,10 @@
         "h-crema 29.8",
         "h-sombra 6, (h-sombra 1.3, h-crema 0.8, h-sombra 1.3) x7",
         "h-sombra 6, (h-sombra 1.3, h-crema 0.8, h-sombra 1.3) x7"
-      ]
+      ],
+      "placa": "hotel-cola",
+      "aire": 4.9,
+      "marco": "hotel-cola-marco"
     },
     "Templo": {
       "nota": "Una torre de entrada de templo (gopuram), como la del Meenakshi de Madurai: nueve pisos que se angostan hacia arriba, cada uno con su cornisa y una fila de figuras de colores alrededor de una abertura central; arriba, la bóveda de cañón con sus remates dorados; abajo, el basamento de piedra con la puerta.",
@@ -803,7 +815,10 @@
         "hormigon 28",
         "hormigon 12.5, t-sombra 3, hormigon 12.5",
         "hormigon 12.5, t-sombra 3, hormigon 12.5"
-      ]
+      ],
+      "placa": "templo-granito",
+      "aire": 3.4,
+      "marco": "templo-granito-marco"
     },
     "Museo": {
       "nota": "Una pared de sala con tres cuadros de tamaños distintos, colgados a la misma altura de centro, y el piso de madera.",

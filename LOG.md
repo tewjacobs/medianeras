@@ -8,6 +8,14 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**28 de octubre de 2026, cuarta parte (cierre).** Subido (`v53`). El usuario revisó en el iPhone lo subido antes y está todo bien. Fondos nuevos con aire y marco invertido: **Brutalismo** laterita (`brut-laterita`), **Hotel** cola, rojo tierra (`hotel-cola`) y **Templo** granito rosado (`templo-granito`). Ojo: para el Templo el usuario escribió "granito azafran"; se aplicó granito rosado (`#d5b8ab`). Preguntarle si quería el azafrán (`#e8a85a` / `#43301a`). **Museo:** sin fondo, porque el usuario quiere un ícono nuevo (hoy es una pared con tres cuadros).
+
+**Próxima sesión:**
+1. Confirmar el fondo del Templo (granito o azafrán).
+2. **Ícono nuevo de Museo:** pedir carpeta de fotos en `referencias/simbolos/` (una obra de museo, mejor no occidental) y después elegir su fondo.
+3. **Más fondos** de a varios en `fondos.html`: Salud, Oficinas, Cultural, Vivienda colectiva y unifamiliar, Moderno, Arquitectura orgánica, Beaux-Arts. Ya usados: laterita, cola, granito rosado y todas las gamas de Argentina y Mundo (ver más abajo).
+4. Lo de antes: Asamblea de Bangladesh (esperar fotos), Instagram y dominio, hover de "Registrar visita"; más adelante Industria, Gobierno, Comercio, Educación; G0–G30.
+
 **28 de octubre de 2026, tercera parte.** Subido (`v52`): el **Banco de Londres** (1960s Argentina) se reemplaza por la **Escuela Superior de Comercio Manuel Belgrano** de Córdoba (Bidinost, Chute, Gasó, Lapacó y Meyer; concurso de 1960, construida 1960–1971, inaugurada en 1968, Monumento Histórico Nacional en 2019: verificado en el Decreto 791/2019 y Divisare). Fotos del usuario en `referencias/simbolos/60s argentina/`. Armador `belgrano.py`: techo con canto lleno y cielorraso de madera que se curva a las puntas, columnas que tocan el techo (las de las puntas bajan al piso), bóvedas de luz, a la izquierda el hall vidriado de doble altura y a la derecha el bloque de aulas con la ventana corrida roja, chimenea hasta el piso y muro de piedra. Fondo **arena serrana** (`belg-arena`), elegido por el usuario. En oscuro, el edificio usa los mismos colores que en claro (pedido del usuario; propio `belg-vidrio`). Probó un rojo y un vidrio más suaves y prefirió los fuertes.
 
 **28 de octubre de 2026, segunda sesión (cierre).** Subido lo del cierre anterior en `6f09eba` (`v50`) y lo de esta sesión (`v51`): fondos elegidos para la Confitería del Molino (**caramelo**, `molino-caramelo`) y el CCK (**eucalipto**, `cck-eucalipto`), con aire y marco invertido como los demás. Rehechos con armadores: **Palacio Barolo** (`barolo.py`: el edificio entero, de frente y simétrico: faro, cúpula, cupulitas, arcos góticos, mansardas verdes con ojos de buey, siete pisos con balcones redondos y planta baja con el arco de la entrada) con fondo **noche de faro** (`barolo-faro`), y **Puente de la Mujer** (`puente.py`: el ala es una cuña de bandas que se juntan en la punta y abajo se acuestan en curva sobre el tablero; tirantes casi transparentes perpendiculares al ala; pila; agua marrón del dique) con fondo **malva** (`pm-malva`). Ojo: el ala es casi blanca y sin fondo no se ve en claro (siempre va con su fondo). El usuario aprobó los dos ("el barolo, impecable") y dejó el agua marrón. Gamas ya usadas en Argentina: ladrillo, terracota, óxido, gris plomo, lila, mostaza, pizarra, caramelo, eucalipto, noche de faro, malva.
@@ -391,3 +399,7 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - Ayuda común `herramientas/simbolos/armar.py` y un armador por obra. Colores nuevos: `bn-oscuro`, `bn-parasol`, `bn-ambar`, `molino-piedra`, `molino-sombra`, `molino-pizarra`.
 - Fondos elegidos en `fondos.html`: Biblioteca lila, Recoleta mostaza, Colón pizarra (con marco del color invertido).
 - `sw.js` en `v50`. Nada commiteado.
+
+### 28 de octubre de 2026, cuarta parte
+
+- Fondos para Brutalismo (laterita), Hotel (cola) y Templo (granito rosado), elegidos en `fondos.html` entre tres opciones cada uno. Museo queda sin fondo hasta rehacer su ícono.
