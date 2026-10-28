@@ -8,6 +8,18 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**28 de octubre de 2026 (cierre).** **Sin subir (`v50`)**: el usuario se fue antes de pedir commit. En la sesión, con armadores nuevos en `herramientas/simbolos/` y una ayuda común `armar.py` (pasa píxeles de la foto a unidades, pinta filas, zonas, rectas y arcos, y reescribe una sola entrada de `simbolos.json`):
+- **Biblioteca Nacional** (`biblioteca.py`): rehecha con líneas y zonas, volumen curvo claro en el hueco oscuro entre los apoyos (rayas verticales), ojos de buey redondos con aro y, con dos fotos nuevas, la azotea (caja con rejillas, tanque amarillo, dos torres, caja baja). Ojos de buey centrados: el usuario los dejó así. Fondo **lila** (`bn-lila`). "Increíble como quedó".
+- **Centro Cultural Recoleta** (`recoleta.py`): rehecho en grilla (las aberturas de arriba y abajo sobre los mismos ejes de la foto), más filas y molduras finas; la primera versión le pareció "medio infantil". Fondo **mostaza** (`rec-mostaza`).
+- **Teatro Colón** (`colon.py`): frontón con rectas, luneta, columnas simétricas, siete ventanas en arco, relieves iguales, puertas bajo sus ventanas. Fondo **pizarra** (`colon-pizarra`).
+- **Confitería del Molino** (`molino.py`, fotos nuevas en `referencias/simbolos/el molino/`): de frente y simétrico; aguja, chapitel de pizarra verdosa, aspas con rectas, torrecitas, cuatro pisos con balcones, confitería con vitrales. Aprobado ("buenísimo").
+- **CCK** (`cck.py`): misma idea (mitad Correo y Ballena), con la mitad del Correo medida sobre la foto. Ballena más gris a pedido del usuario. Aprobado.
+
+**Próxima sesión:**
+1. **Revisar en el teléfono y subir** lo de hoy (commit y push solo cuando lo pida).
+2. **Fondos para el Molino y el CCK** (tres opciones cada uno en `herramientas/prueba/fondos.html`, cambiando `OBRAS` en `fondos.js`). Gamas ya usadas en Argentina: ladrillo, terracota, óxido, gris plomo, lila, mostaza, pizarra. Siguen sin fondo: Barolo, Banco de Londres, Puente de la Mujer, y los programas y estilos.
+3. Lo que seguía: Asamblea de Bangladesh (esperar fotos), Banco de Londres (reemplazo), Instagram y dominio, hover de "Registrar visita". Más adelante: Industria, Gobierno, Comercio, Educación; G0–G30.
+
 **27 de octubre de 2026 (cierre).** Subido (`v47`). En la sesión: opción nueva del dibujador, **`zonas`** (rectángulos llenos o con rayas en la otra dirección, encima de las líneas; en `grafica.js` y el README), para mezclar texturas. Rehechos con zonas: **Eames** (galería abierta a la izquierda, más alta), **Bauhaus** (ahora el frente de la entrada: bloque gris lleno, letras, cuatro ventanas iguales rojo oscuro, alero, puerta naranja, anexo que tapa apenas), **Stoclet** (más detalle, simétrico y en grilla) y, un poco, la **Casa sobre el Arroyo** (vidrio oscuro transparente, hormigón y pilares llenos, pasto en rayitas). Armadores en `herramientas/simbolos/` (`eames.py`, `bauhaus.py`, `stoclet.py`). Fondos elegidos: Stoclet ciruela (primero fue verde oliva, pero se confundía con el mármol), Eames arcilla rosada, M+ jardín, Bauhaus ocre dorado, Kavanagh gris plomo cálido, Arroyo ladrillo suave, Curutchet terracota, SOMISA óxido. Página nueva `herramientas/prueba/detalle.html` (símbolo rehecho al lado de su foto; lista `OBRAS` en `detalle.js`); `fondos.js` ahora pone el marco invertido y separa colores por colección.
 
 **Reglas nuevas del usuario:** no todo en líneas horizontales (mezclar verticales y formas llenas, para todos los íconos); simétrico y prolijo cuando el edificio lo amerita (ventanas iguales, grilla).
@@ -243,7 +255,7 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
   - Con `--timeout`, a veces la captura sale con la pantalla de carga a medio desaparecer.
   - Ninguna de las dos cosas pasa en un navegador normal.
 - **Chrome de esta Mac en modo oscuro.** Está configurado en oscuro aunque macOS esté en claro, así que el modo automático lo muestra oscuro.
-- **Armadores de símbolos.** Están en `herramientas/simbolos/` como historial, pero la fuente es `simbolos.json`: los cambios nuevos se hacen ahí directamente. Volver a correr un armador pisa el archivo.
+- **Armadores de símbolos.** Están en `herramientas/simbolos/`; la fuente es `simbolos.json`. Los viejos (`simbolos*.py`) pisan el archivo entero: no volver a correrlos. Los nuevos (`biblioteca.py`, `recoleta.py`, `colon.py`, `molino.py`, `cck.py`, con `armar.py`; y `eames.py`, `bauhaus.py`, `stoclet.py`) reescriben solo su obra: se corren desde esa carpeta con `python3 <armador>.py ../../www/data/simbolos.json`. Ojo: pisan los retoques hechos a mano en esa obra; `placa`, `aire` y `marco` se conservan.
 - **Mapa en oscuro.** Los mosaicos de OpenStreetMap se oscurecen con un filtro CSS y no son mosaicos oscuros propios.
 
 ## Bitácora
@@ -363,3 +375,9 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - Fondos elegidos por el usuario en `herramientas/prueba/fondos.html` (página nueva) y marcos comparados en `marcos.html` (nueva). Monumental con la cancha (bordes, mitad, círculo y áreas en `riv-cal`). Tenerife: `au-cielo` claro pasa de `#3f78c4` a `#c3d6ea` ("muy fuerte, no va con la estética").
 - 80s Mundo: el Louvre sale. Se propusieron Templo del Loto y HSBC (descartados: se parecen a Tenerife y a SOMISA), después Bangladesh, Portland Building, Hundertwasserhaus e Instituto del Mundo Árabe. Elegida Bangladesh; el Instituto queda guardado (ver Pendientes).
 
+### 28 de octubre de 2026
+
+- Símbolos rehechos con más detalle, cada uno al lado de su foto en `herramientas/prueba/detalle.html`: Biblioteca Nacional (con azotea, de dos fotos nuevas), Centro Cultural Recoleta (dos vueltas: la primera "medio infantil", la segunda en grilla), Teatro Colón (emprolijado), Confitería del Molino (fotos nuevas) y CCK (mitad del Correo medida; Ballena más gris: `ballena` y `ballena-2` desaturados).
+- Ayuda común `herramientas/simbolos/armar.py` y un armador por obra. Colores nuevos: `bn-oscuro`, `bn-parasol`, `bn-ambar`, `molino-piedra`, `molino-sombra`, `molino-pizarra`.
+- Fondos elegidos en `fondos.html`: Biblioteca lila, Recoleta mostaza, Colón pizarra (con marco del color invertido).
+- `sw.js` en `v50`. Nada commiteado.
