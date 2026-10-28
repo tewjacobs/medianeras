@@ -8,6 +8,14 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**28 de octubre de 2026, segunda sesión (cierre).** Subido lo del cierre anterior en `6f09eba` (`v50`) y lo de esta sesión (`v51`): fondos elegidos para la Confitería del Molino (**caramelo**, `molino-caramelo`) y el CCK (**eucalipto**, `cck-eucalipto`), con aire y marco invertido como los demás. Rehechos con armadores: **Palacio Barolo** (`barolo.py`: el edificio entero, de frente y simétrico: faro, cúpula, cupulitas, arcos góticos, mansardas verdes con ojos de buey, siete pisos con balcones redondos y planta baja con el arco de la entrada) con fondo **noche de faro** (`barolo-faro`), y **Puente de la Mujer** (`puente.py`: el ala es una cuña de bandas que se juntan en la punta y abajo se acuestan en curva sobre el tablero; tirantes casi transparentes perpendiculares al ala; pila; agua marrón del dique) con fondo **malva** (`pm-malva`). Ojo: el ala es casi blanca y sin fondo no se ve en claro (siempre va con su fondo). El usuario aprobó los dos ("el barolo, impecable") y dejó el agua marrón. Gamas ya usadas en Argentina: ladrillo, terracota, óxido, gris plomo, lila, mostaza, pizarra, caramelo, eucalipto, noche de faro, malva.
+
+**Próxima sesión:**
+1. Revisar en el iPhone lo subido hoy.
+2. **Banco de Londres (1960s Argentina):** elegir reemplazo (el usuario no está seguro del Teatro San Martín) y pedir su carpeta de fotos.
+3. **Fondos de programas y estilos** (Brutalismo, Hotel, Templo, Museo, Salud, Oficinas, Cultural, etc.), de a varios en `fondos.html`.
+4. Lo de antes: Asamblea de Bangladesh (esperar fotos), Instagram y dominio, hover de "Registrar visita"; más adelante Industria, Gobierno, Comercio, Educación; G0–G30.
+
 **28 de octubre de 2026 (cierre).** **Sin subir (`v50`)**: el usuario se fue antes de pedir commit. En la sesión, con armadores nuevos en `herramientas/simbolos/` y una ayuda común `armar.py` (pasa píxeles de la foto a unidades, pinta filas, zonas, rectas y arcos, y reescribe una sola entrada de `simbolos.json`):
 - **Biblioteca Nacional** (`biblioteca.py`): rehecha con líneas y zonas, volumen curvo claro en el hueco oscuro entre los apoyos (rayas verticales), ojos de buey redondos con aro y, con dos fotos nuevas, la azotea (caja con rejillas, tanque amarillo, dos torres, caja baja). Ojos de buey centrados: el usuario los dejó así. Fondo **lila** (`bn-lila`). "Increíble como quedó".
 - **Centro Cultural Recoleta** (`recoleta.py`): rehecho en grilla (las aberturas de arriba y abajo sobre los mismos ejes de la foto), más filas y molduras finas; la primera versión le pareció "medio infantil". Fondo **mostaza** (`rec-mostaza`).

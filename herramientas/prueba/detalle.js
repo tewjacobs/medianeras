@@ -11,8 +11,8 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección, clave, título y su foto de referencia.
 const OBRAS = [
-  ['argentina', '2010', 'Centro Cultural Kirchner', 'Centro Cultural Kirschner/Buenos_Aires_Centrum_Kirchner.jpg'],
-  ['argentina', '1910', 'Confitería del Molino', 'el molino/Confitería_del_Molino_in_2022.jpg'],
+  ['argentina', '1920', 'Palacio Barolo', 'barolo/345_palacio-barolo_editarq-pablo-corral_02.jpg'],
+  ['argentina', '2000', 'Puente de la Mujer', 'puente de la mujer/mujer.jpg'],
 ];
 
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;
