@@ -10,14 +10,9 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['argentina', '1920', 'Palacio Barolo: piedra clara, cúpula de pizarra y faro amarillo', ['barolo/Palacio_Barolo_visto_de_frente.jpg'], {
-    'A · salvia': ['#b4bda6', '#283025'],
-    'B · rosa ceniza': ['#c7aeab', '#36292a'],
-    'C · noche de faro': ['#6f7f86', '#1b2226'],
-  }],
-  ['argentina', '2000', 'Puente de la Mujer: mástil blanco y agua del dique', ['puente de la mujer/mujer.jpg'], {
-    'A · arena': ['#d8c9a8', '#36301f'],
-    'B · malva': ['#c0a4b0', '#352a31'],
+  ['argentina', '1960', 'Colegio Manuel Belgrano (Córdoba): hormigón, cielorraso de madera y ventana corrida roja', ['60s argentina/Belgrano_por_fuera_027.jpg', '60s argentina/IMG-20200918-WA0002-1024x738.jpg'], {
+    'A · algarrobo': ['#a9b08e', '#2a2d20'],
+    'B · arena serrana': ['#ddd0b0', '#38331f'],
     'C · durazno': ['#e8c4a4', '#45332a'],
   }],
 ];
