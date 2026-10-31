@@ -9,6 +9,34 @@
     "D. H. Burnham & Company": {
       "pais": "Estados Unidos",
       "descripcion": "Estudio de Chicago dirigido por Daniel H. Burnham (1846–1912). Proyectó el Flatiron Building de Nueva York, terminado en 1902."
+    },
+    "Herbert J. Rowse": {
+      "nacimiento": 1887,
+      "muerte": 1963,
+      "pais": "Reino Unido",
+      "descripcion": "Arquitecto de Liverpool. Proyectó la arquitectura del túnel Mersey (las torres de ventilación, entre ellas la de George's Dock), el Martins Bank y el Philharmonic Hall, casi todo en un Art déco sobrio de piedra y ladrillo."
+    },
+    "J. S. Crowther": {
+      "nacimiento": 1820,
+      "muerte": 1893,
+      "pais": "Reino Unido",
+      "descripcion": "Joseph Stretch Crowther, arquitecto de Manchester especializado en iglesias góticas. Como arquitecto de la diócesis fue el restaurador de la Catedral de Manchester en los años 1880: rehízo la nave y los pórticos, y murió con la obra en marcha."
+    },
+    "John Foster Sr.": {
+      "nacimiento": 1759,
+      "muerte": 1827,
+      "pais": "Reino Unido",
+      "descripcion": "Arquitecto y agrimensor municipal de Liverpool. Proyectó la iglesia de St Luke, que terminó su hijo."
+    },
+    "John Foster Jr.": {
+      "nacimiento": 1786,
+      "muerte": 1846,
+      "pais": "Reino Unido",
+      "descripcion": "Arquitecto de Liverpool, hijo de John Foster Sr., a quien sucedió como agrimensor municipal. Sumó el presbiterio de St Luke y la terminó."
+    },
+    "Charles Clegg & Son": {
+      "pais": "Reino Unido",
+      "descripcion": "Estudio de Manchester de principios del siglo XX. Proyectó la fábrica de sombreros de 50 Newton Street, hoy el hostel Hatters."
     }
   },
   "estilos": {
@@ -64,6 +92,12 @@
     "Posmodernismo": {
       "color": "follaje",
       "descripcion": "Reacción de los años 70 y 80 contra la sobriedad del movimiento moderno. Vuelve a usar referencias históricas (arcos, frontones, columnas), el color y la ironía, muchas veces de forma simplificada o exagerada. Robert Venturi lo resumió al responder a \"menos es más\" con \"menos es aburrido\"."
+    },
+    "Gótico perpendicular": {
+      "descripcion": "La última etapa del gótico inglés, de fines del siglo XIV al XVI: ventanales enormes divididos por parantes verticales rectos, paneles que se repiten en muros y techos, y bóvedas de abanico. Es propio de Inglaterra."
+    },
+    "Barroco eduardiano": {
+      "descripcion": "El barroco libre de la Inglaterra de principios del siglo XX (la época de Eduardo VII): ladrillo y terracota, arcos grandes, remates curvos y cúpulas, con más libertad que el barroco histórico."
     }
   },
   "materiales": {},

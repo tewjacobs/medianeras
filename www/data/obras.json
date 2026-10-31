@@ -702,5 +702,260 @@
         "fuente": "Foto propia"
       }
     ]
+  },
+  {
+    "id": "georges-dock",
+    "agregada": "2026-10-31",
+    "nombre": "George's Dock Building",
+    "otros_nombres": [
+      "Torre de ventilación de George's Dock",
+      "George's Dock Ventilation and Central Control Station"
+    ],
+    "arquitectos": [
+      "Herbert J. Rowse"
+    ],
+    "anio_proyecto": 1931,
+    "anio_finalizacion": 1934,
+    "estilo": "Art déco",
+    "materiales": [
+      "Piedra Portland"
+    ],
+    "programa": "Infraestructura",
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Reino Unido",
+      "provincia": "Inglaterra",
+      "ciudad": "Liverpool",
+      "barrio": "Pier Head",
+      "direccion": "George's Dock Way",
+      "lat": 53.4064,
+      "lng": -2.9949
+    },
+    "resumen": "Torre de ventilación y centro de control del túnel Mersey, el túnel de autos que pasa por debajo del río. Herbert J. Rowse la vistió de Art déco en piedra Portland, con esculturas de Edmund Thompson y George Capstick.",
+    "descripcion": "Se construyó entre 1931 y 1934 sobre el antiguo George's Dock, un muelle rellenado frente al río Mersey, al lado de las \"Tres Gracias\" del Pier Head. Es la más ambiciosa de las seis estaciones que ventilan el túnel Queensway, de unos 3,4 kilómetros, y además alberga las oficinas y el control del túnel.\n\nLos ingenieros del túnel fueron Basil Mott y J. A. Brodie; Herbert J. Rowse proyectó la arquitectura. La torre sube lisa y escalonada, revestida en piedra Portland, con relieves de Edmund Thompson y George Capstick. Está protegida (Grade II) desde 1980.",
+    "fotos": [
+      {
+        "archivo": "img/obras/georges-dock/georges-dock-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/georges-dock/georges-dock-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/georges-dock/georges-dock-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "catedral-de-manchester",
+    "agregada": "2026-10-31",
+    "nombre": "Catedral de Manchester",
+    "otros_nombres": [
+      "Manchester Cathedral",
+      "Iglesia colegiata de Manchester"
+    ],
+    "arquitectos": [
+      "J. S. Crowther"
+    ],
+    "anio_proyecto": 1421,
+    "anio_finalizacion": null,
+    "estilo": "Gótico perpendicular",
+    "materiales": [
+      "Piedra arenisca"
+    ],
+    "programa": "Templo",
+    "estado": "modificada",
+    "ubicacion": {
+      "pais": "Reino Unido",
+      "provincia": "Inglaterra",
+      "ciudad": "Manchester",
+      "barrio": "Centro",
+      "direccion": "Victoria Street",
+      "lat": 53.4852,
+      "lng": -2.2446
+    },
+    "resumen": "Iglesia gótica perpendicular reconstruida desde 1421, cuando se fundó la colegiata; es catedral desde 1847. Su arquitecto no es uno solo: J. S. Crowther fue el restaurador de la época victoriana, que rehízo la nave y los pórticos.",
+    "descripcion": "La iglesia se reconstruyó en estilo gótico perpendicular a partir de 1421, cuando Enrique V y el papa Martín V autorizaron la colegiata. Pasó a ser catedral en 1847, al crearse la diócesis de Manchester.\n\nNo tiene un único arquitecto. J. S. Crowther (1820–1893), arquitecto de la diócesis, fue el restaurador: en los años 1880 rehízo la nave piedra por piedra, demolió y rehízo el pórtico sur y sumó el pórtico norte, y seguía trabajando en ella cuando murió. Una bomba alemana la dañó mucho en 1940, y la reparación llevó casi veinte años.\n\nAdentro se destaca la sillería tallada del coro, de principios del siglo XVI. Es uno de los edificios con la protección más alta de Manchester (Grade I).",
+    "fotos": [
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-07.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/catedral-de-manchester/manchester-08.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "st-luke-liverpool",
+    "agregada": "2026-10-31",
+    "nombre": "Iglesia de St Luke",
+    "otros_nombres": [
+      "St Luke's Church",
+      "Bombed Out Church",
+      "La iglesia bombardeada"
+    ],
+    "arquitectos": [
+      "John Foster Sr.",
+      "John Foster Jr."
+    ],
+    "anio_proyecto": 1802,
+    "anio_finalizacion": 1832,
+    "estilo": "Neogótico",
+    "materiales": [
+      "Piedra arenisca"
+    ],
+    "programa": "Templo",
+    "estado": "modificada",
+    "ubicacion": {
+      "pais": "Reino Unido",
+      "provincia": "Inglaterra",
+      "ciudad": "Liverpool",
+      "barrio": "Centro",
+      "direccion": "Leece Street y Berry Street",
+      "lat": 53.4017,
+      "lng": -2.9768
+    },
+    "resumen": "Iglesia neogótica de John Foster padre e hijo, terminada en 1832. Una bomba incendiaria la quemó en mayo de 1941 y quedó solo el cascarón sin techo, que hoy es un memorial de guerra conocido como \"la iglesia bombardeada\".",
+    "descripcion": "John Foster padre, arquitecto municipal de Liverpool, la proyectó en 1802, pero la piedra fundamental recién se puso en 1811. Su hijo, John Foster hijo, sumó el presbiterio en 1822, y la iglesia se terminó en 1832.\n\nEl 6 de mayo de 1941, durante los bombardeos sobre Liverpool, una bomba incendiaria provocó un incendio que dejó solo los muros y la torre. No se reconstruyó: el cascarón sin techo quedó como memorial de guerra, con un jardín adentro. Donald Insall Associates restauró los muros y la torre. Está protegida (Grade II*) desde 1952.\n\nEn el jardín está la escultura de Andy Edwards sobre la tregua de Navidad de 1914, en la que un soldado británico y uno alemán empiezan un partido de fútbol.",
+    "fotos": [
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-06.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/st-luke-liverpool/st-luke-07.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "50-newton-street",
+    "agregada": "2026-10-31",
+    "nombre": "50 Newton Street",
+    "otros_nombres": [
+      "Newton Buildings",
+      "Hatters Hostel"
+    ],
+    "arquitectos": [
+      "Charles Clegg & Son"
+    ],
+    "anio_proyecto": 1906,
+    "anio_finalizacion": 1908,
+    "estilo": "Barroco eduardiano",
+    "materiales": [
+      "Ladrillo",
+      "Terracota"
+    ],
+    "programa": "Industria (hoy hostel)",
+    "estado": "modificada",
+    "ubicacion": {
+      "pais": "Reino Unido",
+      "provincia": "Inglaterra",
+      "ciudad": "Manchester",
+      "barrio": "Northern Quarter",
+      "direccion": "Newton Street y Hilton Street",
+      "lat": 53.4835,
+      "lng": -2.2331
+    },
+    "resumen": "Fábrica de sombreros de Joseph Wood & Sons, de Charles Clegg & Son (1906–1908), en la esquina de Newton Street y Hilton Street. Sus ventanales en arco de tres pisos dejaban entrar la mayor cantidad de luz posible. Hoy es el hostel Hatters.",
+    "descripcion": "Charles Clegg & Son la levantaron entre 1906 y 1908 como fábrica de sombreros para Joseph Wood & Sons, en el Northern Quarter de Manchester. Es de ladrillo rojo con detalles claros, en el barroco libre de principios del siglo XX: arcos vidriados de tres pisos para iluminar los talleres, mansardas con ventanas redondeadas y un remate curvo en la esquina.\n\nHoy funciona como hostel, el Hatters, que toma su nombre de los sombrereros. Está protegida (Grade II) desde 1988, con el nombre de Newton Buildings.",
+    "fotos": [
+      {
+        "archivo": "img/obras/50-newton-street/newton-street-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/50-newton-street/newton-street-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
   }
 ]

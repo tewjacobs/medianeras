@@ -8,6 +8,21 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**31 de octubre de 2026, cuarta parte (cierre).** Subido (`v58`). Cuatro obras nuevas de Inglaterra con fotos propias (copias de 1600 px **sin metadatos**, con permiso del usuario; los originales quedan intactos):
+- **George's Dock Building** (Liverpool, G1): Herbert J. Rowse, 1931–1934, Art déco, piedra Portland, Infraestructura.
+- **Catedral de Manchester** (G3, 8 fotos): gótico perpendicular desde 1421, Templo, `modificada`. Arquitecto **J. S. Crowther, aclarado como restaurador** (pedido del usuario). En la portada sale el usuario: se queda. Entra en la década de 1420.
+- **Iglesia de St Luke** (Liverpool, G0, 7 fotos): John Foster Sr. y Jr., 1802–1832, Neogótico, bombardeada en 1941, `modificada`; escultura de la tregua de Andy Edwards.
+- **50 Newton Street / Hatters** (Manchester, G5): Charles Clegg & Son, 1906–1908, Barroco eduardiano, "Industria (hoy hostel)". Portada: `newton-street-02.jpg`.
+- Perfiles nuevos: Rowse, Crowther, los dos Foster, Charles Clegg & Son; estilos Gótico perpendicular y Barroco eduardiano.
+- **De memoria, sin verificar:** coordenadas de Manchester, St Luke y Newton Street; piedra arenisca de la catedral y de St Luke; vidas de Rowse y de los Foster.
+- Grupos de fotos: se rehacen ordenando por `mdls kMDItemContentCreationDate` y cortando con más de 25 min; dan los mismos G0–G30. Ojo: **no intercambiar fotos manteniendo el nombre** (el navegador y el service worker muestran la vieja): cambiar el orden en `obras.json`.
+- `obras.json` tiene formato mixto: agregar obras al final como texto, sin volver a escribir todo el archivo con `json.dumps`.
+
+**Próxima sesión:**
+1. Revisar en el iPhone el encabezado nuevo, La Pyramide y las cuatro obras.
+2. Las casas de barrio de Buenos Aires (G19–G30) y, después, seguir con símbolos.
+3. Esperando al usuario: **Hotel** y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
+
 **31 de octubre de 2026, tercera parte.** Subido (`v57`).
 - **Encabezado nuevo de los perfiles (variante A) en la app** (`perfil.js`, `ui.js`, `estilos.css`): el cabezal (`.perfil-cabezal`) lleva nombre, datos, categorías, símbolo y flechas sobre la placa del símbolo (`--banda`), con textos y flechas en el color del marco (`--detalle`); el color llega a los bordes de la pantalla (border-image, como el pie). Símbolo grande sin recuadro, recortado a su dibujo, con tope de 380 de alto y 520 de ancho. **Blanco y negro** (tema oscuro adentro, fondo `--franja`): los perfiles sin placa (arquitectos, materiales, ciudades, Mundo 1980) y Brutalismo (lista `EN_BLANCO_Y_NEGRO` en `perfil.js`). Los perfiles sin símbolo propio ya no muestran el neutro (salía como un bloque).
 - **La Pyramide con más detalle** (`piramide.py`, aprobada): más resolución (5 filas por piso), aleros de listones con juntas y canto claro, ventanas con parantes y plantas, caja blanca bajo la corona, encofrado y ventanitas en la torre, y en la planta baja **locales** con carteles de color, toldos a rayas, vidrieras y puertas (cada lado con sus carteles).
