@@ -1,6 +1,6 @@
 # Ayudas para los armadores medidos en píxeles sobre una foto (recoleta.py, colon.py).
 # Una Medida pasa px de la foto a unidades del símbolo: filas de 1 con `sep` de separación.
-import json
+import json, re
 
 class Medida:
     def __init__(self, x0, x1, y0, paso_px, sep=0.3):
@@ -64,5 +64,48 @@ def escribir(ruta, coleccion, clave, cambios, sacar=()):
         return json.dumps(v, ensure_ascii=False)
     nuevo = '{\n' + ',\n'.join(f'        "{k}": {valor(v)}' for k, v in entrada.items()) + '\n      }'
     texto = texto[:a] + nuevo + texto[b + 1:]
+    json.loads(texto)
+    open(ruta, 'w').write(texto)
+
+class Lienzo:
+    # Una grilla de colores: filas = líneas, columnas de 0.25 a lo largo. Se pinta en orden (lo último queda arriba).
+    def __init__(self, largo, filas):
+        self.n = round(largo * 4)
+        self.c = [['-'] * self.n for _ in range(filas)]
+
+    def rect(self, color, x0, x1, f0, f1):
+        # De x0 a x1 (unidades) y de la fila f0 a la f1 sin incluirla.
+        for f in range(max(0, f0), min(len(self.c), f1)):
+            for i in range(max(0, round(x0 * 4)), min(self.n, round(x1 * 4))): self.c[f][i] = color
+
+    def lineas(self):
+        out = []
+        for fila in self.c:
+            tramos = []
+            for col in fila:
+                if tramos and tramos[-1][0] == col: tramos[-1][1] += 0.25
+                else: tramos.append([col, 0.25])
+            while tramos and tramos[-1][0] == '-': tramos.pop()
+            out.append(', '.join(f'{c} {l:g}' for c, l in tramos) or '- 0.25')
+        return out
+
+def guardar(ruta, seccion, clave, entrada, colores, prefijo):
+    # Pone (o reemplaza) seccion[clave] con `entrada` y los colores propios que empiezan con `prefijo`
+    # (una expresión: 'sz-|oficinas-diario').
+    texto = open(ruta).read()
+    texto = re.sub(rf'    "(?:{prefijo})[^"]*": \{{[^}}]*\}},\n', '', texto)
+    i = texto.index('"colores": {') + len('"colores": {\n')
+    texto = texto[:i] + ''.join(f'    "{k}": {{ "claro": "{v[0]}", "oscuro": "{v[1]}" }},\n' for k, v in colores.items()) + texto[i:]
+    nuevo = (f'    "{clave}": {{\n' + ',\n'.join(
+        f'      "{k}": ' + ('[\n' + ',\n'.join(f'        {json.dumps(l, ensure_ascii=False)}' for l in v) + '\n      ]'
+                            if k == 'lineas' else json.dumps(v, ensure_ascii=False)) for k, v in entrada.items()) + '\n    }')
+    s = texto.index(f'  "{seccion}": {{')
+    fin = texto.index('\n  }', s)
+    if f'    "{clave}": {{' in texto[s:fin]:
+        a = texto.index(f'    "{clave}": {{', s)
+        b = texto.index('\n    }', a) + len('\n    }')
+        texto = texto[:a] + nuevo + texto[b:]
+    else:
+        texto = texto[:fin] + ',\n' + nuevo + texto[fin:]
     json.loads(texto)
     open(ruta, 'w').write(texto)

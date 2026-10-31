@@ -8,6 +8,49 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**30 de octubre de 2026, cuarta parte (cierre).** Subido el 31 de octubre (`v54`), con todo lo de las cuatro partes del 30. Rehechos con armadores nuevos, todos aprobados:
+- **Templo** (`herramientas/simbolos/gopuram.py`): gopuram del Meenakshi medido sobre `religioso/images (9).jpeg` (basamento de `images (10)`). Once remates dorados, bóveda con medallones y cabezas en las puntas, nueve pisos con cornisa, pabellones y figuras (paradas y sentadas) entre pilastras, salientes apiladas en vertical y abertura en el eje, basamento de granito con puerta. Sigue con fondo granito rosado. "Increíble".
+- **Infraestructura** (`hoian.py`): puente de Hoi An medido sobre `infraestructura/images (15).jpeg`. Techo con tramo central alto, adornos de dragón, galería con postes, faroles y baranda, tablero arqueado con placa, pilas con arcos; el vano del medio hueco (sin vista del canal, pedido del usuario); techitos japoneses sobre los muros rojos. Fondo nuevo **jade de canal** (`infra-jade`).
+- **Deportivo** (`monumental.py`): Monumental desde arriba. La banda roja de la bandeja alta costó muchos intentos: salió bien recién al **calcarla de la foto** (captura del usuario) y unir las hojas en una cinta en zigzag que toca el borde de afuera en las esquinas y el anillo en el medio de costados y cabeceras (`ROJO_ADENTRO`/`ROJO_AFUERA`). Pista más ancha con dos líneas de carril, bancos de suplentes de un solo lado. Se deja con pista (como en la foto) y con el **fondo verde de siempre** (`riv-suelo`), decisión del usuario.
+- Borrados los colores sin uso: `t-*`, `vi-*`, `hoi-*` y `riv-*` viejos. `antes.json` hoy guarda el Monumental viejo.
+
+**Próxima sesión:**
+1. **Salud se queda con el Royal Infirmary** (decisión del usuario); si se rehace, mejorarlo con el sistema nuevo, no reemplazarlo. Seguir con los atrasados de `equilibrio.html`: **Hotel** al final (el usuario no quiere cargar fotos ahora); después Moderno tardío, Brutalismo, Moderno y décadas de Mundo viejas.
+2. Revisar en el iPhone y subir todo (commit y push solo cuando lo pida). Verificar los datos del Ateneo.
+3. Lo de antes: Asamblea de Bangladesh (esperar fotos), Instagram y dominio, hover de "Registrar visita".
+
+**30 de octubre de 2026, tercera parte (cierre).** **Sin subir (sigue `v54`)**: el usuario no pidió commit. Datos de las cuatro obras del día verificados en la web (Tjibaou: Piano, Numea, 1998; Marina City: Goldberg, Chicago, 1959–1968; Shizuoka: Tange, Ginza, 1967; Nakagin: Kurokawa, Ginza, 1972, demolida en abril de 2022): las notas estaban bien. Rehechos con armadores nuevos (`herramientas/simbolos/`), todos aprobados:
+- **Vivienda unifamiliar** (`casa.py`): la victoriana medida sobre `residencial/images.jpeg`. Dos techos (cumbrera plana y uno con pico, con su lima) más la torre cónica; tejuelas en rombos arriba y tablas abajo; saliente azul con pilastras; escalera de frente que gira en diagonal hacia la puerta detrás de un panel calado, con poste y pasamanos; canteros con flores. Fondo **mandarina** (`casa-mandarina`). "La casa está perfecta".
+- **Arquitectura orgánica** (`guggenheim.py`): Guggenheim medido sobre fotos reales (`stringio.jpg`), ya no la maqueta. Espiral con sombreado de cilindro, Monitor y losa lisos, blancos en crema. Fondo **rojo Cherokee** (`organica-cherokee`). "Abismal".
+- **Beaux-Arts** (`ateneo.py`): nuevo, el **Ateneo Rumano** (Bucarest; datos de memoria: Albert Galleron, 1888, sin verificar). Cúpula con nervios, tambor con ojos de buey redondos, frontón con dentículos y acroteras, pórtico de seis columnas jónicas, alas con techo de chapa, rosetas, sillares y pilastra doble en la punta. Fondo **bordó de palco** (`beaux-bordo`). "Increíble". La Ópera de Hanói se descartó.
+- Página `herramientas/prueba/detalle.html` ahora muestra antes y después (lee `herramientas/prueba/antes.json`, que no va al repo; hoy guarda la casa y el Beaux-Arts viejos). Los colores viejos `vi-*` (casa) y los del Beaux-Arts viejo siguen en `simbolos.json` sin uso: borrarlos.
+
+**Próxima sesión:**
+1. **Rehacer con el sistema nuevo los íconos atrasados**, de a dos, empezando por abajo de `equilibrio.html`: primero **Templo** (gopuram, carpeta `religioso`) e **Infraestructura** (puente de Hoi An); después **Salud** (preguntar si se mantiene el Royal Infirmary, que parecía palacio; si no, proponer joyas ocultas) y **Deportivo** (Monumental); el **Hotel al final** (el usuario no quiere cargar fotos ahora). Más adelante: Moderno tardío, Brutalismo, Moderno y décadas de Mundo viejas.
+2. Revisar en el iPhone y subir todo (commit y push solo cuando lo pida). Verificar los datos del Ateneo.
+3. Lo de antes: Asamblea de Bangladesh (Mundo 1980, único sin fondo; esperar fotos), Instagram y dominio, hover de "Registrar visita".
+
+**30 de octubre de 2026, segunda parte (cierre).** **Sin subir (sigue `v54`)**: el usuario se fue sin pedir commit. Cuatro íconos nuevos, aprobados, con armadores en `herramientas/simbolos/`:
+- **Cultural** = Centro Cultural Tjibaou (`tjibaou.py`, fotos en `referencias/simbolos/cultura/`): tres cases en líneas verticales, una costilla de cada tres con puntas desparejas, tablillas y aros alineados, piel de adentro, cáscara gris; vistas un poco de costado (cumbre corrida a la derecha, `CORRIDO`). Fondo **araucaria** (`cultural-araucaria`).
+- **Vivienda colectiva** = Marina City (`marina.py`): dos torres iguales, pétalos en U que se angostan, borde festoneado, piso de vidrio metido y cochera del mismo ancho, con las columnas bajo las juntas de los pétalos. Fondo **ladrillo de Chicago** (`vivienda-ladrillo`).
+- **Oficinas** = Centro de Prensa de Shizuoka (`shizuoka.py`, carpeta `shizuoka`): cilindro en paneles, caño, cajas colgadas a distintas alturas, volumen de piedra con la entrada abajo a la derecha y zócalo. Fondo **papel de diario** (`oficinas-diario`).
+- **Metabolismo** (estilo nuevo en `simbolos.json`, ninguna obra lo usa todavía) = Torre de Cápsulas Nakagin (`nakagin.py`, carpeta `nagakin`): cápsulas escalonadas, algunas ciegas, núcleos de óxido de techo inclinado (no flecha), basamento. Fondo **añil** (`metabolismo-anil`).
+- `armar.py` suma `Lienzo` (pintar en grilla y sacar líneas) y `guardar` (pone o reemplaza un símbolo en cualquier sección, con sus colores). Los cuatro armadores ya escriben `placa`, `aire` y `marco`: se pueden volver a correr sin perder el fondo.
+- Datos de las notas de memoria, sin verificar: Tjibaou (Renzo Piano, Numea), Marina City (Bertrand Goldberg, Chicago), Shizuoka (Kenzo Tange, Tokio), Nakagin (Kisho Kurokawa, Tokio, 1972, demolida en 2022).
+
+**Próxima sesión:**
+1. **Revisar en el iPhone y subir** todo lo de hoy (commit y push solo cuando lo pida). Antes, verificar los datos de las cuatro notas.
+2. **Fondos que faltan:** Vivienda unifamiliar, Arquitectura orgánica y Beaux-Arts. Gamas usadas hoy: araucaria, ladrillo de Chicago, papel de diario, añil.
+3. Lo de antes: Asamblea de Bangladesh (esperar fotos), Instagram y dominio, hover de "Registrar visita"; más adelante Industria, Gobierno, Comercio, Educación; G0–G30.
+
+**30 de octubre de 2026 (cierre).** **Sin subir (`v54`)**: el usuario se fue sin pedir commit. Templo confirmado en granito rosado. **Salud** (Royal Infirmary) con fondo **brezo** (`salud-brezo`). **Museo** rehecho: el **Museo Soumaya** (Ciudad de México), con las fotos de `referencias/simbolos/museo/`, armador `herramientas/simbolos/soumaya.py`. Es un reloj de arena en líneas horizontales con juntas tipo ladrillo (el usuario prefirió esto a la versión vertical, más "escamas"), placas en cinco grises (`so-1` a `so-5`), la lengua de sombra difuminada, un filo claro arriba y el canto de acero abajo. **Sin base** (se probó con zócalo, jardín vertical y vereda; el usuario eligió sin). Fondo **cempasúchil** (`museo-cempasuchil`). Ojo: si se vuelve a correr `soumaya.py`, reescribe la entrada y borra `placa`, `aire` y `marco` (hay que volver a ponerlos). La carpeta `museo` también tiene fotos de la Casa Azul (Frida Kahlo), no usadas.
+
+**Próxima sesión:**
+1. **Revisar en el iPhone y subir** (commit y push solo cuando lo pida).
+2. **Íconos nuevos, de a dos** (así los quiere el usuario: "dos y dos" son tandas de dos íconos, no dos versiones). Primera tanda: **Cultural** (Centro Cultural Tjibaou, Renzo Piano, Nueva Caledonia) y **Oficinas** (Centro de Prensa de Shizuoka, Kenzo Tange, Tokio). Segunda: **Vivienda colectiva**, probando **Nakagin** (Kurokawa, Tokio) y **Marina City** (Goldberg, Chicago). Datos de memoria, verificar. Esperar las carpetas `cultural`, `oficinas`, `nakagin` y `marina city` en `referencias/simbolos/`. El usuario dijo que el ícono actual de Oficinas, el de Cultural (telón) y el de Vivienda colectiva no le gustan.
+3. **Fondos que faltan:** Vivienda unifamiliar, Arquitectura orgánica y Beaux-Arts (y los de los íconos nuevos). Gamas ya usadas, sumar: brezo y cempasúchil. Propuestas que no se eligieron y siguen libres: verde sala, arenisca roja, cobre, musgo, cemento cálido, dorado de sala, verde terciopelo, marfil, damasco, oliva, lavanda gris, rosa mexicano, jade.
+4. Lo de antes: Asamblea de Bangladesh (esperar fotos), Instagram y dominio, hover de "Registrar visita"; más adelante Industria, Gobierno, Comercio, Educación; G0–G30.
+
 **28 de octubre de 2026, cuarta parte (cierre).** Subido (`v53`). El usuario revisó en el iPhone lo subido antes y está todo bien. Fondos nuevos con aire y marco invertido: **Brutalismo** laterita (`brut-laterita`), **Hotel** cola, rojo tierra (`hotel-cola`) y **Templo** granito rosado (`templo-granito`). Ojo: para el Templo el usuario escribió "granito azafran"; se aplicó granito rosado (`#d5b8ab`). Preguntarle si quería el azafrán (`#e8a85a` / `#43301a`). **Museo:** sin fondo, porque el usuario quiere un ícono nuevo (hoy es una pared con tres cuadros).
 
 **Próxima sesión:**
@@ -403,3 +446,17 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 ### 28 de octubre de 2026, cuarta parte
 
 - Fondos para Brutalismo (laterita), Hotel (cola) y Templo (granito rosado), elegidos en `fondos.html` entre tres opciones cada uno. Museo queda sin fondo hasta rehacer su ícono.
+
+### 30 de octubre de 2026
+
+- Fondos: Salud brezo (elegido entre verde sala, arenisca roja y brezo); Oficinas, Cultural y Vivienda colectiva se mostraron pero el usuario prefiere íconos nuevos.
+- Museo rehecho como Museo Soumaya (`soumaya.py`), sin base y con fondo cempasúchil (opciones: rosa mexicano, jade, cempasúchil).
+- `fondos.js`: las claves de color de prueba ahora cambian los espacios por guiones (con "Vivienda colectiva" salía fondo negro).
+- `sw.js` en `v54`. Nada commiteado.
+
+### 30 de octubre de 2026 (tercera parte)
+
+- Fondos elegidos: casa mandarina, Guggenheim rojo Cherokee, Ateneo bordó de palco.
+- Armadores nuevos: `casa.py`, `guggenheim.py`, `ateneo.py`. Beaux-Arts pasa a ser el Ateneo Rumano.
+- `detalle.js` con antes y después (`antes.json`); `fondos.js` con las opciones del día.
+- Datos de Tjibaou, Marina City, Shizuoka y Nakagin verificados. Nada commiteado.
