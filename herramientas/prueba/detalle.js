@@ -13,7 +13,8 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección, clave, título y su foto de referencia.
 const OBRAS = [
-  ['programas', 'Deportivo', 'Deportivo · Monumental de River (desde arriba)', 'deportes/https___s3.amazonaws.com_arc-wordpress-client-uploads_infobae-wp_wp-content_uploads_2019_02_08155342_Galeria-cenital-River-Plate.avif'],
+  ['mundo', '1910', 'Mundo 1910 · Casa Milà (La Pedrera)', 'la pedrera:casa mila/Casa_Milà,_general_view.jpg'],
+  ['mundo', '1960', 'Mundo 1960 · Congreso Nacional', 'brasilia/Brazilian_National_Congress.jpg'],
 ];
 
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;

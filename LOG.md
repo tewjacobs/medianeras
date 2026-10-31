@@ -8,6 +8,23 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**31 de octubre de 2026 (cierre).** Subido (`v55`). Al empezar se subió todo lo del 30 (`v54`). En la sesión, ocho íconos rehechos con armadores nuevos en `herramientas/simbolos/`, todos aprobados:
+- **Moderno tardío** (`tenerife.py`): el Auditorio de Tenerife **calcado de la foto** (cada celda toma el color medio de su pedazo; el cielo se inunda desde arriba; seis tonos y moda de vecinos). La franja de abajo, redibujada a mano: ala baja con escalera, muro parejo, boca de la entrada con canto gris del arco, balcón recto y columnas; en oscuro la entrada se prende en dorado (`tt-luz`). Sigue con fondo `au-cielo`. Necesita la foto en `~/medianeras-originales` para correr.
+- **Brutalismo** (`piramide.py`): La Pyramide de Abiyán, simétrica en grilla: torre lisa más alta que la corona, corona de parasoles, catorce pisos con alero inclinado, pilotes.
+- **Mundo 1970** (`pompidou.py`): caños blancos, cruces de tirantes suaves, escalera mecánica con tramos de igual pendiente y descansos en las vigas (tubo en tres tonos sobre la panza roja) y galerías; escaleras de emergencia de las puntas, un tramo por piso. Usa `rectas` para todo lo inclinado.
+- **Mundo 1930** (`paimio.py`): los dos edificios a la misma altura y con paso sutil; terrazas con toldos naranja y verde agua; sombra moteada de los pinos en el pabellón.
+- **Moderno** (`savoye.py`): solario curvo, ventana corrida, pilotes de atrás más arriba (perspectiva) y **base de un solo piso, blanca** (el usuario no quiere escalones).
+- **Salud** (`infirmary.py`): Royal Infirmary mejorado (no reemplazado): simétrico, juntas, sombras, guardapolvos, cúpulas con tambor, nervios y linterna, pináculos y torrecitas con remate.
+- **Mundo 1910** (`pedrera.py`): losas en ondas con sombra, ventanas como huecos redondeados con vidrios **apagados** (azul, celeste gris, oscuro; nada brillante), balcones de hierro en grises como banda con dos hierros ondulados, ático, chimeneas, planta baja en arcos.
+- **Mundo 1960** (`congreso.py`): torres con juntas y puentes, cúpula y cuenco sombreados (cuenco playo, curva tendida y base ancha), plataforma, rampa, agua y pasto.
+- `armar.py` suma `con_colores` (escribe solo los colores; sirve para las décadas, que se guardan con `escribir`). Ojo: nunca `open(ruta, 'w').write(...open(ruta).read()...)` en una línea: vacía el archivo antes de leerlo (pasó, se recuperó de git).
+- Borrados los colores viejos sin uso de todos los rehechos.
+
+**Próxima sesión:**
+1. Revisar en el iPhone lo subido hoy.
+2. Seguir con las décadas de Mundo con el sistema viejo, de a dos: **Seagram (1950), Bilbao (1990), St Mary Axe (2000), CCTV (2010), M+ (2020)**. Todas tienen carpeta. Si se pide más carácter en las chimeneas de La Pedrera, retocarlas.
+3. Esperando al usuario: **Hotel** (al final) y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
+
 **30 de octubre de 2026, cuarta parte (cierre).** Subido el 31 de octubre (`v54`), con todo lo de las cuatro partes del 30. Rehechos con armadores nuevos, todos aprobados:
 - **Templo** (`herramientas/simbolos/gopuram.py`): gopuram del Meenakshi medido sobre `religioso/images (9).jpeg` (basamento de `images (10)`). Once remates dorados, bóveda con medallones y cabezas en las puntas, nueve pisos con cornisa, pabellones y figuras (paradas y sentadas) entre pilastras, salientes apiladas en vertical y abertura en el eje, basamento de granito con puerta. Sigue con fondo granito rosado. "Increíble".
 - **Infraestructura** (`hoian.py`): puente de Hoi An medido sobre `infraestructura/images (15).jpeg`. Techo con tramo central alto, adornos de dragón, galería con postes, faroles y baranda, tablero arqueado con placa, pilas con arcos; el vano del medio hueco (sin vista del canal, pedido del usuario); techitos japoneses sobre los muros rojos. Fondo nuevo **jade de canal** (`infra-jade`).

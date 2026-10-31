@@ -89,13 +89,16 @@ class Lienzo:
             out.append(', '.join(f'{c} {l:g}' for c, l in tramos) or '- 0.25')
         return out
 
+def con_colores(texto, colores, prefijo):
+    # Saca los colores que empiezan con `prefijo` y pone `colores` al principio de la sección.
+    texto = re.sub(rf'    "(?:{prefijo})[^"]*": \{{[^}}]*\}},\n', '', texto)
+    i = texto.index('"colores": {') + len('"colores": {\n')
+    return texto[:i] + ''.join(f'    "{k}": {{ "claro": "{v[0]}", "oscuro": "{v[1]}" }},\n' for k, v in colores.items()) + texto[i:]
+
 def guardar(ruta, seccion, clave, entrada, colores, prefijo):
     # Pone (o reemplaza) seccion[clave] con `entrada` y los colores propios que empiezan con `prefijo`
     # (una expresión: 'sz-|oficinas-diario').
-    texto = open(ruta).read()
-    texto = re.sub(rf'    "(?:{prefijo})[^"]*": \{{[^}}]*\}},\n', '', texto)
-    i = texto.index('"colores": {') + len('"colores": {\n')
-    texto = texto[:i] + ''.join(f'    "{k}": {{ "claro": "{v[0]}", "oscuro": "{v[1]}" }},\n' for k, v in colores.items()) + texto[i:]
+    texto = con_colores(open(ruta).read(), colores, prefijo)
     nuevo = (f'    "{clave}": {{\n' + ',\n'.join(
         f'      "{k}": ' + ('[\n' + ',\n'.join(f'        {json.dumps(l, ensure_ascii=False)}' for l in v) + '\n      ]'
                             if k == 'lineas' else json.dumps(v, ensure_ascii=False)) for k, v in entrada.items()) + '\n    }')
