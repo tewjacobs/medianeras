@@ -238,10 +238,19 @@ function flechaVisor(sentido) {
 
 // La banda con el símbolo del perfil (o el neutro en su color). Los años, con la marca del año.
 // `pais`: el contexto, para elegir la colección de décadas.
-export function bandaPerfil(datos, tipo, valor, familia, { pais } = {}) {
-  const partitura = partituraDe(datos, tipo, valor, { pais }) ?? simboloNeutro(familia);
+export function bandaPerfil(datos, tipo, valor, { pais } = {}) {
+  // Grande y sin placa: el cabezal del perfil ya lleva su color. Sin símbolo propio, nada.
+  const propia = partituraDe(datos, tipo, valor, { pais });
+  if (!propia) return null;
+  const { placa, aire, marco, ...partitura } = propia;
   const anio = tipo === 'anio' ? Number(valor) % 10 : null;
-  return el('div', { class: 'banda-perfil' }, simbolo(partitura, { ancho: 400, alto: 132, anio }));
+  const dibujo = simbolo(partitura, { ancho: 600, alto: 420, margen: 0, sinFondo: true, superficie: 0.85, anio });
+  // Recortado a lo que ocupa el dibujo, así los altos y angostos (el Seagram) crecen hasta el alto del cabezal.
+  requestAnimationFrame(() => {
+    const caja = dibujo.getBBox();
+    if (caja.width) dibujo.setAttribute('viewBox', `${caja.x} ${caja.y} ${caja.width} ${caja.height}`);
+  });
+  return el('div', { class: 'banda-perfil' }, dibujo);
 }
 
 // Encabezado de fila: título chico en mayúsculas, filete y VER MÁS a la derecha.

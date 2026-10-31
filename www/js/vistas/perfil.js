@@ -3,15 +3,18 @@
 
 import { el, flecha, mensaje, agregar, bandaPerfil, enlacePerfil, chipsPerfil } from '../ui.js';
 import {
-  TIPOS_PERFIL, NIVELES_UBICACION, nombrePerfil, rutaPerfil, perfilDe, partituraDe, colorPerfil,
+  TIPOS_PERFIL, NIVELES_UBICACION, nombrePerfil, rutaPerfil, perfilDe, partituraDe,
   ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto, anioReferencia,
 } from '../datos.js';
-import { separador } from '../grafica.js';
+import { separador, colorCss } from '../grafica.js';
 import { grillaObras, cargarEstadisticas } from './obras.js';
 
 export const INDICES = Object.fromEntries(Object.entries(TIPOS_PERFIL).map(([tipo, def]) => [def.indice, tipo]));
 
 const plural = (n) => (n === 1 ? '1 obra' : `${n} obras`);
+
+// Fondos con poco contraste para un cabezal entero: van en blanco y negro.
+const EN_BLANCO_Y_NEGRO = [['estilos', 'Brutalismo']];
 
 // ---- Qué obras tiene un perfil ----
 
@@ -52,13 +55,14 @@ export function render(contenedor, { datos, partes, params, titulo }) {
 
   const obras = obrasDePerfil(datos, tipo, valor);
   const perfil = perfilDe(datos, tipo, valor);
-  const familia = colorPerfil(tipo, valor, obras);
   // Décadas y años: la colección del país filtrado (si tiene) o la del mundo. Si el filtro de
   // país cambia en la grilla, la banda y su leyenda se rehacen.
+  const cabezal = el('div', { class: 'perfil-cabezal' });
   const banda = el('div', { class: 'perfil-cabeza' });
   const pintarBanda = (pais) => {
     const partitura = partituraDe(datos, tipo, valor, { pais });
-    banda.replaceChildren(bandaPerfil(datos, tipo, valor, familia, { pais }));
+    colorCabezal(cabezal, datos, partitura);
+    banda.replaceChildren(...[bandaPerfil(datos, tipo, valor, { pais })].filter(Boolean));
     if (conDecadas && partitura?.obra) banda.append(el('p', { class: 'perfil-simbolo' }, `${partitura.obra} · ${partitura.lugar} · ${partitura.anio}`));
   };
   let paisActual = params.get('pais');
@@ -69,27 +73,40 @@ export function render(contenedor, { datos, partes, params, titulo }) {
     alCambiar: conDecadas ? (filtros) => { if ((filtros.pais ?? null) !== paisActual) { paisActual = filtros.pais ?? null; pintarBanda(paisActual); } } : null,
   });
 
-  // Arriba, a la misma altura: el texto a la izquierda y el símbolo a la derecha (en el celular,
-  // el símbolo primero). Debajo, en bloques separados: categorías, jerarquía o años, y las obras.
-  agregar(contenedor, [
-    el('div', { class: 'perfil-arriba', style: `--familia: var(--${familia})` },
-      el('div', { class: 'perfil perfil-texto' },
-        el('nav', { class: 'migas', 'aria-label': 'Ubicación' }, migas(datos, tipo, valor, obras)),
-        el('h2', { class: 'perfil-nombre' }, nombre),
-        el('p', { class: 'perfil-datos' }, lineaDatos(tipo, valor, perfil, obras)),
-        perfil.descripcion && descripcion(perfil.descripcion),
-      ),
-      banda,
+  // El cabezal, en el color del símbolo: texto, categorías (jerarquía o años) y el símbolo apoyado
+  // sobre las flechas (en la compu, el símbolo a la derecha). Debajo, las obras.
+  agregar(cabezal, [
+    el('div', { class: 'perfil perfil-texto' },
+      el('nav', { class: 'migas', 'aria-label': 'Ubicación' }, migas(datos, tipo, valor, obras)),
+      el('h2', { class: 'perfil-nombre' }, nombre),
+      el('p', { class: 'perfil-datos' }, lineaDatos(tipo, valor, perfil, obras)),
+      perfil.descripcion && descripcion(perfil.descripcion),
     ),
-    el('div', { class: 'perfil perfil-bloques', style: `--familia: var(--${familia})` },
+    el('div', { class: 'perfil perfil-bloques' },
       resumen(tipo, obras, tipo === 'pais' ? valor : null),
       tipo === 'estilo' && jerarquia(datos, valor),
       conDecadas && tira(datos, tipo, valor, params.get('pais')),
     ),
+    banda,
     separador(`perfil:${tipo}:${valor}`, 360),
-    grilla,
   ]);
+  agregar(contenedor, [cabezal, grilla]);
   cargarEstadisticas(datos, grilla);
+}
+
+// Fondo del cabezal: la placa del símbolo, con textos y flechas en el color de su marco. Sin placa
+// (o con poco contraste), en blanco y negro: el tema oscuro adentro, como la cabecera.
+function colorCabezal(nodo, datos, partitura) {
+  const bn = !partitura?.placa || EN_BLANCO_Y_NEGRO.some(([seccion, nombre]) => datos.simbolos?.[seccion]?.[nombre] === partitura);
+  if (bn) {
+    nodo.dataset.tema = 'oscuro';
+    nodo.style.removeProperty('--banda');
+    nodo.style.removeProperty('--detalle');
+  } else {
+    delete nodo.dataset.tema;
+    nodo.style.setProperty('--banda', colorCss(partitura.placa));
+    nodo.style.setProperty('--detalle', colorCss(partitura.marco ?? 'tinta'));
+  }
 }
 
 function migas(datos, tipo, valor, obras) {

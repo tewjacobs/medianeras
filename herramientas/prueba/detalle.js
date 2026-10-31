@@ -13,8 +13,7 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección, clave, título y su foto de referencia.
 const OBRAS = [
-  ['mundo', '2010', 'Mundo 2010 · Sede de CCTV', 'CCTV/china.png'],
-  ['mundo', '2020', 'Mundo 2020 · Museo M+', 'm+/av_imagen.webp'],
+  ['estilos', 'Brutalismo', 'Brutalismo · La Pyramide', 'brutalismo/pyramide.jpg'],
 ];
 
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;

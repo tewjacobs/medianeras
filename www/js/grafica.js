@@ -257,7 +257,7 @@ export function logo({ clase = 'logo-simbolo' } = {}) {
 export const COLORES_TEMA = ['tinta', 'papel', 'papel-2', 'tenue', 'filete', 'rojo', 'petroleo', 'follaje', 'cielo', 'mar'];
 const coloresPropios = new Set();
 
-function colorCss(nombre) {
+export function colorCss(nombre) {
   if (COLORES_TEMA.includes(nombre)) return `var(--${nombre})`;
   if (!coloresPropios.has(nombre)) console.warn(`Símbolo: el color "${nombre}" no está en "colores" de simbolos.json`);
   return `var(--simbolo-${nombre}, var(--tinta))`;

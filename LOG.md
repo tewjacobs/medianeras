@@ -8,6 +8,15 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**31 de octubre de 2026, tercera parte.** Subido (`v57`).
+- **Encabezado nuevo de los perfiles (variante A) en la app** (`perfil.js`, `ui.js`, `estilos.css`): el cabezal (`.perfil-cabezal`) lleva nombre, datos, categorías, símbolo y flechas sobre la placa del símbolo (`--banda`), con textos y flechas en el color del marco (`--detalle`); el color llega a los bordes de la pantalla (border-image, como el pie). Símbolo grande sin recuadro, recortado a su dibujo, con tope de 380 de alto y 520 de ancho. **Blanco y negro** (tema oscuro adentro, fondo `--franja`): los perfiles sin placa (arquitectos, materiales, ciudades, Mundo 1980) y Brutalismo (lista `EN_BLANCO_Y_NEGRO` en `perfil.js`). Los perfiles sin símbolo propio ya no muestran el neutro (salía como un bloque).
+- **La Pyramide con más detalle** (`piramide.py`, aprobada): más resolución (5 filas por piso), aleros de listones con juntas y canto claro, ventanas con parantes y plantas, caja blanca bajo la corona, encofrado y ventanitas en la torre, y en la planta baja **locales** con carteles de color, toldos a rayas, vidrieras y puertas (cada lado con sus carteles).
+
+**Próxima sesión:**
+1. Revisar en el iPhone el encabezado nuevo y La Pyramide.
+2. Pendiente opcional: chips del cabezal más claros si se ven apagados.
+3. Esperando al usuario: **Hotel** (al final) y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
+
 **31 de octubre de 2026, segunda parte (cierre).** Subido (`v56`). Las cinco décadas de Mundo que quedaban con el sistema viejo, rehechas con armadores en `herramientas/simbolos/` y aprobadas:
 - **1950 Seagram** (`seagram.py`, foto `seagramexrt.webp`): ventanas encendidas calcadas de la foto en tres calideces (naranja, ámbar, amarillo claro), 30 módulos de bronce, faja técnica; planta baja con cielorraso, marquesina, hall con puertas giratorias; plaza **en elevación plana** (canteros como cajas bajas con tulipanes asomando), base marrón. Fondo atardecer.
 - **1990 Bilbao** (`bilbao.py`): el que más costó. Calcar no sirvió (camuflaje); quedó **por piezas**: cada cáscara es un polígono medido en px, con caras de tono propio (para que se lean los saltos, no por luz real) y adentro un sombreado de chapa curva en una sola dirección ajustado a la luz de la foto (cuadrados mínimos, sin manchas). Canto claro arriba, juntas finas, líneas finas (PASO 4). La sala larga son **dos "bananas"** cruzadas; los extremos terminan en tandas (torreón de piedra a la izquierda, tambor sobre caja de piedra a la derecha); la visera es una cáscara curva con media luna verde y el vidrio del atrio pegado debajo. Grises, sin dorado. Sin araña (escultura).
@@ -20,7 +29,8 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 **Próxima sesión:**
 1. Revisar en el iPhone lo subido.
 2. **Pasar la variante A del encabezado a la app** (`perfil.js` y `estilos.css`): proponer plan antes; decidir qué perfiles van en blanco y negro (los de poco contraste, como Brutalismo azul sobre terracota) y si los símbolos anchos (Museo) llevan tope de tamaño.
-3. Esperando al usuario: **Hotel** (al final) y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
+3. **Brutalismo (La Pyramide, `piramide.py`): más detalle**, pedido del usuario.
+4. Esperando al usuario: **Hotel** (al final) y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
 
 **31 de octubre de 2026 (cierre).** Subido (`v55`). Al empezar se subió todo lo del 30 (`v54`). En la sesión, ocho íconos rehechos con armadores nuevos en `herramientas/simbolos/`, todos aprobados:
 - **Moderno tardío** (`tenerife.py`): el Auditorio de Tenerife **calcado de la foto** (cada celda toma el color medio de su pedazo; el cielo se inunda desde arriba; seis tonos y moda de vecinos). La franja de abajo, redibujada a mano: ala baja con escalera, muro parejo, boca de la entrada con canto gris del arco, balcón recto y columnas; en oscuro la entrada se prende en dorado (`tt-luz`). Sigue con fondo `au-cielo`. Necesita la foto en `~/medianeras-originales` para correr.
