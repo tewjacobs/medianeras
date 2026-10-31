@@ -13,8 +13,8 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección, clave, título y su foto de referencia.
 const OBRAS = [
-  ['mundo', '1910', 'Mundo 1910 · Casa Milà (La Pedrera)', 'la pedrera:casa mila/Casa_Milà,_general_view.jpg'],
-  ['mundo', '1960', 'Mundo 1960 · Congreso Nacional', 'brasilia/Brazilian_National_Congress.jpg'],
+  ['mundo', '2010', 'Mundo 2010 · Sede de CCTV', 'CCTV/china.png'],
+  ['mundo', '2020', 'Mundo 2020 · Museo M+', 'm+/av_imagen.webp'],
 ];
 
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;

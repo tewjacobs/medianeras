@@ -8,6 +8,20 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**31 de octubre de 2026, segunda parte (cierre).** Subido (`v56`). Las cinco décadas de Mundo que quedaban con el sistema viejo, rehechas con armadores en `herramientas/simbolos/` y aprobadas:
+- **1950 Seagram** (`seagram.py`, foto `seagramexrt.webp`): ventanas encendidas calcadas de la foto en tres calideces (naranja, ámbar, amarillo claro), 30 módulos de bronce, faja técnica; planta baja con cielorraso, marquesina, hall con puertas giratorias; plaza **en elevación plana** (canteros como cajas bajas con tulipanes asomando), base marrón. Fondo atardecer.
+- **1990 Bilbao** (`bilbao.py`): el que más costó. Calcar no sirvió (camuflaje); quedó **por piezas**: cada cáscara es un polígono medido en px, con caras de tono propio (para que se lean los saltos, no por luz real) y adentro un sombreado de chapa curva en una sola dirección ajustado a la luz de la foto (cuadrados mínimos, sin manchas). Canto claro arriba, juntas finas, líneas finas (PASO 4). La sala larga son **dos "bananas"** cruzadas; los extremos terminan en tandas (torreón de piedra a la izquierda, tambor sobre caja de piedra a la derecha); la visera es una cáscara curva con media luna verde y el vidrio del atrio pegado debajo. Grises, sin dorado. Sin araña (escultura).
+- **2000 St Mary Axe** (`smaxe.py`): perfil medido, piel sobre cilindro (una diagonal por malla, seis espirales oscuras), cúpula oscura con la misma trama en gris, sin celeste; tronco más azul.
+- **2010 CCTV** (`cctv.py`): de noche, de tres cuartos. Rombos grandes y regulares (dos celdas por fila), hueco sacado de la mancha del cielo con canto parejo, bordes rectos, banda oscura paralela a la izquierda y techo grueso que se junta en punta; basamento en otro tono (mira hacia otro lado).
+- **2020 M+** (`mmas.py`, foto real `av_imagen.webp`): torre gris cálido de aletas por módulos con franjitas de luz y medio (como el basamento), ventanas prolijas (no calcadas), patas en V sombreadas, jardín bajo, basamento negro de aletas redondeadas, planta baja baja. Sin césped.
+- Borrados los colores viejos sin uso de las cinco. `antes.json` (no va al repo) guarda las versiones anteriores.
+- **Página nueva `herramientas/prueba/cabezal.html`:** prueba del encabezado de los perfiles sobre la app real. El usuario eligió la **A**: todo el encabezado (migas, nombre, datos, categorías y flechas) sobre el color de fondo del símbolo, textos y flechas en el color del marco (el inverso), símbolo grande sin recuadro apoyado sobre las flechas (recortado a su dibujo, así los altos como el Seagram crecen). Algunos perfiles en blanco y negro (variante C). **Todavía no está en la app.**
+
+**Próxima sesión:**
+1. Revisar en el iPhone lo subido.
+2. **Pasar la variante A del encabezado a la app** (`perfil.js` y `estilos.css`): proponer plan antes; decidir qué perfiles van en blanco y negro (los de poco contraste, como Brutalismo azul sobre terracota) y si los símbolos anchos (Museo) llevan tope de tamaño.
+3. Esperando al usuario: **Hotel** (al final) y **Daca** (Mundo 1980, fotos). Lo de antes: verificar datos del Ateneo, Instagram y dominio, hover de "Registrar visita".
+
 **31 de octubre de 2026 (cierre).** Subido (`v55`). Al empezar se subió todo lo del 30 (`v54`). En la sesión, ocho íconos rehechos con armadores nuevos en `herramientas/simbolos/`, todos aprobados:
 - **Moderno tardío** (`tenerife.py`): el Auditorio de Tenerife **calcado de la foto** (cada celda toma el color medio de su pedazo; el cielo se inunda desde arriba; seis tonos y moda de vecinos). La franja de abajo, redibujada a mano: ala baja con escalera, muro parejo, boca de la entrada con canto gris del arco, balcón recto y columnas; en oscuro la entrada se prende en dorado (`tt-luz`). Sigue con fondo `au-cielo`. Necesita la foto en `~/medianeras-originales` para correr.
 - **Brutalismo** (`piramide.py`): La Pyramide de Abiyán, simétrica en grilla: torre lisa más alta que la corona, corona de parasoles, catorce pisos con alero inclinado, pilotes.

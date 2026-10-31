@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabezal de perfil</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    h2 { font-size: 16px; font-weight: 850; font-stretch: 115%; margin: 26px 0 8px; }
+    .controles { display: flex; gap: 8px; margin: 10px 0; }
+    .controles button { font: inherit; padding: 6px 12px; border: 1px solid #1a1917; background: #f7f3eb; cursor: pointer; }
+    .fila { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; }
+    figure { margin: 0; }
+    figcaption { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .marco { overflow: hidden; background: #f7f3eb; }
+    .marco iframe { border: 0; transform-origin: 0 0; display: block; }
+  </style>
+</head>
+<body>
+  <h1>Cabezal de perfil</h1>
+  <p>La app de verdad, con tres ideas encima. A: el color del fondo del símbolo hasta pasar las flechas. B: el color solo como título. C: blanco y negro. El símbolo, más grande y sin recuadro, apoyado sobre las flechas; los detalles en el color del marco (el inverso).</p>
+  <div class="controles"><button id="claro">Claro</button><button id="oscuro">Oscuro</button></div>
+  <div id="ejemplos"></div>
+  <script type="module" src="cabezal.js"></script>
+</body>
+</html>
