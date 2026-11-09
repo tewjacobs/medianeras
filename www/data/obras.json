@@ -432,7 +432,7 @@
     "arquitectos": ["Toombs, Amisano and Wells"],
     "anio_proyecto": 1974,
     "anio_finalizacion": 1975,
-    "estilo": null,
+    "estilo": "Moderno tardío",
     "materiales": [],
     "programa": "Oficinas",
     "estado": "existente",
@@ -512,13 +512,13 @@
     "descripcion": "Edificio de oficinas de 14 pisos en Allen Plaza, en el centro de Atlanta, proyectado por el estudio MSTSD. Su ocupante principal es Southern Company, una de las grandes empresas de energía del sur de Estados Unidos, que se mudó en abril de 2006.\n\nEs posmoderno: volúmenes de granito con grandes ventanales en arco, una forma de citar la arquitectura clásica con materiales y proporciones de una torre de oficinas.",
     "fotos": [
       {
-        "archivo": "img/obras/30-allen-plaza/allen-plaza-01.jpg",
+        "archivo": "img/obras/30-allen-plaza/allen-plaza-02.jpg",
         "autor": "tewjacobs",
         "licencia": "Todos los derechos reservados",
         "fuente": "Foto propia"
       },
       {
-        "archivo": "img/obras/30-allen-plaza/allen-plaza-02.jpg",
+        "archivo": "img/obras/30-allen-plaza/allen-plaza-01.jpg",
         "autor": "tewjacobs",
         "licencia": "Todos los derechos reservados",
         "fuente": "Foto propia"
@@ -952,6 +952,515 @@
       },
       {
         "archivo": "img/obras/50-newton-street/newton-street-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-ignacio-warnes-1294",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Ignacio Warnes 1294",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Pintoresquismo",
+    "decada": 1940,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Florida",
+      "direccion": "Ignacio Warnes 1294",
+      "lat": -34.5329,
+      "lng": -58.497
+    },
+    "resumen": "Casa en esquina de techo a dos aguas muy empinado, con un frente blanco y un cuerpo curvo de ladrillo con balcón. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-ignacio-warnes-1294/ignacio-warnes-1294-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-nicolas-avellaneda-2813",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Nicolás Avellaneda 2813",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Pintoresquismo",
+    "decada": 1940,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Olivos",
+      "direccion": "Nicolás Avellaneda 2813",
+      "lat": -34.5129,
+      "lng": -58.496
+    },
+    "resumen": "Casa de ladrillo pintado de blanco con techo a dos aguas, ventana saliente arriba y puerta de madera bajo un alerito. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-nicolas-avellaneda-2813/nicolas-avellaneda-2813-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "edificio-aristobulo-del-valle-1601",
+    "agregada": "2026-11-09",
+    "nombre": "Edificio Aristóbulo del Valle 1601",
+    "otros_nombres": [],
+    "programa": "Vivienda colectiva",
+    "estilo": "Moderno",
+    "decada": 1960,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Florida",
+      "direccion": "Aristóbulo del Valle 1601",
+      "lat": -34.537,
+      "lng": -58.4784
+    },
+    "resumen": "Edificio de departamentos en esquina, de ocho pisos, con locales en la planta baja. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/edificio-aristobulo-del-valle-1601/aristobulo-del-valle-1601-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-valentin-vergara-2241",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Valentín Vergara 2241",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Moderno",
+    "decada": 1950,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Florida",
+      "direccion": "Gobernador Valentín Vergara 2241",
+      "lat": -34.5292,
+      "lng": -58.492
+    },
+    "resumen": "Casa angosta entre edificios, con un gran bow window de madera y persianas en el primer piso y el portón verde del garaje abajo. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-valentin-vergara-2241/valentin-vergara-2241-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-valentin-vergara-2241/valentin-vergara-2241-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-valentin-vergara-2241/valentin-vergara-2241-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-25-de-mayo-1612",
+    "agregada": "2026-11-09",
+    "nombre": "Casa 25 de Mayo 1612",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Moderno",
+    "decada": 1950,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Vicente López",
+      "direccion": "25 de Mayo 1612",
+      "lat": -34.5223,
+      "lng": -58.4835
+    },
+    "resumen": "Casa de dos plantas con una galería alta cerrada por una reja de varillas finas, revoque gris y un paño de cerámica bordó junto a la entrada. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-25-de-mayo-1612/25-de-mayo-1612-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-25-de-mayo-1612/25-de-mayo-1612-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-25-de-mayo-1612/25-de-mayo-1612-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-hipolito-yrigoyen-1145",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Hipólito Yrigoyen 1145",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Neocolonial",
+    "decada": 1930,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Vicente López",
+      "direccion": "Presidente Hipólito Yrigoyen 1145",
+      "lat": -34.5193,
+      "lng": -58.4821
+    },
+    "resumen": "Casa de revoque claro con arcos y balcones, detrás de una fila de plátanos. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-hipolito-yrigoyen-1145/hipolito-yrigoyen-1145-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-hipolito-yrigoyen-1145/hipolito-yrigoyen-1145-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-hipolito-yrigoyen-1145/hipolito-yrigoyen-1145-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-san-martin-1336",
+    "agregada": "2026-11-09",
+    "nombre": "Casa San Martín 1336",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Brutalismo",
+    "decada": 1970,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Vicente López",
+      "direccion": "General José de San Martín 1336",
+      "lat": -34.5231,
+      "lng": -58.4821
+    },
+    "resumen": "Casa con un gran volumen de hormigón gris sobre el garaje y un jardín con palmeras al costado. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-san-martin-1336/san-martin-1336-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-san-martin-1336/san-martin-1336-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-vuelta-de-obligado-1595",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Vuelta de Obligado 1595",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Moderno",
+    "decada": 1960,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Ciudad Autónoma de Buenos Aires",
+      "ciudad": "Buenos Aires",
+      "barrio": "Belgrano",
+      "direccion": "Vuelta de Obligado 1595",
+      "lat": -34.5658,
+      "lng": -58.451
+    },
+    "resumen": "Casa baja y larga sobre la línea municipal, con una franja de ladrillos calados arriba, un revestimiento en relieve en la planta baja y portones de madera. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-vuelta-de-obligado-1595/vuelta-de-obligado-1595-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-virrey-del-pino-2298",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Virrey del Pino 2298",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Italianizante",
+    "decada": 1900,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Ciudad Autónoma de Buenos Aires",
+      "ciudad": "Buenos Aires",
+      "barrio": "Belgrano",
+      "direccion": "Virrey del Pino 2298",
+      "lat": -34.5656,
+      "lng": -58.4511
+    },
+    "resumen": "Casona de estilo italianizante con torre, pórtico de columnas y arco de entrada, rodeada de jardín y de una reja verde. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-virrey-del-pino-2298/virrey-del-pino-2298-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-paz-soldan-4780",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Paz Soldán 4780",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Art déco",
+    "decada": 1930,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Ciudad Autónoma de Buenos Aires",
+      "ciudad": "Buenos Aires",
+      "barrio": "La Paternal",
+      "direccion": "Paz Soldán 4780",
+      "lat": -34.5925,
+      "lng": -58.4659
+    },
+    "resumen": "Casa de frente art déco, con pilastras que suben escalonadas y una entrada en arco. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-paz-soldan-4780/paz-soldan-4780-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-julio-a-roca-1348",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Julio A. Roca 1348",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Moderno tardío",
+    "decada": 1970,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Vicente López",
+      "direccion": "General Julio A. Roca 1348",
+      "lat": -34.5258,
+      "lng": -58.4805
+    },
+    "resumen": "Casa de ladrillo visto con persianas de madera y un portón de chapa perforada traslúcida. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-julio-a-roca-1348/julio-a-roca-1348-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "edificio-urquiza-911",
+    "agregada": "2026-11-09",
+    "nombre": "Edificio Urquiza 911",
+    "otros_nombres": [],
+    "arquitectos": [
+      "Jorge Ferrari Hardoy"
+    ],
+    "programa": "Vivienda colectiva",
+    "estilo": "Racionalismo",
+    "decada": 1940,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Vicente López",
+      "direccion": "Urquiza 911, esquina Saturnino Segurola",
+      "lat": -34.5227,
+      "lng": -58.4764
+    },
+    "resumen": "Edificio blanco con grandes ventanales de perfiles de hierro negro y un balcón corrido lleno de macetas, entre árboles. Atribuido a Jorge Ferrari Hardoy, autor de Los Eucaliptus: su archivo en Harvard registra un proyecto en Segurola y General Urquiza, Vicente López, de fines de los años 40. Falta confirmar el año.",
+    "descripcion": "Edificio blanco de pocos pisos en la esquina de Urquiza y Saturnino Segurola, con grandes ventanales de perfiles de hierro negro y un balcón corrido lleno de macetas, entre árboles.\n\nEl archivo de Jorge Ferrari Hardoy (Graduate School of Design de Harvard) lista un proyecto en Segurola y General Urquiza, Vicente López, de fines de los años 40, la época de sus edificios de departamentos con Juan Kurchan en Belgrano (O'Higgins 2319 y Los Eucaliptus, en Virrey del Pino 2446). La atribución sale de ese registro y del recuerdo del usuario; no se encontró el año exacto ni si trabajó con otros arquitectos.",
+    "fotos": [
+      {
+        "archivo": "img/obras/edificio-urquiza-911/urquiza-911-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/edificio-urquiza-911/urquiza-911-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/edificio-urquiza-911/urquiza-911-03.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/edificio-urquiza-911/urquiza-911-04.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/edificio-urquiza-911/urquiza-911-05.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-urquiza-2299",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Urquiza 2299",
+    "otros_nombres": [],
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Streamline Moderne",
+    "decada": 1930,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Buenos Aires",
+      "ciudad": "Vicente López",
+      "barrio": "Florida",
+      "direccion": "Urquiza 2299",
+      "lat": -34.5305,
+      "lng": -58.4923
+    },
+    "resumen": "Casa blanca en esquina, de volúmenes lisos, con ventanas corridas, terraza y un muro bajo con palmeras. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-urquiza-2299/urquiza-2299-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-urquiza-2299/urquiza-2299-02.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "edificio-piran-5672",
+    "agregada": "2026-11-09",
+    "nombre": "Edificio Pirán 5672",
+    "otros_nombres": [],
+    "programa": "Vivienda colectiva",
+    "estilo": "Moderno",
+    "decada": 1950,
+    "estado": "existente",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Ciudad Autónoma de Buenos Aires",
+      "ciudad": "Buenos Aires",
+      "barrio": "Villa Urquiza",
+      "direccion": "Pirán 5672",
+      "lat": -34.5672,
+      "lng": -58.4982
+    },
+    "resumen": "Edificio de cuatro plantas revestido en verde, con balcones de baranda de hierro. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
+    "fotos": [
+      {
+        "archivo": "img/obras/edificio-piran-5672/piran-5672-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      }
+    ]
+  },
+  {
+    "id": "casa-villa-urquiza-3",
+    "agregada": "2026-11-09",
+    "nombre": "Casa Villa Urquiza 3",
+    "otros_nombres": [
+      "Casa Talavera 5882"
+    ],
+    "arquitectos": [
+      "Nicolás Waldman",
+      "Agustina Andreani Ghiglione"
+    ],
+    "anio_finalizacion": 2025,
+    "programa": "Vivienda unifamiliar",
+    "estilo": "Arquitectura contemporánea",
+    "estado": "modificada",
+    "ubicacion": {
+      "pais": "Argentina",
+      "provincia": "Ciudad Autónoma de Buenos Aires",
+      "ciudad": "Buenos Aires",
+      "barrio": "Villa Urquiza",
+      "direccion": "Pasaje Talavera 5882",
+      "lat": -34.5751,
+      "lng": -58.4989
+    },
+    "resumen": "Reforma y ampliación de una casa chorizo junto a una fábrica, de Nicolás Waldman y Agustina Andreani Ghiglione (2025). Se visitó en Open House Buenos Aires.",
+    "descripcion": "Una casa chorizo tradicional, con las habitaciones en fila alrededor de un patio, al lado de una fábrica que le quita el sol de la mañana. La reforma da vuelta la casa: los dormitorios quedan en la planta baja original y la terraza, la parte más luminosa, pasa a ser el lugar de estar.\n\nUna cubierta liviana sube hasta la altura de la fábrica vecina y arma dos espacios de doble altura para el living y el comedor; la vieja losa de servicio queda como entrepiso sobre la cocina, con los escritorios. Datos de la ficha de Open House Buenos Aires.",
+    "fotos": [
+      {
+        "archivo": "img/obras/casa-villa-urquiza-3/villa-urquiza-3-01.jpg",
+        "autor": "tewjacobs",
+        "licencia": "Todos los derechos reservados",
+        "fuente": "Foto propia"
+      },
+      {
+        "archivo": "img/obras/casa-villa-urquiza-3/villa-urquiza-3-02.jpg",
         "autor": "tewjacobs",
         "licencia": "Todos los derechos reservados",
         "fuente": "Foto propia"

@@ -10,10 +10,11 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['programas', 'Infraestructura', 'Infraestructura · puente japonés de Hoi An', ['infraestructura/images (15).jpeg', 'infraestructura/Rennovation-of-Japanese-covered-bridge.jpg'], {
-    'A · ocre de Hoi An': ['#e2b85a', '#3d2f12'],
-    'B · jade de canal': ['#9fb58e', '#1c2a1e'],
-    'C · lavanda gris': ['#b9b3c6', '#24212c'],
+  ['mundo', '1980', 'Mundo 1980 · Asamblea de Bangladesh', ['daka/Bangladesh-National-Parliament-1920x1280.jpeg', 'daka/Asamblea-Nacional-de-Bangladesh-de-Louis-Kahn.jpg'], {
+    'A · blanco': ['#f3f0e9', '#ece8df'],
+    'B · negro': ['#1c1b1a', '#151413'],
+    'C · blanco y negro (claro blanco, oscuro negro)': ['#f3f0e9', '#151413'],
+    'D · ladrillo de Kahn': ['#c27a60', '#3b2119'],
   }],
 ];
 

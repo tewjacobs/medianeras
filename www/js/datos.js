@@ -114,18 +114,21 @@ export function rangoAnios(obra) {
 
 // ---- Color del marco ----
 
-// Cuatro marcos por tema. Los nombres son lugares fijos; el color de cada uno en cada tema
-// está en estilos.css.
-export const COLORES_MARCO = ['petroleo', 'follaje', 'cielo', 'mar'];
+// Un color de marco por estilo ("color" en perfiles.json); el valor de cada uno en cada tema
+// está en estilos.css. "cal" es el de las obras sin estilo.
+export const COLORES_MARCO = [
+  'petroleo', 'follaje', 'cielo', 'mar', 'plomo', 'carbon', 'lago', 'duna', 'cantera', 'teja', 'vino',
+  'arcilla', 'mostaza', 'siena', 'jade', 'laguna', 'niebla', 'plata', 'rosa', 'oliva', 'humo', 'ciruela', 'cal',
+];
 
 const colorValido = (c) => (COLORES_MARCO.includes(c) ? c : null);
 
 // 1. El color propio de la obra ("color" en obras.json).
 // 2. El "color" de su estilo o del ancestro más cercano que lo tenga (perfiles.json): así una
 //    familia de estilos comparte color.
-// 3. Si no, uno estable calculado desde el estilo raíz o, sin estilo, desde el id de la obra.
+// 3. Si no, uno estable calculado desde el estilo raíz; sin estilo, "cal".
 export function colorMarco(obra) {
-  return colorValido(obra.color) ?? (obra.estilo ? colorEstilo(obra.estilo) : COLORES_MARCO[hashTexto(`obra:${obra.id}`) % 4]);
+  return colorValido(obra.color) ?? (obra.estilo ? colorEstilo(obra.estilo) : 'cal');
 }
 
 export function colorEstilo(estilo) {

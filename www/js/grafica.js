@@ -254,7 +254,8 @@ export function logo({ clase = 'logo-simbolo' } = {}) {
 // Los colores son los del tema (tinta, papel, rojo, petroleo, follaje, cielo, mar, tenue)
 // o los definidos en "colores" del mismo archivo, con un valor para claro y otro para oscuro.
 
-export const COLORES_TEMA = ['tinta', 'papel', 'papel-2', 'tenue', 'filete', 'rojo', 'petroleo', 'follaje', 'cielo', 'mar'];
+export const COLORES_TEMA = ['tinta', 'papel', 'papel-2', 'tenue', 'filete', 'rojo', 'petroleo', 'follaje', 'cielo', 'mar',
+  'plomo', 'carbon', 'lago', 'duna', 'cantera', 'teja', 'vino', 'arcilla', 'mostaza', 'siena', 'jade', 'laguna', 'niebla', 'plata', 'rosa', 'oliva', 'humo', 'ciruela', 'cal'];
 const coloresPropios = new Set();
 
 export function colorCss(nombre) {

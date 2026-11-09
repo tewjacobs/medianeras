@@ -45,58 +45,91 @@
       "descripcion": "Movimiento del siglo XX que dejó de lado el ornamento histórico y buscó la forma en la función, la estructura y los materiales nuevos: el hormigón armado, el acero y el vidrio."
     },
     "Brutalismo": {
+      "color": "carbon",
       "padre": "Moderno",
       "descripcion": "Corriente de mediados del siglo XX, de los años 50 a los 70, que muestra los materiales tal como son, sobre todo el hormigón a la vista (el \"béton brut\" de Le Corbusier, de donde sale el nombre). Volúmenes pesados, macizos y repetidos, con la estructura y las instalaciones sin disimular."
     },
     "Moderno tardío": {
+      "color": "lago",
       "padre": "Moderno",
       "descripcion": "La arquitectura moderna de los años 60 y 70, cuando la caja de vidrio simple se vuelve más expresiva: estructuras a la vista, formas esculpidas, atrios y materiales nuevos como el acero corten, sin dejar de lado los principios del movimiento moderno."
     },
     "Arquitectura orgánica": {
+      "color": "follaje",
       "padre": "Moderno",
       "color": "follaje",
       "descripcion": "Corriente que busca la armonía entre el edificio, su función y su entorno natural. El término lo difundió Frank Lloyd Wright."
     },
     "Academicismo": {
-      "color": "mar",
+      "color": "duna",
       "descripcion": "Arquitectura enseñada en las academias de bellas artes, sobre todo en París, durante el siglo XIX y comienzos del XX: composición simétrica, ejes ordenados y el repertorio clásico de columnas, frontones y molduras."
     },
     "Beaux-Arts": {
+      "color": "cantera",
       "padre": "Academicismo",
       "descripcion": "Arquitectura académica asociada a la École des Beaux-Arts de París: composición simétrica, órdenes clásicos y ornamento. Tuvo su auge entre fines del siglo XIX y comienzos del XX."
     },
     "Art déco": {
-      "color": "cielo",
+      "color": "jade",
       "descripcion": "Estilo de los años 20 y 30 que llegó a la arquitectura desde las artes decorativas. Geometría escalonada, zigzags, rayos de sol y remates que suben en escalones; mezcla el ornamento con la idea de modernidad, la velocidad y la máquina. Dejó muchos de los rascacielos de Nueva York y muchos edificios de Buenos Aires."
     },
+    "Streamline Moderne": {
+      "color": "laguna",
+      "padre": "Art déco",
+      "descripcion": "La última rama del art déco, de los años 30 y 40: esquinas redondeadas, balcones curvos, líneas horizontales y barandas de caño que recuerdan a los barcos, los trenes y la aerodinámica. En Buenos Aires se lo llama a veces arquitectura \"náutica\" o \"de barco\"."
+    },
     "Historicismo": {
-      "color": "mar",
+      "color": "teja",
       "descripcion": "Arquitectura del siglo XIX y comienzos del XX que vuelve a los estilos del pasado (gótico, renacimiento, barroco) y los aplica a edificios y técnicas nuevas. Cada estilo se elegía por lo que evocaba: el gótico para iglesias, el renacimiento para bancos y palacios."
     },
     "Neogótico": {
+      "color": "vino",
       "padre": "Historicismo",
       "descripcion": "Recuperación del gótico medieval que empezó en Inglaterra en el siglo XVIII y se difundió en el XIX: arcos en punta, agujas, vitrales y contrafuertes. Fue el estilo preferido para iglesias y universidades."
     },
     "Neorrenacimiento francés": {
+      "color": "arcilla",
       "padre": "Historicismo",
       "descripcion": "Revival del renacimiento francés del siglo XVI, el de los castillos del Loira y de Francisco I: techos de pizarra empinados, buhardillas, torrecillas y ornamento tallado. A fines del siglo XIX y comienzos del XX se usó en mansiones, hoteles y edificios de departamentos."
     },
     "Arquitectura contemporánea": {
-      "color": "petroleo",
+      "color": "niebla",
       "descripcion": "La arquitectura de las últimas décadas, desde fines del siglo XX hasta hoy. No es un solo estilo sino muchos caminos a la vez, con formas que hoy permiten el cálculo por computadora, la tecnología de materiales y la preocupación por el ambiente."
     },
     "Neofuturismo": {
+      "color": "plata",
       "padre": "Arquitectura contemporánea",
       "descripcion": "Corriente contemporánea de formas curvas, fluidas o de estructura expresiva, que busca transmitir movimiento y tecnología. Retoma el entusiasmo del futurismo de principios del siglo XX y de la arquitectura de la era espacial con herramientas digitales."
     },
     "Posmodernismo": {
-      "color": "follaje",
+      "color": "rosa",
       "descripcion": "Reacción de los años 70 y 80 contra la sobriedad del movimiento moderno. Vuelve a usar referencias históricas (arcos, frontones, columnas), el color y la ironía, muchas veces de forma simplificada o exagerada. Robert Venturi lo resumió al responder a \"menos es más\" con \"menos es aburrido\"."
     },
+    "Racionalismo": {
+      "color": "plomo",
+      "padre": "Moderno",
+      "descripcion": "La primera arquitectura moderna de los años 30 y 40: volúmenes blancos y lisos, techos planos con terraza, ventanas corridas o grandes paños de perfiles de hierro, y nada de ornamento. En Buenos Aires dejó muchas casas y edificios de renta."
+    },
+    "Pintoresquismo": {
+      "color": "oliva",
+      "descripcion": "Casas de los años 20 a 50 que buscaban el aire de una casa de campo: techos inclinados de teja o pizarra, muros de ladrillo o revoque rústico, bow windows y jardín. Mezcla recuerdos del chalet inglés, normando o vasco."
+    },
+    "Neocolonial": {
+      "color": "mostaza",
+      "padre": "Historicismo",
+      "descripcion": "Estilo de las primeras décadas del siglo XX que vuelve a la arquitectura colonial española y americana: muros blancos o rosados, arcos, rejas, balcones, tejas y patios. Se lo llamó también estilo californiano o misionero."
+    },
+    "Italianizante": {
+      "color": "siena",
+      "padre": "Historicismo",
+      "descripcion": "Casas y palacetes de fines del siglo XIX y principios del XX inspirados en las villas italianas: torre o mirador, cornisas, balaustradas, almenas, pórticos de columnas y revoque imitando piedra."
+    },
     "Gótico perpendicular": {
+      "color": "humo",
       "descripcion": "La última etapa del gótico inglés, de fines del siglo XIV al XVI: ventanales enormes divididos por parantes verticales rectos, paneles que se repiten en muros y techos, y bóvedas de abanico. Es propio de Inglaterra."
     },
     "Barroco eduardiano": {
+      "color": "ciruela",
       "descripcion": "El barroco libre de la Inglaterra de principios del siglo XX (la época de Eduardo VII): ladrillo y terracota, arcos grandes, remates curvos y cúpulas, con más libertad que el barroco histórico."
     }
   },

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paleta de marcos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    h2 { font-size: 16px; font-weight: 850; font-stretch: 115%; margin: 26px 0 4px; }
+    p { margin: 0 0 10px; }
+    .muestras { display: flex; gap: 6px; margin: 0 0 8px; }
+    .muestras span { width: 34px; height: 22px; display: inline-block; }
+    .fila { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; }
+    .marco { overflow: hidden; width: 300px; height: 620px; }
+    .marco iframe { border: 0; width: 390px; height: 806px; transform: scale(0.769); transform-origin: 0 0; display: block; }
+  </style>
+</head>
+<body>
+  <h1>Paleta de los marcos</h1>
+  <p>La lista de obras de la app con cada paleta, en claro y en oscuro. Los cuatro marcos cambian de color; lo demás queda igual.</p>
+  <div id="opciones"></div>
+  <script type="module">
+    // Cada opción: nombre, descripción y los cuatro marcos (petroleo, follaje, cielo, mar) en claro y en oscuro.
+    const OPCIONES = [
+      ['Hoy', 'Azul, verde, celeste y arena: el azul y amarillo de Boca.',
+        ['#2f5b8a', '#4c7d36', '#6fb0d3', '#d7a95c'], ['#6f72c4', '#3b8a63', '#c07f45', '#ddb378']],
+      ['A · Tierras', 'Terracota, oliva, ocre y pizarra.',
+        ['#b5543c', '#6b7a3a', '#c08a3e', '#4f5b62'], ['#c56b52', '#8a9a55', '#d09a52', '#7d8b93']],
+      ['B · Otoño', 'Verde musgo, rojo óxido, arcilla rosada y gris piedra.',
+        ['#4f6b3a', '#9c3f2c', '#c98b7a', '#8a857a'], ['#6f8f55', '#c0604a', '#d6a08f', '#a39d91']],
+      ['C · Piedra y ladrillo', 'Casi sin color: carbón, piedra, arena clara y un ladrillo.',
+        ['#3a3835', '#8c8478', '#cbbfa8', '#a6553f'], ['#5d5a55', '#9d9589', '#d8ccb4', '#c06a52']],
+    ];
+    try { localStorage.setItem('medianeras-carga-vista', 'si'); } catch (e) {}   // sin pantalla de carga
+    const NOMBRES = ['petroleo', 'follaje', 'cielo', 'mar'];
+    const vars = (c) => NOMBRES.map((n, i) => `--${n}: ${c[i]} !important;`).join(' ');
+    const marco = (claro, oscuro, tema) => {
+      const caja = document.createElement('div'); caja.className = 'marco';
+      const f = document.createElement('iframe'); f.src = 'index-app.html#/obras';
+      f.addEventListener('load', () => {
+        const d = f.contentDocument;
+        d.documentElement.setAttribute('data-tema', tema);
+        const s = d.createElement('style');
+        s.textContent = `:root, [data-tema="claro"] { ${vars(claro)} } [data-tema="oscuro"] { ${vars(oscuro)} }`;
+        d.head.append(s);
+        new MutationObserver(() => d.documentElement.getAttribute('data-tema') !== tema && d.documentElement.setAttribute('data-tema', tema))
+          .observe(d.documentElement, { attributes: true });
+      });
+      caja.append(f); return caja;
+    };
+    document.getElementById('opciones').replaceChildren(...OPCIONES.map(([nombre, texto, claro, oscuro]) => {
+      const s = document.createElement('section');
+      s.innerHTML = `<h2>${nombre}</h2><p>${texto}</p>` +
+        `<div class="muestras">${[...claro, ...oscuro].map((c, i) => `<span style="background:${c};${i === 4 ? 'margin-left:12px' : ''}"></span>`).join('')}</div>`;
+      const fila = document.createElement('div'); fila.className = 'fila';
+      fila.append(marco(claro, oscuro, 'claro'), marco(claro, oscuro, 'oscuro'));
+      s.append(fila); return s;
+    }));
+  </script>
+</body>
+</html>

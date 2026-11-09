@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color por estilo</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    h1 { font-size: 20px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    p { margin: 0 0 12px; max-width: 60em; }
+    .temas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tema { background: var(--papel); color: var(--tinta); padding: 12px; }
+    .tema h2 { font-size: 15px; margin: 0 0 10px; }
+    .estilo { display: grid; grid-template-columns: 170px 1fr; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--filete); }
+    .estilo.hijo .nombre { padding-left: 14px; }
+    .nombre b { display: block; font-size: 14px; }
+    .nombre small { color: var(--tenue); font-size: 12px; }
+    .muestra { display: inline-block; width: 26px; height: 16px; vertical-align: middle; margin-right: 6px; }
+    .tapas { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tapas .tapa { width: 64px; }
+    .mosaico { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 6px; }
+    @media (max-width: 800px) { .temas { grid-template-columns: 1fr; } .estilo { grid-template-columns: 120px 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Un color por estilo</h1>
+  <p>Propuesta: cada estilo con su color (claro y oscuro), y los hijos en tonos de la familia del padre.
+    Moderno en azules y grises; Historicismo en tierras y ladrillos; Academicismo en arenas y piedras.
+    Ya no quedan obras sin estilo; el gris piedra queda solo de reserva. Abajo de todo, el mosaico de todas las tapas juntas.</p>
+  <div class="temas" id="temas"></div>
+  <script type="module">
+    import { cargarDatos } from './js/datos.js';
+    import { tapaObra, el } from './js/ui.js';
+
+    // estilo: [nombre del color, claro, oscuro]
+    const PROPUESTA = {
+      'Moderno': ['petróleo', '#2f5b8a', '#6f72c4'],
+      'Racionalismo': ['pizarra', '#4f5b62', '#7d8b93'],
+      'Brutalismo': ['hormigón', '#3a3835', '#7a756c'],
+      'Moderno tardío': ['acero', '#5b7a99', '#86a6c4'],
+      'Arquitectura orgánica': ['follaje', '#4c7d36', '#3b8a63'],
+      'Academicismo': ['arena', '#d7a95c', '#ddb378'],
+      'Beaux-Arts': ['piedra', '#cbbfa8', '#d8ccb4'],
+      'Historicismo': ['terracota', '#b5543c', '#c56b52'],
+      'Neogótico': ['vino', '#7a2e2a', '#b4574f'],
+      'Neorrenacimiento francés': ['arcilla', '#c98b7a', '#d6a08f'],
+      'Neocolonial': ['ocre', '#c08a3e', '#d09a52'],
+      'Italianizante': ['siena', '#9a5f34', '#c98455'],
+      'Art déco': ['jade', '#2f6f6a', '#4f9f94'],
+      'Streamline Moderne': ['agua', '#6fa597', '#8fcabd'],
+      'Arquitectura contemporánea': ['niebla', '#9a9ca1', '#b8bbc1'],
+      'Neofuturismo': ['plata', '#8fb3c4', '#9cc3d4'],
+      'Posmodernismo': ['rosa', '#c75b7a', '#d97f98'],
+      'Pintoresquismo': ['oliva', '#6b7a3a', '#8a9a55'],
+      'Gótico perpendicular': ['humo', '#6b5d50', '#9c8b78'],
+      'Barroco eduardiano': ['ciruela', '#6e4a66', '#a07a98'],
+      '': ['cal (sin estilo)', '#8a857a', '#a39d91'],
+    };
+
+    const datos = await cargarDatos();
+    const estilos = datos.perfiles?.estilos ?? {};
+    const obras = datos.obras;
+    const padre = (e) => estilos[e]?.padre ?? null;
+    // Orden: cada raíz seguida de sus hijos, como en PROPUESTA.
+    const orden = Object.keys(PROPUESTA);
+    const tema = (t) => {
+      const i = t === 'claro' ? 1 : 2;
+      const conColor = (obra) => {
+        const tapa = tapaObra(obra);
+        tapa.style.setProperty('--marco', PROPUESTA[obra.estilo ?? '']?.[i] ?? PROPUESTA[''][i]);
+        return tapa;
+      };
+      const filas = orden.map((e) => {
+        const [nombre] = PROPUESTA[e];
+        const c = PROPUESTA[e][i];
+        const suyas = obras.filter((o) => (o.estilo ?? '') === e);
+        return el('div', { class: `estilo${padre(e) ? ' hijo' : ''}` },
+          el('div', { class: 'nombre' },
+            el('b', {}, e || 'Sin estilo'),
+            el('small', {}, el('span', { class: 'muestra', style: `background:${c}` }), nombre)),
+          el('div', { class: 'tapas' }, suyas.length ? suyas.map(conColor) : el('small', {}, '(sin obras)')));
+      });
+      return el('div', { class: 'tema', 'data-tema': t },
+        el('h2', {}, t === 'claro' ? 'Claro' : 'Oscuro'), ...filas,
+        el('h2', { style: 'margin-top:16px' }, 'Todas juntas'),
+        el('div', { class: 'mosaico' }, obras.map(conColor)));
+    };
+    document.getElementById('temas').replaceChildren(tema('claro'), tema('oscuro'));
+  </script>
+</body>
+</html>

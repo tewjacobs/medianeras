@@ -13,7 +13,8 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección, clave, título y su foto de referencia.
 const OBRAS = [
-  ['estilos', 'Brutalismo', 'Brutalismo · La Pyramide', 'brutalismo/pyramide.jpg'],
+  ['mundo', '1980', 'Mundo 1980 · Asamblea de Bangladesh', 'daka/Bangladesh-National-Parliament-1920x1280.jpeg'],
+  ['programas', 'Hotel', "Hotel · Hôtel de l'Indépendance", 'hotel/72_big.jpg'],
 ];
 
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;

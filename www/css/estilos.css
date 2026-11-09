@@ -115,6 +115,26 @@
   --follaje: #4c7d36;  /* verde follaje */
   --cielo: #6fb0d3;    /* celeste cielo */
   --mar: #d7a95c;      /* arena */
+  /* Un color de marco por estilo (perfiles.json); petroleo y follaje también son de estilos. */
+  --plomo: #4f5b62;    /* gris pizarra */
+  --carbon: #3a3835;   /* hormigón */
+  --lago: #5b7a99;     /* azul acero */
+  --duna: #d7a95c;     /* arena */
+  --cantera: #cbbfa8;  /* piedra clara */
+  --teja: #b5543c;     /* terracota */
+  --vino: #7a2e2a;     /* vino */
+  --arcilla: #c98b7a;  /* arcilla rosada */
+  --mostaza: #c08a3e;  /* ocre */
+  --siena: #9a5f34;    /* siena */
+  --jade: #2f6f6a;     /* jade */
+  --laguna: #6fa597;   /* verde agua */
+  --niebla: #9a9ca1;   /* gris claro */
+  --plata: #8fb3c4;    /* plata */
+  --rosa: #c75b7a;     /* rosa */
+  --oliva: #6b7a3a;    /* oliva */
+  --humo: #6b5d50;     /* piedra ahumada */
+  --ciruela: #6e4a66;  /* ciruela */
+  --cal: #8a857a;      /* gris piedra: obras sin estilo */
   --rojo: #c63a22; /* toque mínimo: botón de visita y estrellas */
   --enlace: #2a5486;
   --realce: #9a6212; /* ámbar de las lanzas, oscurecido para leerse sobre el blanco */
@@ -133,6 +153,25 @@
   --follaje: #3b8a63;  /* verde pino */
   --cielo: #c07f45;    /* tierra */
   --mar: #ddb378;      /* tierra clara */
+  --plomo: #7d8b93;    /* gris pizarra */
+  --carbon: #7a756c;   /* hormigón */
+  --lago: #86a6c4;     /* azul acero */
+  --duna: #ddb378;     /* arena */
+  --cantera: #d8ccb4;  /* piedra clara */
+  --teja: #c56b52;     /* terracota */
+  --vino: #b4574f;     /* vino */
+  --arcilla: #d6a08f;  /* arcilla rosada */
+  --mostaza: #d09a52;  /* ocre */
+  --siena: #c98455;    /* siena */
+  --jade: #4f9f94;     /* jade */
+  --laguna: #8fcabd;   /* verde agua */
+  --niebla: #b8bbc1;   /* gris claro */
+  --plata: #9cc3d4;    /* plata */
+  --rosa: #d97f98;     /* rosa */
+  --oliva: #8a9a55;    /* oliva */
+  --humo: #9c8b78;     /* piedra ahumada */
+  --ciruela: #a07a98;  /* ciruela */
+  --cal: #a39d91;      /* gris piedra: obras sin estilo */
   --rojo: #d4583b;
   --enlace: #aab0ea;
   --realce: #f3c96e;
@@ -515,6 +554,25 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .marco-follaje { --marco: var(--follaje); }
 .marco-cielo { --marco: var(--cielo); }
 .marco-mar { --marco: var(--mar); }
+.marco-plomo { --marco: var(--plomo); }
+.marco-carbon { --marco: var(--carbon); }
+.marco-lago { --marco: var(--lago); }
+.marco-duna { --marco: var(--duna); }
+.marco-cantera { --marco: var(--cantera); }
+.marco-teja { --marco: var(--teja); }
+.marco-vino { --marco: var(--vino); }
+.marco-arcilla { --marco: var(--arcilla); }
+.marco-mostaza { --marco: var(--mostaza); }
+.marco-siena { --marco: var(--siena); }
+.marco-jade { --marco: var(--jade); }
+.marco-laguna { --marco: var(--laguna); }
+.marco-niebla { --marco: var(--niebla); }
+.marco-plata { --marco: var(--plata); }
+.marco-rosa { --marco: var(--rosa); }
+.marco-oliva { --marco: var(--oliva); }
+.marco-humo { --marco: var(--humo); }
+.marco-ciruela { --marco: var(--ciruela); }
+.marco-cal { --marco: var(--cal); }
 .tapa-grande { --borde: 7%; }
 
 .tarjeta-texto { padding-top: 6px; }
