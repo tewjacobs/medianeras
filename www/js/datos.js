@@ -307,6 +307,12 @@ export function tieneCoordenadas(obra) {
   return Number.isFinite(obra.ubicacion?.lat) && Number.isFinite(obra.ubicacion?.lng);
 }
 
+// Casas donde vive gente: solo se muestra la zona (coordenadas redondeadas, sin dirección).
+export const RADIO_ZONA = 900; // metros: cubre el redondeo a dos decimales
+export function esZona(obra) {
+  return obra.ubicacion?.zona === true;
+}
+
 export function distanciaKm(a, b) {
   const rad = (g) => (g * Math.PI) / 180;
   const dLat = rad(b.lat - a.lat);

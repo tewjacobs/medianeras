@@ -2,7 +2,7 @@
 // al cambiar de pestaña, para no perder la posición.
 
 import { el, icono, flecha, abrirHoja, cerrarHoja, imagenObra, filaObra, lineaAutoria, rutaObra, aviso } from '../ui.js';
-import { tieneCoordenadas, distanciaKm, formatoDistancia, lugarCorto, colorMarco, COLORES_MARCO } from '../datos.js';
+import { tieneCoordenadas, distanciaKm, formatoDistancia, lugarCorto, colorMarco, COLORES_MARCO, esZona, RADIO_ZONA } from '../datos.js';
 import { obtenerUbicacion } from '../plataforma/ubicacion.js';
 
 // Vista inicial: zona norte de Buenos Aires (entre Belgrano y Vicente López).
@@ -53,10 +53,20 @@ function iniciar(contenedor, datos) {
 
   // Cada marcador lleva el color del marco de su obra.
   const marcadores = new Map(COLORES_MARCO.map((c) => [c, L.divIcon({ className: `marcador marco-${c}`, html: '<span></span>', iconSize: [40, 40] })]));
+  // Las casas particulares van como una zona celeste; las que caen en la misma zona se juntan.
+  const zonas = new Map();
   for (const obra of obras) {
+    if (esZona(obra)) {
+      const clave = `${obra.ubicacion.lat},${obra.ubicacion.lng}`;
+      zonas.set(clave, [...(zonas.get(clave) ?? []), obra]);
+      continue;
+    }
     L.marker([obra.ubicacion.lat, obra.ubicacion.lng], { icon: marcadores.get(colorMarco(obra)), title: obra.nombre, alt: obra.nombre })
       .on('click', () => mostrarObra(obra))
       .addTo(mapa);
+  }
+  for (const grupo of zonas.values()) {
+    circuloZona(grupo[0]).on('click', () => (grupo.length === 1 ? mostrarObra(grupo[0]) : mostrarZona(grupo))).addTo(mapa);
   }
   requestAnimationFrame(() => mapa.invalidateSize());
 }
@@ -65,9 +75,23 @@ function distancia(obra) {
   return posicion ? distanciaKm(posicion, obra.ubicacion) : null;
 }
 
+function circuloZona(obra) {
+  return L.circle([obra.ubicacion.lat, obra.ubicacion.lng], { radius: RADIO_ZONA, className: 'zona-obra' });
+}
+
 function enfocar(obra) {
-  mapa.setView([obra.ubicacion.lat, obra.ubicacion.lng], Math.max(mapa.getZoom(), 16));
+  mapa.setView([obra.ubicacion.lat, obra.ubicacion.lng], esZona(obra) ? 14 : Math.max(mapa.getZoom(), 16));
   mostrarObra(obra);
+}
+
+function mostrarZona(grupo) {
+  abrirHoja({
+    titulo: `${grupo.length} obras en la zona`,
+    contenido: el('div', { class: 'filas' }, grupo.map((obra) => filaObra(obra, {
+      detalle: lugarCorto(obra),
+      alTocar: () => { cerrarHoja({ inmediato: true }); mostrarObra(obra); },
+    }))),
+  });
 }
 
 function mostrarObra(obra) {
@@ -80,7 +104,7 @@ function mostrarObra(obra) {
       el('p', { class: 'tenue' }, [lugarCorto(obra), km !== null && `a ${formatoDistancia(km)}`].filter(Boolean).join(' · ')),
     ),
     pie: [
-      el('a', {
+      !esZona(obra) && el('a', {
         class: 'boton', target: '_blank', rel: 'noopener',
         href: `https://maps.apple.com/?daddr=${obra.ubicacion.lat},${obra.ubicacion.lng}&q=${encodeURIComponent(obra.nombre)}`,
       }, flecha('paralela'), 'Cómo llegar'),
@@ -140,15 +164,17 @@ export function abrirMapaObra(obra) {
     alCerrar: () => { mapaPanel?.remove(); mapaPanel = null; },
   });
   const punto = [obra.ubicacion.lat, obra.ubicacion.lng];
-  mapaPanel = L.map(lienzo, { zoomControl: false, attributionControl: true }).setView(punto, 16);
+  const zoom = esZona(obra) ? 14 : 16;
+  mapaPanel = L.map(lienzo, { zoomControl: false, attributionControl: true }).setView(punto, zoom);
   L.control.zoom({ position: 'topright', zoomInTitle: 'Acercar', zoomOutTitle: 'Alejar' }).addTo(mapaPanel);
   mapaPanel.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19, crossOrigin: true,
     attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a>',
   }).addTo(mapaPanel);
-  L.marker(punto, { icon: L.divIcon({ className: `marcador marco-${colorMarco(obra)}`, html: '<span></span>', iconSize: [40, 40] }), title: obra.nombre, alt: obra.nombre }).addTo(mapaPanel);
+  if (esZona(obra)) circuloZona(obra).addTo(mapaPanel);
+  else L.marker(punto, { icon: L.divIcon({ className: `marcador marco-${colorMarco(obra)}`, html: '<span></span>', iconSize: [40, 40] }), title: obra.nombre, alt: obra.nombre }).addTo(mapaPanel);
   // La hoja entra con una transición: hay que avisarle a Leaflet el tamaño final.
   // y volver a centrar en la obra, porque el centro se calculó con el tamaño de antes.
-  setTimeout(() => { mapaPanel?.invalidateSize(); mapaPanel?.setView(punto, 16); }, 320);
+  setTimeout(() => { mapaPanel?.invalidateSize(); mapaPanel?.setView(punto, zoom); }, 320);
 }

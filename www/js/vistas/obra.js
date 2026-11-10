@@ -7,7 +7,7 @@ import { el, icono, flecha, creditoFoto, tarjetaEntrada, mensaje, tapaObra, chip
 import { abrirMapaObra } from './mapa.js';
 import { abrirNuevaVisita } from './nueva-visita.js';
 import { botonSugerirFoto } from '../contacto.js';
-import { entradasDiario, tieneCoordenadas, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, SIN_DATO, colorMarco, formatoFecha } from '../datos.js';
+import { entradasDiario, tieneCoordenadas, esZona, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, SIN_DATO, colorMarco, formatoFecha } from '../datos.js';
 
 const RECIENTES = 3;
 
@@ -26,7 +26,7 @@ export async function render(contenedor, { datos, partes, titulo, recargar }) {
   const u = obra.ubicacion ?? {};
   const coordenadas = tieneCoordenadas(obra);
   const autoria = [rangoAnios(obra), ...(obra.arquitectos ?? [])].filter(Boolean).join(' · ');
-  const comoLlegar = coordenadas && el('a', {
+  const comoLlegar = coordenadas && !esZona(obra) && el('a', {
     class: 'boton', target: '_blank', rel: 'noopener',
     href: `https://maps.apple.com/?daddr=${u.lat},${u.lng}&q=${encodeURIComponent(obra.nombre)}`,
   }, flecha('paralela'), 'Cómo llegar');
@@ -133,7 +133,9 @@ function panelUbicacion(obra, botones) {
   return [
     niveles.length > 0 && el('div', { class: 'chips-datos' }, niveles.map((n) => chipsPerfil(n, [u[n]]).firstChild)),
     u.direccion && el('p', { class: 'ficha-direccion' }, u.direccion),
-    tieneCoordenadas(obra) && el('p', { class: 'ficha-coordenadas' }, `${u.lat}, ${u.lng}`),
+    esZona(obra)
+      ? el('p', { class: 'tenue' }, 'Es una casa particular: se muestra solo la zona.')
+      : tieneCoordenadas(obra) && el('p', { class: 'ficha-coordenadas' }, `${u.lat}, ${u.lng}`),
     botones.some(Boolean) && el('div', { class: 'acciones' }, botones),
   ];
 }

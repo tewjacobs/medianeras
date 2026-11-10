@@ -991,6 +991,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 }
 
 .posicion-punto { fill: #1a73e8; fill-opacity: 1; stroke: #fff; stroke-width: 3; }
+.zona-obra { fill: #5aa9e6; fill-opacity: 0.18; stroke: #5aa9e6; stroke-opacity: 0.6; stroke-width: 1.5; }
 .posicion-precision { fill: #1a73e8; fill-opacity: 0.12; stroke: #1a73e8; stroke-opacity: 0.4; stroke-width: 1; }
 
 .hoja-obra { display: grid; gap: 4px; color: inherit; text-decoration: none; }
