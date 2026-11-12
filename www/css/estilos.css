@@ -1157,25 +1157,10 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 .fila-horizontal .tarjeta { flex: 0 0 104px; scroll-snap-align: start; }
 .fila-esqueleto .tapa { background: var(--superficie-2); }
 
-.fila-decadas .decada { border-bottom: 1px solid var(--filete); margin: 0 var(--margen); }
-.decada summary {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 60px;
-  padding: 8px 0;
-  list-style: none;
-  cursor: pointer;
-}
-.decada summary::-webkit-details-marker { display: none; }
-.decada summary::after { content: '▸'; margin-left: 2px; color: var(--tenue); font-size: 14px; }
-.decada[open] summary::after { content: '▾'; }
-.decada-simbolo { flex: none; width: 64px; height: 44px; background: color-mix(in srgb, var(--familia) 10%, var(--papel)); }
-.decada-mini { display: block; width: 64px; height: 44px; }
-.decada-nombre { flex: 1; font-size: 22px; font-weight: 800; font-stretch: 110%; }
-.decada-cantidad { flex: none; }
-.decada .fila-horizontal { margin: 0 calc(-1 * var(--margen)); padding-top: 4px; }
-.decada > .ver-mas { margin: 6px 0 10px; }
+.decadas-grilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 8px; padding: 0 var(--margen); }
+.decada { display: block; color: inherit; text-decoration: none; min-width: 0; }
+.decada-nombre { display: block; margin-top: 5px; font-size: 19px; font-weight: 850; font-stretch: 110%; line-height: 1; }
+.decada-cantidad { display: block; font-family: var(--mono); font-size: 14px; color: var(--tenue); }
 
 .separador-grafico { display: block; width: calc(100% - 2 * var(--margen)); margin: 22px var(--margen) 0; }
 
@@ -1302,6 +1287,16 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
 .perfil-resumen { margin: 6px 0 0; display: grid; grid-template-columns: minmax(86px, auto) 1fr; gap: 6px 14px; font-family: var(--mono); font-size: 17px; }
 .perfil-resumen dt { color: var(--tenue); font-size: 15px; text-transform: uppercase; padding-top: 2px; }
 .perfil-resumen dd { margin: 0; overflow-wrap: anywhere; }
+div.perfil-resumen { display: block; }
+.resumen-cuentas { display: flex; flex-wrap: wrap; gap: 6px; }
+.resumen-cuenta {
+  min-height: 36px; padding: 4px 10px; border: 1px solid var(--filete); background: none; color: var(--tinta);
+  font: inherit; font-size: 15px; cursor: pointer;
+}
+.resumen-cuenta b { font-weight: 700; }
+.resumen-cuenta[aria-pressed="true"] { background: var(--tinta); color: var(--banda, var(--papel)); border-color: var(--tinta); }
+.resumen-abierto:not(:empty) { padding-top: 10px; }
+.indice-grilla { margin-top: 14px; }
 .perfil-jerarquia { padding-top: 8px; border-top: 1px solid var(--filete); }
 .perfil-obras {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -1344,6 +1339,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   .marca-texto { display: flex; align-items: baseline; gap: 14px; }
   .marca-texto:has(.cabecera-seccion) .logo-nombre { font-size: 23px; letter-spacing: 0.26em; }
   .cabecera-seccion { font-size: 16px; }
+  .decadas-grilla { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
   .fila-horizontal .tarjeta { flex-basis: 132px; }
   .banda-perfil svg { height: 220px; } /* en pantallas anchas, el símbolo no crece sin límite */
   .ficha-fotos, .vista-diario .galeria { margin-top: 16px; }

@@ -1,7 +1,7 @@
 // Perfil de un arquitecto, estilo, material, programa, estado, lugar, década o año, y los índices
 // de cada tipo (#/arquitectos, #/estilos…). Una sola vista que se configura por tipo.
 
-import { el, flecha, mensaje, agregar, bandaPerfil, enlacePerfil, chipsPerfil } from '../ui.js';
+import { el, flecha, mensaje, agregar, bandaPerfil, enlacePerfil, chipsPerfil, tapaObra } from '../ui.js';
 import {
   TIPOS_PERFIL, NIVELES_UBICACION, nombrePerfil, rutaPerfil, perfilDe, partituraDe,
   ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto, anioReferencia,
@@ -156,15 +156,24 @@ function resumen(tipo, obras, pais) {
   const filas = [
     ['arquitecto', 'Arquitectos'], ['estilo', 'Estilos'], ['decada', 'Décadas'], ['pais', 'Países'], ['material', 'Materiales'], ['programa', 'Programas'],
   ].filter(([t]) => t !== tipo && !(NIVELES_UBICACION.includes(tipo) && t === 'pais'));
-  const contenido = filas.map(([t, etiqueta]) => {
+  // Una fila de cuentas ("15 arquitectos"); al tocar una se abren sus chips debajo.
+  const abierto = el('div', { class: 'resumen-abierto' });
+  const botones = filas.map(([t, etiqueta]) => {
     const conteo = new Map();
     for (const obra of obras) for (const v of TIPOS_PERFIL[t].valores(obra)) conteo.set(v, (conteo.get(v) ?? 0) + 1);
     if (!conteo.size) return null;
     const valores = [...conteo.keys()].sort(t === 'decada' ? (a, b) => a - b : compararTexto);
     const query = pais && (t === 'decada') ? { pais } : null;
-    return [el('dt', {}, etiqueta), el('dd', {}, chipsPerfil(t, valores, query))];
-  }).filter(Boolean);
-  return contenido.length ? el('dl', { class: 'perfil-resumen' }, contenido) : null;
+    const texto = valores.length === 1 ? TIPOS_PERFIL[t].singular.replace('/a', '') : etiqueta;
+    const boton = el('button', { type: 'button', class: 'resumen-cuenta', 'aria-pressed': 'false', onclick: () => {
+      const ya = boton.getAttribute('aria-pressed') === 'true';
+      for (const b of botones) b?.setAttribute('aria-pressed', 'false');
+      abierto.replaceChildren();
+      if (!ya) { boton.setAttribute('aria-pressed', 'true'); abierto.append(chipsPerfil(t, valores, query)); }
+    } }, el('b', {}, valores.length), ` ${texto.toLowerCase()}`);
+    return boton;
+  });
+  return botones.some(Boolean) ? el('div', { class: 'perfil-resumen' }, el('div', { class: 'resumen-cuentas' }, botones), abierto) : null;
 }
 
 function jerarquia(datos, estilo) {
@@ -225,9 +234,18 @@ export function renderIndice(contenedor, { datos, partes, titulo }) {
     const numerico = tipo === 'decada' || tipo === 'anio';
     filas = valores.sort(numerico ? (a, b) => b - a : (a, b) => compararTexto(nombrePerfil(tipo, a), nombrePerfil(tipo, b))).map((v) => fila(v));
   }
+  // Arquitectos: como la grilla del inicio, cada uno con la tapa de su obra más antigua.
+  const lista = tipo === 'arquitecto'
+    ? el('div', { class: 'grilla indice-grilla' }, valores.map((v) => {
+      const suyas = obrasDePerfil(datos, tipo, v).sort((a, b) => (anioReferencia(a) ?? 9999) - (anioReferencia(b) ?? 9999));
+      const obra = suyas.find((o) => o.fotos?.length) ?? suyas[0];
+      return el('a', { class: 'tarjeta', href: rutaPerfil(tipo, v) }, tapaObra(obra),
+        el('div', { class: 'tarjeta-texto' }, el('h3', {}, nombrePerfil(tipo, v)), el('p', {}, plural(suyas.length))));
+    }))
+    : el('ul', { class: 'indice' }, filas);
   contenedor.append(
     el('div', { class: 'perfil' }, el('h2', { class: 'perfil-nombre' }, def.plural), el('p', { class: 'perfil-datos' }, `${valores.length} en total`)),
-    filas.length ? el('ul', { class: 'indice' }, filas) : mensaje('Todavía no hay ninguno'),
+    filas.length ? lista : mensaje('Todavía no hay ninguno'),
   );
 }
 

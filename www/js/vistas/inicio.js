@@ -1,11 +1,9 @@
-// Inicio: filas temáticas (filas.js), las décadas desplegables y el link a todas las obras.
+// Inicio: filas temáticas (filas.js), las décadas en grilla y el link a todas las obras.
 
 import { el, agregar, flecha, encabezadoFila, filaHorizontal, esqueletoFila, mensaje } from '../ui.js';
 import { entradasDiario, estadisticasVisitas, rutaPerfil, TIPOS_PERFIL, partituraDe, colorPerfil, partituraObra, colorMarco } from '../datos.js';
 import { separador, simbolo, simboloNeutro } from '../grafica.js';
-import { ordenar } from '../filtros.js';
 import { FILAS_INICIO, MAXIMO, decadasConObras } from '../filas.js';
-import { leerPreferencia, guardarPreferencia } from '../plataforma/preferencias.js';
 import { enlacesIndices } from './perfil.js';
 import { botonSugerirObra, pieDePagina } from '../contacto.js';
 
@@ -73,32 +71,18 @@ async function pintarFila(lugar, fila, ctx) {
   }
 }
 
-// Una fila desplegable por década. Las que se abren se recuerdan en el teléfono.
+// Las décadas en grilla: el símbolo de cada una (colección Mundo) en una tapa, con nombre y cantidad.
 function decadas(datos) {
-  let guardadas = [];
-  try { guardadas = JSON.parse(leerPreferencia('decadas-abiertas', '[]')); } catch { /* se empieza con todas cerradas */ }
-  const abiertas = new Set(Array.isArray(guardadas) ? guardadas : []);
-  const guardar = () => guardarPreferencia('decadas-abiertas', JSON.stringify([...abiertas]));
   return el('section', { class: 'fila fila-decadas' },
     encabezadoFila('Por década'),
-    decadasConObras(datos).map(([decada, obras]) => {
-      const detalles = el('details', {
-        class: 'decada', open: abiertas.has(decada),
-        ontoggle: () => { if (detalles.open) abiertas.add(decada); else abiertas.delete(decada); guardar(); },
-      },
-      // El símbolo de la década en chico (colección Mundo), el nombre y la cantidad en un chip
-      // del color de la década.
-      el('summary', { style: `--familia: var(--${colorPerfil('decada', decada, obras)})` },
-        el('span', { class: 'decada-simbolo' }, simbolo(partituraDe(datos, 'decada', decada) ?? simboloNeutro(colorPerfil('decada', decada, obras)),
-          { ancho: 64, alto: 44, margen: 3, fijo: true, sinFondo: true, superficie: 0.42, clase: 'decada-mini' })),
+    el('div', { class: 'decadas-grilla' }, decadasConObras(datos).map(([decada, obras]) => {
+      const color = colorPerfil('decada', decada, obras);
+      return el('a', { class: 'decada', href: rutaPerfil('decada', decada) },
+        el('div', { class: `tapa marco-${color}` },
+          simbolo(partituraDe(datos, 'decada', decada) ?? simboloNeutro(color), { ancho: 100, alto: 100, margen: 8, fijo: true, superficie: 0.42, clase: 'tapa-grafica' })),
         el('span', { class: 'decada-nombre' }, `${decada}s`),
-        el('span', { class: 'chip-dato decada-cantidad' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`),
-      ),
-      filaHorizontal(ordenar(obras, 'anio')),
-      el('a', { class: 'ver-mas', href: rutaPerfil('decada', decada) }, `Ver la década de ${decada}`, flecha()),
-      );
-      return detalles;
-    }),
+        el('span', { class: 'decada-cantidad' }, obras.length === 1 ? '1 obra' : `${obras.length} obras`));
+    })),
   );
 }
 

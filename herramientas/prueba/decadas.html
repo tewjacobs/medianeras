@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Décadas en grilla</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    h1 { font-size: 22px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    p.nota { margin: 0 0 10px; max-width: 70ch; }
+    .controles { display: flex; gap: 8px; margin: 10px 0; }
+    .controles button { font: inherit; padding: 6px 12px; border: 1px solid #1a1917; background: #f7f3eb; cursor: pointer; }
+    .fila-p { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+    figure { margin: 0; }
+    figcaption { font-size: 14px; font-weight: 800; margin-bottom: 4px; max-width: 360px; }
+    figcaption small { display: block; font-weight: 400; }
+    .tel { width: 360px; height: 560px; overflow: auto; background: var(--papel); color: var(--tinta); padding: 14px 0 30px; box-sizing: border-box; }
+    .tel h3 { margin: 0 16px 10px; font-size: 14px; font-weight: 600; font-stretch: 75%; letter-spacing: .08em; text-transform: uppercase; border-bottom: 1px solid var(--tinta); padding-bottom: 6px; }
+    .d-grilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; padding: 0 16px; }
+    .d-tira { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 6px; scroll-snap-type: x mandatory; }
+    .d-tira > a { flex: 0 0 112px; scroll-snap-align: start; }
+    .d a, .d-tira a, .d-grilla a { color: inherit; text-decoration: none; display: block; }
+    .d-nombre { font-size: 19px; font-weight: 850; font-stretch: 110%; margin-top: 5px; line-height: 1; }
+    .d-cant { font-family: var(--mono); font-size: 14px; color: var(--tenue); }
+    .resto { margin: 18px 16px 0; height: 120px; background: repeating-linear-gradient(var(--filete) 0 10px, transparent 10px 20px); font-family: var(--mono); font-size: 12px; color: var(--tenue); display: grid; place-items: center; }
+  </style>
+</head>
+<body>
+  <h1>Décadas en grilla</h1>
+  <p class="nota">Las décadas del inicio, sin desplegables: cada una es una tapa con su símbolo, el nombre y la cantidad; al tocarla vas a la página de la década. A: grilla de tres por fila. B: una tira que se desliza de costado (ocupa una sola fila).</p>
+  <div class="controles"><button id="claro">Claro</button><button id="oscuro">Oscuro</button></div>
+  <div class="fila-p" id="pagina"></div>
+  <script type="module" src="decadas.js"></script>
+</body>
+</html>

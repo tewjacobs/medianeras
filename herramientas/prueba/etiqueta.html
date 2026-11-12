@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Etiqueta de copias</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; font-family: var(--sans); color: #1a1917; margin: 0; }
+    h1 { font-size: 22px; font-weight: 850; font-stretch: 115%; margin: 0 0 4px; }
+    p.nota { margin: 0 0 10px; max-width: 70ch; }
+    .controles { display: flex; gap: 8px; margin: 10px 0; }
+    .controles button { font: inherit; padding: 6px 12px; border: 1px solid #1a1917; background: #f7f3eb; cursor: pointer; }
+    .fila { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+    figure { margin: 0; }
+    figcaption { font-size: 14px; font-weight: 800; margin-bottom: 4px; max-width: 360px; }
+    figcaption small { display: block; font-weight: 400; }
+    .tel { width: 360px; height: 760px; overflow: auto; background: var(--papel); color: var(--tinta); box-sizing: border-box; padding-bottom: 20px; }
+    .tel .ficha { padding-top: 14px; gap: 8px; }
+    .tel .ficha-titulo { font-size: 26px; }
+    .tel .ficha-autoria { font-size: 15px; margin: 0; }
+    .estilo-linea { font-family: var(--mono); font-size: 14px; color: var(--tenue); margin: 0; }
+    .separa { height: 1px; background: var(--filete); margin: 16px 16px 12px; }
+    .grilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 8px; padding: 0 16px; }
+    .tapa .marca-ejemplo { display: none; }
+    button.etq { cursor: pointer; }
+
+    /* Explicación que se abre al tocar la etiqueta */
+    .explica { margin: 2px 0 0; padding: 10px 12px; background: color-mix(in srgb, var(--familia) 14%, var(--papel)); border-left: 4px solid var(--familia); font-family: var(--serif); font-size: 15px; line-height: 1.45; }
+    .explica a { display: block; margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--tinta); }
+    .explica[hidden] { display: none; }
+
+    /* Letra de la etiqueta: la del logo «jagten» (Archivo semigruesa, minúscula, bien espaciada) */
+    button.etq { font-family: var(--sans) !important; font-weight: 650; font-stretch: 100%; text-transform: none; letter-spacing: .26em; line-height: 1; }
+
+    /* Letra del título (Archivo muy gruesa y ancha), en mayúscula. text-box recorta la caja a la altura
+       de las mayúsculas: así la palabra queda centrada justo. */
+    .tapa { container-type: inline-size; }
+    .isla, .base, .letra, .desliza b, button.etq { font-family: var(--sans); font-weight: 850; font-stretch: 112%; text-transform: uppercase; line-height: 1; text-box: trim-both cap alphabetic; white-space: nowrap; }
+    .tarj { position: relative; container-type: inline-size; }
+    .ficha-tapa .tarj { max-width: 520px; margin: 0 auto; }
+
+    /* B · Isla */
+    .isla { position: absolute; right: var(--borde); top: var(--borde); background: var(--marco); color: var(--papel); outline: 1.5px solid var(--logo-negro); outline-offset: -1.5px;
+      font-size: 12cqw; padding: 3.4cqw 3.2cqw 3.4cqw 3.6cqw; }
+    .tapa-grande .isla { font-size: 3.4cqw; letter-spacing: .12em; padding: 2.4cqw 2.3cqw 2.4cqw 2.7cqw; outline-width: 2px; outline-offset: -2px; }
+
+    /* C · Base: franja del color del marco pegada debajo de la tapa, con la palabra entera */
+    .base { background: var(--familia); color: var(--papel); text-align: center; font-size: 7.4cqw; letter-spacing: .04em; padding: 3.2cqw 0; border-top: 1px solid color-mix(in srgb, var(--papel) 45%, var(--familia)); }
+    .ficha-tapa .base { font-size: 4.2cqw; letter-spacing: .14em; padding: 3cqw 0; cursor: pointer; }
+
+    /* D · Letra grande junto al nombre */
+    .tarj-pie { display: flex; gap: 4px; align-items: flex-start; justify-content: space-between; margin-top: 4px; }
+    .tarj-pie span { font-size: 12px; font-weight: 700; line-height: 1.15; }
+    .letra { flex: none; display: grid; place-items: center; width: 26px; height: 26px; background: var(--familia); color: var(--papel); font-size: 16px; outline: 1.5px solid var(--logo-negro); outline-offset: -1.5px; }
+
+    /* Al pasar el mouse por la tapa: sube una tarjetita con la palabra y un «?» */
+    .desliza { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; background: var(--tinta); color: var(--papel); padding: 6cqw 5cqw;
+      display: flex; align-items: center; justify-content: space-between; gap: 3cqw; transform: translateY(101%); transition: transform .2s ease; }
+    .desliza b { font-size: 6.5cqw; letter-spacing: 0; }
+    .ayuda { flex: none; display: grid; place-items: center; width: 12cqw; height: 12cqw; border: 1.5px solid currentColor; border-radius: 50%;
+      font-family: var(--sans); font-weight: 850; font-size: 7.5cqw; line-height: 1; cursor: help; }
+    @media (hover: hover) { .tarj:hover .desliza { transform: none; } }
+    .tarj.mostrar .desliza { transform: none; }
+
+    /* La explicación: tarjeta al costado de la tapa (a la derecha; en la última columna, a la izquierda) */
+    .globo { position: absolute; top: 0; left: calc(100% + 8px); z-index: 5; width: 230px; padding: 12px 14px 13px; background: var(--papel); color: var(--tinta);
+      border: 2px solid var(--tinta); box-shadow: 4px 4px 0 var(--familia); opacity: 0; visibility: hidden; transform: translateX(-6px); transition: opacity .15s, transform .15s, visibility .15s; }
+    .grilla .tarj:nth-child(3n) .globo { left: auto; right: calc(100% + 8px); transform: translateX(6px); box-shadow: -4px 4px 0 var(--familia); }
+    .globo b { display: block; font-family: var(--sans); font-weight: 850; font-stretch: 112%; text-transform: uppercase; font-size: 13px; letter-spacing: .04em; color: var(--familia); }
+    .globo p { margin: 6px 0 0; font-family: var(--serif); font-size: 14px; line-height: 1.45; }
+    .tarj:has(.ayuda:hover) .globo, .tarj:has(.ayuda:focus) .globo, .tarj.mostrar-globo .globo { opacity: 1; visibility: visible; transform: none; }
+    .tel { overflow: visible; height: auto; }
+
+    /* iPhone (sin mouse): el «?» al lado de la letra, se toca; la explicación sale como hoja desde abajo */
+    .letra { position: relative; }
+    .tactil .letra { cursor: pointer; margin: 5px 5px 0 0; }
+    .tactil .letra::after { content: '?'; position: absolute; top: -7px; right: -7px; width: 14px; height: 14px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--tinta); color: var(--papel); font-size: 9.5px; font-weight: 850; }
+    .tactil .desliza { display: none; }
+    .tactil .globo { position: fixed; left: 12px; right: 12px; bottom: 12px; top: auto; width: auto; max-width: 420px; margin: 0 auto; transform: translateY(12px); box-shadow: 0 4px 0 var(--familia), 0 10px 30px rgb(0 0 0 / .3); }
+    .tactil .grilla .tarj:nth-child(3n) .globo { left: 12px; right: 12px; transform: translateY(12px); box-shadow: 0 4px 0 var(--familia), 0 10px 30px rgb(0 0 0 / .3); }
+    .tactil .tarj.mostrar-globo .globo { transform: none; }
+
+    /* En la ficha */
+    button.etq { justify-self: start; border: 0; cursor: pointer; font-size: 15px; letter-spacing: .12em; padding: 8px 9px 8px 11px; background: var(--familia); color: var(--papel); outline: 2px solid var(--logo-negro); outline-offset: -2px; }
+  </style>
+</head>
+<body>
+  <h1>Etiqueta de copias: pintoresquista y neo</h1>
+  <p class="nota">Con tus obras reales. Arriba, la ficha (la etiqueta va junto al nombre; tocala para ver la explicación). Abajo, cómo se marca la tapa en una grilla. El estilo que figura es provisorio: lo decidimos casa por casa después.</p>
+  <div class="controles"><button id="claro">Claro</button><button id="oscuro">Oscuro</button><button id="iphone">Simular iPhone</button></div>
+  <div class="fila" id="pagina"></div>
+  <script type="module" src="etiqueta.js"></script>
+</body>
+</html>

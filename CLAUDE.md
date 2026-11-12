@@ -14,7 +14,7 @@ El usuario habla directo con Claude, sin intermediario.
 - **Lo que no se puede probar** (gestos táctiles, el iPhone): decir exactamente qué probar y dónde.
 - **Al terminar un trabajo:** resumen corto con qué cambió, links exactos para mirarlo y qué falta decidir. Sin listas larguísimas.
 - **Mensajes casuales** ("gracias", "dale", "volví"): respuesta corta y rápida, sin herramientas ni releer archivos.
-- **Consumo:** la cuenta es de Dessol y el límite se comparte con el trabajo. Avisar si algo va a gastar mucho y sugerir `/clear` cuando la sesión esté pesada, después de actualizar `LOG.md`.
+- **Consumo:** desde el 12/11/2026 Medianeras se trabaja con la cuenta personal del usuario (Pro), abierta con `claude-tew` desde `~/medianeras`; `claude` a secas es la de Dessol, para el trabajo. El Pro tiene límite: avisar si algo va a gastar mucho y sugerir `/clear` cuando la sesión esté pesada, después de actualizar `LOG.md`.
 
 ## Principios (Karpathy)
 

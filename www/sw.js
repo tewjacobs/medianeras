@@ -2,7 +2,7 @@
 // IMPORTANTE: cuando cambies archivos de la app (HTML, CSS, JS), subí VERSION
 // para que los teléfonos descarguen la versión nueva.
 
-const VERSION = 'v66';
+const VERSION = 'v68';
 const CACHE_APP = `medianeras-app-${VERSION}`;
 const CACHE_DATOS = 'medianeras-datos';
 const CACHE_FOTOS = 'medianeras-fotos';
