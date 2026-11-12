@@ -8,7 +8,7 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**12 de noviembre de 2026 (cierre).** **Sin subir (`v68`)**: el usuario no pidió commit.
+**12 de noviembre de 2026 (cierre).** Subido (`v68`, commit 3b80ee1), con todo lo del 11/11.
 
 **Próxima sesión** (desde la cuenta personal: `cd ~/medianeras` y `claude-tew`):
 1. **Pasar la etiqueta a la app** (diseño D aprobado, "perfect"; prueba en `herramientas/prueba/etiqueta.html` + `etiqueta.js`, con botón "Simular iPhone"). Marco liso, sin dibujos. En la tarjeta de la grilla: la **P** o la **N** en un cuadradito del color del marco con marquito negro, abajo a la derecha, al lado del nombre (letra del título: Archivo 850, 112 %, mayúscula, `text-box: trim-both cap alphabetic`). En la compu, al pasar el mouse por la tapa sube una tarjetita negra con solo la palabra (PINTORESQUISTA / NEO) y un **?**; al pasar por el **?** se abre una tarjeta **afuera de la tapa**, al costado (a la izquierda en la última columna), con la explicación. En el iPhone: la letra lleva un **?** chiquito en la esquina y se toca; la explicación sale como hoja desde abajo. En la ficha: bloque con la palabra (color del marco, marquito negro) abajo del nombre; al tocarlo se abre la explicación y el link a la lista de todas. Textos aprobados en `etiqueta.js` (`ayuda`); "entre los años 20 y 50" sale de la descripción vieja del estilo, sin verificar.
