@@ -8,6 +8,16 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**14 de noviembre de 2026, madrugada (cierre).** **Sin subir (`v74`)**: el usuario no pidió commit.
+
+**Próxima sesión, en este orden:**
+1. **Subir** cuando lo pida (fondos de Art déco e Italianizante, símbolos de Renacimiento francés y Gótico, regla de detalle en `CLAUDE.md`).
+2. **Tanda siguiente (de a dos)** con las carpetas que ya están: tudor, barroco eduardiano, posmodernismo (¿el Big Duck suelto en la raíz?), neofuturismo, contemporaneo, gotico perpendicular (`colonial` vacía). **Detalle alto desde la primera versión** (regla nueva en `CLAUDE.md` y memoria): recortar cada zona de la foto, simetría exacta, franjas por tramo.
+3. Después: Academicismo e Historicismo; estilos de Buenos Aires que falten; pieles. **En suspenso:** Pintoresquismo, Instagram, logo, iPhone (al final), proyecto sanskule (no arrancar sin pedido).
+
+- **Fondos elegidos:** Art déco **ciruela** (`deco-ciruela`), Italianizante **piedra de lago** (`italia-lago`), Renacimiento francés **lavanda gris** (`renac-lavanda`, el provisorio quedó), Gótico **cielo de Colonia** (`gotico-cielo`; en oscuro el marco y el texto del encabezado van en crema `#f3ead9`, porque el inverso del celeste medio no se leía).
+- Ojo con fondos de tono medio en oscuro: el texto del encabezado del perfil usa el color del marco (inverso del fondo); si el fondo es medio, el inverso también y no se lee. Revisar el perfil en la app.
+
 **13 de noviembre de 2026, noche (cierre).** Subido (`v73`, commit c9b180b).
 
 **Próxima sesión, en este orden:**
@@ -708,4 +718,12 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - `sw.js` en `v72`. Nada commiteado.
 - Noche: correcciones del art déco copiando la postal y la foto: linternas (tambor octogonal recto casi del ancho de la torre, ranuras de a pares, cornisita, alero y techo en zigurat bajo; antes cúpula dorada, "de otro estilo"), pináculos bajos y macizos, torre en ladrillo ocre con la tira de ventanitas entre marcos claros que rematan en cascada y el panel alto arriba, pie de torre (`pie_torre`: ventana alta en el eje, líneas claras, paneles oscuros con zigzag; sin marquesina), base con pilastras claras, ventanales de cuadrícula en dos tramos, friso de relieves y marquesina verde en la entrada, pretil con friso de celosía, pilares que terminan en punta, ventanas de arriba con cabeza en punta y bloque escalonado con mástil y bandera de Estados Unidos. Erba: óculo centrado en el eje real de la torre (estaba en x=475 y el eje es 471), dibujado como círculo fila por fila. La foto de la T&P se sumó a `comparar.js`. `sw.js` en `v73`. Nada commiteado.
 - Después: bandera del déco del lado derecho del mástil. **Villa Erba rehecha en unidades** (`erba.py`: ayudas `sim`, `eje`, `arco`, `vano`, `frontis_segmento`, `frontis_cartela`, `balaustrada_u`, `mensulas_u`, `estatua`, `maceta`): cada cuerpo simétrico sobre su eje, ventanas parejas con frontis curvo, portón y logia con arcos de medio punto y clave, puertas con frontis partido y cartela, paneles con medallón; terraza con estatuas y macetas, escalinata escalón por escalón con farol, bojes parejos y cerco, muro de sillares con escalera al agua, reflejo y palos de amarre. Las notas adhesivas (Stickies) que vio el usuario en la pantalla no las abrió Claude. Art déco aprobado. Erba: remate distinto en pabellones y cuerpo del medio.
+
+### 14 de noviembre de 2026
+
+- Fondos de Art déco e Italianizante elegidos en `fondos.html` y aplicados (también en `deco.py` y `erba.py`).
+- **Renacimiento francés = Alwyn Court** (`alwyn.py`): la esquina de frente y simétrica; para que se lea la esquina, los tramos se angostan al alejarse, ventanas de la torre más angostas a los lados y el lado derecho en sombra suave (colores `-m` en la mitad de la torre, `-s` después, generados con `oscurecer()`); cornisa que vuela con perfil curvo (`MARGEN`, `perfil`), cartelas coronadas, rombos de tres anillos, columnitas, antepechos con medalla y rosetas, cabezales con salamandras, balconcitos y balcón curvo tallado, friso, balaustradas por tramo con dados sobre los pilares, planta baja con toldos, marquesina, faroles y macetas, vereda plana, árboles y semáforo. `espejo()` copia el lado izquierdo al derecho fuera de la torre. Tonos de piedra cercanos entre sí ("que no sea brusco").
+- **Gótico = catedral de Colonia** (`colonia.py`, 110 × 248): dos torres de cinco niveles, ventanales con doble moldura, vitrales en rombitos (simétricos en cada ventana), lancetas con arquito y cuadrifolio; gabletes con doble moldura, crochets y rosetón solo en el hueco libre (`libre`); tracería ciega en relieve, contrafuertes con nichos y estatuas, pináculos con crochets, bosque de pináculos (`fialas`), galerías caladas, aguja calada (se ve el fondo), portadas con arquivoltas de estatuas, tímpano en registros, puertas con tachas; faroles de globo. Ojo: `R()` espeja respecto del eje de la fachada, no de cada ventana.
+- Regla nueva: símbolos con mucho detalle desde la primera versión (`CLAUDE.md`, paso "Dibujar"; memoria `medianeras-simbolos-detalle-alto`).
+- `comparar.js` suma los dos. `sw.js` en `v74`. Nada commiteado.
 

@@ -41,7 +41,7 @@ El usuario habla directo con Claude, sin intermediario.
 Cada símbolo es un dibujo propio de líneas paralelas; el formato está en el README ("Símbolos de perfil").
 
 1. **Mirar** las fotos de referencia de la obra en `~/medianeras-originales/referencias/simbolos/<obra>/` antes de dibujar. Si no hay foto, decirlo y pedirla o trabajar solo con la indicación del usuario, avisando.
-2. **Dibujar** en vista frontal, midiendo sobre la foto: proporciones, cantidad de partes, colores. Son dibujos propios, nunca copias de las ilustraciones de referencia.
+2. **Dibujar** en vista frontal, midiendo sobre la foto: proporciones, cantidad de partes, colores. Son dibujos propios, nunca copias de las ilustraciones de referencia. **Con mucho detalle desde la primera versión** (pedido del usuario, siempre): cada zona con su ornamento (molduras, tallas, tracerías, pináculos, juntas, sombras), y que se lea la situación de la obra (una esquina, un lago). Nada de bloques lisos con ventanas.
 3. **Comparar:** renderizar el símbolo (claro y oscuro) y ponerlo al lado de su foto, en la página de prueba (`herramientas/prueba/servir.sh`, http://127.0.0.1:8001/). Las capturas se sacan con `herramientas/capturas/`.
 4. **Corregir** lo que no coincida y volver a comparar antes de mostrarlo.
 5. Mostrar solo lo que cambió, cada símbolo al lado de su foto.

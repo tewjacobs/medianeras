@@ -392,11 +392,11 @@ COLORES = {
     'er-agua': ('#7f8c8a', '#3f4847'), 'er-agua-l': ('#9eaaa7', '#56605e'), 'er-agua-r': ('#93968a', '#4d5450'),
     'er-muro-o': ('#8a8478', '#66625a'), 'er-farol': ('#3a3a36', '#3a3a36'), 'er-luz': ('#f0d58a', '#f0d58a'),
     'er-palo': ('#5c4a38', '#5c4a38'), 'er-palo-l': ('#7a6650', '#7a6650'),
-    'italia-monte': ('#6f7d45', '#232b15'), 'italia-monte-marco': ('#1f2414', '#e6ead6'),
+    'italia-lago': ('#8d948a', '#272b27'), 'italia-lago-marco': ('#726b75', '#d8d4d8'),
 }
 
 p = version()
-p.update(placa='italia-monte', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-         marco='italia-monte-marco')
+p.update(placa='italia-lago', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+         marco='italia-lago-marco')
 guardar(sys.argv[1], 'estilos', 'Italianizante', p, COLORES, 'er-|italia-')
 print(len(p['lineas']), 'líneas, largo', p['largo'])

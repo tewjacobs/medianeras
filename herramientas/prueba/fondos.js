@@ -10,11 +10,17 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['mundo', '1980', 'Mundo 1980 · Asamblea de Bangladesh', ['daka/Bangladesh-National-Parliament-1920x1280.jpeg', 'daka/Asamblea-Nacional-de-Bangladesh-de-Louis-Kahn.jpg'], {
-    'A · blanco': ['#f3f0e9', '#ece8df'],
-    'B · negro': ['#1c1b1a', '#151413'],
-    'C · blanco y negro (claro blanco, oscuro negro)': ['#f3f0e9', '#151413'],
-    'D · ladrillo de Kahn': ['#c27a60', '#3b2119'],
+  ['estilos', 'Renacimiento francés', 'Renacimiento francés · Alwyn Court', ['neorenacimiernto frances/images.jpeg'], {
+    'A · ladrillo de Nueva York': ['#a8604a', '#3a2018'],
+    'B · verde de Central Park': ['#5d7a52', '#1f2b1c'],
+    'C · atardecer salmón': ['#d08a6a', '#43261c'],
+    'D · ocre de Manhattan': ['#b8924a', '#3b2d16'],
+  }],
+  ['estilos', 'Gótico', 'Gótico · Catedral de Colonia', ['gotico/Kölner_Dom_-_Westfassade_2022_ohne_Gerüst-0968_b.jpg'], {
+    'A · piedra del Rin': ['#cfcac0', '#8f8a80'],
+    'B · oro de tímpano': ['#d9b56a', '#8a6e38'],
+    'C · rojo de vitral': ['#b5574a', '#6e2f28'],
+    'D · cielo de Colonia': ['#a9c0d4', '#5f7891'],
   }],
 ];
 

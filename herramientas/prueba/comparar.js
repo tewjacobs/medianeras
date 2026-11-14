@@ -46,6 +46,8 @@ const CON_FOTO = [
   ['mundo', '2020', ['m+/av_imagen.webp', 'm+/av_imagen_vertical.webp']],
   ['estilos', 'Art déco', ['art deco/s-l1200.jpg', 'art deco/orig-3db4d0fb8f0da-1.jpg', 'art deco/T&P_Station,_Southeast.jpg']],
   ['estilos', 'Italianizante', ['italianizante/images (2).jpeg', 'italianizante/Villa_Erba_004.jpeg']],
+  ['estilos', 'Renacimiento francés', ['neorenacimiernto frances/images.jpeg', 'neorenacimiernto frances/IMG_0276a_resize.jpg']],
+  ['estilos', 'Gótico', ['gotico/Kölner_Dom_-_Westfassade_2022_ohne_Gerüst-0968_b.jpg']],
   ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
   ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
   ['programas', 'Hotel', ['hotel/72_big.jpg', 'hotel/images (14).jpeg']],

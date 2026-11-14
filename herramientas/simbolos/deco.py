@@ -226,11 +226,11 @@ COLORES = {
     'dc-rojo': ('#b8433a', '#b8433a'), 'dc-blanco': ('#f4f0e6', '#f4f0e6'), 'dc-azul': ('#33477a', '#33477a'),
     'dc-verde': ('#6f9c78', '#6f9c78'), 'dc-verde-o': ('#41664b', '#41664b'), 'dc-piedra-l': ('#f3efe4', '#f3efe4'), 'dc-bronce': ('#a7834a', '#a7834a'),
     'dc-granito': ('#8a5f55', '#8a5f55'), 'dc-vereda': ('#b3aea4', '#6f6b64'), 'dc-junta': ('#9a958b', '#5d5a54'),
-    'deco-terracota': ('#c97b5c', '#4d2619'), 'deco-terracota-marco': ('#2b1a14', '#f1dfd3'),
+    'deco-ciruela': ('#7a4a5e', '#2c1a22'), 'deco-ciruela-marco': ('#85b5a1', '#d3e5dd'),
 }
 
 p = version()
-p.update(placa='deco-terracota', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-         marco='deco-terracota-marco')
+p.update(placa='deco-ciruela', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+         marco='deco-ciruela-marco')
 guardar(sys.argv[1], 'estilos', 'Art déco', p, COLORES, 'dc-|deco-')
 print(len(p['lineas']), 'líneas, largo', p['largo'])
