@@ -8,7 +8,7 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**13 de noviembre de 2026, noche.** **Sin subir (`v73`)**: el usuario no pidió commit.
+**13 de noviembre de 2026, noche (cierre).** Subido (`v73`, commit c9b180b).
 
 **Próxima sesión, en este orden:**
 1. **Art déco e Italianizante aprobados** (13/11 a la noche; la Erba con cornisas, pasamanos y zócalos de las balaustradas en crema bien gris `er-cornisa-g`, también arriba de la torre). Siguen los fondos de los dos (punto 3).
