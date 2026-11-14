@@ -332,10 +332,11 @@ COLORES.update({
     'la-farol': ('#f1e3b5', '#f1e3b5'), 'la-semaforo': ('#2f3a2f', '#2f3a2f'), 'la-semaforo-o': ('#1c221c', '#1c221c'),
     'la-luz-v': ('#5fd08a', '#5fd08a'), 'la-luz-r': ('#d84a3a', '#d84a3a'), 'la-luz-a': ('#e6b440', '#e6b440'),
     'la-vereda': ('#b9b4ab', '#76726c'), 'la-vereda-o': ('#9a958b', '#5c5954'), 'la-cordon': ('#8a857c', '#4d4a46'),
-    'eduardiano-fondo': ('#d9dccf', '#3a3d36'),
+    'eduardiano-mostaza': ('#d1aa58', '#3f3118'), 'eduardiano-mostaza-marco': ('#2e55a7', '#c0cee7'),
 })
 
 p = version()
-p.update(placa='eduardiano-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10)
+p.update(placa='eduardiano-mostaza', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+         marco='eduardiano-mostaza-marco')
 guardar(sys.argv[1], 'estilos', 'Barroco eduardiano', p, COLORES, 'la-|eduardiano-')
 print(len(p['lineas']), 'líneas, largo', p['largo'])

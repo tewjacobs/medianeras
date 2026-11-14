@@ -8,6 +8,15 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**14 de noviembre de 2026, noche (cierre).** **Sin subir (`v88`)**: el usuario no pidió commit.
+
+**Próxima sesión:**
+1. Seguir con los **huecos visibles** (plan del 14/11, punto 3): faltan los símbolos de **contemporáneo** y **gótico perpendicular** (carpetas ya cargadas, 5 y 4 fotos). Tanda de a dos, detalle alto desde la primera versión, y fondo provisorio hasta que apruebe el dibujo. Después, revisión en el iPhone; luego el punto 4 (carpeta de presentación).
+2. Después **sanskule**; **jagten** al final.
+
+- **Fondos elegidos:** Tudor **malva rosa** (`tudor-malva`), Barroco eduardiano **mostaza** (`eduardiano-mostaza`), Neofuturismo **pizarra** (`neo-pizarra`), Posmodernismo **bosque** (`pos-bosque`). En los dos últimos, en claro, el marco y el título del perfil van en crema `#f3ead9` (el inverso del tono medio no se leía), como en Gótico.
+- **Cómo pide los fondos:** para Essex quiso "colores naturales": no solo tierras, también verdes y celestes; terminó eligiendo entre ocho verdes.
+
 **14 de noviembre de 2026, mediodía.** Subido (`v75`).
 
 **Próxima sesión:**
@@ -738,4 +747,9 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - **Mediodía (`v75`, subido):** prioridades nuevas: arqivo (pulir bases), después sanskule, jagten al final. **Fuentes en la ficha:** campo `fuentes` en `obras.json` (`[{nombre, url?}]`, 28 obras), fila "Fuentes" al final de la pestaña Datos (`panelDatos` en `obra.js`, `.ficha-fuentes`). **Textos revisados contra Wikipedia** (17 de afuera) y corregidos: Oculus (la claraboya sí se abre cada 11/9, 102 minutos), Catedral de Manchester (Crowther: piedra 1850–1870, murió en 1893 sin terminar; no los pórticos), 50 Newton Street (depósito sobre una fábrica de sombreros quemada en 1906; no Joseph Wood), Flatiron (conversión terminada en 2026), St Luke (sin Insall). Tribeca Synagogue (sitio oficial, Wikipedia, thisispaper: expropiación federal; "llama" es metáfora; sin "la que Breger más defendió") y The Peregrine (CityRealty: mitad de cuadra entre 49 y 50, balcones desde el piso 11; lo de las fotos marcado "a la vista"). Programas: Flatiron "Oficinas (hoy viviendas)", 50 Newton "Depósito (hoy hostel)".
 - **Símbolos nuevos:** **Tudor = casa natal de Shakespeare desde el jardín** (`tudor.py`): hastial simétrico con escalones parejos, oriel emplomado, alas largas con techo a cuatro aguas empinado, chimenea saliendo de la cumbrera, malvas rosas. **Barroco eduardiano = Lancaster House, Manchester** (`lancaster.py`): esquina de frente como Alwyn, torre con cúpula, linterna, volutas y balcón, fachadas de ladrillo con fajas (colores parejos, poco contraste, `oscurecer` 0.93), planta baja detallada, torreones con sillares. Los dos en `comparar.js`.
 - Capturas en claro: `--blink-settings=preferredColorScheme=1` en Chrome headless (Chrome de esta Mac está en oscuro).
+- **Tarde y noche (`v76`–`v88`, sin subir):** fondos de Tudor y Barroco eduardiano aplicados. **Posmodernismo = A House for Essex** (FAT con Grayson Perry, `essex.py`) y **Neofuturismo = Biosfera de Montreal** (Fuller, Expo 67, `biosfera.py`), aprobados tras muchas vueltas.
+  - **Essex:** en **elevación pura**: cada techo es un faldón rectangular, con los cortes rectos y verticales, no en diagonal como en la perspectiva de la foto. La fachada va en una **grilla de módulos de 6**: un azulejo mide lo mismo que la base de un triángulo, cada cuerpo es un número entero de módulos (`MODULOS`) y las pilastras miden todas 2. `reubicar()` lleva los px de la foto a esa grilla. Las bandas van por hileras (`BANDAS`) y las piezas son más chicas que en la foto, a pedido. Hay sombras (`sombra()` pasa los colores a su versión `-s`), capotas con luz y sombra, vidrios con reflejos (`pano()`) y los remates detallados: farol, huevo de arlequín, Julie y la rueda. Paredes un sexto más bajas que en la foto (SUELO 444), a pedido.
+  - **Biosfera:** la malla es de tres familias de planos (horizontal y ±60°) con espaciado `asin`; cerca de la punta no hay horizontales. La cara de atrás va corrida media barra y más suave. Adentro, tenue: las plataformas. Abajo: el cerco de enredadera de bordes orgánicos, tres paneles con perspectiva y láminas color papel antiguo, el pabellón blanco y **el globo color papel antiguo** que flota en el estanque (el usuario lo llamaba "el mundo"). Sin reflejo en el agua ("marea"). Las casitas de pájaros, sacadas.
+  - Lecciones de esta tanda: el usuario quiere **elevación de frente, no perspectiva** (los techos de costado se ven como rectángulos); **la misma cantidad de piezas que la obra real**, o más chicas; **precisión** (anchos iguales, patrones alineados a una grilla); **sombreado** para que se vea realista.
+  - `herramientas/capturas/ver.sh`: en claro usa `preferredColorScheme=1` (antes salía en oscuro). `comparar.js` suma los dos.
 

@@ -8,5 +8,5 @@ P=$(mktemp -d)
 H=${3:-1400}
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars \
   --user-data-dir=$P --window-size=500,$H ${VIRT:+--virtual-time-budget=9000}${VIRT:---timeout=18000} \
-  ${4:+--force-dark-mode} --screenshot=salida/$2 "http://127.0.0.1:8000/#$1" >/dev/null 2>&1
+  ${4:+--force-dark-mode}${4:---blink-settings=preferredColorScheme=1} --screenshot=salida/$2 "http://127.0.0.1:8000/#$1" >/dev/null 2>&1
 rm -rf $P

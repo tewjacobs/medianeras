@@ -10,17 +10,15 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['estilos', 'Renacimiento francés', 'Renacimiento francés · Alwyn Court', ['neorenacimiernto frances/images.jpeg'], {
-    'A · ladrillo de Nueva York': ['#a8604a', '#3a2018'],
-    'B · verde de Central Park': ['#5d7a52', '#1f2b1c'],
-    'C · atardecer salmón': ['#d08a6a', '#43261c'],
-    'D · ocre de Manhattan': ['#b8924a', '#3b2d16'],
-  }],
-  ['estilos', 'Gótico', 'Gótico · Catedral de Colonia', ['gotico/Kölner_Dom_-_Westfassade_2022_ohne_Gerüst-0968_b.jpg'], {
-    'A · piedra del Rin': ['#cfcac0', '#8f8a80'],
-    'B · oro de tímpano': ['#d9b56a', '#8a6e38'],
-    'C · rojo de vitral': ['#b5574a', '#6e2f28'],
-    'D · cielo de Colonia': ['#a9c0d4', '#5f7891'],
+  ['estilos', 'Posmodernismo', 'Posmodernismo · A House for Essex', ['posmodernismo/Arquitectura_postmoderno-less_is_nore-owen_hopkins-roomdiseno9.jpg', 'posmodernismo/images (9).jpeg'], {
+    'A · salvia': ['#a7b39a', '#2a3027'],
+    'B · menta gris': ['#b9cbbd', '#25302a'],
+    'C · pistacho': ['#c2c98f', '#30331f'],
+    'D · musgo': ['#7e8a5a', '#262b1a'],
+    'E · eucalipto': ['#8fa59a', '#223029'],
+    'F · oliva': ['#8c8a55', '#2b2a18'],
+    'G · verde agua': ['#9fbfb2', '#1f302b'],
+    'H · bosque': ['#4f6a52', '#1a241b'],
   }],
 ];
 

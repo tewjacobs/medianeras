@@ -50,6 +50,8 @@ const CON_FOTO = [
   ['estilos', 'Gótico', ['gotico/Kölner_Dom_-_Westfassade_2022_ohne_Gerüst-0968_b.jpg']],
   ['estilos', 'Tudor', ['tudor/6778-0090.2e16d0ba.fill-1920x1080-c75.jpg']],
   ['estilos', 'Barroco eduardiano', ['barroco eduardiano/67_Whitworth_Street.jpg', 'barroco eduardiano/images (10).jpeg']],
+  ['estilos', 'Posmodernismo', ['posmodernismo/Arquitectura_postmoderno-less_is_nore-owen_hopkins-roomdiseno9.jpg', 'posmodernismo/images (9).jpeg']],
+  ['estilos', 'Neofuturismo', ['neofuturismo/images (8).jpeg', 'neofuturismo/biosfera-de-montreal-1536x1152.jpg']],
   ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
   ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
   ['programas', 'Hotel', ['hotel/72_big.jpg', 'hotel/images (14).jpeg']],

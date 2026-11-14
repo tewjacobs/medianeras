@@ -264,10 +264,11 @@ COLORES = {
     'tu-pasto': ('#b9a46a', '#b9a46a'), 'tu-pasto-c': ('#d8c895', '#d8c895'),
     'tu-hoja': ('#4e6a3a', '#4e6a3a'), 'tu-hoja-o': ('#344829', '#344829'), 'tu-hoja-c': ('#7f9757', '#7f9757'),
     'tu-flor': ('#d97ca4', '#d97ca4'), 'tu-flor-c': ('#f1bcd2', '#f1bcd2'), 'tu-flor-r': ('#c43a52', '#c43a52'), 'tu-flor-o': ('#8a2a45', '#8a2a45'),
-    'tudor-fondo': ('#e6dcc4', '#3b362c'),
+    'tudor-malva': ('#c99aa4', '#432c33'), 'tudor-malva-marco': ('#36655b', '#bcd3cc'),
 }
 
 p = version()
-p.update(placa='tudor-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10)
+p.update(placa='tudor-malva', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+         marco='tudor-malva-marco')
 guardar(sys.argv[1], 'estilos', 'Tudor', p, COLORES, 'tu-|tudor-')
 print(len(p['lineas']), 'líneas, largo', p['largo'])
