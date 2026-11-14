@@ -8,7 +8,7 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**14 de noviembre de 2026, noche (cierre).** **Sin subir (`v88`)**: el usuario no pidió commit.
+**14 de noviembre de 2026, noche (cierre).** Subido (`v88`, commit c6c02d0).
 
 **Próxima sesión:**
 1. Seguir con los **huecos visibles** (plan del 14/11, punto 3): faltan los símbolos de **contemporáneo** y **gótico perpendicular** (carpetas ya cargadas, 5 y 4 fotos). Tanda de a dos, detalle alto desde la primera versión, y fondo provisorio hasta que apruebe el dibujo. Después, revisión en el iPhone; luego el punto 4 (carpeta de presentación).
