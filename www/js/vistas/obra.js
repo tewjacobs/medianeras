@@ -3,11 +3,11 @@
 // aparecen), y aparte las visitas, como reseñas: las más recientes y un VER MÁS a todas.
 // #/obra/<id>/visitas es la página con todas las visitas de la obra.
 
-import { el, icono, flecha, creditoFoto, tarjetaEntrada, mensaje, tapaObra, chipsPerfil, grillaFotos, encabezadoFila, estrellas, textoLargo } from '../ui.js';
+import { el, icono, flecha, creditoFoto, tarjetaEntrada, mensaje, tapaObra, chipsPerfil, grillaFotos, encabezadoFila, estrellas, textoLargo, textoCopia } from '../ui.js';
 import { abrirMapaObra } from './mapa.js';
 import { abrirNuevaVisita } from './nueva-visita.js';
 import { botonSugerirFoto } from '../contacto.js';
-import { entradasDiario, tieneCoordenadas, esZona, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, SIN_DATO, colorMarco, formatoFecha } from '../datos.js';
+import { entradasDiario, tieneCoordenadas, esZona, NIVELES_UBICACION, ancestrosEstilo, rangoAnios, decadaClave, SIN_DATO, colorMarco, formatoFecha, rutaPerfil } from '../datos.js';
 
 const RECIENTES = 3;
 
@@ -44,6 +44,7 @@ export async function render(contenedor, { datos, partes, titulo, recargar }) {
     el('div', { class: 'ficha' },
       el('div', { class: 'ficha-encabezado' },
         el('h2', { class: 'ficha-titulo' }, obra.nombre),
+        obra.copia && etiquetaCopia(obra.copia),
         autoria && el('p', { class: 'ficha-autoria' }, autoria),
         obra.otros_nombres?.length > 0 && el('p', { class: 'tenue' }, `También: ${obra.otros_nombres.join(' · ')}`),
       ),
@@ -76,6 +77,18 @@ export async function render(contenedor, { datos, partes, titulo, recargar }) {
       ? el('div', { class: 'resenas' }, visitas.slice(0, RECIENTES).map(resena))
       : el('p', { class: 'tenue ficha-sin-visitas' }, 'Todavía no registraste visitas a esta obra.'),
   );
+}
+
+// La etiqueta de copia (pintoresquista, neo) bajo el nombre: al tocarla, la explicación y el link a todas.
+function etiquetaCopia(valor) {
+  const copia = textoCopia(valor);
+  const explica = el('div', { class: 'explica', hidden: true },
+    copia.descripcion, el('a', { href: rutaPerfil('copia', valor) }, `Ver todas las ${copia.plural}`, flecha()));
+  const boton = el('button', { type: 'button', class: 'etq', 'aria-expanded': 'false', onclick: () => {
+    explica.hidden = !explica.hidden;
+    boton.setAttribute('aria-expanded', String(!explica.hidden));
+  } }, copia.nombre);
+  return [boton, explica];
 }
 
 // Pestañas: solo se ve el panel elegido.

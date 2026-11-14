@@ -61,7 +61,7 @@ export function grillaObras({ datos, obras: universo, params, ruta, estadisticas
   function detalle(obra) {
     if (filtros.orden === 'puntaje') {
       const promedio = estadisticas.get(obra.id)?.promedio;
-      return promedio ? estrellas(Math.round(promedio)) : null;
+      return promedio ? estrellas(promedio) : null;
     }
     if (filtros.orden === 'visita') return estadisticas.get(obra.id)?.ultima ?? null;
     return null;

@@ -5,7 +5,7 @@ import { el, icono } from './ui.js';
 
 export const CONTACTO = {
   mail: null,
-  instagram: 'jagten.arq',
+  instagram: '_arqivo',
 };
 
 const mailto = (asunto, cuerpo) =>
@@ -14,7 +14,7 @@ const mailto = (asunto, cuerpo) =>
 // Las fotos que manda otra persona necesitan su permiso y su nombre para el crédito.
 const PERMISO = `- ¿La sacaste vos?
 - ¿Con qué nombre te damos el crédito?
-- ¿Nos das permiso para publicarla en jagten?`;
+- ¿Nos das permiso para publicarla en arqivo?`;
 
 export function botonSugerirFoto(obra) {
   if (!CONTACTO.mail) return null;
@@ -63,5 +63,5 @@ export function pieDePagina() {
       ? el('a', { href, 'aria-label': etiqueta, title: etiqueta, target: href.startsWith('http') ? '_blank' : null, rel: 'noopener' }, icono(nombre))
       : el('span', { class: 'pie-sin-enlace', title: `${etiqueta}: próximamente` }, icono(nombre)))),
     CONTACTO.instagram && el('p', { class: 'pie-cuenta' }, `@${CONTACTO.instagram}`),
-    el('p', { class: 'pie-legal' }, `© ${new Date().getFullYear()} jagten. Fotos del catálogo: todos los derechos reservados.`));
+    el('p', { class: 'pie-legal' }, `© ${new Date().getFullYear()} arqivo. Fotos del catálogo: todos los derechos reservados.`));
 }

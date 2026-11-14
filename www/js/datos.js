@@ -165,6 +165,8 @@ export const TIPOS_PERFIL = {
   barrio: { indice: 'barrios', seccion: 'barrios', singular: 'Barrio / localidad', plural: 'Barrios', valores: (o) => lugar(o, 'barrio') },
   decada: { indice: 'decadas', seccion: 'decadas', singular: 'Década', plural: 'Décadas', valores: (o) => (decadaClave(o) === SIN_DATO ? [] : [decadaClave(o)]) },
   anio: { indice: 'anios', seccion: 'anios', singular: 'Año', plural: 'Años', valores: (o) => [o.anio_proyecto, o.anio_finalizacion].filter(Number.isFinite).map(String).filter((v, i, a) => a.indexOf(v) === i) },
+  // Etiqueta de copia ("pintoresquista", "neo"): el estilo es el original y la etiqueta avisa que es una copia o una vuelta.
+  copia: { indice: 'copias', seccion: 'copias', singular: 'Etiqueta', plural: 'Etiquetas', valores: (o) => (o.copia ? [o.copia] : []) },
 };
 
 export const ESTADOS = { existente: 'Existente', demolida: 'Demolida', modificada: 'Modificada' };
@@ -174,6 +176,7 @@ const lugar = (obra, nivel) => (obra.ubicacion?.[nivel] ? [obra.ubicacion[nivel]
 export function nombrePerfil(tipo, valor) {
   if (tipo === 'decada') return `${valor}s`;
   if (tipo === 'estado') return ESTADOS[valor] ?? valor;
+  if (tipo === 'copia') return valor[0].toUpperCase() + valor.slice(1);
   return valor;
 }
 

@@ -30,7 +30,7 @@
       "lng": -73.9897
     },
     "resumen": "El edificio triangular de D. H. Burnham & Company en la esquina de la Quinta Avenida y Broadway, uno de los primeros rascacielos de Nueva York.",
-    "descripcion": "Lo levantó la Fuller Company como su sede y se llamó primero Fuller Building, pero desde el principio todos le dijeron Flatiron, \"la plancha\", por su forma. El terreno es un triángulo porque Broadway corta en diagonal la grilla de Manhattan justo donde se cruza con la Quinta Avenida, en la calle 22.\n\nLas obras empezaron en mayo de 1901 y el edificio abrió el 1 de octubre de 1902. Tenía 20 pisos sobre un esqueleto de acero calculado para aguantar mucho más viento que lo común; en 1905 se le sumó un piso más arriba. La fachada se arma como una columna clásica: una base de piedra caliza de tres pisos, un fuste de terracota con ornamento y un remate.\n\nEs monumento de la ciudad desde 1966 y monumento histórico nacional desde 1989. Después de que se fue su último inquilino de oficinas, en 2019, empezó una renovación; en 2023 se anunció que se convierte en departamentos.",
+    "descripcion": "Lo levantó la Fuller Company como su sede y se llamó primero Fuller Building, pero desde el principio todos le dijeron Flatiron, \"la plancha\", por su forma. El terreno es un triángulo porque Broadway corta en diagonal la grilla de Manhattan justo donde se cruza con la Quinta Avenida: la punta da a la calle 23 y el fondo, a la 22.\n\nLas obras empezaron en mayo de 1901 y el edificio abrió el 1 de octubre de 1902. Tenía 20 pisos y un ático sobre un esqueleto de acero; en 1905 se pidió permiso para sumarle arriba un penthouse, que se usó como talleres de artistas. La fachada se arma como una columna clásica: una base de piedra caliza de tres pisos, un fuste de terracota con ornamento y un remate.\n\nEs monumento de la ciudad desde 1966 y monumento histórico nacional desde 1989. Su último gran inquilino, la editorial Macmillan, terminó de irse en 2019 y empezó una renovación; en octubre de 2023 se anunció que se convierte en departamentos.",
     "fotos": [
       {
         "archivo": "img/obras/flatiron-building/flatiron-01.jpg",
@@ -84,7 +84,7 @@
       "lng": -73.959
     },
     "resumen": "El museo de Frank Lloyd Wright en la Quinta Avenida: una sola rampa en espiral alrededor de un gran vacío central, coronado por una cúpula de vidrio.",
-    "descripcion": "Solomon R. Guggenheim y su asesora, la artista Hilla Rebay, le encargaron a Wright en 1943 un edificio para la colección de arte no figurativo. El proyecto tardó dieciséis años: cambios de terreno, la guerra, los permisos de la ciudad. Wright murió en abril de 1959 y el museo se inauguró en octubre de ese año.\n\nEn lugar de salas una detrás de otra, el recorrido es una sola rampa de hormigón que sube en espiral alrededor de un vacío iluminado desde arriba. La idea era tomar el ascensor hasta el último nivel y bajar caminando, viendo las obras sobre la pared curva y, del otro lado, el atrio y a la gente en las otras vueltas. Por fuera, las bandas se ensanchan hacia arriba, al revés de un edificio común, y la masa blanca y redondeada contrasta con la grilla de Manhattan y con el parque de enfrente.\n\nLa rotonda chica de al lado era la oficina de administración. En 1992 se sumó la torre de atrás, de Gwathmey Siegel, con más salas, y entre 2005 y 2008 se restauró la fachada.",
+    "descripcion": "Solomon R. Guggenheim y su asesora, la artista Hilla Rebay, le encargaron a Wright en 1943 un edificio para la colección de arte no figurativo. Pasaron dieciséis años hasta la inauguración: la falta de materiales durante la guerra, los costos de la posguerra, las discusiones sobre la luz y los permisos de la ciudad, que en 1953 rechazó el proyecto. Wright murió en abril de 1959 y el museo se inauguró en octubre de ese año.\n\nEn lugar de salas una detrás de otra, el recorrido es una sola rampa de hormigón que sube en espiral alrededor de un vacío iluminado desde arriba. La idea era tomar el ascensor hasta el último nivel y bajar caminando, viendo las obras sobre la pared curva y, del otro lado, el atrio y a la gente en las otras vueltas. Por fuera, las bandas se ensanchan hacia arriba, al revés de un edificio común, y la masa blanca y redondeada contrasta con la grilla de Manhattan y con el parque de enfrente.\n\nEn la rotonda chica de al lado, que llaman \"el monitor\", hoy está la colección Thannhauser. En 1992 se sumó la torre de atrás, de Gwathmey Siegel, con más salas, y entre 2005 y 2008 se restauró la fachada.",
     "fotos": [
       {
         "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-01.jpg",
@@ -126,7 +126,8 @@
     "arquitectos": ["Richard Upjohn"],
     "anio_proyecto": 1839,
     "anio_finalizacion": 1846,
-    "estilo": "Neogótico",
+    "estilo": "Gótico",
+    "copia": "neo",
     "materiales": ["Piedra arenisca"],
     "programa": "Templo",
     "estado": "existente",
@@ -344,7 +345,8 @@
     "arquitectos": ["Harde & Short"],
     "anio_proyecto": 1907,
     "anio_finalizacion": 1909,
-    "estilo": "Neorrenacimiento francés",
+    "estilo": "Renacimiento francés",
+    "copia": "neo",
     "materiales": ["Terracota", "Ladrillo"],
     "programa": "Vivienda colectiva",
     "estado": "existente",
@@ -850,7 +852,8 @@
     ],
     "anio_proyecto": 1802,
     "anio_finalizacion": 1832,
-    "estilo": "Neogótico",
+    "estilo": "Gótico",
+    "copia": "neo",
     "materiales": [
       "Piedra arenisca"
     ],
@@ -965,6 +968,7 @@
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
     "estilo": "Pintoresquismo",
+    "copia": "pintoresquista",
     "decada": 1940,
     "estado": "existente",
     "ubicacion": {
@@ -993,6 +997,7 @@
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
     "estilo": "Pintoresquismo",
+    "copia": "pintoresquista",
     "decada": 1940,
     "estado": "existente",
     "ubicacion": {
@@ -1131,7 +1136,8 @@
     "nombre": "Casa de los plátanos",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Neocolonial",
+    "estilo": "Colonial",
+    "copia": "neo",
     "decada": 1930,
     "estado": "existente",
     "ubicacion": {
@@ -1598,7 +1604,8 @@
     "nombre": "Casa de la pérgola",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Neocolonial",
+    "estilo": "Colonial",
+    "copia": "neo",
     "decada": 1930,
     "estado": "existente",
     "ubicacion": {
@@ -1633,6 +1640,7 @@
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
     "estilo": "Pintoresquismo",
+    "copia": "pintoresquista",
     "decada": 1930,
     "estado": "existente",
     "ubicacion": {
@@ -1747,7 +1755,8 @@
     "nombre": "Casa Tudor de Florida",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Pintoresquismo",
+    "estilo": "Tudor",
+    "copia": "pintoresquista",
     "decada": 1940,
     "estado": "existente",
     "ubicacion": {
@@ -1775,7 +1784,8 @@
     "nombre": "Casa de los arcos",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Pintoresquismo",
+    "estilo": "Bungalow",
+    "copia": "pintoresquista",
     "decada": 1920,
     "estado": "existente",
     "ubicacion": {
@@ -1885,6 +1895,7 @@
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
     "estilo": "Pintoresquismo",
+    "copia": "pintoresquista",
     "decada": 1930,
     "estado": "existente",
     "ubicacion": {
@@ -1981,7 +1992,8 @@
     "nombre": "Casa de la puerta en arco",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Pintoresquismo",
+    "estilo": "Tudor",
+    "copia": "pintoresquista",
     "decada": 1930,
     "estado": "existente",
     "ubicacion": {
@@ -2021,7 +2033,8 @@
     "nombre": "Casa de la celosía",
     "otros_nombres": [],
     "programa": "Vivienda unifamiliar",
-    "estilo": "Neocolonial",
+    "estilo": "Colonial",
+    "copia": "neo",
     "decada": 1960,
     "estado": "existente",
     "ubicacion": {

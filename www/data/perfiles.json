@@ -82,15 +82,13 @@
       "color": "teja",
       "descripcion": "Arquitectura del siglo XIX y comienzos del XX que vuelve a los estilos del pasado (gótico, renacimiento, barroco) y los aplica a edificios y técnicas nuevas. Cada estilo se elegía por lo que evocaba: el gótico para iglesias, el renacimiento para bancos y palacios."
     },
-    "Neogótico": {
+    "Gótico": {
       "color": "vino",
-      "padre": "Historicismo",
-      "descripcion": "Recuperación del gótico medieval que empezó en Inglaterra en el siglo XVIII y se difundió en el XIX: arcos en punta, agujas, vitrales y contrafuertes. Fue el estilo preferido para iglesias y universidades."
+      "descripcion": "La arquitectura de la Europa medieval, del siglo XII al XVI, nacida en Francia: arcos en punta, bóvedas de crucería, arbotantes y grandes vitrales que llenan de luz las catedrales. Volvió en el siglo XIX, sobre todo en iglesias y universidades: esas obras llevan la etiqueta «neo»."
     },
-    "Neorrenacimiento francés": {
+    "Renacimiento francés": {
       "color": "arcilla",
-      "padre": "Historicismo",
-      "descripcion": "Revival del renacimiento francés del siglo XVI, el de los castillos del Loira y de Francisco I: techos de pizarra empinados, buhardillas, torrecillas y ornamento tallado. A fines del siglo XIX y comienzos del XX se usó en mansiones, hoteles y edificios de departamentos."
+      "descripcion": "El renacimiento que llegó de Italia a la Francia del siglo XVI, el de los castillos del Loira y de Francisco I: techos de pizarra empinados, buhardillas, torrecillas y ornamento tallado. Volvió a fines del siglo XIX y comienzos del XX en mansiones, hoteles y edificios de departamentos: esas obras llevan la etiqueta «neo»."
     },
     "Arquitectura contemporánea": {
       "color": "niebla",
@@ -110,14 +108,21 @@
       "padre": "Moderno",
       "descripcion": "La primera arquitectura moderna de los años 30 y 40: volúmenes blancos y lisos, techos planos con terraza, ventanas corridas o grandes paños de perfiles de hierro, y nada de ornamento. En Buenos Aires dejó muchas casas y edificios de renta."
     },
+    "Tudor": {
+      "color": "oliva",
+      "descripcion": "La arquitectura de Inglaterra en la época de los Tudor (1485–1603): en las casas comunes, entramado de madera a la vista con relleno claro; en las grandes, ladrillo rojo, chimeneas altas y ventanas de muchos vidrios. Volvió en el siglo XIX y, sobre todo, en los suburbios ingleses y estadounidenses de los años 20 y 30 (en inglés, «mock Tudor»), que es lo que copiaron las casas pintoresquistas de Buenos Aires."
+    },
+    "Bungalow": {
+      "color": "teja",
+      "descripcion": "Casa baja y ancha, de una planta o con un piso bajo el techo, con una galería al frente bajo un alero amplio. El nombre viene de la India («bangla», de Bengala), donde los ingleses lo usaron para sus casas coloniales; se hizo popular en Estados Unidos a comienzos del siglo XX, junto al Arts and Crafts, y llegó a Buenos Aires en los años 20."
+    },
     "Pintoresquismo": {
       "color": "oliva",
       "descripcion": "Casas de los años 20 a 50 que buscaban el aire de una casa de campo: techos inclinados de teja o pizarra, muros de ladrillo o revoque rústico, bow windows y jardín. Mezcla recuerdos del chalet inglés, normando o vasco."
     },
-    "Neocolonial": {
+    "Colonial": {
       "color": "mostaza",
-      "padre": "Historicismo",
-      "descripcion": "Estilo de las primeras décadas del siglo XX que vuelve a la arquitectura colonial española y americana: muros blancos o rosados, arcos, rejas, balcones, tejas y patios. Se lo llamó también estilo californiano o misionero."
+      "descripcion": "La arquitectura de las colonias españolas en América, del siglo XVI al XIX: muros gruesos y blancos, patios, galerías de arcos, rejas, balcones de madera y techos de teja. Volvió en las primeras décadas del siglo XX (se lo llamó también estilo californiano o misionero): esas obras llevan la etiqueta «neo»."
     },
     "Italianizante": {
       "color": "siena",
@@ -126,6 +131,7 @@
     },
     "Gótico perpendicular": {
       "color": "humo",
+      "padre": "Gótico",
       "descripcion": "La última etapa del gótico inglés, de fines del siglo XIV al XVI: ventanales enormes divididos por parantes verticales rectos, paneles que se repiten en muros y techos, y bóvedas de abanico. Es propio de Inglaterra."
     },
     "Barroco eduardiano": {
@@ -137,5 +143,17 @@
   "programas": {},
   "paises": {},
   "decadas": {},
-  "anios": {}
+  "anios": {},
+  "copias": {
+    "pintoresquista": {
+      "plural": "pintoresquistas",
+      "ayuda": "Casa de barrio hecha para parecer una casa de campo europea: un chalet vasco, una casa tudor inglesa, una granja normanda. Estuvieron de moda en Buenos Aires entre los años 20 y 50. El estilo que figura es el de la casa imitada.",
+      "descripcion": "Casa de ciudad o de barrio que copia el aire de una casa de campo de otro lugar: el chalet vasco, la casa tudor inglesa, la granja normanda. Fue muy común en Buenos Aires entre los años 20 y 50. El estilo es el de la casa copiada; la etiqueta dice que es una copia."
+    },
+    "neo": {
+      "plural": "neo",
+      "ayuda": "Obra hecha a propósito en un estilo de otra época, mucho después de que pasó: una iglesia gótica del siglo XIX, una casa colonial de 1930. El estilo que figura es el original; «neo» avisa que es una versión posterior.",
+      "descripcion": "Obra que vuelve a un estilo de otra época, mucho después de que pasó: una iglesia gótica hecha en el siglo XIX, una casa colonial de los años 30. El estilo es el original; la etiqueta dice que es una vuelta."
+    }
+  }
 }

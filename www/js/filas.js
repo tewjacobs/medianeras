@@ -29,7 +29,7 @@ export const FILAS_INICIO = [
     visitas: true,
     titulo: 'Mejor puntuadas',
     obras: ({ datos, estadisticas }) => ordenar(datos.obras.filter((o) => estadisticas.get(o.id)?.promedio), 'puntaje', { estadisticas }),
-    detalle: ({ estadisticas }) => (obra) => estrellas(Math.round(estadisticas.get(obra.id).promedio)),
+    detalle: ({ estadisticas }) => (obra) => estrellas(estadisticas.get(obra.id).promedio),
     verMas: '#/obras?orden=puntaje&visitadas=si',
   },
   {

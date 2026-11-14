@@ -590,6 +590,49 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, .boton:focus-
 .tarjeta-texto p { margin: 2px 0 0; font-family: var(--mono); font-size: 16px; color: var(--tenue); }
 .tarjeta-descripcion { color: var(--texto); }
 
+/* ---------- Etiqueta de copia (pintoresquista, neo) ---------- */
+
+/* La letra (P, N) en un cuadradito del color del marco, a la derecha del nombre. Letra del título,
+   recortada a la altura de las mayúsculas para que quede centrada justo. */
+.tarjeta-texto:has(.letra) { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 4px; align-items: start; }
+.tarjeta-texto:has(.letra) > :not(.letra) { grid-column: 1; }
+.letra, .desliza b, .etq { font-family: var(--sans); font-weight: 850; font-stretch: 112%; text-transform: uppercase; line-height: 1; text-box: trim-both cap alphabetic; white-space: nowrap; }
+a.tarjeta .tarjeta-texto .letra {
+  grid-column: 2; grid-row: 1 / span 3; position: relative; display: grid; place-items: center; width: 26px; height: 26px; cursor: pointer;
+  background: var(--familia); color: var(--papel); font-size: 16px; outline: 1.5px solid var(--logo-negro); outline-offset: -1.5px;
+}
+/* Al pasar el mouse por la tapa sube una tarjetita negra con la palabra y un «?» */
+.tarjeta .tapa:has(.desliza) { container-type: inline-size; }
+.desliza { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 3cqw;
+  padding: 6cqw 5cqw; background: var(--tinta); color: var(--papel); transform: translateY(101%); transition: transform 0.2s ease; }
+.desliza b { font-size: 6.5cqw; }
+.ayuda { flex: none; display: grid; place-items: center; width: 12cqw; height: 12cqw; border: 1.5px solid currentColor; border-radius: 50%;
+  font-family: var(--sans); font-weight: 850; font-size: 7.5cqw; line-height: 1; cursor: help; }
+@media (hover: hover) { .tarjeta:hover .desliza, .tarjeta:focus-within .desliza { transform: none; } }
+/* En el iPhone no hay mouse: la letra lleva un «?» chiquito en la esquina y se toca */
+@media (hover: none) {
+  .desliza { display: none; }
+  a.tarjeta .tarjeta-texto .letra { margin: 5px 5px 0 0; }
+  .letra::after { content: '?'; position: absolute; top: -7px; right: -7px; display: grid; place-items: center; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--tinta); color: var(--papel); font-size: 9.5px; font-weight: 850; }
+}
+/* La explicación al costado de la tapa (en la compu) */
+.globo { position: fixed; z-index: 50; width: 230px; padding: 12px 14px 13px; background: var(--papel); color: var(--tinta); pointer-events: none;
+  border: 2px solid var(--tinta); box-shadow: 4px 4px 0 var(--familia); opacity: 0; transform: translateX(-6px); transition: opacity 0.15s, transform 0.15s; }
+.globo.a-la-izquierda { box-shadow: -4px 4px 0 var(--familia); transform: translateX(6px); }
+.globo.abierto { opacity: 1; transform: none; }
+.globo b { display: block; font-family: var(--sans); font-weight: 850; font-stretch: 112%; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; color: var(--familia); }
+.globo p { margin: 6px 0 0; font-family: var(--serif); font-size: 14px; line-height: 1.45; }
+/* La explicación en una hoja (al tocar la letra o el «?») */
+.copia-texto { margin: 0 0 14px; font-family: var(--serif); font-size: 16px; line-height: 1.5; }
+/* En la ficha: la palabra bajo el nombre; al tocarla se abre la explicación */
+.etq { display: block; margin-top: 10px; border: 0; cursor: pointer; font-size: 15px; letter-spacing: 0.12em; padding: 8px 9px 8px 11px;
+  background: var(--familia); color: var(--papel); outline: 2px solid var(--logo-negro); outline-offset: -2px; }
+.explica { margin-top: 8px; padding: 10px 12px; background: color-mix(in srgb, var(--familia) 14%, var(--papel)); border-left: 4px solid var(--familia);
+  font-family: var(--serif); font-size: 15px; line-height: 1.45; }
+.explica[hidden] { display: none; }
+.explica a { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-family: var(--mono); font-size: 14px; color: var(--tinta); }
+
 .sin-foto {
   width: 100%;
   height: 100%;
@@ -1183,7 +1226,7 @@ body[data-vista="mapa"] main { padding-bottom: 0; }
   text-decoration: none;
 }
 [data-tema="oscuro"] .todas-las-obras { background: color-mix(in srgb, var(--marca) 26%, var(--papel)); }
-/* El título va en minúsculas espaciadas, como "jagten" en la cabecera, y en amarillo: más fuerte
+/* El título va en minúsculas espaciadas, como "arqivo" en la cabecera, y en amarillo: más fuerte
    sobre el fondo claro, más clarito sobre el oscuro. */
 .todas-las-obras { --marca-texto: #9a6212; }
 [data-tema="oscuro"] .todas-las-obras { --marca-texto: #f3c96e; }
@@ -1430,7 +1473,7 @@ div.perfil-resumen { display: block; }
   a, a *, button, summary { transition: color 0.12s, box-shadow 0.12s; }
   a:hover, a:hover :not(.tapa, .tapa *), button:not(.boton):hover, summary:hover, summary:hover * { color: var(--realce); }
   /* Las tapas suman un marco por dentro en el color opuesto al suyo (el amarillito del Flatiron da azul). */
-  /* Sobre el rojo, el ámbar oscuro se pierde: va el amarillo claro, el mismo que "jagten" en la franja. */
+  /* Sobre el rojo, el ámbar oscuro se pierde: va el amarillo claro, el mismo que "arqivo" en la franja. */
   .boton-primario:hover, :is(a, button).boton-primario:hover *, .pestanas .pestana-destacada:hover .icono { color: #f3c96e; }
   a:hover .tapa { box-shadow: inset 0 0 0 4px rgb(from var(--marco) calc(255 - r) calc(255 - g) calc(255 - b)); }
 }

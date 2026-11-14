@@ -280,15 +280,71 @@ export function collage(obras) {
 }
 
 export function tarjetaObra(obra, { detalle } = {}) {
-  return el('a', { class: 'tarjeta', href: rutaObra(obra.id) },
-    tapaObra(obra),
+  const tapa = tapaObra(obra);
+  const copia = obra.copia && textoCopia(obra.copia);
+  // Con etiqueta: en la compu sube una tarjetita con la palabra al pasar el mouse; la letra va junto al nombre.
+  if (copia) tapa.append(el('div', { class: 'desliza' }, el('b', {}, copia.nombre),
+    el('span', { class: 'ayuda', tabindex: 0, role: 'button', 'data-copia': obra.copia, 'aria-label': `Qué es ${copia.nombre.toLowerCase()}`, onclick: abrirCopia(obra.copia) }, '?')));
+  return el('a', { class: 'tarjeta', href: rutaObra(obra.id), style: copia ? `--familia: var(--${colorMarco(obra)})` : null },
+    tapa,
     el('div', { class: 'tarjeta-texto' },
       el('h3', {}, obra.nombre),
       el('p', {}, rangoAnios(obra) || 's/f'),
       detalle,
+      copia && el('b', { class: 'letra', role: 'button', 'aria-label': `${copia.nombre}: qué es`, onclick: abrirCopia(obra.copia) }, copia.letra),
     ),
   );
 }
+
+// ---- Etiqueta de copia (pintoresquista, neo) ----
+
+export function textoCopia(valor) {
+  const nombre = nombrePerfil('copia', valor);
+  return { nombre, letra: nombre[0], ...(datosActuales()?.perfiles?.copias?.[valor] ?? {}) };
+}
+
+// Al tocar la letra o el «?»: la explicación en una hoja desde abajo, con el link a todas.
+const abrirCopia = (valor) => (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  ocultarGlobo();
+  const copia = textoCopia(valor);
+  const cuantas = datosActuales()?.obras?.filter((o) => o.copia === valor).length;
+  abrirHoja({ titulo: copia.nombre, clase: 'hoja-copia', contenido: [
+    el('p', { class: 'copia-texto' }, copia.ayuda),
+    el('a', { class: 'boton', href: rutaPerfil('copia', valor), onclick: () => cerrarHoja() }, `Ver las ${cuantas} ${copia.plural}`, flecha()),
+  ] });
+};
+
+// En la compu, al pasar por el «?», la explicación sale al costado de la tapa, afuera de ella
+// (a la derecha o, si no entra, a la izquierda). Una sola, fija a la ventana: así no la corta una fila.
+let globo = null;
+function mostrarGlobo(ayuda) {
+  const tarjeta = ayuda.closest('.tarjeta');
+  const copia = textoCopia(ayuda.dataset.copia);
+  if (!copia.ayuda) return;
+  globo ??= el('div', { class: 'globo', role: 'tooltip' });
+  globo.replaceChildren(el('b', {}, copia.nombre), el('p', {}, copia.ayuda));
+  globo.style.setProperty('--familia', tarjeta.style.getPropertyValue('--familia'));
+  document.body.append(globo);
+  const caja = tarjeta.querySelector('.tapa').getBoundingClientRect();
+  const ancho = globo.offsetWidth;
+  const derecha = caja.right + 8 + ancho <= window.innerWidth - 8;
+  globo.classList.toggle('a-la-izquierda', !derecha);
+  globo.style.left = `${derecha ? caja.right + 8 : Math.max(8, caja.left - 8 - ancho)}px`;
+  globo.style.top = `${Math.max(8, Math.min(caja.top, window.innerHeight - globo.offsetHeight - 8))}px`;
+  requestAnimationFrame(() => globo?.classList.add('abierto'));
+}
+function ocultarGlobo() {
+  globo?.classList.remove('abierto');
+  globo?.remove();
+}
+document.addEventListener('mouseover', (e) => { if (e.target.closest?.('.ayuda')) mostrarGlobo(e.target.closest('.ayuda')); });
+document.addEventListener('mouseout', (e) => { if (e.target.closest?.('.ayuda') && !e.relatedTarget?.closest?.('.ayuda')) ocultarGlobo(); });
+document.addEventListener('focusin', (e) => { if (e.target.classList?.contains('ayuda')) mostrarGlobo(e.target); });
+document.addEventListener('focusout', (e) => { if (e.target.classList?.contains('ayuda')) ocultarGlobo(); });
+window.addEventListener('scroll', ocultarGlobo, { passive: true });
+window.addEventListener('hashchange', ocultarGlobo);
 
 // Fila compacta (miniatura + texto), para listas dentro de hojas y del diario.
 export function filaObra(obra, { detalle, href, alTocar } = {}) {
@@ -334,9 +390,14 @@ export function galeria(fotos, { alt = '', pie } = {}) {
 
 // ---- Diario ----
 
+// Acepta promedios: se redondea a media estrella, que se muestra como ½ (como Letterboxd).
 export function estrellas(puntaje) {
   if (!puntaje) return null;
-  return el('span', { class: 'estrellas', 'aria-label': `Puntaje: ${puntaje} de 5` }, '★'.repeat(puntaje) + '☆'.repeat(5 - puntaje));
+  const medios = Math.round(puntaje * 2);
+  const llenas = Math.floor(medios / 2), media = medios % 2;
+  const texto = String(medios / 2).replace('.', ',');
+  return el('span', { class: 'estrellas', 'aria-label': `Puntaje: ${texto} de 5` },
+    '★'.repeat(llenas) + (media ? '½' : '') + '☆'.repeat(5 - llenas - media));
 }
 
 // `compacta`: la versión de la grilla del diario (recuadro de color, nota cortada, fotos chicas).

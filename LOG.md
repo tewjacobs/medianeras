@@ -8,6 +8,32 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**13 de noviembre de 2026, noche.** **Sin subir (`v73`)**: el usuario no pidió commit.
+
+**Próxima sesión, en este orden:**
+1. **Art déco e Italianizante aprobados** (13/11 a la noche; la Erba con cornisas, pasamanos y zócalos de las balaustradas en crema bien gris `er-cornisa-g`, también arriba de la torre). Siguen los fondos de los dos (punto 3).
+2. **Tanda nueva (de a dos): Renacimiento francés = Alwyn Court** (carpeta `neorenacimiernto frances/`, 4 fotos; es obra del catálogo) **y Gótico = catedral de Colonia** (carpeta `gotico/`: fachada oeste de frente en `Kölner_Dom_-_Westfassade…jpg`). Carpetas nuevas del 13/11 también: tudor, barroco eduardiano, posmodernismo, neofuturismo, contemporaneo, gotico perpendicular (`colonial` vacía; `Big_Duck_2018_01.jpg` suelto en la raíz, ¿Posmodernismo?). Copiar detalles **tal cual**: recortar y ampliar cada zona de la foto antes de dibujar.
+3. **Los fondos de los dos son provisorios** (terracota y verde oliva): cuando apruebe los dibujos, proponer opciones en `fondos.html` (ver memoria "fondos después del dibujo").
+4. Después: Renacimiento francés (tiene carpeta); el resto espera las fotos que busca el usuario (Gótico, Gótico perpendicular, Colonial, Tudor, Bungalow, Contemporánea, Neofuturismo, Posmodernismo, Barroco eduardiano). Al terminar esos 13, Academicismo e Historicismo; luego estilos de Buenos Aires que falten; luego pieles. **En suspenso:** Pintoresquismo, Instagram, logo (habría que hacer algo, sin apuro), iPhone (va al final).
+5. **Proyecto aparte "sanskule" / El lote:** carpeta `~/sanskule?/` (con signo de pregunta en el nombre) con `refs/` (89 fotos de sus referencias) y `contexto/` (`gustos.md` y `el-lote.md`, los textos de su otro chat guardados el 13/11). Idea decidida: herramienta 3D con **modo libre** (su idea: elegir variables) y **modo por encargo** (briefs con cliente, código y voz crítica), sol y sombras. Pendiente: mirar las fotos y leer sus gustos; más adelante armarle un `CLAUDE.md`, contexto y principios para abrirlo en su propio Claude Code. No arrancar sin que lo pida.
+
+- **Nombres decididos (13/11):** esta app es **arqivo** (cambiado en cabecera, título, pantalla de carga, nombre bajo el ícono, pie, aviso de versión y exportación; el logo de lanzas queda por ahora). **jagten** queda para el proyecto de placas de arquitectos (Instagram + página que crece con los comentarios: una foto de la placa y otra de la fachada). **sanskule** para la herramienta 3D. Instagram de arqivo: **@_arqivo** (cargado en `contacto.js`).
+- **Media estrella:** los promedios se muestran redondeados a medio (★★★★½), en `estrellas()` de `ui.js`.
+- **Textos verificados con Wikipedia:** Flatiron (la punta da a la calle 23; penthouse de 1905 para talleres; Macmillan se fue en 2019; conversión anunciada en octubre de 2023) y Guggenheim (causas de la demora; el "monitor" hoy tiene la colección Thannhauser).
+- **Página de comparar:** `?solo=` acepta varias claves separadas por comas y las muestra en grande (420 × 400).
+
+**12 de noviembre de 2026, tarde.** **Sin subir (`v69`)**: el usuario no pidió commit.
+
+**Próxima sesión:**
+0. **Primero: el proyecto chico (13/11).** El usuario volvió sobre el alcance: la propuesta A+B de "Alcance: núcleo y cinturón" **no le gustó mucho** (casi no la leyó; el planteo con Lakatos lo armó su chat de IPC, no él). Lo que piensa, en sus palabras: le gusta jagten, pero es mucho trabajo para una persona. Quiere **dejarlo ideado y listo al 100 %** para algún día presentárselo a alguien con fotos de adentro, derechos y contenido, que pueda sumarse (hasta con un acuerdo legal). **Aparte**, quiere una página que pueda hacer **solo, al 100 %, más original y centrada en algo**: arquitectura streamline, casas peculiares, placas de arquitectos en las fachadas de Buenos Aires, un juego o una IA de arquitectura… "algo donde puedas crear, ver, poner en práctica, aprender". Pidió: "pensalo; cuando vuelva leés el log y me decís lo que pensás". Ver "Proyecto chico: lo que pensé" más abajo y presentárselo corto, con recomendación.
+1. **Estilo de las pintoresquistas que faltan.** Ya cargadas: Casa Tudor de Florida y Casa de la puerta en arco → **Tudor**; Casa de los arcos → **Bungalow** (estilos nuevos en `perfiles.json`, colores provisorios oliva y teja, descripciones de memoria). Siguen en Pintoresquismo: chalet amarillo, techo empinado, blanca de Olivos y María (propuestas abajo). Después: borrar Pintoresquismo y pasar la casona a "Vasco tradicional" (o a donde corresponda: ninguna casa salió vasca). Abierto: Italianizante, Beaux-Arts y Barroco eduardiano (recomendación: dejarlos como estilos propios).
+2. **Símbolos** (punto 3 del plan): Art déco, Italianizante, Renacimiento francés (antes Neorrenacimiento francés), con sus carpetas de referencias.
+3. Pieles por estilo; revisar en el iPhone la etiqueta (tocar la P/N de una tarjeta, el bloque de la ficha) y las décadas en grilla.
+
+- **Etiqueta de copia en la app** (diseño D): campo `copia` en `obras.json` (`"pintoresquista"` | `"neo"`), textos en `perfiles.json` → `copias` (`plural`, `ayuda` corta, `descripcion` larga). Es un tipo de perfil más (`copia` en `TIPOS_PERFIL`): la lista de todas está en `#/copia/neo` y `#/copia/pintoresquista`. En la tarjeta (`tarjetaObra` en `ui.js`), la letra a la derecha del nombre; con mouse sube la tarjetita negra con la palabra y el «?», y al pasar por el «?» sale la explicación al costado (un solo `.globo` fijo a la ventana, así no lo corta una fila deslizable; a la izquierda si no entra). Al tocar la letra o el «?» se abre una hoja desde abajo con la explicación y "Ver las N …". Sin mouse, la letra lleva el «?» chiquito. En la ficha (`etiquetaCopia` en `obra.js`), el bloque bajo el nombre abre la explicación con el link.
+- **Los neo pasaron a etiqueta:** Neogótico → **Gótico** (Trinity Church, St Luke), Neorrenacimiento francés → **Renacimiento francés** (Alwyn Court), Neocolonial → **Colonial** (las 3 casas de Florida y Olivos), todas con `copia: "neo"`. Los estilos nuevos guardan el color del viejo y ya no cuelgan de Historicismo (que queda solo con Italianizante); Gótico perpendicular ahora cuelga de Gótico. Descripciones nuevas escritas de conocimiento general (no de una fuente puntual).
+- Capturas con hover y modo iPhone: script con Chrome por protocolo de depuración (sin extensión), saltea la pantalla de carga con la preferencia `medianeras-carga-vista`. Quedó en el scratchpad de la sesión; si hace falta de nuevo, conviene pasarlo a `herramientas/capturas/`.
+
 **12 de noviembre de 2026 (cierre).** Subido (`v68`, commit 3b80ee1), con todo lo del 11/11.
 
 **Próxima sesión** (desde la cuenta personal: `cd ~/medianeras` y `claude-tew`):
@@ -466,6 +492,69 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - **Armadores de símbolos.** Están en `herramientas/simbolos/`; la fuente es `simbolos.json`. Los viejos (`simbolos*.py`) pisan el archivo entero: no volver a correrlos. Los nuevos (`biblioteca.py`, `recoleta.py`, `colon.py`, `molino.py`, `cck.py`, con `armar.py`; y `eames.py`, `bauhaus.py`, `stoclet.py`) reescriben solo su obra: se corren desde esa carpeta con `python3 <armador>.py ../../www/data/simbolos.json`. Ojo: pisan los retoques hechos a mano en esa obra; `placa`, `aire` y `marco` se conservan.
 - **Mapa en oscuro.** Los mosaicos de OpenStreetMap se oscurecen con un filtro CSS y no son mosaicos oscuros propios.
 
+## Proyecto chico: lo que pensé (13/11, para contarle al volver)
+
+Borrador; revisarlo antes de presentarlo y no inventar datos.
+
+- **Jagten grande, en pausa y presentable:** no tirar nada. Más adelante, una carpeta de presentación (qué es, cómo se ve, qué falta, qué necesitaría un socio). Lo ya hecho sirve igual.
+- **Recomendación para el proyecto chico: placas de arquitectos de Buenos Aires.** Por qué:
+  - Lo puede hacer solo: cada placa es una foto suya desde la vereda; no hay problema de derechos ni de interiores. Ojo con la privacidad de las casas: la placa nombra al arquitecto, no al dueño, pero la ubicación de una casa particular igual va por zona.
+  - Es original y finito: se puede "completar" un barrio.
+  - Le da sentido literal a **jagten** (la caza): salir a cazar placas.
+  - Enseña: cada placa dice quién la hizo, a veces el año, el constructor, el ingeniero; de ahí salen perfiles de arquitectos, tipografías de las placas (bronce, letras de época), mapa y décadas. Resuelve el "arquitecto no encontrado" de las casas de barrio (Stieglitz ya es un caso).
+  - Se puede volver juego: álbum de figuritas, mapa con las que faltan, rachas.
+  - Reusa lo que ya está hecho (PWA, mapa, perfiles, tapas).
+  - A verificar: si ya hay cuentas o sitios que juntan placas de Buenos Aires (creo que hay en Instagram, de memoria); si existen, ver qué haría distinto.
+- **Otras, en orden:** (2) Streamline en Buenos Aires: tema acotado y lindo, usa los símbolos, pero hay pocas obras y cuesta clasificar. (3) Juego de "adiviná el estilo o la década" con los símbolos: enseña y es chico, pero sin contenido propio nuevo. (4) IA de arquitectura: la más cara y la menos propia; no la recomiendo para hacer solo.
+- **Se pueden combinar:** placas como base, y el juego de adivinar como sección.
+
+## Alcance: núcleo y cinturón (12/11, respuesta para leer)
+
+El usuario se fue antes de leerla y pidió anotarla entera.
+
+### Las casas (antes de lo grande)
+
+- **Casa Tudor de Florida:** de acuerdo, es *mock Tudor* mezclado con la casa "moderna" de ladrillo, amplia y baja, de los 60 a principios de los 80 (garaje ancho, paños vidriados grandes). Pediste "Tudor + las dos etiquetas", pero hoy una obra lleva una sola etiqueta (`copia`), y además no recomiendo sumar "neo". Las etiquetas dicen *qué relación tiene con el estilo* (copia de campo o vuelta de época), y "pintoresquista" ya dice que es copia. Lo de los 70 no es una etiqueta, es **otro estilo mezclado**. Propuesta: estilo Tudor, etiqueta pintoresquista y la mezcla contada en la descripción. Si aparecen más casas mezcladas, recién ahí sumar un campo de "estilo secundario". Ya quedó cargada como Tudor + pintoresquista.
+- **Chalet amarillo:** "chalet suburbano" sí le queda como descripción, y coincide con lo que te dije del *pavillon de banlieue* francés (en francés, suburbano). "Neocolonial" no: no tiene nada colonial. Ojo con la fuente: un posteo de Threads sobre casas chilenas sirve como pista, no como dato.
+- **Techo empinado:** tus hallazgos lo aclaran. Dos de los tres parecidos son franceses: una villa en Villers-lès-Nancy y otra en Antananarivo (Madagascar fue colonia francesa). Es la **villa francesa de entreguerras**: techo alto regional con cuerpo curvo art déco. Con lo que ya tenemos, la pondría en **Streamline Moderne**, sin etiqueta pintoresquista (no copia una casa de campo) y con el techo contado en la descripción. La de Fisherton (Rosario) es la versión argentina de lo mismo.
+- **Casa de los arcos:** la de New Orleans es el mismo tipo. "Bungalow de qué estilo": el bungalow estadounidense es la rama doméstica del **Arts and Crafts**, que allá se llamó *Craftsman*. Algunos, como esa y la tuya, suman ornamento clásico (columnas, escudos). Más adelante se puede crear "Arts and Crafts" como padre de Bungalow. (Zillow dice "Built in 2015" para la de New Orleans; casi seguro es un error del aviso y no un dato.) Ya quedó cargada como Bungalow + pintoresquista.
+- **Casa María y Blanca de Olivos:** se quedan en Pintoresquismo por ahora. No pasa nada si una casa queda "a decidir": eso también es parte de acotar (ver abajo).
+
+### 1. Núcleo y cinturón
+
+Estoy de acuerdo con la lectura en términos de Lakatos, con un ajuste. El núcleo no es solo "un diario personal de visitas", sino **"la arquitectura que vi, mirada por mí, con un lenguaje gráfico propio"**. Las tapas de impreso, los símbolos de líneas y los perfiles como Letterboxd no son decoración: son lo más original del proyecto. Y los **símbolos resuelven el problema de los derechos**: una obra sin foto propia puede tener su dibujo propio.
+
+Lo que choca está en el cinturón, como decís: cobertura total, enciclopedia exhaustiva, ubicación exacta, interiores y clasificar todo con precisión de libro.
+
+Una idea de Lakatos que conviene usar: un programa es **progresivo** si los cambios al cinturón abren cosas nuevas, y **regresivo** si solo tapan agujeros. Achicar el alcance es progresivo si de ahí sale algo que antes no se podía hacer (profundidad, un tema propio). Es regresivo si solo sirve para no frustrarse.
+
+### 2. Tres formas de acotar
+
+- **A. Solo lo que visité** (regla de entrada: "si no lo vi en persona, no entra").
+  - Se gana: todas las fotos son tuyas, el catálogo es honesto y no hay que cubrir nada.
+  - Se pierde: la enciclopedia como consulta; los perfiles de arquitectos y estilos quedan con pocas obras.
+- **B. Por territorio: tu recorrido** (Villa Urquiza, Florida, Olivos, Vicente López), más los viajes como sección aparte.
+  - Se gana: profundidad real, como un atlas de barrio que se puede completar, con fichas investigadas, décadas y comparaciones.
+  - Se pierde: lo famoso queda en "viajes", y las casas particulares (las más interesantes del barrio) son justo las de la privacidad.
+- **C. Por tema: la casa de barrio del siglo XX en Buenos Aires** (pintoresquistas, racionalistas, cajón de ladrillo de los 70, mezclas).
+  - Se gana: un tema poco documentado, donde lo tuyo aporta algo nuevo, y que va con lo que estudiás.
+  - Se pierde: variedad (Nueva York, Inglaterra), y es el tema más difícil de clasificar (el pintoresco que te frustra).
+
+**Recomendación:** A como regla y B como foco. Entra solo lo que viste; crece sobre todo en tu zona; los viajes quedan como lo que son: visitas. C puede ser una lista o una serie dentro de B, no todo el proyecto. Con eso, la parte de enciclopedia sigue, pero como **enciclopedia de lo que vi**: los perfiles de estilo y de arquitecto explican, pero no prometen estar completos.
+
+### 3. Ubicación y fotos con privacidad
+
+- **Ubicación:**
+  - Edificios públicos o visitables (iglesias, museos, oficinas, Open House): dirección exacta.
+  - Casas particulares: solo el barrio y la zona en el mapa, como ya se hace desde `v63`, con círculo y sin número. No usar el nombre de los dueños; nombres descriptivos ("Casa de los arcos").
+- **Fotos:**
+  - Exteriores propios, desde la vereda, sin chapas de autos, número de puerta ni personas reconocibles.
+  - De otros: solo con licencia abierta (Wikimedia Commons, con crédito, como ya hay una).
+  - Lo demás, **link afuera** ("ver fotos en…") y nunca copiado.
+  - Sin foto: el símbolo propio.
+- **Interiores:** solo en lugares abiertos al público (Open House BA, museos, edificios visitables). Para casas, link a la publicación del estudio o de la revista. No es una falta del proyecto: el diario dice lo que viste, y de una casa privada viste la fachada.
+- **Clasificación:** "estilo a decidir" o "mezcla" es una respuesta válida. Mejor eso que inventar.
+
 ## Bitácora
 
 ### 17 de octubre de 2026
@@ -607,3 +696,16 @@ cd www && python3 -m http.server 8000   # la app en http://127.0.0.1:8000/
 - Armadores nuevos: `casa.py`, `guggenheim.py`, `ateneo.py`. Beaux-Arts pasa a ser el Ateneo Rumano.
 - `detalle.js` con antes y después (`antes.json`); `fondos.js` con las opciones del día.
 - Datos de Tjibaou, Marina City, Shizuoka y Nakagin verificados. Nada commiteado.
+
+### 13 de noviembre de 2026
+
+- Proyecto chico conversado: placas → jagten (Instagram y página); herramienta 3D "El lote" → sanskule; esta app → arqivo.
+- Textos de Guggenheim y Flatiron corregidos contra Wikipedia. Media estrella en los promedios.
+- Nombre visible cambiado a arqivo; Instagram @_arqivo.
+- Símbolos nuevos: Art déco (`deco.py`, estación Texas & Pacific) e Italianizante (`erba.py`, Villa Erba), con dos rondas de correcciones; quedan pendientes las cúpulas y dos detalles del déco y el óculo de la Erba. Fondos provisorios.
+- `comparar.js`: tandas con `?solo=a,b`, en grande.
+- Contexto de sanskule guardado en `~/sanskule?/contexto/`.
+- `sw.js` en `v72`. Nada commiteado.
+- Noche: correcciones del art déco copiando la postal y la foto: linternas (tambor octogonal recto casi del ancho de la torre, ranuras de a pares, cornisita, alero y techo en zigurat bajo; antes cúpula dorada, "de otro estilo"), pináculos bajos y macizos, torre en ladrillo ocre con la tira de ventanitas entre marcos claros que rematan en cascada y el panel alto arriba, pie de torre (`pie_torre`: ventana alta en el eje, líneas claras, paneles oscuros con zigzag; sin marquesina), base con pilastras claras, ventanales de cuadrícula en dos tramos, friso de relieves y marquesina verde en la entrada, pretil con friso de celosía, pilares que terminan en punta, ventanas de arriba con cabeza en punta y bloque escalonado con mástil y bandera de Estados Unidos. Erba: óculo centrado en el eje real de la torre (estaba en x=475 y el eje es 471), dibujado como círculo fila por fila. La foto de la T&P se sumó a `comparar.js`. `sw.js` en `v73`. Nada commiteado.
+- Después: bandera del déco del lado derecho del mástil. **Villa Erba rehecha en unidades** (`erba.py`: ayudas `sim`, `eje`, `arco`, `vano`, `frontis_segmento`, `frontis_cartela`, `balaustrada_u`, `mensulas_u`, `estatua`, `maceta`): cada cuerpo simétrico sobre su eje, ventanas parejas con frontis curvo, portón y logia con arcos de medio punto y clave, puertas con frontis partido y cartela, paneles con medallón; terraza con estatuas y macetas, escalinata escalón por escalón con farol, bojes parejos y cerco, muro de sillares con escalera al agua, reflejo y palos de amarre. Las notas adhesivas (Stickies) que vio el usuario en la pantalla no las abrió Claude. Art déco aprobado. Erba: remate distinto en pabellones y cuerpo del medio.
+

@@ -44,6 +44,8 @@ const CON_FOTO = [
   ['mundo', '2000', ['St mary axe/790423.jpg']],
   ['mundo', '2010', ['CCTV/china.png']],
   ['mundo', '2020', ['m+/av_imagen.webp', 'm+/av_imagen_vertical.webp']],
+  ['estilos', 'Art déco', ['art deco/s-l1200.jpg', 'art deco/orig-3db4d0fb8f0da-1.jpg', 'art deco/T&P_Station,_Southeast.jpg']],
+  ['estilos', 'Italianizante', ['italianizante/images (2).jpeg', 'italianizante/Villa_Erba_004.jpeg']],
   ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
   ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
   ['programas', 'Hotel', ['hotel/72_big.jpg', 'hotel/images (14).jpeg']],
@@ -53,9 +55,11 @@ const CON_FOTO = [
   ['programas', 'Infraestructura', ['infraestructura/images (15).jpeg', 'infraestructura/Rennovation-of-Japanese-covered-bridge.jpg']],
   ['programas', 'Deportivo', ['deportes/https___s3.amazonaws.com_arc-wordpress-client-uploads_infobae-wp_wp-content_uploads_2019_02_08155342_Galeria-cenital-River-Plate.avif', 'deportes/images.jpeg']],
 ];
-// ?solo=mundo-1950 muestra solo ese símbolo (sin la pantalla de carga).
-const solo = new URLSearchParams(location.search).get('solo');
-const elegidos = solo ? CON_FOTO.filter(([c, d]) => `${c}-${d}` === solo) : CON_FOTO;
+// ?solo=mundo-1950 muestra solo ese símbolo, en grande y sin la pantalla de carga; con comas, una tanda:
+// ?solo=estilos-Art déco,estilos-Italianizante.
+const solo = new URLSearchParams(location.search).get('solo')?.split(',');
+const elegidos = solo ? CON_FOTO.filter(([c, d]) => solo.includes(`${c}-${d}`)) : CON_FOTO;
+const TAMANO = solo ? { ancho: 420, alto: 400 } : { ancho: 390, alto: 132 };
 const rutaFoto = (a) => `referencias/${a.split('/').map(encodeURIComponent).join('/')}`;
 
 function foto(archivos) {
@@ -65,7 +69,7 @@ function foto(archivos) {
 
 function panel(tema, partitura, decada, coleccion) {
   return h('div', { className: 'muestra', dataset: { tema } },
-    simbolo(partitura, { ancho: 390, alto: 132 }),
+    simbolo(partitura, TAMANO),
     h('h3', { textContent: partitura.obra ?? decada }),
     h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : coleccion === 'programas' ? 'PROGRAMA' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
     tema === 'claro' && h('p', { className: 'nota', textContent: partitura.nota }));

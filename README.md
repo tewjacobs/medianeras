@@ -166,6 +166,7 @@ python3 -m json.tool www/data/obras.json > /dev/null && echo "JSON OK"
 | `anio_proyecto`, `anio_finalizacion` | números o `null`. La década sale de la finalización (o del proyecto si no hay) | no |
 | `decada` | número (`2000`), solo para obras sin años: la década a la que pertenece | no |
 | `estilo`, `programa` | texto; el filtro agrupa por texto exacto | no |
+| `copia` | `"pintoresquista"` o `"neo"`: el `estilo` es el original y la etiqueta avisa que es una copia o una vuelta (textos en `copias` de `perfiles.json`; lista en `#/copia/<valor>`) | no |
 | `materiales` | lista | no |
 | `estado` | `existente`, `demolida` o `modificada` | sí |
 | `ubicacion.pais` … `barrio` | niveles genéricos: `provincia` = provincia / estado / región; `ciudad` = partido / ciudad / municipio; `barrio` = barrio / localidad. Sirve para cualquier país | no, pero sin país no entra en el filtro de ubicación |
