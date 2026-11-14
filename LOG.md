@@ -8,10 +8,12 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**14 de noviembre de 2026, madrugada (cierre).** **Sin subir (`v74`)**: el usuario no pidió commit.
+**14 de noviembre de 2026, madrugada (cierre).** Subido (`v74`, commit 3db962f, publicado en arqivo.com.ar).
 
-**Próxima sesión, en este orden:**
-1. **Subir** cuando lo pida (fondos de Art déco e Italianizante, símbolos de Renacimiento francés y Gótico, regla de detalle en `CLAUDE.md`).
+**Próxima sesión (14/11, ~10 h): pausa de símbolos; volver a los proyectos futuros, jagten y sanskule.** Idea nueva del usuario sobre arqivo: es muy amplio y lo está armando mucho a su gusto, cuando debería ser "algo de todo para todos". Plan que propone: **seguir puliendo las bases** de lo que ya hay y después **dárselo, vendérselo o colaborar** con alguien que tenga mucho más material y prensa. Conversarlo con él: qué significa "bases pulidas" (lista concreta), qué haría falta para presentarlo (como lo pensado para jagten: idea al 100 %, derechos de fotos, datos verificados) y cómo encaja con jagten y sanskule como proyectos propios.
+
+**Cuando se retomen los símbolos:**
+1. (hecho: subido)
 2. **Tanda siguiente (de a dos)** con las carpetas que ya están: tudor, barroco eduardiano, posmodernismo (¿el Big Duck suelto en la raíz?), neofuturismo, contemporaneo, gotico perpendicular (`colonial` vacía). **Detalle alto desde la primera versión** (regla nueva en `CLAUDE.md` y memoria): recortar cada zona de la foto, simetría exacta, franjas por tramo.
 3. Después: Academicismo e Historicismo; estilos de Buenos Aires que falten; pieles. **En suspenso:** Pintoresquismo, Instagram, logo, iPhone (al final), proyecto sanskule (no arrancar sin pedido).
 
