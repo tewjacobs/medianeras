@@ -126,6 +126,10 @@ function panelDatos(datos, obra) {
     el('dl', { class: 'ficha-datos' }, filas.map(([nombre, valor]) => [el('dt', {}, nombre), el('dd', {}, valor)])),
     listas.length > 0 && el('dl', { class: 'ficha-datos' }, el('dt', {}, 'En listas'), el('dd', {},
       el('div', { class: 'chips-datos' }, listas.map((l) => el('a', { class: 'chip-dato', href: `#/lista/${encodeURIComponent(l.id)}` }, l.titulo))))),
+    // De dónde salen los datos: con link si lo hay, si no solo el nombre.
+    obra.fuentes?.length > 0 && el('dl', { class: 'ficha-datos' }, el('dt', {}, 'Fuentes'), el('dd', {},
+      el('ul', { class: 'ficha-fuentes' }, obra.fuentes.map((f) => el('li', {},
+        f.url ? el('a', { href: f.url, target: '_blank', rel: 'noopener' }, f.nombre) : f.nombre))))),
   ];
 }
 

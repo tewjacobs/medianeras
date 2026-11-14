@@ -769,6 +769,9 @@ a.tarjeta .tarjeta-texto .letra {
 }
 .ficha-datos dt { color: var(--tenue); text-transform: uppercase; font-size: 15px; padding-top: 2px; }
 .ficha-datos dd { margin: 0; overflow-wrap: anywhere; }
+.ficha-datos:has(.ficha-fuentes) { align-items: start; }
+.ficha-fuentes { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.ficha-fuentes a { color: inherit; text-underline-offset: 3px; }
 
 .ficha-seccion { display: grid; gap: 12px; padding-top: 4px; border-top: 1px solid var(--tinta); }
 .ficha-seccion h3 { padding-top: 10px; font-size: 14px; font-weight: 600; font-stretch: 75%; letter-spacing: 0.08em; text-transform: uppercase; }

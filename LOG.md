@@ -8,6 +8,13 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**14 de noviembre de 2026, mediodía.** Subido (`v75`).
+
+**Próxima sesión:**
+1. **Fondos de Tudor y Barroco eduardiano** (dibujos aprobados: "perfecto"): opciones en `fondos.html`. Hoy provisorios `tudor-fondo` (crema) y `eduardiano-fondo` (gris verdoso).
+2. Seguir puliendo las bases de arqivo (plan del 14/11): ~~1. fuentes~~, ~~2. textos revisados~~, **3. huecos visibles** (símbolos que faltan con carpeta: posmodernismo, neofuturismo, contemporáneo, gótico perpendicular; revisión en el iPhone), 4. carpeta de presentación al final. Cargar obras sin tocar código: solo cuando aparezca alguien concreto.
+3. Después **sanskule**; **jagten** (Instagram primero, página quizás después) es la última prioridad.
+
 **14 de noviembre de 2026, madrugada (cierre).** Subido (`v74`, commit 3db962f, publicado en arqivo.com.ar).
 
 **Próxima sesión (14/11, ~10 h): pausa de símbolos; volver a los proyectos futuros, jagten y sanskule.** Idea nueva del usuario sobre arqivo: es muy amplio y lo está armando mucho a su gusto, cuando debería ser "algo de todo para todos". Plan que propone: **seguir puliendo las bases** de lo que ya hay y después **dárselo, vendérselo o colaborar** con alguien que tenga mucho más material y prensa. Conversarlo con él: qué significa "bases pulidas" (lista concreta), qué haría falta para presentarlo (como lo pensado para jagten: idea al 100 %, derechos de fotos, datos verificados) y cómo encaja con jagten y sanskule como proyectos propios.
@@ -728,4 +735,7 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - **Gótico = catedral de Colonia** (`colonia.py`, 110 × 248): dos torres de cinco niveles, ventanales con doble moldura, vitrales en rombitos (simétricos en cada ventana), lancetas con arquito y cuadrifolio; gabletes con doble moldura, crochets y rosetón solo en el hueco libre (`libre`); tracería ciega en relieve, contrafuertes con nichos y estatuas, pináculos con crochets, bosque de pináculos (`fialas`), galerías caladas, aguja calada (se ve el fondo), portadas con arquivoltas de estatuas, tímpano en registros, puertas con tachas; faroles de globo. Ojo: `R()` espeja respecto del eje de la fachada, no de cada ventana.
 - Regla nueva: símbolos con mucho detalle desde la primera versión (`CLAUDE.md`, paso "Dibujar"; memoria `medianeras-simbolos-detalle-alto`).
 - `comparar.js` suma los dos. `sw.js` en `v74`. Nada commiteado.
+- **Mediodía (`v75`, subido):** prioridades nuevas: arqivo (pulir bases), después sanskule, jagten al final. **Fuentes en la ficha:** campo `fuentes` en `obras.json` (`[{nombre, url?}]`, 28 obras), fila "Fuentes" al final de la pestaña Datos (`panelDatos` en `obra.js`, `.ficha-fuentes`). **Textos revisados contra Wikipedia** (17 de afuera) y corregidos: Oculus (la claraboya sí se abre cada 11/9, 102 minutos), Catedral de Manchester (Crowther: piedra 1850–1870, murió en 1893 sin terminar; no los pórticos), 50 Newton Street (depósito sobre una fábrica de sombreros quemada en 1906; no Joseph Wood), Flatiron (conversión terminada en 2026), St Luke (sin Insall). Tribeca Synagogue (sitio oficial, Wikipedia, thisispaper: expropiación federal; "llama" es metáfora; sin "la que Breger más defendió") y The Peregrine (CityRealty: mitad de cuadra entre 49 y 50, balcones desde el piso 11; lo de las fotos marcado "a la vista"). Programas: Flatiron "Oficinas (hoy viviendas)", 50 Newton "Depósito (hoy hostel)".
+- **Símbolos nuevos:** **Tudor = casa natal de Shakespeare desde el jardín** (`tudor.py`): hastial simétrico con escalones parejos, oriel emplomado, alas largas con techo a cuatro aguas empinado, chimenea saliendo de la cumbrera, malvas rosas. **Barroco eduardiano = Lancaster House, Manchester** (`lancaster.py`): esquina de frente como Alwyn, torre con cúpula, linterna, volutas y balcón, fachadas de ladrillo con fajas (colores parejos, poco contraste, `oscurecer` 0.93), planta baja detallada, torreones con sillares. Los dos en `comparar.js`.
+- Capturas en claro: `--blink-settings=preferredColorScheme=1` en Chrome headless (Chrome de esta Mac está en oscuro).
 

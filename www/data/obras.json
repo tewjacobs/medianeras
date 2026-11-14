@@ -18,7 +18,7 @@
       "Piedra caliza",
       "Terracota"
     ],
-    "programa": "Oficinas (en conversión a viviendas)",
+    "programa": "Oficinas (hoy viviendas)",
     "estado": "existente",
     "ubicacion": {
       "pais": "Estados Unidos",
@@ -30,7 +30,10 @@
       "lng": -73.9897
     },
     "resumen": "El edificio triangular de D. H. Burnham & Company en la esquina de la Quinta Avenida y Broadway, uno de los primeros rascacielos de Nueva York.",
-    "descripcion": "Lo levantó la Fuller Company como su sede y se llamó primero Fuller Building, pero desde el principio todos le dijeron Flatiron, \"la plancha\", por su forma. El terreno es un triángulo porque Broadway corta en diagonal la grilla de Manhattan justo donde se cruza con la Quinta Avenida: la punta da a la calle 23 y el fondo, a la 22.\n\nLas obras empezaron en mayo de 1901 y el edificio abrió el 1 de octubre de 1902. Tenía 20 pisos y un ático sobre un esqueleto de acero; en 1905 se pidió permiso para sumarle arriba un penthouse, que se usó como talleres de artistas. La fachada se arma como una columna clásica: una base de piedra caliza de tres pisos, un fuste de terracota con ornamento y un remate.\n\nEs monumento de la ciudad desde 1966 y monumento histórico nacional desde 1989. Su último gran inquilino, la editorial Macmillan, terminó de irse en 2019 y empezó una renovación; en octubre de 2023 se anunció que se convierte en departamentos.",
+    "descripcion": "Lo levantó la Fuller Company como su sede y se llamó primero Fuller Building, pero desde el principio todos le dijeron Flatiron, \"la plancha\", por su forma. El terreno es un triángulo porque Broadway corta en diagonal la grilla de Manhattan justo donde se cruza con la Quinta Avenida: la punta da a la calle 23 y el fondo, a la 22.\n\nLas obras empezaron en mayo de 1901 y el edificio abrió el 1 de octubre de 1902. Tenía 20 pisos y un ático sobre un esqueleto de acero; en 1905 se pidió permiso para sumarle arriba un penthouse, que se usó como talleres de artistas. La fachada se arma como una columna clásica: una base de piedra caliza de tres pisos, un fuste de terracota con ornamento y un remate.\n\nEs monumento de la ciudad desde 1966 y monumento histórico nacional desde 1989. Su último gran inquilino, la editorial Macmillan, terminó de irse en 2019 y empezó una renovación; en octubre de 2023 se anunció que se convertiría en departamentos, y la conversión terminó en 2026.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Flatiron Building", "url": "https://en.wikipedia.org/wiki/Flatiron_Building"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/flatiron-building/flatiron-01.jpg",
@@ -85,6 +88,9 @@
     },
     "resumen": "El museo de Frank Lloyd Wright en la Quinta Avenida: una sola rampa en espiral alrededor de un gran vacío central, coronado por una cúpula de vidrio.",
     "descripcion": "Solomon R. Guggenheim y su asesora, la artista Hilla Rebay, le encargaron a Wright en 1943 un edificio para la colección de arte no figurativo. Pasaron dieciséis años hasta la inauguración: la falta de materiales durante la guerra, los costos de la posguerra, las discusiones sobre la luz y los permisos de la ciudad, que en 1953 rechazó el proyecto. Wright murió en abril de 1959 y el museo se inauguró en octubre de ese año.\n\nEn lugar de salas una detrás de otra, el recorrido es una sola rampa de hormigón que sube en espiral alrededor de un vacío iluminado desde arriba. La idea era tomar el ascensor hasta el último nivel y bajar caminando, viendo las obras sobre la pared curva y, del otro lado, el atrio y a la gente en las otras vueltas. Por fuera, las bandas se ensanchan hacia arriba, al revés de un edificio común, y la masa blanca y redondeada contrasta con la grilla de Manhattan y con el parque de enfrente.\n\nEn la rotonda chica de al lado, que llaman \"el monitor\", hoy está la colección Thannhauser. En 1992 se sumó la torre de atrás, de Gwathmey Siegel, con más salas, y entre 2005 y 2008 se restauró la fachada.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Solomon R. Guggenheim Museum", "url": "https://en.wikipedia.org/wiki/Solomon_R._Guggenheim_Museum"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/solomon-r-guggenheim-museum/guggenheim-01.jpg",
@@ -142,6 +148,9 @@
     },
     "resumen": "La iglesia episcopal de Richard Upjohn frente a Wall Street, terminada en 1846 en piedra arenisca rojiza, con su cementerio alrededor.",
     "descripcion": "Es la tercera iglesia de la parroquia en este lugar, frente a la punta de Wall Street. La primera, de 1698, se quemó en el gran incendio de 1776; la segunda, de 1790, quedó dañada por la nieve en el invierno de 1838–1839 y se demolió.\n\nRichard Upjohn la proyectó en estilo neogótico y se consagró el 1 de mayo de 1846. Con su aguja de 86 metros fue el edificio más alto de Estados Unidos hasta 1869 y de Nueva York hasta 1890, cuando los primeros rascacielos la pasaron.\n\nEn el cementerio de alrededor están enterrados, entre otros, Alexander Hamilton, su esposa Elizabeth y Robert Fulton. Es monumento de la ciudad desde 1966 y monumento histórico nacional desde 1976. Entre 2018 y 2024 se restauró el interior.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Trinity Church (Manhattan)", "url": "https://en.wikipedia.org/wiki/Trinity_Church_(Manhattan)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/trinity-church/trinity-01.jpg",
@@ -210,6 +219,9 @@
     },
     "resumen": "La iglesia ortodoxa griega de Santiago Calatrava en el World Trade Center, de influencia bizantina y revestida en mármol pentélico.",
     "descripcion": "La parroquia la fundaron en 1916 inmigrantes griegos, en una vieja taberna de tres pisos de la calle Cedar. El 11 de septiembre de 2001 la caída de la Torre Sur la destruyó: fue el único templo que se perdió en los atentados.\n\nLa nueva iglesia, de Santiago Calatrava, está en Liberty Park, mirando al memorial. Es una planta circular con una cúpula y cuatro torres, inspirada en Santa Sofía y en la iglesia de San Salvador en Chora, de Estambul. Las paredes son de placas finas de mármol pentélico, el de la Acrópolis, que de noche se iluminan.\n\nLa piedra fundamental se puso en 2014. La obra se frenó en 2017 por falta de pagos y se retomó en 2020. Abrió en parte el 11 de septiembre de 2021, se consagró en julio de 2022 y empezó a funcionar del todo en diciembre de ese año.",
+    "fuentes": [
+      {"nombre": "Wikipedia: St. Nicholas Greek Orthodox Church (Manhattan)", "url": "https://en.wikipedia.org/wiki/St._Nicholas_Greek_Orthodox_Church_(Manhattan)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/st-nicholas-greek-orthodox-church/san-nicolas-01.jpg",
@@ -253,7 +265,10 @@
       "lng": -74.0114
     },
     "resumen": "La estación del World Trade Center de Santiago Calatrava: costillas de acero blancas que se abren sobre un gran hall de mármol blanco, con una claraboya de unos 100 metros.",
-    "descripcion": "Es la estación de tren del World Trade Center, la que reemplazó a la que se perdió el 11 de septiembre. Calatrava la presentó en 2004 como \"un pájaro que se suelta de las manos de un chico\": dos alas de costillas de acero blanco que se abren sobre el hall.\n\nTerminó costando unos 4000 millones de dólares, casi el doble de lo previsto, y abrió con casi diez años de atraso, en marzo de 2016. El acero se hizo a medida en Italia. Se había pensado que el techo se abriera cada 11 de septiembre, pero ese mecanismo se descartó por costo.\n\nAdentro, el hall de mármol blanco funciona como un gran paso que une el tren PATH a Nueva Jersey con varias líneas de subte y con un shopping. Es la estación más usada del PATH.",
+    "descripcion": "Es la estación de tren del World Trade Center, la que reemplazó a la que se perdió el 11 de septiembre. Calatrava la presentó en 2004 como \"un pájaro que se suelta de las manos de un chico\": dos alas de costillas de acero blanco que se abren sobre el hall.\n\nTerminó costando unos 4000 millones de dólares, casi el doble de lo previsto, y abrió con casi diez años de atraso, en marzo de 2016. El acero se hizo a medida en Italia. Cada 11 de septiembre se abre la claraboya que recorre el techo a lo largo, durante 102 minutos: lo que pasó entre el primer choque y la caída de la segunda torre.\n\nAdentro, el hall de mármol blanco funciona como un gran paso que une el tren PATH a Nueva Jersey con varias líneas de subte y con un shopping. Es la estación más usada del PATH.",
+    "fuentes": [
+      {"nombre": "Wikipedia: World Trade Center station (PATH)", "url": "https://en.wikipedia.org/wiki/World_Trade_Center_station_(PATH)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/oculus/oculus-01.jpg",
@@ -316,6 +331,9 @@
     },
     "resumen": "La estructura de Thomas Heatherwick en Hudson Yards: 46 metros de escaleras de acero revestidas en cobre que se cruzan como un panal abierto.",
     "descripcion": "Es una escultura que se camina: 154 tramos de escalera, unos 2500 escalones y 80 descansos que se cruzan como un panal y suben 16 pisos, hasta los 46 metros. La diseñó el estudio de Thomas Heatherwick para la plaza de Hudson Yards.\n\nLas piezas de acero se fabricaron en Monfalcone, Italia, y llegaron en barco por el río Hudson. Abrió el 15 de marzo de 2019.\n\nDespués de varios suicidios se cerró en 2021. Reabrió en octubre de 2024 con barandas de seguridad más altas, con el último nivel todavía cerrado.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Vessel (structure)", "url": "https://en.wikipedia.org/wiki/Vessel_(structure)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/vessel/vessel-01.jpg",
@@ -361,6 +379,10 @@
     },
     "resumen": "Edificio de departamentos de Harde & Short en la esquina de la Séptima Avenida y la calle 58, cubierto de ornamento de terracota en estilo renacimiento francés.",
     "descripcion": "Lo desarrolló una cooperativa fundada por el artista Walter Russell junto a Alwyn Ball Jr., que le dio el nombre. Harde & Short lo construyeron entre 1907 y 1909: doce pisos y un ático en la esquina de la Séptima Avenida y la calle 58.\n\nToda la fachada está cubierta de terracota en el estilo de Francisco I de Francia, con salamandras coronadas (su emblema), flores de lis y medallones. Casi no queda un pedazo de pared liso.\n\nAl principio tenía unos 22 departamentos enormes, dos por piso, de unas 14 habitaciones. En 1938 un banco reformó el interior y los dividió en 75 unidades más chicas. El patio interior tiene un mural de Richard Haas que imita el ornamento de la fachada. Es monumento de la ciudad desde 1966.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Alwyn Court", "url": "https://en.wikipedia.org/wiki/Alwyn_Court"},
+      {"nombre": "Landmarks Preservation Commission de Nueva York"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/alwyn-court/alwyn-02.jpg",
@@ -405,6 +427,9 @@
     },
     "resumen": "Torres gemelas de departamentos sobre Central Park West, de Margon & Holder con Emery Roth: art déco, con la base de piedra artificial y el resto de ladrillo.",
     "descripcion": "En el terreno había un hotel de ocho pisos con el mismo nombre, de 1902. El desarrollador Louis Klosk lo reemplazó por este edificio, empezado en 1929: Emery Roth dibujó los primeros planos, más clásicos, y Margon & Holder lo terminaron con los detalles art déco.\n\nEs una base de 17 pisos sobre Central Park West de la que salen dos torres de 12 pisos, rematadas en agujas de metal. Abajo, la piedra artificial, los arcos de bronce de la entrada y los balcones angulosos.\n\nLa crisis de 1929 lo atrasó y Klosk lo perdió en un remate en 1931. Desde 1982 es una cooperativa de propietarios y desde 1985, monumento de la ciudad, parte del distrito histórico de Central Park West.",
+    "fuentes": [
+      {"nombre": "Wikipedia: The El Dorado", "url": "https://en.wikipedia.org/wiki/The_El_Dorado"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/el-dorado/eldorado-01.jpg",
@@ -449,6 +474,9 @@
     },
     "resumen": "Torre de oficinas de 30 pisos de Toombs, Amisano and Wells, de planta triangular por la forma del terreno, con las escaleras a la vista en las puntas. Se conecta directo con la estación Civic Center del subte.",
     "descripcion": "Se construyó entre 1974 y 1975 en el centro de Atlanta, en la calle West Peachtree. La forma triangular sale del terreno, encerrado entre la autopista del centro, West Peachtree y el boulevard Ivan Allen Jr.\n\nTiene 30 pisos (sin piso 13) y 125 metros. Iba a ser el primero de tres edificios parecidos en la zona, pero fue el único que se hizo. El hall de entrada tiene tres pisos de alto porque a fines de los 70 la calle se levantó para construir el subte, y el edificio quedó conectado directo con la estación Civic Center.\n\nAloja oficinas del gobierno federal. En 2025 el gobierno lo puso en la lista de edificios para vender.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Peachtree Summit", "url": "https://en.wikipedia.org/wiki/Peachtree_Summit"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/peachtree-summit/peachtree-summit-01.jpg",
@@ -512,6 +540,10 @@
     },
     "resumen": "Sede de Southern Company en Allen Plaza, edificio de oficinas de 14 pisos con fachada de granito y grandes ventanales en arco. Ocupado desde 2006.",
     "descripcion": "Edificio de oficinas de 14 pisos en Allen Plaza, en el centro de Atlanta, proyectado por el estudio MSTSD. Su ocupante principal es Southern Company, una de las grandes empresas de energía del sur de Estados Unidos, que se mudó en abril de 2006.\n\nEs posmoderno: volúmenes de granito con grandes ventanales en arco, una forma de citar la arquitectura clásica con materiales y proporciones de una torre de oficinas.",
+    "fuentes": [
+      {"nombre": "Emporis (sitio cerrado)"},
+      {"nombre": "Comunicado de Southern Company"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/30-allen-plaza/allen-plaza-02.jpg",
@@ -550,6 +582,9 @@
     },
     "resumen": "Sede de la Fundación Ford de Kevin Roche y John Dinkeloo: un cubo de vidrio y acero corten entre pilares de hormigón revestidos de granito, alrededor de un atrio jardín de doce pisos diseñado por Dan Kiley.",
     "descripcion": "La Fundación Ford lo encargó en los años 60. Kevin Roche y John Dinkeloo, que habían seguido con el estudio de Eero Saarinen tras su muerte, presentaron el proyecto en 1964 y el edificio se inauguró en diciembre de 1967.\n\nLa idea central es un atrio jardín de doce pisos, diseñado por el paisajista Dan Kiley, abierto al público durante el día. Las oficinas dan al atrio en forma de L, así que cada empleado ve el jardín y, del otro lado, a sus compañeros. Por fuera: pilares de hormigón revestidos en granito de Dakota del Sur, acero corten que se oxida a propósito y unos 60.000 vidrios.\n\nEl exterior y el atrio son monumento de la ciudad desde 1997. Entre 2015 y 2018 lo renovó el estudio Gensler y pasó a llamarse Ford Foundation Center for Social Justice.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Ford Foundation Center for Social Justice", "url": "https://en.wikipedia.org/wiki/Ford_Foundation_Center_for_Social_Justice"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/ford-foundation/ford-01.jpg",
@@ -615,8 +650,13 @@
       "lat": 40.71834,
       "lng": -74.00423
     },
-    "resumen": "Sinagoga de William N. Breger: una fachada curva de hormigón nervurado que se infla entre dos edificios viejos de la cuadra. Adentro, la sala con forma de llama y luz cenital se oye bien sin amplificación, que está prohibida en Shabat.",
-    "descripcion": "La congregación se fundó en 1938 y en 1957 construyó su primer edificio en la calle Duane. Tres años después la ciudad expropió ese terreno para un edificio federal, y a cambio le dio el lote de White Street.\n\nWilliam N. Breger terminó la nueva sinagoga en 1967. Desde la calle se ve solo una pared curva de hormigón nervurado, sin ventanas, que se infla entre dos edificios viejos. Adentro, la sala tiene forma de llama y se ilumina desde arriba.\n\nLa forma también resuelve el sonido: la sala se oye bien sin micrófonos, que en Shabat no se pueden usar. Fue la obra que Breger más defendió.",
+    "resumen": "Sinagoga de William N. Breger: una fachada curva de hormigón nervurado que se infla entre dos edificios viejos de la cuadra. Adentro, la sala con luz cenital se oye bien sin amplificación, que está prohibida en Shabat.",
+    "descripcion": "La congregación se fundó en 1938 y en 1957 construyó su primer edificio en la calle Duane. Tres años después ese terreno se expropió para el edificio federal Jacob K. Javits, y la congregación recibió el lote de White Street.\n\nWilliam N. Breger terminó la nueva sinagoga en 1967. Desde la calle se ve solo una pared curva de hormigón nervurado, sin ventanas, que se infla entre dos edificios viejos. Se la describe como una llama que sube, y la sala se ilumina desde arriba.\n\nLa forma también resuelve el sonido: la sala se oye bien sin micrófonos, que en Shabat no se pueden usar.",
+    "fuentes": [
+      {"nombre": "Sitio de la sinagoga", "url": "https://www.tribecasynagogue.org/about"},
+      {"nombre": "Wikipedia: TriBeCa Synagogue", "url": "https://en.wikipedia.org/wiki/TriBeCa_Synagogue"},
+      {"nombre": "thisispaper", "url": "https://www.thisispaper.com/mag/civic-center-synagogue-william-h-breger"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/tribeca-synagogue/tribeca-01.jpg",
@@ -658,8 +698,12 @@
       "lat": 40.754206,
       "lng": -73.968603
     },
-    "resumen": "Edificio de departamentos de 24 pisos de John Klausz (Architects Design Group), en ladrillo marrón sobre una base baja de locales en la Segunda Avenida. Se lee como dos torres apenas distintas: una más alta y finita, con balcones redondeados apilados en la esquina desde el piso 10 u 11, y otra más baja y escalonada, rematada por un cilindro.",
-    "descripcion": "Se terminó en 1983 en la esquina de la calle 49 Este y la Segunda Avenida. Lo proyectó John Klausz, del estudio Architects Design Group, para Joseph Albani.\n\nSon 24 pisos de ladrillo marrón con apenas 20 departamentos. La torre se retira de la base baja de locales sobre la avenida y se arma como dos volúmenes apenas distintos: uno más alto y finito, y otro más bajo y escalonado, rematado por un cilindro. En la esquina sur, desde el piso 10 u 11, los balcones redondeados se apilan uno sobre otro; en la esquina noroeste son más chicos y rectos.",
+    "resumen": "Edificio de departamentos de 24 pisos de John Klausz (Architects Design Group), en ladrillo marrón sobre una base baja de locales en la Segunda Avenida. A la vista, se lee como dos torres apenas distintas: una más alta y finita, con balcones redondeados apilados en la esquina desde el piso 11, y otra más baja y escalonada, rematada por un cilindro.",
+    "descripcion": "Se terminó en 1983 sobre la Segunda Avenida, a mitad de cuadra entre las calles 49 y 50. Lo proyectó John Klausz, del estudio Architects Design Group, para Joseph Albani.\n\nSon 24 pisos de ladrillo marrón con apenas 20 departamentos. La torre se retira desde el tercer piso, sobre una base baja de locales, y deja un hueco en la línea de la cuadra. A la vista, se arma como dos volúmenes apenas distintos: uno más alto y finito, y otro más bajo y escalonado, rematado por un cilindro. En la esquina sur, desde el piso 11, los grandes balcones redondeados se apilan uno sobre otro; en la esquina noroeste son más chicos y rectos.",
+    "fuentes": [
+      {"nombre": "CityRealty", "url": "https://www.cityrealty.com/nyc/midtown-east/the-peregrine-303-east-49th-street/review/3260"},
+      {"nombre": "SkyDB"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/the-peregrine/peregrine-01.jpg",
@@ -735,6 +779,10 @@
     },
     "resumen": "Torre de ventilación y centro de control del túnel Mersey, el túnel de autos que pasa por debajo del río. Herbert J. Rowse la vistió de Art déco en piedra Portland, con esculturas de Edmund Thompson y George Capstick.",
     "descripcion": "Se construyó entre 1931 y 1934 sobre el antiguo George's Dock, un muelle rellenado frente al río Mersey, al lado de las \"Tres Gracias\" del Pier Head. Es la más ambiciosa de las seis estaciones que ventilan el túnel Queensway, de unos 3,4 kilómetros, y además alberga las oficinas y el control del túnel.\n\nLos ingenieros del túnel fueron Basil Mott y J. A. Brodie; Herbert J. Rowse proyectó la arquitectura. La torre sube lisa y escalonada, revestida en piedra Portland, con relieves de Edmund Thompson y George Capstick. Está protegida (Grade II) desde 1980.",
+    "fuentes": [
+      {"nombre": "Wikipedia: George's Dock Building", "url": "https://en.wikipedia.org/wiki/George%27s_Dock_Building"},
+      {"nombre": "Wikipedia: Queensway Tunnel", "url": "https://en.wikipedia.org/wiki/Queensway_Tunnel"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/georges-dock/georges-dock-01.jpg",
@@ -784,8 +832,12 @@
       "lat": 53.4852,
       "lng": -2.2446
     },
-    "resumen": "Iglesia gótica perpendicular reconstruida desde 1421, cuando se fundó la colegiata; es catedral desde 1847. Su arquitecto no es uno solo: J. S. Crowther fue el restaurador de la época victoriana, que rehízo la nave y los pórticos.",
-    "descripcion": "La iglesia se reconstruyó en estilo gótico perpendicular a partir de 1421, cuando Enrique V y el papa Martín V autorizaron la colegiata. Pasó a ser catedral en 1847, al crearse la diócesis de Manchester.\n\nNo tiene un único arquitecto. J. S. Crowther (1820–1893), arquitecto de la diócesis, fue el restaurador: en los años 1880 rehízo la nave piedra por piedra, demolió y rehízo el pórtico sur y sumó el pórtico norte, y seguía trabajando en ella cuando murió. Una bomba alemana la dañó mucho en 1940, y la reparación llevó casi veinte años.\n\nAdentro se destaca la sillería tallada del coro, de principios del siglo XVI. Es uno de los edificios con la protección más alta de Manchester (Grade I).",
+    "resumen": "Iglesia gótica perpendicular reconstruida desde 1421, cuando se fundó la colegiata; es catedral desde 1847. Su arquitecto no es uno solo: J. S. Crowther fue el restaurador de la época victoriana.",
+    "descripcion": "La iglesia se reconstruyó en estilo gótico perpendicular a partir de 1421, cuando Enrique V y el papa Martín V autorizaron la colegiata. Pasó a ser catedral en 1847, al crearse la diócesis de Manchester.\n\nNo tiene un único arquitecto. J. S. Crowther (1820–1893), arquitecto de la diócesis, fue el restaurador: entre 1850 y 1870 cambió la piedra de afuera y también la de adentro de los muros de la nave. Fue su última gran obra y quedó sin terminar cuando murió, en 1893. Una bomba alemana la dañó mucho en 1940, y la reparación llevó casi veinte años.\n\nAdentro se destaca la sillería tallada del coro, de principios del siglo XVI. Es uno de los edificios con la protección más alta de Manchester (Grade I).",
+    "fuentes": [
+      {"nombre": "Wikipedia: Manchester Cathedral", "url": "https://en.wikipedia.org/wiki/Manchester_Cathedral"},
+      {"nombre": "Wikipedia: J. S. Crowther", "url": "https://en.wikipedia.org/wiki/J._S._Crowther"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/catedral-de-manchester/manchester-01.jpg",
@@ -869,7 +921,10 @@
       "lng": -2.9768
     },
     "resumen": "Iglesia neogótica de John Foster padre e hijo, terminada en 1832. Una bomba incendiaria la quemó en mayo de 1941 y quedó solo el cascarón sin techo, que hoy es un memorial de guerra conocido como \"la iglesia bombardeada\".",
-    "descripcion": "John Foster padre, arquitecto municipal de Liverpool, la proyectó en 1802, pero la piedra fundamental recién se puso en 1811. Su hijo, John Foster hijo, sumó el presbiterio en 1822, y la iglesia se terminó en 1832.\n\nEl 6 de mayo de 1941, durante los bombardeos sobre Liverpool, una bomba incendiaria provocó un incendio que dejó solo los muros y la torre. No se reconstruyó: el cascarón sin techo quedó como memorial de guerra, con un jardín adentro. Donald Insall Associates restauró los muros y la torre. Está protegida (Grade II*) desde 1952.\n\nEn el jardín está la escultura de Andy Edwards sobre la tregua de Navidad de 1914, en la que un soldado británico y uno alemán empiezan un partido de fútbol.",
+    "descripcion": "John Foster padre, arquitecto municipal de Liverpool, la proyectó en 1802, pero la piedra fundamental recién se puso en 1811. Su hijo, John Foster hijo, sumó el presbiterio en 1822, y la iglesia se terminó en 1832.\n\nEl 6 de mayo de 1941, durante los bombardeos sobre Liverpool, una bomba incendiaria provocó un incendio que dejó solo los muros y la torre. No se reconstruyó: el cascarón sin techo quedó como memorial de guerra, con un jardín adentro. Está protegida (Grade II*) desde 1952.\n\nEn el jardín está la escultura de Andy Edwards sobre la tregua de Navidad de 1914, en la que un soldado británico y uno alemán empiezan un partido de fútbol.",
+    "fuentes": [
+      {"nombre": "Wikipedia: Church of St Luke, Liverpool", "url": "https://en.wikipedia.org/wiki/Church_of_St_Luke,_Liverpool"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/st-luke-liverpool/st-luke-01.jpg",
@@ -933,7 +988,7 @@
       "Ladrillo",
       "Terracota"
     ],
-    "programa": "Industria (hoy hostel)",
+    "programa": "Depósito (hoy hostel)",
     "estado": "modificada",
     "ubicacion": {
       "pais": "Reino Unido",
@@ -944,8 +999,11 @@
       "lat": 53.4835,
       "lng": -2.2331
     },
-    "resumen": "Fábrica de sombreros de Joseph Wood & Sons, de Charles Clegg & Son (1906–1908), en la esquina de Newton Street y Hilton Street. Sus ventanales en arco de tres pisos dejaban entrar la mayor cantidad de luz posible. Hoy es el hostel Hatters.",
-    "descripcion": "Charles Clegg & Son la levantaron entre 1906 y 1908 como fábrica de sombreros para Joseph Wood & Sons, en el Northern Quarter de Manchester. Es de ladrillo rojo con detalles claros, en el barroco libre de principios del siglo XX: arcos vidriados de tres pisos para iluminar los talleres, mansardas con ventanas redondeadas y un remate curvo en la esquina.\n\nHoy funciona como hostel, el Hatters, que toma su nombre de los sombrereros. Está protegida (Grade II) desde 1988, con el nombre de Newton Buildings.",
+    "resumen": "Depósito de Charles Clegg & Son (1906–1908), levantado donde había una fábrica de sombreros, en la esquina de Newton Street y Hilton Street. Tiene ventanales en arco de tres pisos. Hoy es el hostel Hatters.",
+    "descripcion": "Charles Clegg & Son la levantaron entre 1906 y 1908 como depósito, en el Northern Quarter de Manchester, en el lugar de una fábrica de sombreros que se había quemado en 1906. Es de ladrillo rojo con detalles claros, en el barroco libre de principios del siglo XX: arcos vidriados de tres pisos, mansardas con ventanas redondeadas y un remate curvo en la esquina.\n\nHoy funciona como hostel, el Hatters, que toma su nombre de la vieja fábrica de sombreros. Está protegida (Grade II) desde 1988, con el nombre de Newton Buildings.",
+    "fuentes": [
+      {"nombre": "Wikipedia: 50 Newton Street", "url": "https://en.wikipedia.org/wiki/50_Newton_Street"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/50-newton-street/newton-street-02.jpg",
@@ -1041,6 +1099,9 @@
     },
     "resumen": "Edificio de departamentos en esquina, de ocho pisos, a pasos de la estación Aristóbulo del Valle, con locales en la planta baja y frente de Frentebril con dibujos planos. Por muchos años fue el más alto del barrio. Sin datos de autor.",
     "descripcion": "El frente es de Frentebril, un revestimiento muy usado entre los años 50 y 60, sobre todo por constructores italianos, que armaban con él ornamentos planos en lugar de los relieves de terracota de antes.\n\nSegún el recuerdo de una vecina, quedó terminado entre fines de 1961 y 1962. Datos de una publicación de Instagram (@leilainfinito, 2023) y sus comentarios: no verificados en otra fuente.",
+    "fuentes": [
+      {"nombre": "Instagram de @leilainfinito y sus comentarios (sin verificar)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/edificio-aristobulo-del-valle-1601/aristobulo-del-valle-1601-01.jpg",
@@ -1224,6 +1285,9 @@
       "zona": true
     },
     "resumen": "Fachada de un estacionamiento, baja y larga sobre la línea municipal, con una franja de ladrillos calados arriba, azulejos con un dibujo en relieve abajo y portones de madera. Sin datos de autor ni de año. El estilo y la década son estimados por la fachada.",
+    "fuentes": [
+      {"nombre": "TikTok de @azulejosencaba"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/estacionamiento-de-los-ladrillos-calados/estacionamiento-de-los-ladrillos-calados-01.jpg",
@@ -1258,6 +1322,9 @@
     },
     "resumen": "Casona italianizante con torre, pórtico de columnas y arco de entrada en medio de un jardín, que hoy es el convento de las Hermanas de la Santa Cruz. Sin firma: se la atribuye al arquitecto Guillermo Álvarez.",
     "descripcion": "Una de las casonas de veraneo que quedan en Belgrano C, hoy sede de las Hermanas de la Santa Cruz, conocidas como las «monjas suizas». Tiene protección cautelar por su valor patrimonial, entre torres nuevas: la casona de enfrente se demolió hace pocos años.\n\nLa fachada no tiene firma. Un blog dedicado al arquitecto español Guillermo Álvarez Pérez (el del Edificio del Arco de Avenida Entre Ríos y la «Torre del Fantasma» de La Boca) se la atribuye por sus remates, muy característicos; no se encontraron otras fuentes.\n\nEn el convento se daban cursos de cocina: muchos recuerdan a la Hermana Bernarda, que salía en el canal Gourmet. También tiene un coro.\n\nDatos de publicaciones de Instagram (@pablofe70, @leilainfinito) y sus comentarios, de Facebook y del blog arquitectoguillermoalvarez.blogspot.com: no verificados en otra fuente.",
+    "fuentes": [
+      {"nombre": "Blog del arquitecto Guillermo Álvarez", "url": "https://arquitectoguillermoalvarez.blogspot.com/"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/convento-hermanas-de-la-santa-cruz/convento-hermanas-de-la-santa-cruz-01.jpg",
@@ -1287,6 +1354,10 @@
     },
     "resumen": "Casa art déco de autor desconocido a media cuadra del cementerio de la Chacarita, con un porche semicircular bajo un alero curvo y salientes verticales que doblan en horizontal sobre la entrada y el garaje. Sin firma ni placa: se la estima de los años 30.",
     "descripcion": "Está en la «Isla de La Paternal», el puñado de manzanas encerrado entre el cementerio, Agronomía y las vías del San Martín y del Urquiza. Retirada unos 5 metros de la línea de edificación, en un lote corto (21,71 m de fondo), aparece de golpe al caminar por Paz Soldán. Según el registro de parcelas de la Ciudad, tiene 291 m² cubiertos sobre 188 m² de terreno.\n\nNo tiene firma de arquitecto ni de constructor. Se la atribuyó a Francisco Salamone, pero quienes lo investigaron lo descartan; otros hablan de un arquitecto alemán o de un maestro mayor de obras, sin pruebas. Tampoco hay acuerdo sobre el estilo: art déco para la mayoría, con quien ve art nouveau, streamline o un aire oriental, de Shanghái o de las «puertas luna» de los jardines chinos.\n\nDos personas que vivieron o entraron ahí cuentan que fue un laboratorio y que después se dividió en departamentos. Sobre la terraza se agregó un piso de chapa que no sigue el estilo. Muchos vecinos recuerdan a una señora mayor que se sentaba bajo el arco de la entrada con un mono tití en el hombro; los chicos del barrio creían que era una bruja.\n\nDatos de publicaciones y comentarios en Facebook (Buscando a Salamone, 2019; Crónicas de la Reina Inquieta, 2025; Arquitectura de siempre, 2026), Instagram (@pablofe70) y Reddit: no verificados en otra fuente.",
+    "fuentes": [
+      {"nombre": "Facebook: Buscando a Salamone, Crónicas de la Reina Inquieta, Arquitectura de siempre"},
+      {"nombre": "Instagram de @pablofe70"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-abovedada-de-la-paternal/casa-abovedada-de-la-paternal-01.jpg",
@@ -1348,6 +1419,10 @@
     },
     "resumen": "Edificio blanco con grandes ventanales de perfiles de hierro negro y un balcón corrido lleno de macetas, entre árboles. Atribuido a Jorge Ferrari Hardoy y Juan Kurchan, autores de Los Eucaliptus: su archivo en Harvard registra un proyecto en Segurola y General Urquiza, Vicente López, de fines de los años 40. Falta confirmar el año.",
     "descripcion": "Edificio blanco de pocos pisos en la esquina de Urquiza y Saturnino Segurola, con grandes ventanales de perfiles de hierro negro y un balcón corrido lleno de macetas, entre árboles.\n\nEl archivo de Jorge Ferrari Hardoy (Graduate School of Design de Harvard) lista un proyecto en Segurola y General Urquiza, Vicente López, de fines de los años 40, la época de sus edificios de departamentos con Juan Kurchan en Belgrano (O'Higgins 2319 y Los Eucaliptus, en Virrey del Pino 2446). En un comentario de Instagram (@buenosaires.alpaso) se los llama «los lofts de Vicente López» y se los atribuye a Juan Kurchan, socio de Ferrari Hardoy en esos años y coautor con él (y con Antonio Bonet) del sillón BKF. La atribución sale de ese registro, de ese comentario y del recuerdo del usuario; no se encontró el año exacto.",
+    "fuentes": [
+      {"nombre": "Archivo de Jorge Ferrari Hardoy, Harvard GSD"},
+      {"nombre": "Comentario de @buenosaires.alpaso en Instagram"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/edificio-urquiza-911/urquiza-911-01.jpg",
@@ -1485,6 +1560,9 @@
     },
     "resumen": "Reforma y ampliación de una casa chorizo junto a una fábrica, de Nicolás Waldman y Agustina Andreani Ghiglione (2025). Se visitó en Open House Buenos Aires.",
     "descripcion": "Una casa chorizo tradicional, con las habitaciones en fila alrededor de un patio, al lado de una fábrica que le quita el sol de la mañana. La reforma da vuelta la casa: los dormitorios quedan en la planta baja original y la terraza, la parte más luminosa, pasa a ser el lugar de estar.\n\nUna cubierta liviana sube hasta la altura de la fábrica vecina y arma dos espacios de doble altura para el living y el comedor; la vieja losa de servicio queda como entrepiso sobre la cocina, con los escritorios. Datos de la ficha de Open House Buenos Aires.",
+    "fuentes": [
+      {"nombre": "Open House Buenos Aires"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-villa-urquiza-3/casa-villa-urquiza-3-01.jpg",
@@ -1559,6 +1637,9 @@
     },
     "resumen": "Ampliación y reforma de una casa chorizo de los años 40, del estudio Territorio Mutante (2025). Se visitó en Open House Buenos Aires.",
     "descripcion": "Una casa chorizo de los años 40. Los dormitorios quedan en la planta baja, sobre una circulación que da al patio lateral original; se recuperaron los pisos de madera de caldén y las grandes aberturas de madera.\n\nSobre la terraza, una estructura metálica nueva aloja la parte social: cocina, living y comedor, y una terraza. El altillo original se conecta con un desnivel y queda como estudio en altura. Proyecto de Julia Lazarte y Roman Kruk (Territorio Mutante). Datos de la ficha de Open House Buenos Aires.",
+    "fuentes": [
+      {"nombre": "Open House Buenos Aires", "url": "https://openhousebsas.org/catalogo/casa-piran/"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-piran/casa-piran-01.jpg",
@@ -1728,6 +1809,10 @@
       "zona": true
     },
     "resumen": "Casa baja de revoque salpicado, con techo de pizarra y rejas de arcos, detrás de una reja verde. En la fachada, la firma en letras de metal «Siegfried Stieglitz MMO» (maestro mayor de obras). El estilo y la década son estimados por la fachada.",
+    "fuentes": [
+      {"nombre": "Firma en la fachada"},
+      {"nombre": "Registros públicos (Boletín Oficial)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-stieglitz/casa-stieglitz-01.jpg",
@@ -1839,6 +1924,9 @@
     },
     "resumen": "Casa blanca de volúmenes redondeados, con un balcón curvo de baranda de caño que da la vuelta a la esquina del cuerpo alto. Ahí vivió Gustavo Cerati. Sin datos de autor ni de año: el estilo y la década son estimados por la fachada.",
     "descripcion": "Gustavo Cerati vivió en esta casa de Florida; el dato es del barrio y no se encontró publicado. No es la casa de Vicente López que compró en 2008 y donde pasó sus últimos años, una propiedad de 1937 en la esquina con Hipólito Yrigoyen.",
+    "fuentes": [
+      {"nombre": "Dato del barrio (sin fuente publicada)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-cerati/casa-cerati-01.jpg",
@@ -1971,6 +2059,9 @@
     },
     "resumen": "Conjunto de ladrillo visto con volúmenes inclinados y salientes de hormigón, alrededor de dos palmeras altas; en obra cuando se sacó la foto. Sin datos de autor ni de año. El estilo y la década son estimados por la fachada.",
     "descripcion": "En 2013, según Google Street View, era otra cosa: una casa amarilla y de ladrillo, con techos de teja, una galería y una torre mirador blanca, detrás de una reja verde de lanzas. Así la recuerdo de chico. Cuando se sacaron las fotos estaba en plena reforma.",
+    "fuentes": [
+      {"nombre": "Google Street View (2013)"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casas-de-las-palmeras/casas-de-las-palmeras-01.jpg",
@@ -2048,6 +2139,9 @@
     },
     "resumen": "Casa de ladrillo y revoque blanco, con balcón de madera torneada, tejas y un muro con celosía de ladrillo. Sin datos de autor ni de año. El estilo y la década son estimados por la fachada.",
     "descripcion": "En 2021, estudiantes de Agrimensura de la UBA hicieron prácticas de medición en esta casa, invitados por el Distrito X del Consejo Profesional de Agrimensura de la Provincia de Buenos Aires (publicación de Agrimensura FIUBA en Facebook). Puede que sea la sede del distrito: no está confirmado.",
+    "fuentes": [
+      {"nombre": "Publicación de Agrimensura FIUBA en Facebook"}
+    ],
     "fotos": [
       {
         "archivo": "img/obras/casa-de-la-celosia/casa-de-la-celosia-01.jpg",
