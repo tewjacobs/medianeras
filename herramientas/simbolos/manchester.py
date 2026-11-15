@@ -489,14 +489,14 @@ COLORES = {
     'mc-puerta': ('#2a201a', '#251c17'), 'mc-puerta-c': ('#46362a', '#3f3126'),
     'mc-losa': ('#7d7468', '#5f574d'), 'mc-losa-o': ('#5c554c', '#47413a'), 'mc-losa-c': ('#a8a196', '#7c766c'),
     'mc-pasto': ('#5f8a3a', '#4c702e'), 'mc-pasto-c': ('#72a046', '#5c8239'),
-    'perpendicular-fondo': ('#d7d3c7', '#2b2a27'), 'perpendicular-fondo-marco': ('#5a4c3c', '#e1dccd'),
+    'perpendicular-borgona': ('#7f3a44', '#2a1418'), 'perpendicular-borgona-marco': ('#f3ead9', '#d5ebe7'),
 }
 con_sombras(COLORES, SOMBREABLES)
 con_sombras(COLORES, PIEDRA, 0.6, '-g')
 
 if __name__ == '__main__':
     p = version()
-    p.update(placa='perpendicular-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-             marco='perpendicular-fondo-marco')
+    p.update(placa='perpendicular-borgona', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+             marco='perpendicular-borgona-marco')
     guardar(sys.argv[1], 'estilos', 'Gótico perpendicular', p, COLORES, 'mc-|perpendicular-')
     print(len(p['lineas']), 'líneas, largo', p['largo'])

@@ -224,6 +224,29 @@ def tablones(l, x0, x1, y0, y1):
             x += 13
     l.sombra(a, a + 0.75, fy(y0), fy(y1), ('vt-liston', 'vt-liston-c', 'vt-liston-m', 'vt-liston-o'))
 
+def ladrillos(l, x0, x1, y0, y1):
+    # Volumen de ladrillo de techo plano: la tapa de chapa con su canto de luz, hiladas de una fila con
+    # las juntas trabadas y la sombra que le hace la casa de adelante en su costado izquierdo.
+    a, b = ux(x0), ux(x1)
+    l.rect('vt-chapa-c', a, b, fy(y0) - 1, fy(y0))
+    l.rect('vt-borde', a, b, fy(y0), fy(y0) + 1)
+    for k, f in enumerate(range(fy(y0) + 1, fy(y1))):
+        l.rect('vt-ladrillo' if k % 2 else 'vt-ladrillo-m', a, b, f, f + 1)
+        x = a + (1.5 if k % 2 else 0)
+        while x < b:
+            l.rect('vt-ladrillo-o', x, x + 0.25, f, f + 1)
+            x += 3
+    l.sombra(a, a + 1.5, fy(y0) + 1, fy(y1), ('vt-ladrillo', 'vt-ladrillo-m', 'vt-ladrillo-o'))
+
+def puerta(l, x0, x1, y0, y1):
+    # Puerta de chapa a ras de la pared: marco fino en sombra, la hoja con una junta al medio y la manija.
+    a, b, f0, f1 = ux(x0), ux(x1), fy(y0), fy(y1)
+    l.rect('vt-g2', a, b, f0, f1)
+    l.rect('vt-puerta', a + 0.5, b - 0.5, f0 + 1, f1)
+    l.rect('vt-chapa-c', a + 0.5, a + 0.75, f0 + 1, f1)               # canto de luz a la izquierda
+    l.rect('vt-puerta-o', q((a + b) / 2), q((a + b) / 2) + 0.25, f0 + 1, f1)
+    l.rect('vt-hierro', q((a + b) / 2) - 1, q((a + b) / 2) - 0.5, (f0 + f1) // 2, (f0 + f1) // 2 + 1)
+
 def arbol(l, x, alto, r):
     # Árbol más real: tronco que se afina con dos ramas que suben, la copa hecha de varias matas
     # irregulares (luz arriba a la izquierda, sombra abajo a la derecha), hojas sueltas en el borde y
@@ -258,7 +281,7 @@ def arbol(l, x, alto, r):
             if 0 <= f < len(l.c) and 0 <= i < l.n: l.c[f][i] = c
 
 SOMBREABLES = ('vt-muro', 'vt-muro-c', 'vt-chapa', 'vt-chapa-c', 'vt-cortina', 'vt-cortina-o', 'vt-pared',
-               'vt-piso', 'vt-perfil', 'vt-vidrio', 'vt-vidrio-c', 'vt-liston', 'vt-liston-c', 'vt-liston-m', 'vt-liston-o', 'vt-muro-p', 'vt-muro-c-p', 'vt-muro-f', 'vt-junta', 'vt-techo', 'vt-techo-l', 'vt-lado-m', 'vt-ladrillo', 'vt-ladrillo-o', 'vt-puerta', 'vt-puerta-o', 'vt-mesa', 'vt-borde')
+               'vt-piso', 'vt-perfil', 'vt-vidrio', 'vt-vidrio-c', 'vt-liston', 'vt-liston-c', 'vt-liston-m', 'vt-liston-o', 'vt-muro-p', 'vt-muro-c-p', 'vt-muro-f', 'vt-junta', 'vt-techo', 'vt-techo-l', 'vt-lado-m', 'vt-ladrillo', 'vt-ladrillo-m', 'vt-ladrillo-o', 'vt-puerta', 'vt-puerta-o', 'vt-mesa', 'vt-borde')
 
 # Las casitas en 3D: cada una es un prisma con el perfil de dos aguas (la punta vidriada adelante y el
 # cuerpo que se va hacia atrás), girado en planta. Se mira de frente y un poco desde arriba (CABEZA), en
@@ -434,9 +457,6 @@ def casitas(l):
     # La del medio: mira a la izquierda (−35°); su faldón derecho cae grande hacia la derecha.
     casita(l, zb, 87, 101, 10, -35, 1.04, 45, interior=((-0.6, -0.4, 2.5, 'vt-verde'), (0.3, 0.5, 2.5, 'vt-rojo'),
                                                     (-0.25, 0.2, 1.2, 'vt-mesa')))
-    # Abajo a la derecha, la casa baja: mira a la derecha, su faldón grande baja hacia la derecha y su
-    # punta es una pared ciega con una puerta; el cuerpo se va hacia atrás por debajo de la del medio.
-    casita(l, zb, 150, 116, 20, 45, 0.78, 70, vidrio=False, puerta=True, planta=19)
     # Debajo de la del medio, la planta baja vidriada, con el mismo giro.
     casita(l, zb, 87, 117, 10, -35, 1.04, 30, planta=15)
     # La volada de la derecha: mira a la derecha (50°), su cuerpo se va hacia atrás por la izquierda.
@@ -499,15 +519,17 @@ def version():
     l = Lienzo(LARGO, FILAS)
 
     # Atrás, abajo: muro en sombra para que no queden huecos entre la planta baja y las casitas.
-    P(l, 'vt-muro-f', 22, 646, 230, SUELO)
+    P(l, 'vt-muro-f', 22, 598, 230, SUELO)
     # la larga de la izquierda apoya en una base de tablones
     tablones(l, 22, 170, 332, SUELO)
     P(l, 'vt-borde', 22, 170, 329, 332)
-    # más a la derecha, otra baja revestida de tablones
-    P(l, 'vt-g2', 596, 690, 290, 300)
-    P(l, 'vt-g5', 596, 690, 290, 292)
-    tablones(l, 600, 690, 300, SUELO)
     casitas(l)
+    # Abajo a la derecha (foto de noche): detrás, un volumen bajo de ladrillo de techo plano; adelante, la
+    # casa baja vista de costado, con su faldón liso, la pared larga y ciega y una puerta de chapa.
+    ladrillos(l, 586, 690, 322, SUELO)
+    costado(l, 404, 588, 296, 340, SUELO)
+    puerta(l, 546, 568, 356, SUELO - 4)
+    P(l, 'vt-borde', 404, 588, SUELO - 4, SUELO - 3)                  # el zócalo de la pared
 
     # Abajo: el zócalo, el sendero de pedregullo y el pasto con lirios azules y dos arbolitos.
     P(l, 'vt-borde', 0, 690, SUELO - 2, SUELO)
@@ -536,7 +558,7 @@ COLORES = {
     'vt-cortina': ('#dfe5e3', '#d3d9d7'), 'vt-cortina-o': ('#c9d1cf', '#bdc5c3'),
     'vt-techo': ('#363433', '#363433'), 'vt-bajo': ('#1f1d1d', '#1f1d1d'),
     'vt-escalera': ('#3a4a4a', '#334242'), 'vt-escalera-o': ('#263232', '#212b2b'),
-    'vt-vidrio-o': ('#3f5555', '#364a4a'), 'vt-ladrillo': ('#a2553a', '#8d4a33'), 'vt-ladrillo-o': ('#7d3f2b', '#6c3726'),
+    'vt-vidrio-o': ('#3f5555', '#364a4a'), 'vt-ladrillo': ('#a2553a', '#8d4a33'), 'vt-ladrillo-m': ('#94503a', '#814531'), 'vt-ladrillo-o': ('#7d3f2b', '#6c3726'),
     'vt-puerta': ('#4f4c4b', '#4f4c4b'), 'vt-puerta-o': ('#3a3837', '#3a3837'),
     'vt-techo-l': ('#4a4847', '#4a4847'),
     'vt-g1': ('#1f1e1e', '#1f1e1e'), 'vt-g2': ('#2a2828', '#2a2828'), 'vt-g3': ('#343231', '#343231'),
@@ -564,7 +586,7 @@ COLORES = {
     'vt-sendero': ('#cfc6b4', '#a8a090'), 'vt-lirio': ('#6a6fc4', '#6a6fc4'),
     'vt-hoja': ('#4f7a34', '#456b2d'), 'vt-hoja-c': ('#6e9a45', '#5f873b'), 'vt-hoja-o': ('#3a5c27', '#324f22'),
     'vt-tronco': ('#5a4636', '#5a4636'),
-    'contemporanea-fondo': ('#d8cdb6', '#2f2b25'), 'contemporanea-fondo-marco': ('#4a4746', '#e2d9c6'),
+    'contemporanea-rojo': ('#c4573f', '#331a14'), 'contemporanea-rojo-marco': ('#f3ead9', '#cce5eb'),
 }
 con_sombras(COLORES, SOMBREABLES)
 def velar(h, k=0.35, v='#a7b4b4'):
@@ -579,10 +601,10 @@ if __name__ == '__main__':
     def hexmix(h1, h2, k):
         return '#' + ''.join(f'{round(int(h1[i:i + 2], 16) * k / 4 + int(h2[i:i + 2], 16) * (4 - k) / 4):02x}' for i in (1, 3, 5))
     for n, (c1, c2, k) in MEZCLAS.items():
-        v1 = COLORES['contemporanea-fondo' if c1 == '-' else c1]
-        v2 = COLORES['contemporanea-fondo' if c2 == '-' else c2]
+        v1 = COLORES['contemporanea-rojo' if c1 == '-' else c1]
+        v2 = COLORES['contemporanea-rojo' if c2 == '-' else c2]
         COLORES[n] = tuple(hexmix(v1[j], v2[j], k) for j in range(2))
-    p.update(placa='contemporanea-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-             marco='contemporanea-fondo-marco')
+    p.update(placa='contemporanea-rojo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+             marco='contemporanea-rojo-marco')
     guardar(sys.argv[1], 'estilos', 'Arquitectura contemporánea', p, COLORES, 'vt-|contemporanea-')
     print(len(p['lineas']), 'líneas, largo', p['largo'])

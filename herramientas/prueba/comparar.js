@@ -61,6 +61,10 @@ const CON_FOTO = [
   ['programas', 'Salud', ['hospital/images (7).jpeg']],
   ['programas', 'Templo', ['religioso/images (9).jpeg', 'religioso/images (10).jpeg']],
   ['programas', 'Infraestructura', ['infraestructura/images (15).jpeg', 'infraestructura/Rennovation-of-Japanese-covered-bridge.jpg']],
+  ['paises', 'Reino Unido', []],
+  ['paises', 'Estados Unidos', []],
+  ['programas', 'Educativo', ['estudios:academico/images (6).jpeg', 'estudios:academico/images (5).jpeg']],
+  ['materiales', 'Piedra arenisca', ['gotico perpendicular/3_IMG_6851_3__bc045f34-e4a1-4f75-aadc-229cf41cdfa7.jpg']],
   ['programas', 'Deportivo', ['deportes/https___s3.amazonaws.com_arc-wordpress-client-uploads_infobae-wp_wp-content_uploads_2019_02_08155342_Galeria-cenital-River-Plate.avif', 'deportes/images.jpeg']],
 ];
 // ?solo=mundo-1950 muestra solo ese símbolo, en grande y sin la pantalla de carga; con comas, una tanda:
@@ -79,7 +83,7 @@ function panel(tema, partitura, decada, coleccion) {
   return h('div', { className: 'muestra', dataset: { tema } },
     simbolo(partitura, TAMANO),
     h('h3', { textContent: partitura.obra ?? decada }),
-    h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : coleccion === 'programas' ? 'PROGRAMA' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
+    h('p', { className: 'dato', textContent: coleccion === 'estilos' ? 'ESTILO' : coleccion === 'programas' ? 'PROGRAMA' : coleccion === 'paises' ? 'PAÍS' : coleccion === 'materiales' ? 'MATERIAL' : `${decada}s · ${coleccion.toUpperCase()} · ${partitura.lugar} · ${partitura.anio}` }),
     tema === 'claro' && h('p', { className: 'nota', textContent: partitura.nota }));
 }
 
@@ -96,7 +100,8 @@ function cargaPanel(tema, version) {
 document.getElementById('filas').replaceChildren(...[
   !solo && h('div', { className: 'fila' }, foto(['skyline/depositphotos_58959203-stock-illustration-buenos-aires.jpg']), cargaPanel('claro', 'A'), cargaPanel('oscuro', 'A')),
   ...elegidos.map(([coleccion, decada, archivos]) => {
-    const partitura = simbolos[coleccion]?.[decada] ?? simbolos.decadas[coleccion][decada];
+    const partitura = simbolos[coleccion]?.[decada] ?? simbolos.decadas[coleccion]?.[decada];
+    if (!partitura) return null;
     return h('div', { className: 'fila' }, foto(archivos), panel('claro', partitura, decada, coleccion), panel('oscuro', partitura, decada, coleccion));
   }),
 ].filter(Boolean));

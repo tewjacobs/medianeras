@@ -8,10 +8,21 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**15 de noviembre de 2026, mediodía (cierre).** Subido (`v90`).
+
+**Próxima sesión:**
+1. **Colonial y Bungalow** (los únicos estilos con obras cargadas que siguen sin símbolo): faltan fotos de referencia. La carpeta `colonial/` está vacía y Bungalow no tiene carpeta; pedirle al usuario una foto de frente de cada uno.
+2. Revisión en el iPhone, carpeta de presentación (punto 4 del plan), sanskule, jagten.
+3. Huecos menores: Argentina y Uruguay (banderas viejas, rehacerlas como las nuevas: planas), programas Mirador y Estación de transporte, materiales sin símbolo (hormigón, mármol, granito, cobre, acero corten, piedra artificial y Portland). Academicismo e Historicismo no tienen obras.
+
+- **Fondos elegidos (15/11):** VitraHaus **rojo silla** (`contemporanea-rojo`), Manchester **borgoña** (`perpendicular-borgona`), Educativo **verde tipa** (`educativo-tipa`). En los tres, en claro, el marco va en crema `#f3ead9`.
+- **Banderas:** sin sombreado ni vaina (pedido del usuario). En la del Reino Unido la roja de las aspas va **centrada en la blanca** a pedido del usuario (en la oficial va corrida; quedó anotado en `banderas.py`). Estados Unidos con la estrella elegida, estampada igual en las 50.
+- **Materiales:** el usuario los quiere **apaisados** (más anchos que altos) y la piedra "menos prolija, más real".
+
 **14 de noviembre de 2026, noche tarde (cierre).** Subido (`v89`).
 
 **Próxima sesión:**
-1. **VitraHaus (Arquitectura contemporánea):** rehecha en 3D (ver bitácora) y subida; el usuario la dio por buena al pedir subir. Falta el fondo (hoy provisorio `contemporanea-fondo`, crema). Si aprueba, opciones de fondo en `fondos.html` (hoy provisorio `contemporanea-fondo`, crema).
+1. **VitraHaus (Arquitectura contemporánea):** rehecha en 3D (ver bitácora) y subida; el usuario la dio por buena al pedir subir. Falta el fondo (hoy provisorio `contemporanea-fondo`, crema). **Antes, corregir la zona de abajo a la derecha** (captura del usuario del 14/11, 21:33): la casa baja de techo plano con su puerta, la volada encima y la casita de tablones quedan amontonadas y poco claras (muros oscuros que se pisan); revisarla contra la foto de noche `contemporaneo/images (2).jpeg`. Si aprueba, opciones de fondo en `fondos.html` (hoy provisorio `contemporanea-fondo`, crema).
 2. **Catedral de Manchester (Gótico perpendicular): dibujo aprobado** ("la catedral está lista"). Falta el fondo (hoy provisorio `perpendicular-fondo`, gris piedra): opciones en `fondos.html`.
 3. Después, como estaba: revisión en el iPhone, carpeta de presentación (punto 4 del plan), sanskule, jagten.
 
@@ -774,3 +785,14 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - **VitraHaus en 3D** (pedido del usuario, que describió la planta): `casitas()` en `vitra.py` arma cada casita como un prisma de dos aguas girado en planta y lo proyecta de frente (mirada casi a nivel, `CABEZA`), con z-buffer, gris por cara según la luz (`LUZ`, `vt-g1`…`vt-g6`) y aristas finas entre caras. Orientaciones: la de arriba de frente (0°); arriba a la derecha 45° a la derecha, volada; la del medio −45°; la chica de abajo a la izquierda −45°, más al fondo; una escondida a 70° detrás de la de la derecha (solo se ven sus paredes). Interiores cálidos; persiana lisa arriba y tres paños; astillas limpiadas; planta baja con escalera, tablones horizontales y puertas de chapa; un solo árbol; bordes suavizados con 4 submuestras por fila (colores `vt-m*` que se calculan al guardar). El método sirve para cualquier obra con volúmenes girados.
 
 - **VitraHaus, último intento del 14/11** (el usuario pidió "una vez más"; si no convence, la alternativa es otra obra contemporánea con fachada de frente): seis casas medidas sobre la foto de noche `contemporaneo/images (2).jpeg` (x = (px − 80) · 0.42, fila = (py − 140) · 0.42 + 4): la grande de frente; la escondida a 70° detrás (asoma una tira de vidrio y su cuerpo flota arriba a la izquierda); la volada a 50°; la del medio a −35°; la larga de la izquierda a −45° sobre una base de tablones; la entrada a −55° entre las dos, apoyada en el piso, con luz cálida y puertas de vidrio altas (`entrada=True`); el cuerpo de la volada (largo 127) pasa detrás de la grande y asoma a la izquierda, debajo de la escondida, que queda flotando; la planta baja vidriada es una caja 3D (`planta=15`) con el giro de la del medio y la escalera adentro; abajo a la derecha, la casa baja en 3D (45°, techo plano, `puerta=True`: frente ciego con puerta de chapa) pasa detrás de la grande y reaparece a la izquierda como techo. Abajo a la derecha, la casa baja de techo plano y otra de tablones.
+
+### 15 de noviembre de 2026
+
+- **VitraHaus:** la zona de abajo a la derecha, rehecha como en la foto de noche: la casa baja vista de costado (`costado()`, techo a dos aguas liso, pared ciega, `puerta()` de chapa) y detrás un volumen de ladrillo (`ladrillos()`); se sacaron la casita 3D con puerta, la de tablones y el muro de fondo sobrante. Fondo rojo silla.
+- **Manchester:** fondo borgoña. Opciones de fondo para las dos en `fondos.html` (8 cada una).
+- **Tanda de a cuatro:**
+  - **Reino Unido** (bandera nueva) y **Estados Unidos** (rehecha) en `banderas.py`: medidas oficiales, planas. Reino Unido al triple (180 × 90), simétrica (se calcula un cuarto) y con bordes suaves (colores intermedios `uk-m-*`); Estados Unidos a 197.5 × 104, con la misma estrella de cinco puntas en las 50.
+  - **Educativo = Ciudad Universitaria, Pabellón III** (`ciudad.py`; fotos en `estudios:academico/`, más una de frente que mandó el usuario y dos de Wikimedia Commons): cornisa, **4 tiras de ventanas** (planta baja y cuatro pisos, según una publicación de la FADU), bandejas de hormigón con juntas y chorreaduras, equipos de aire, planta baja escondida bajo la losa con nervios y pilares, canteros bajos, escalera en la punta izquierda bajando a la vereda, dos árboles. Se sacaron el charco y el reflejo (el usuario: "es un charco, no una reserva"). Fondo verde tipa.
+  - **Piedra arenisca** (`arenisca.py`): paño apaisado de sillería como la de Manchester, jaspeado con ruido suave, veta que ondula, bordes comidos, hollín en manchas bajo la moldura.
+- `comparar.js` suma los cuatro (y acepta países y materiales). `sw.js` en `v90`.
+

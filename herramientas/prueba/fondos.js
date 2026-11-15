@@ -10,15 +10,15 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['estilos', 'Posmodernismo', 'Posmodernismo · A House for Essex', ['posmodernismo/Arquitectura_postmoderno-less_is_nore-owen_hopkins-roomdiseno9.jpg', 'posmodernismo/images (9).jpeg'], {
-    'A · salvia': ['#a7b39a', '#2a3027'],
-    'B · menta gris': ['#b9cbbd', '#25302a'],
-    'C · pistacho': ['#c2c98f', '#30331f'],
-    'D · musgo': ['#7e8a5a', '#262b1a'],
-    'E · eucalipto': ['#8fa59a', '#223029'],
-    'F · oliva': ['#8c8a55', '#2b2a18'],
-    'G · verde agua': ['#9fbfb2', '#1f302b'],
-    'H · bosque': ['#4f6a52', '#1a241b'],
+  ['programas', 'Educativo', 'Educativo · Ciudad Universitaria (FADU)', ['estudios:academico/images (6).jpeg', 'estudios:academico/images (5).jpeg'], {
+    'A · mostaza': ['#d6b45a', '#33290f'],
+    'B · terracota': ['#c47a58', '#341f16'],
+    'C · salvia': ['#a3ae8e', '#262b20'],
+    'D · jacarandá': ['#a495c4', '#242033'],
+    'E · río marrón': ['#a08a6c', '#2b241b'],
+    'F · rosa tiza': ['#d4a9a0', '#33242a'],
+    'G · verde tipa': ['#8a9a4e', '#232913'],
+    'H · ladrillo': ['#a65a44', '#2e1912'],
   }],
 ];
 
