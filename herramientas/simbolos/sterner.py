@@ -358,7 +358,8 @@ def version():
         d = abs(x + 0.5 - 453)
         if 78 <= d <= 103:
             P(l, banda(d, -1 if x < 453 else 1), x, x + 1, 482, 662)
-    P(l, 'an-piedra-s', 374, 532, 520, 845)                        # cara de adentro de los vanos
+    for x0, x1, y1 in ((374, 532, 740), (374, 480, 792), (374, 426, 838)):   # cara de adentro, solo en el vano
+        P(l, 'an-piedra-s', x0, x1, 520, y1)
     P(l, 'an-marco', 378, 528, 522, 740)
     P(l, 'an-marco', 378, 476, 740, 792)
     P(l, 'an-marco', 378, 422, 792, 838)
