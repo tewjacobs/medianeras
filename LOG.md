@@ -8,6 +8,16 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**14 de noviembre de 2026, noche tarde (cierre).** Subido (`v89`).
+
+**Próxima sesión:**
+1. **VitraHaus (Arquitectura contemporánea):** rehecha en 3D (ver bitácora) y subida; el usuario la dio por buena al pedir subir. Falta el fondo (hoy provisorio `contemporanea-fondo`, crema). Si aprueba, opciones de fondo en `fondos.html` (hoy provisorio `contemporanea-fondo`, crema).
+2. **Catedral de Manchester (Gótico perpendicular): dibujo aprobado** ("la catedral está lista"). Falta el fondo (hoy provisorio `perpendicular-fondo`, gris piedra): opciones en `fondos.html`.
+3. Después, como estaba: revisión en el iPhone, carpeta de presentación (punto 4 del plan), sanskule, jagten.
+
+- **Sombra en `armar.py`:** `Lienzo.sombra(a, b, f0, f1, con)`, `oscurecer()` y `con_sombras(colores, nombres, k, sufijo)`; Essex los usa (salida idéntica). Los armadores nuevos ya sombrean desde la primera versión.
+- **Lo que pidió el usuario en esta tanda** (sirve para los próximos): sin huecos de fondo entre volúmenes; techos de casas de costado como plano liso con las aristas de las puntas en diagonal; cada volumen con su tono; casas de frente con su cuerpo que se va hacia atrás (techo y costado), y no todas para el mismo lado; ventanales que se lean como vidrio (cortina, poco interior, un brillo); piedra gastada con hollín y chorreaduras debajo de cada saliente; arcos en punta y contornos que sigan el arco (sin escalones de ajedrez); remates que no parezcan grilla.
+
 **14 de noviembre de 2026, noche (cierre).** Subido (`v88`, commit c6c02d0).
 
 **Próxima sesión:**
@@ -755,3 +765,12 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
   - Lecciones de esta tanda: el usuario quiere **elevación de frente, no perspectiva** (los techos de costado se ven como rectángulos); **la misma cantidad de piezas que la obra real**, o más chicas; **precisión** (anchos iguales, patrones alineados a una grilla); **sombreado** para que se vea realista.
   - `herramientas/capturas/ver.sh`: en claro usa `preferredColorScheme=1` (antes salía en oscuro). `comparar.js` suma los dos.
 
+### 14 de noviembre de 2026, noche tarde
+
+- `sombra()` y `CON_SOMBRA` de `essex.py` pasaron a `armar.py` (`Lienzo.sombra`, `oscurecer`, `con_sombras`).
+- **Arquitectura contemporánea = VitraHaus** (Herzog & de Meuron, Weil am Rhein; datos de memoria, solo en la nota): `vitra.py`, medida sobre `contemporaneo/images (6).jpeg`. Cuatro hastiales vidriados con la misma pendiente, cada uno con su cuerpo hacia atrás (C, la volada, hacia la izquierda), casas de costado con el faldón liso y aristas en diagonal, planta baja vidriada con escalera, caja baja con puertas, volumen de ladrillo, pasto con lirios y dos árboles. Cuatro rondas de correcciones del usuario.
+- **Gótico perpendicular = catedral de Manchester, lado sur** (`manchester.py`, medida sobre `gotico perpendicular/3_IMG_6851_3__…jpg`): torre con tracería ciega, campanario de dos luces con tablillas, reloj redondo a las 10:20, balconcito y caño de bajada; pórtico con arco en marco recto, enjutas, nichos, frisos y pináculos; nave de seis tramos con ventanales perpendiculares, remate en tres pisos (almenas, claristorio, parapeto de tableros) y torrecilla; desgaste con `gastar()`. **Aprobada.**
+- `comparar.js` suma los dos. `sw.js` en `v89`. Nada commiteado.
+- **VitraHaus en 3D** (pedido del usuario, que describió la planta): `casitas()` en `vitra.py` arma cada casita como un prisma de dos aguas girado en planta y lo proyecta de frente (mirada casi a nivel, `CABEZA`), con z-buffer, gris por cara según la luz (`LUZ`, `vt-g1`…`vt-g6`) y aristas finas entre caras. Orientaciones: la de arriba de frente (0°); arriba a la derecha 45° a la derecha, volada; la del medio −45°; la chica de abajo a la izquierda −45°, más al fondo; una escondida a 70° detrás de la de la derecha (solo se ven sus paredes). Interiores cálidos; persiana lisa arriba y tres paños; astillas limpiadas; planta baja con escalera, tablones horizontales y puertas de chapa; un solo árbol; bordes suavizados con 4 submuestras por fila (colores `vt-m*` que se calculan al guardar). El método sirve para cualquier obra con volúmenes girados.
+
+- **VitraHaus, último intento del 14/11** (el usuario pidió "una vez más"; si no convence, la alternativa es otra obra contemporánea con fachada de frente): seis casas medidas sobre la foto de noche `contemporaneo/images (2).jpeg` (x = (px − 80) · 0.42, fila = (py − 140) · 0.42 + 4): la grande de frente; la escondida a 70° detrás (asoma una tira de vidrio y su cuerpo flota arriba a la izquierda); la volada a 50°; la del medio a −35°; la larga de la izquierda a −45° sobre una base de tablones; la entrada a −55° entre las dos, apoyada en el piso, con luz cálida y puertas de vidrio altas (`entrada=True`); el cuerpo de la volada (largo 127) pasa detrás de la grande y asoma a la izquierda, debajo de la escondida, que queda flotando; la planta baja vidriada es una caja 3D (`planta=15`) con el giro de la del medio y la escalera adentro; abajo a la derecha, la casa baja en 3D (45°, techo plano, `puerta=True`: frente ciego con puerta de chapa) pasa detrás de la grande y reaparece a la izquierda como techo. Abajo a la derecha, la casa baja de techo plano y otra de tablones.

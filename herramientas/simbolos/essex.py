@@ -10,7 +10,7 @@
 # Todo lo simétrico se arma en unidades desde su centro (centrado()), así los dos lados quedan iguales.
 # Uso: essex.py <simbolos.json> (pone estilos."Posmodernismo").
 import sys, math
-from armar import Lienzo, guardar
+from armar import Lienzo, guardar, oscurecer, con_sombras
 
 S = 0.38                                   # unidades por px
 X0, X1, Y0, Y1 = 36, 690, 44, 462
@@ -92,10 +92,7 @@ CON_SOMBRA = ('es-oro', 'es-oro-c', 'es-oro-o', 'es-verde', 'es-verde-c', 'es-ve
               'es-cielo', 'es-sombra', 'es-vidrio-m', 'es-vidrio-o', 'es-rojo-c')
 
 def sombra(l, a, b, f0, f1):
-    # Pasa a sombra lo que haya entre a y b (unidades) y las filas f0 a f1.
-    for f in range(max(0, f0), min(len(l.c), f1)):
-        for i in range(max(0, round(a * 4)), min(l.n, round(b * 4))):
-            if l.c[f][i] in CON_SOMBRA: l.c[f][i] += '-s'
+    l.sombra(a, b, f0, f1, CON_SOMBRA)
 
 def faldon(l, a, b, y0, y1, junta=6):
     # Faldón rectangular de chapa dorada entre a y b (unidades): cumbrera arriba, juntas alzadas marcadas
@@ -377,9 +374,7 @@ COLORES = {
     'pos-bosque': ('#4f6a52', '#1a241b'), 'pos-bosque-marco': ('#f3ead9', '#e5dbe4'),
 }
 
-def oscurecer(h, k=0.8):
-    return '#' + ''.join(f'{round(int(h[i:i + 2], 16) * k):02x}' for i in (1, 3, 5))
-COLORES.update({c + '-s': tuple(oscurecer(v) for v in COLORES[c]) for c in CON_SOMBRA})
+con_sombras(COLORES, CON_SOMBRA)
 COLORES['es-oro-s'] = tuple(oscurecer(v, 0.88) for v in COLORES['es-oro'])
 
 if __name__ == '__main__':

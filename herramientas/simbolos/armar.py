@@ -89,6 +89,21 @@ class Lienzo:
             out.append(', '.join(f'{c} {l:g}' for c, l in tramos) or '- 0.25')
         return out
 
+    def sombra(self, a, b, f0, f1, con, sufijo='-s'):
+        # Pasa a sombra (color + sufijo) lo que haya entre a y b (unidades) y las filas f0 a f1, si está en `con`.
+        for f in range(max(0, f0), min(len(self.c), f1)):
+            for i in range(max(0, round(a * 4)), min(self.n, round(b * 4))):
+                if self.c[f][i] in con: self.c[f][i] += sufijo
+
+# Sombreado (luz arriba a la izquierda): cada color que lo necesite tiene su versión en sombra, más oscura.
+def oscurecer(h, k=0.8):
+    return '#' + ''.join(f'{round(int(h[i:i + 2], 16) * k):02x}' for i in (1, 3, 5))
+
+def con_sombras(colores, nombres, k=0.8, sufijo='-s'):
+    # Suma a `colores` la versión oscura (nombre + sufijo) de cada uno de `nombres`.
+    colores.update({c + sufijo: tuple(oscurecer(v, k) for v in colores[c]) for c in nombres})
+    return colores
+
 def con_colores(texto, colores, prefijo):
     # Saca los colores que empiezan con `prefijo` y pone `colores` al principio de la sección.
     texto = re.sub(rf'    "(?:{prefijo})[^"]*": \{{[^}}]*\}},\n', '', texto)
