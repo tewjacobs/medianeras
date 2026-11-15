@@ -8,7 +8,7 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**15 de noviembre de 2026, tarde (cierre).** Subido (`v93`). Últimos arreglos: en la puerta, las varillas salen del pie de la columna hacia la izquierda (en el ojo, a la derecha) y las ventanitas tienen las esquinas de arriba curvas; ladrillo de vuelta debajo de los antepechos en escalón del vitral (la sombra del vano lo tapaba).
+**15 de noviembre de 2026, tarde (cierre).** Subido (`v94`). Últimos arreglos: sin las esquinas de sillares en los bordes de la fachada de Sterner (en la realidad el pilar es de ladrillo); cantero del chalet con tapa, tierra y matas con flores; en la puerta, las varillas salen del pie de la columna hacia la izquierda (en el ojo, a la derecha) y las ventanitas tienen las esquinas de arriba curvas; ladrillo de vuelta debajo de los antepechos en escalón del vitral (la sombra del vano lo tapaba).
 
 **Próxima sesión:**
 1. **Art nouveau (taller Sterner, Bruselas; `sterner.py`) y Chalet californiano (Ciudad Evita; `chalet.py`)**: segunda ronda de correcciones mostrada; esperar su ok. Después, fondos (hoy provisorios crema `nouveau-fondo` y `californiano-fondo`; la fachada crema casi se pierde en el fondo crema: proponer contraste). Los estilos todavía **no existen en `perfiles.json`**: crearlos cuando haya obras (descripciones verificadas). Nombre provisorio "Chalet californiano" (preguntado, sin respuesta).

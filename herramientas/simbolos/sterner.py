@@ -155,8 +155,6 @@ def version():
 
     # Fachada: ladrillo claro y esquinas de piedra.
     ladrillo(l, FL, FR, 40, SUELO)
-    sillares(l, FL, FL + 30, 52, SUELO, 18)
-    sillares_der(l, FR - 30, FR, 52, SUELO, 18)
     for x0, x1 in ((FL + 12, 182), (552, FR - 12)):                 # remates de los pilares
         P(l, 'an-piedra', x0, x1, 32, 54)
         P(l, 'an-piedra-c', x0, x1, 32, 37)

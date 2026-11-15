@@ -255,8 +255,6 @@ def version():
             if (round(x * 4) + k * 3) % 5 == 0: l.rect('ce-adoquin-c', x + 0.25, x + 1.25, f, f + 1)
             x += 1.5
     P(l, 'ce-blanco-s', X0, X1, SUELO, SUELO + 6)
-    piedra(l, 1300, X1, 398, 440)                                                  # cantero de piedra
-    P(l, 'ce-piedra-c', 1300, X1, 398, 404)
 
     # Jardín: pastos a la izquierda, arbusto redondo, buzón, el formio y flores rosas.
     celdas(l, X0, 200, 392, Y1, lambda x, y: ('ce-hoja-c' if (x - 100) + (y - 430) < -20 else 'ce-hoja')
@@ -283,17 +281,28 @@ def version():
             x = bx + math.cos(a) * largo * t * (0.6 + 0.4 * t)
             c = ('ce-formio', 'ce-formio-c', 'ce-formio-o', 'ce-formio')[k % 4]
             l.rect(c, ux(x) - 0.25, ux(x) + 0.75 * (1 - t) + 0.25, f, f + 1)
-    for x, y in ((1330, 352), (1352, 340), (1440, 330), (1418, 362)):
-        P(l, 'ce-flor', x - 6, x + 6, y, y + 8)
-    for k, x in enumerate(range(1310, X1, 14)):
-        P(l, 'ce-hoja' if k % 2 else 'ce-hoja-c', x, x + 5, 360 + (k % 3) * 8, 400)
+    # Cantero: murito bajo de piedra con su tapa que vuela un poco, la tierra y matas bajas con flores rosas.
+    piedra(l, 1300, X1, 404, 446)
+    P(l, 'ce-piedra-c', 1296, X1, 396, 402)                                        # tapa con luz
+    P(l, 'ce-piedra', 1296, X1, 402, 406)
+    P(l, 'ce-piedra-s', 1300, X1, 406, 412)                                        # sombra debajo de la tapa
+    P(l, 'ce-piedra-s', 1300, 1306, 412, 446)
+    P(l, 'ce-adoquin-s', 1296, X1, 446, 452)                                       # sombra en el piso
+    P(l, 'ce-tierra', 1302, X1, 390, 396)
+    for k, (cx, w, h) in enumerate(((1325, 26, 30), (1368, 30, 40), (1414, 26, 32), (1455, 30, 38))):
+        celdas(l, cx - w, cx + w, 396 - h, 396, lambda x, y, cx=cx, w=w, h=h, k=k:
+               ('ce-hoja-c' if x < cx - w * 0.2 and y < 396 - h * 0.45 else 'ce-hoja-s' if x > cx + w * 0.3 else 'ce-hoja')
+               if ((x - cx) / w) ** 2 + ((y - 396) / h) ** 2 <= 1 else None)
+        for j in range(4):                                                         # flores rosas sobre la mata
+            fx, fyy = cx - w * 0.6 + j * w * 0.4, 396 - h * (0.55 + 0.3 * ((j + k) % 2))
+            P(l, 'ce-flor', fx - 4, fx + 4, fyy - 6, fyy)
 
     return {'nota': 'Un chalet californiano de Ciudad Evita: techos de tejas coloniales, el hastial poco '
                     'empinado con la ventana en arco de persiana, revoque blanco y piedra laja, la galería con '
                     'la puerta de madera, la reja ornamental, el farol negro y el jardín con el formio.',
             'direccion': 'horizontal', 'separacion': 0, 'largo': LARGO, 'lineas': l.lineas()}
 
-SOMBREABLES = ('ce-piedra-r', 'ce-vidrio-c', 'ce-puerta-c', 'ce-blanco-c', 'ce-teja', 'ce-blanco', 'ce-piedra', 'ce-piedra-c', 'ce-piedra-o', 'ce-junta', 'ce-terracota',
+SOMBREABLES = ('ce-hoja', 'ce-piedra-r', 'ce-vidrio-c', 'ce-puerta-c', 'ce-blanco-c', 'ce-teja', 'ce-blanco', 'ce-piedra', 'ce-piedra-c', 'ce-piedra-o', 'ce-junta', 'ce-terracota',
                'ce-vidrio', 'ce-cortina', 'ce-reja', 'ce-marco', 'ce-puerta', 'ce-puerta-o', 'ce-galeria',
                'ce-ladrillo', 'ce-tablilla', 'ce-piso', 'ce-arbusto', 'ce-adoquin')
 COLORES = {
@@ -313,7 +322,7 @@ COLORES = {
     'ce-pasto': ('#9c8a4e', '#8c7c46'), 'ce-pasto-c': ('#c2ad6a', '#ae9b5f'), 'ce-pasto-r': ('#8a4f3e', '#7c4738'),
     'ce-arbusto': ('#7fae45', '#729d3e'), 'ce-arbusto-c': ('#a7cc62', '#96b858'),
     'ce-formio': ('#4b5a35', '#43512f'), 'ce-formio-c': ('#7d8c4e', '#707e46'), 'ce-formio-o': ('#2f3a24', '#2a3420'),
-    'ce-flor': ('#e98aa8', '#d67e9a'),
+    'ce-flor': ('#e98aa8', '#d67e9a'), 'ce-tierra': ('#5a4636', '#4e3d2f'),
     'ce-adoquin': ('#9a948c', '#7f7a73'), 'ce-adoquin-c': ('#b3ada4', '#958f88'),
     'californiano-fondo': ('#efe6d2', '#2b2722'), 'californiano-fondo-marco': ('#2b2722', '#efe6d2'),
 }
