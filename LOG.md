@@ -8,6 +8,21 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
+**15 de noviembre de 2026, tarde (cierre).** Subido (`v91`).
+
+**Próxima sesión:**
+1. **Art nouveau (taller Sterner, Bruselas; `sterner.py`) y Chalet californiano (Ciudad Evita; `chalet.py`)**: segunda ronda de correcciones mostrada; esperar su ok. Después, fondos (hoy provisorios crema `nouveau-fondo` y `californiano-fondo`; la fachada crema casi se pierde en el fondo crema: proponer contraste). Los estilos todavía **no existen en `perfiles.json`**: crearlos cuando haya obras (descripciones verificadas). Nombre provisorio "Chalet californiano" (preguntado, sin respuesta).
+2. Pendiente de respuesta: ¿sumar al chalet el murito bajo con reja curva típico de Ciudad Evita? (las capturas son de varias casas del barrio, no de una).
+3. Colonial y Bungalow siguen sin fotos. Después lo de antes: iPhone, carpeta de presentación, sanskule, jagten.
+
+- **Taller Sterner:** rue du Lac 6, Ixelles, de Ernest Delune para el vitralista Clas Grüner Sterner (verificado en Wikipedia y visit.brussels); el año varía según la fuente (1902, 1907, "1893–1902"): no cargado. Sin los vecinos (pedido del usuario). El mirador se dibuja en un lienzo aparte y se tuerce: las caras en ángulo bajan hacia afuera (no es una caja). Vitral apagado de día; violetas de cuatro pétalos separadas.
+- **Chalet:** la casa de la 4.ª captura (sin dirección en ningún lado). Techo principal que sigue detrás del hastial; ala derecha aparte, más atrás, con techito a dos aguas; reja de la ventana pareja (6 × 5 aros iguales), poca sombra en ventanas.
+- **Ojo con los prefijos de colores:** `guardar()` borra todos los colores que empiezan con el prefijo. `cc-` ya era de `cctv.py` y se borraron sus colores (se restauró con `git checkout` del json y se volvió a correr). Antes de elegir prefijo: `grep '"pre-' www/data/simbolos.json`. El chalet usa `ce-` y Sterner `an-`.
+
+**Ideas del usuario para después (15/11):**
+- **Juego tipo GeoGuessr:** adivinar si una calle es de una ciudad argentina, de Estados Unidos o europea, solo por el cuidado, las veredas, la arquitectura (sin carteles). Lo disparó comparar tres rotondas: Dailly (Schaerbeek, Bruselas), La Isla (Recoleta) y Forest Hills Gardens (Nueva York); capturas en su Escritorio. Siente que Argentina desperdicia su potencial y que el patrimonio debería estar más cuidado. Para armarlo: fotos con derechos claros (Wikimedia Commons o capturas suyas), tapando carteles y patentes.
+- **sanskule con mirada urbana:** que proponga cómo mejorar el desarrollo urbano con ideas bellas que además sean desarrollos viables; pueden ser caras de construir (buenos materiales) pero no una carga de mantenimiento: modernas en el sentido de no cargar con lo que ya no sirve, como pasa con edificios muy viejos. Sumarlo al contexto de sanskule cuando se retome (no arrancar sin pedido).
+
 **15 de noviembre de 2026, mediodía (cierre).** Subido (`v90`).
 
 **Próxima sesión:**
@@ -607,6 +622,8 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - **Clasificación:** "estilo a decidir" o "mezcla" es una respuesta válida. Mejor eso que inventar.
 
 ## Bitácora
+
+**15/11, tarde.** Símbolos nuevos de Art nouveau (taller Sterner, Bruselas) y Chalet californiano (Ciudad Evita), con tres rondas de correcciones del usuario (relieve y forma del mirador, uniones del anillo con las jambas, puerta rehecha, vitral de día, ladrillos más cálidos, reja y ventana como la foto; en el chalet, cruces de techos, piedra laja, plantas más chicas, ventanas parejas y ala a dos aguas). Ideas anotadas: juego de adivinar ciudades y sanskule urbano. `v91`.
 
 ### 17 de octubre de 2026
 

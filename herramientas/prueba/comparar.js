@@ -53,6 +53,8 @@ const CON_FOTO = [
   ['estilos', 'Posmodernismo', ['posmodernismo/Arquitectura_postmoderno-less_is_nore-owen_hopkins-roomdiseno9.jpg', 'posmodernismo/images (9).jpeg']],
   ['estilos', 'Neofuturismo', ['neofuturismo/images (8).jpeg', 'neofuturismo/biosfera-de-montreal-1536x1152.jpg']],
   ['estilos', 'Arquitectura contemporánea', ['contemporaneo/images (6).jpeg', 'contemporaneo/images (2).jpeg']],
+  ['estilos', 'Art nouveau', ['art nouveau/rkh79myno1l71.jpg', 'art nouveau/ed54mo75tk7e1.jpg']],
+  ['estilos', 'Chalet californiano', ['chalet californiano/Screenshot 2026-11-15 at 12.43.44.png', 'chalet californiano/Screenshot 2026-11-15 at 12.43.31.png']],
   ['estilos', 'Gótico perpendicular', ['gotico perpendicular/3_IMG_6851_3__bc045f34-e4a1-4f75-aadc-229cf41cdfa7.jpg']],
   ['estilos', 'Brutalismo', ['brutalismo/La_Pyramide_Abidjan.png', 'brutalismo/pyramide.jpg']],
   ['estilos', 'Moderno tardío', ['tardomoderna/Tenerife_auditorio_5-1920x1430.jpg', 'tardomoderna/images.jpeg']],
