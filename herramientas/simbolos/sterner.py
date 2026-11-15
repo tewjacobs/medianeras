@@ -470,12 +470,17 @@ def version():
     def fan(x, y): return en_circ(x, y, R - 12) and y < 790
     celdas(l, 160, 232, 720, 790, lambda x, y: 'an-vidrio-d' if fan(x, y) else None)
     celdas(l, 270, 312, 720, 790, lambda x, y: 'an-vidrio-d' if fan(x, y) else None)
-    for f in range(fy(745), fy(790)):
-        t = (790 - py(f)) / 45
-        for x0, s in ((198, (-1, -0.4, 0.2, 0.8)), (291, (-0.7, 0.5))):
+    for f in range(fy(722), fy(790)):                               # varillas en abanico desde el pie de la
+        t = (790 - py(f)) / 68                                       # columna: en la hoja suben hacia la izquierda,
+        for x0, d, s in ((232, -1, (0.25, 0.5, 0.75, 1.0)), (268, 1, (0.35, 0.8))):   # en el ojo hacia la derecha
+            t2 = (790 - py(f) - 1 / S) / 68                          # la fila de abajo: se une sin cortes
             for k in s:
-                x = x0 + k * 30 * t
-                if fan(x, py(f)): l.rect('an-tallo-d', ux(x), ux(x) + 0.25, f, f + 1)
+                xa = x0 + d * 75 * k * math.sin(t * math.pi / 2) ** 1.4
+                xb = x0 + d * 75 * k * math.sin(max(0, t2) * math.pi / 2) ** 1.4
+                for x in (xa, xb):
+                    if not fan(x, py(f)): break
+                else:
+                    l.rect('an-tallo-d', ux(min(xa, xb)), max(ux(max(xa, xb)), ux(min(xa, xb)) + 0.25), f, f + 1)
     for k, (x, y) in enumerate(((186, 742), (199, 733), (212, 731), (224, 733), (192, 755), (217, 748),
                                 (283, 740), (296, 752))):
         violeta(l, x, y, k)
@@ -483,13 +488,19 @@ def version():
         celdas(l, x0, x1, 790, 803, lambda x, y: ('an-puerta-c' if y < 793 else 'an-puerta') if hueco(x, y, R - 3) else None)
     # Vidrios de abajo: terminan contra la curva grande (radio 66). Hoja: oscuro y hojas verdes; ojo: igual.
     def bajo(x, y): return y >= 806 and en_circ(x, y, R - 16)
+    def redondeado(x, y, x0, x1, r=10):
+        # Esquinas de arriba curvas en cada ventanita.
+        for cx in (x0 + r, x1 - r):
+            if (x < x0 + r if cx == x0 + r else x > x1 - r) and y < 806 + r:
+                return (x - cx) ** 2 + (y - 806 - r) ** 2 <= r * r
+        return True
     for x0, x1, c in ((166, 193, 'an-vidrio-d'), (198, 230, 'an-hoja-v'), (270, 284, 'an-hoja-v'), (288, 304, 'an-vidrio-d')):
-        celdas(l, x0, x1, 806, 880, lambda x, y, c=c: c if bajo(x, y) else None)
+        celdas(l, x0, x1, 806, 880, lambda x, y, c=c, x0=x0, x1=x1: c if bajo(x, y) and redondeado(x, y, x0, x1) else None)
     for f in range(fy(808), fy(876)):                                # hojas en diagonal
         k = f - fy(808)
         for x0, x1 in ((198, 230), (270, 284)):
-            x = x0 + 3 + (k * 2.5) % (x1 - x0 - 4)
-            if bajo(x, py(f)): l.rect('an-hoja-vc', ux(x), ux(x) + 0.75, f, f + 1)
+            x = x1 - 4 - (k * 2.5) % (x1 - x0 - 4)                  # bajan hacia la izquierda
+            if bajo(x, py(f)) and redondeado(x, py(f), x0, x1): l.rect('an-hoja-vc', ux(x), ux(x) + 0.75, f, f + 1)
     # La curva grande: un canto con luz arriba y la sombra abajo, en la hoja y en el ojo.
     celdas(l, 150, 316, 806, 890, lambda x, y: ('an-puerta-c' if math.hypot(x - CX, y - CY) < R - 13
            else 'an-puerta-o' if math.hypot(x - CX, y - CY) > R - 9 else None)
