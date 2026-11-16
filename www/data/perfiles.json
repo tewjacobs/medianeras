@@ -99,6 +99,7 @@
       "descripcion": "Corriente contemporánea de formas curvas, fluidas o de estructura expresiva, que busca transmitir movimiento y tecnología. Retoma el entusiasmo del futurismo de principios del siglo XX y de la arquitectura de la era espacial con herramientas digitales."
     },
     "Posmodernismo": {
+      "padre": "Arquitectura contemporánea",
       "color": "rosa",
       "descripcion": "Reacción de los años 70 y 80 contra la sobriedad del movimiento moderno. Vuelve a usar referencias históricas (arcos, frontones, columnas), el color y la ironía, muchas veces de forma simplificada o exagerada. Robert Venturi lo resumió al responder a \"menos es más\" con \"menos es aburrido\"."
     },

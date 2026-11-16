@@ -8,14 +8,14 @@ Se usa como Letterboxd o RYM: un inicio con filas temáticas y una página por a
 
 ## Estado
 
-**16 de noviembre de 2026 (cierre de etapa).** Subido (`v96`). Chalet californiano terminado (pared de la galería blanca, murito bajo con reja curva) y fondos elegidos: Art nouveau **ocre dorado**, Chalet **eucalipto**. Bungalow sacado de los estilos ("es un tipo de casa, no un estilo"). 38 estilos en `perfiles.json`, 17 nuevos sin obras todavía (sus páginas ya se abren). El índice de estilos ahora va en **cuatro familias** con grilla de símbolos (`familiasEstilos` en `perfiles.json`): Antes de 1800 · Siglo XIX y Belle Époque · Moderno · Contemporáneo. El usuario da por cerrada esta etapa.
+**16 de noviembre de 2026 (cierre de etapa).** Subido (`v97`). Chalet californiano terminado (pared de la galería blanca, murito bajo con reja curva) y fondos elegidos: Art nouveau **ocre dorado**, Chalet **eucalipto**. Bungalow sacado de los estilos ("es un tipo de casa, no un estilo"). 38 estilos en `perfiles.json`, 17 nuevos sin obras todavía (sus páginas ya se abren). El índice de estilos ahora va en **cuatro familias** con grilla de símbolos (`familiasEstilos` en `perfiles.json`): Antes de 1800 · Siglo XIX y Belle Époque · Moderno · Contemporáneo. El usuario da por cerrada esta etapa.
 
 **Próxima etapa (cuando el usuario vuelva):**
 1. Revisar en el iPhone el índice de estilos nuevo (`#/estilos`): tres columnas, que se lea bien.
-2. Colonial: foto y símbolo (pospuesto por el usuario). Vasco y Normando, si aparece una obra (faltaron fuentes).
-3. Preguntas abiertas: ¿Posmodernismo como rama de Arquitectura contemporánea? (hoy es raíz; en el índice ya va en Contemporáneo). ¿Chalet californiano sigue como rama de Colonial? Cambiar el mensaje "Cargalas en data/obras.json" de los perfiles sin obras por algo para el lector.
+2. **Sanskule** (decisión del usuario: la próxima sesión arranca por ahí).
+3. Vasco y Normando, si aparece una obra (faltaron fuentes). Símbolos de estilos: no hacer el de Colonial suelto; faltan los de muchos estilos y se encaran en tanda más adelante. ¿Chalet californiano sigue como rama de Colonial? Cambiar el mensaje "Cargalas en data/obras.json" de los perfiles sin obras por algo para el lector.
 4. Datos con una sola fuente: fechas generales de Eclecticismo, Minimalismo, inicio del Modernismo catalán (1888).
-5. Lo de antes: sanskule, jagten, carpeta de presentación.
+5. Lo de antes: jagten, carpeta de presentación.
 
 **15 de noviembre de 2026, tarde (cierre).** Subido (`v94`). Últimos arreglos: sin las esquinas de sillares en los bordes de la fachada de Sterner (en la realidad el pilar es de ladrillo); cantero del chalet con tapa, tierra y matas con flores; en la puerta, las varillas salen del pie de la columna hacia la izquierda (en el ojo, a la derecha) y las ventanitas tienen las esquinas de arriba curvas; ladrillo de vuelta debajo de los antepechos en escalón del vitral (la sombra del vano lo tapaba).
 
@@ -828,4 +828,5 @@ Una idea de Lakatos que conviene usar: un programa es **progresivo** si los camb
 - **Fondos:** Art nouveau ocre dorado (`nouveau-ocre`), Chalet eucalipto (`californiano-eucalipto`), con marco invertido.
 - **Estilos:** Bungalow fuera (la casa de los Arcos pasa a Pintoresquismo). Nuevos: Art nouveau, Chalet californiano, Eclecticismo, Neoclásico, Expresionismo, Barroco jesuítico, Modernismo catalán, Secesión vienesa, Liberty, Neorrománico, Neobizantino, Neomudéjar, Neoegipcio, Estilo Mar del Plata, Estilo internacional, High-tech, Minimalismo. Descripciones cruzadas con fuentes que no son Wikipedia (UNESCO, secession.at, MoMA, FAUD-UNMdP, esMadrid, Smithsonian, RSHP, etc.); se corrigieron Secesión (pabellón 1898), Liberty (sin año), Neoclásico (Puerta de Brandeburgo en vez del Prado) y se sacaron años sin segunda fuente. Regla nueva: no usar solo Wikipedia.
 - **App:** los estilos de `perfiles.json` tienen página aunque no tengan obras (`valorDeSlug` y `renderIndice` en `perfil.js`). Índice de estilos por familias con grilla de símbolos (los sin símbolo muestran una raya de su color). Opciones en `herramientas/prueba/estilos-indice.html`; el usuario eligió cuatro familias, con Art déco y sus ramas en Moderno y Art nouveau y las suyas en el siglo XIX.
-- `sw.js` en `v96`. Commit y push.
+- Posmodernismo pasa a ser rama de Arquitectura contemporánea (pedido del usuario).
+- `sw.js` en `v97`. Commit y push.
