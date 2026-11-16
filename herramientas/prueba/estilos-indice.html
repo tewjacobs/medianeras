@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Índice de estilos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body { background: #8d8a85; padding: 16px; margin: 0; font-family: var(--sans); }
+    #opciones { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+    .telefono { width: 390px; }
+    .telefono > h2 { font-size: 15px; font-weight: 850; margin: 0 0 6px; color: #1a1917; }
+    .pantalla { background: var(--papel); color: var(--tinta); padding: 16px; }
+    .pantalla h1 { font-size: 30px; font-weight: 850; font-stretch: 115%; text-transform: uppercase; margin: 0 0 12px; }
+    .pantalla h3 { font-size: 13px; font-weight: 850; font-stretch: 115%; text-transform: uppercase; letter-spacing: .04em; margin: 18px 0 8px; padding-top: 6px; border-top: 2px solid var(--tinta); }
+    .familia h3 { border-top: 6px solid var(--fam); }
+    .cuenta-familia { font-family: var(--mono); font-weight: 400; text-transform: none; color: var(--tenue); }
+    .ix-grilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 8px; }
+    .ix-ficha { display: flex; flex-direction: column; gap: 2px; color: inherit; text-decoration: none; }
+    .ix-ficha .caja { aspect-ratio: 1; overflow: hidden; }
+    .ix-ficha .caja.sin-simbolo { background: var(--papel-2); }
+    .ix-ficha svg { display: block; width: 100% !important; height: 100% !important; }
+    .ix-ficha .nombre { font-size: 12px; font-weight: 700; line-height: 1.15; margin-top: 3px; }
+    .ix-ficha .cuenta, .lista .cuenta { font-family: var(--mono); font-size: 10px; color: var(--tenue); }
+    .sin-obras svg { opacity: .55; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+    .chip { font: 600 12px var(--sans); padding: 5px 10px; border: 1px solid var(--filete); background: none; color: inherit; border-radius: 99px; }
+    .chip.activo { background: var(--tinta); color: var(--papel); border-color: var(--tinta); }
+    .lista { list-style: none; margin: 0 0 6px; padding: 0 0 0 8px; border-left: 6px solid var(--fam); }
+    .lista li { display: flex; align-items: center; gap: 10px; padding: 4px 0; border-bottom: 1px solid var(--filete); }
+    .lista li.hijo { padding-left: 22px; }
+    .lista li svg { width: 44px; height: 44px; flex: none; }
+    .lista .madre .nombre { font-weight: 800; font-size: 15px; }
+    .lista .hijo .nombre { font-weight: 600; font-size: 14px; }
+    .lista .cuenta { margin-left: auto; }
+  </style>
+</head>
+<body>
+  <div id="opciones"></div>
+  <script type="module" src="estilos-indice.js"></script>
+</body>
+</html>

@@ -1369,6 +1369,22 @@ div.perfil-resumen { display: block; }
 .indice-fila[style] a > span:first-child::before { content: '└ '; color: var(--tenue); font-family: var(--mono); }
 .indice-cantidad { font-family: var(--mono); font-size: 16px; color: var(--tenue); }
 
+/* Índice de estilos por familias: grilla de símbolos. */
+.familia { padding: 0 var(--margen); margin-top: 22px; }
+.familia h3 {
+  margin: 0 0 10px; padding-top: 6px; border-top: 6px solid var(--fam);
+  font-size: 14px; font-weight: 850; font-stretch: 115%; text-transform: uppercase; letter-spacing: .04em;
+}
+.familia-total { font-family: var(--mono); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--tenue); }
+.familia-grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 12px 8px; }
+.familia-ficha { display: flex; flex-direction: column; gap: 2px; color: var(--tinta); text-decoration: none; }
+.familia-caja { aspect-ratio: 1; overflow: hidden; }
+.familia-caja.sin-simbolo { background: var(--papel-2); }
+.familia-caja svg { display: block; width: 100%; height: 100%; }
+.familia-nombre { font-size: 13px; font-weight: 700; line-height: 1.15; margin-top: 3px; }
+.familia-cuenta { font-family: var(--mono); font-size: 11px; color: var(--tenue); }
+.familia-ficha.sin-obras svg { opacity: .55; }
+
 
 /* ---------- Pantallas más grandes ---------- */
 

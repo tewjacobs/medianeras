@@ -57,7 +57,6 @@
     "Arquitectura orgánica": {
       "color": "follaje",
       "padre": "Moderno",
-      "color": "follaje",
       "descripcion": "Corriente que busca la armonía entre el edificio, su función y su entorno natural. El término lo difundió Frank Lloyd Wright."
     },
     "Academicismo": {
@@ -112,10 +111,6 @@
       "color": "oliva",
       "descripcion": "La arquitectura de Inglaterra en la época de los Tudor (1485–1603): en las casas comunes, entramado de madera a la vista con relleno claro; en las grandes, ladrillo rojo, chimeneas altas y ventanas de muchos vidrios. Volvió en el siglo XIX y, sobre todo, en los suburbios ingleses y estadounidenses de los años 20 y 30 (en inglés, «mock Tudor»), que es lo que copiaron las casas pintoresquistas de Buenos Aires."
     },
-    "Bungalow": {
-      "color": "teja",
-      "descripcion": "Casa baja y ancha, de una planta o con un piso bajo el techo, con una galería al frente bajo un alero amplio. El nombre viene de la India («bangla», de Bengala), donde los ingleses lo usaron para sus casas coloniales; se hizo popular en Estados Unidos a comienzos del siglo XX, junto al Arts and Crafts, y llegó a Buenos Aires en los años 20."
-    },
     "Pintoresquismo": {
       "color": "oliva",
       "descripcion": "Casas de los años 20 a 50 que buscaban el aire de una casa de campo: techos inclinados de teja o pizarra, muros de ladrillo o revoque rústico, bow windows y jardín. Mezcla recuerdos del chalet inglés, normando o vasco."
@@ -123,6 +118,75 @@
     "Colonial": {
       "color": "mostaza",
       "descripcion": "La arquitectura de las colonias españolas en América, del siglo XVI al XIX: muros gruesos y blancos, patios, galerías de arcos, rejas, balcones de madera y techos de teja. Volvió en las primeras décadas del siglo XX (se lo llamó también estilo californiano o misionero): esas obras llevan la etiqueta «neo»."
+    },
+    "Art nouveau": {
+      "color": "duna",
+      "descripcion": "El «arte nuevo» de fines del siglo XIX y comienzos del XX: líneas curvas y asimétricas, motivos de plantas y flores, hierro forjado a la vista y vitrales. Una de sus primeras obras fue la Casa Tassel de Victor Horta, en Bruselas (1892–1893). Tomó nombres distintos en cada país: Modernismo en España e Hispanoamérica, Jugendstil en Alemania, Secesión en Austria, Liberty en Italia."
+    },
+    "Chalet californiano": {
+      "color": "teja",
+      "padre": "Colonial",
+      "descripcion": "Casa suburbana de techos de teja colonial, revoque blanco, piedra laja, rejas de hierro y galería, a veces con hastial y ventanas en arco. El modelo vino de la arquitectura doméstica de California de comienzos del siglo XX; en la Argentina apareció en los años 30 y fue un modelo de casa del primer peronismo, como en Ciudad Evita (tierras expropiadas en 1947)."
+    },
+    "Eclecticismo": {
+      "color": "arcilla",
+      "descripcion": "Edificios que combinan dos o más estilos históricos en una misma obra, con materiales variados, decoración muy elaborada y una búsqueda de simetría y equilibrio. Surgió en Francia y se extendió por Occidente entre 1860 y fines de los años 20."
+    },
+    "Neoclásico": {
+      "color": "cal",
+      "descripcion": "La vuelta a la Antigüedad griega y romana como reacción contra la exuberancia del barroco: sobriedad, líneas rectas, columnas y frontones. Nació a mediados del siglo XVIII y dominó la primera mitad del XIX; un ejemplo es la Puerta de Brandeburgo en Berlín (1788–1791), inspirada en los Propileos de la Acrópolis de Atenas."
+    },
+    "Barroco jesuítico": {
+      "padre": "Colonial",
+      "descripcion": "El barroco de las obras de la Compañía de Jesús en la América colonial, en los siglos XVII y XVIII. En Córdoba, la iglesia de la Compañía tiene la bóveda y la cúpula de madera, armadas con técnicas de construcción naval; la Manzana Jesuítica y las estancias de la provincia son Patrimonio de la Humanidad desde 2000."
+    },
+    "Modernismo catalán": {
+      "padre": "Art nouveau",
+      "descripcion": "La versión catalana del art nouveau, de la Exposición Universal de Barcelona (1888) a la Semana Trágica (1909); algunos autores lo estiran hasta los años 20. Quería renovar la cultura catalana uniendo todas las artes, con un fuerte tono nacional y neomedieval. Sus grandes nombres: Gaudí, Domènech i Montaner (Palau de la Música Catalana, 1905–1908) y Puig i Cadafalch."
+    },
+    "Secesión vienesa": {
+      "padre": "Art nouveau",
+      "descripcion": "El grupo de artistas de Viena que en 1897 se separó de la asociación oficial, con Gustav Klimt como primer presidente. Más sobrio y geométrico que el art nouveau de Bruselas o París: orden, equilibrio y ornamento estilizado. Su obra emblema es el Pabellón de la Secesión de Joseph Maria Olbrich (1898)."
+    },
+    "Liberty": {
+      "padre": "Art nouveau",
+      "descripcion": "La versión italiana del art nouveau, más o menos entre 1890 y 1914: más cargada de ornamento de raíz barroca y de color, con frescos en las fachadas. El nombre viene de la tienda de Arthur Liberty en Londres, que importaba objetos de Japón y Oriente; su gran momento fue la exposición de Turín de 1902."
+    },
+    "Neorrománico": {
+      "padre": "Historicismo",
+      "descripcion": "La vuelta al románico en el siglo XIX y las primeras décadas del XX: arcos de medio punto sobre puertas y ventanas, muros de ladrillo o piedra de un solo color, torres poligonales y bóvedas de cañón. Un ejemplo temprano es el edificio del Smithsonian en Washington (1855)."
+    },
+    "Neobizantino": {
+      "padre": "Historicismo",
+      "descripcion": "La vuelta a la arquitectura bizantina: cúpulas, arcadas, bóvedas, ladrillo y estuco, y mosaicos. Surgió en Europa occidental en la década de 1840 y tuvo su mayor desarrollo en el Imperio ruso a fines del siglo XIX; ejemplos: Notre-Dame de la Garde en Marsella y la catedral de Westminster en Londres."
+    },
+    "Neomudéjar": {
+      "padre": "Historicismo",
+      "descripcion": "La vuelta al arte mudéjar, sobre todo en España a fines del siglo XIX y principios del XX: ladrillo visto en dibujos geométricos y arcos de herradura. Allá se lo tomó como un estilo nacional; uno de los primeros ejemplos fue la plaza de toros de Goya en Madrid (1874)."
+    },
+    "Neoegipcio": {
+      "padre": "Historicismo",
+      "descripcion": "Edificios con columnas, pilones, esfinges y jeroglíficos del antiguo Egipto, casi siempre mezclados con otros estilos. Tomó forma propia después de la campaña de Napoleón en Egipto (1798–1801) y de la Description de l'Égypte (1809–1826)."
+    },
+    "Estilo Mar del Plata": {
+      "padre": "Pintoresquismo",
+      "descripcion": "Los chalets de Mar del Plata y de la costa cercana (Miramar, Necochea), muy populares entre 1935 y 1950: frentes de piedra cuarcita, techos de teja, hastiales, buhardillas y galerías de piedra. Lo anticipó el ingeniero Alula Baldassarini, que en 1925 empezó a usar piedra en los frentes, y lo consolidaron Auro Tiribelli, Alberto Córsico Piccolini y Raúl Camusso."
+    },
+    "Expresionismo": {
+      "color": "mar",
+      "descripcion": "Arquitectura de comienzos del siglo XX, sobre todo en Alemania, Países Bajos, Austria, Checoslovaquia y Dinamarca (más o menos entre 1910 y 1924), que deforma las formas para despertar emoción, con vidrio, acero y ladrillo. Su ícono es la Torre Einstein de Erich Mendelsohn en Potsdam; otros ejemplos: el Pabellón de Cristal de Bruno Taut (1914) y el Chilehaus de Hamburgo."
+    },
+    "Estilo internacional": {
+      "padre": "Moderno",
+      "descripcion": "El moderno de las décadas de 1920 y 1930 que se volvió dominante hasta los 70: volúmenes en vez de masa, nada de ornamento y materiales industriales (vidrio, acero, hormigón). El nombre lo pusieron Henry-Russell Hitchcock y Philip Johnson en la exposición del MoMA de 1932."
+    },
+    "High-tech": {
+      "padre": "Moderno tardío",
+      "descripcion": "Arquitectura de los años 70 en adelante que deja a la vista la estructura y las instalaciones: acero, muros de vidrio y piezas prefabricadas. Sus figuras son Norman Foster, Richard Rogers y Renzo Piano; el Centro Pompidou de París es su ejemplo completo. Hace de puente entre el moderno y el posmodernismo."
+    },
+    "Minimalismo": {
+      "padre": "Arquitectura contemporánea",
+      "descripcion": "Arquitectura reducida a lo necesario: formas geométricas simples, pocos materiales, luz natural y espacios abiertos, donde no se puede quitar nada más. Se popularizó a fines de los 80 en Londres, Nueva York y Japón, con antecedentes en el «menos es más» de Mies van der Rohe; nombres: Tadao Ando, John Pawson, Kazuyo Sejima."
     },
     "Italianizante": {
       "color": "siena",
@@ -155,5 +219,69 @@
       "ayuda": "Obra hecha a propósito en un estilo de otra época, mucho después de que pasó: una iglesia gótica del siglo XIX, una casa colonial de 1930. El estilo que figura es el original; «neo» avisa que es una versión posterior.",
       "descripcion": "Obra que vuelve a un estilo de otra época, mucho después de que pasó: una iglesia gótica hecha en el siglo XIX, una casa colonial de los años 30. El estilo es el original; la etiqueta dice que es una vuelta."
     }
-  }
+  },
+  "familiasEstilos": [
+    {
+      "nombre": "Antes de 1800",
+      "color": "vino",
+      "estilos": [
+        "Gótico",
+        "Gótico perpendicular",
+        "Tudor",
+        "Renacimiento francés",
+        "Colonial",
+        "Barroco jesuítico"
+      ]
+    },
+    {
+      "nombre": "Siglo XIX y Belle Époque",
+      "color": "teja",
+      "estilos": [
+        "Neoclásico",
+        "Historicismo",
+        "Italianizante",
+        "Neorrománico",
+        "Neobizantino",
+        "Neomudéjar",
+        "Neoegipcio",
+        "Eclecticismo",
+        "Academicismo",
+        "Beaux-Arts",
+        "Barroco eduardiano",
+        "Art nouveau",
+        "Modernismo catalán",
+        "Secesión vienesa",
+        "Liberty",
+        "Pintoresquismo",
+        "Estilo Mar del Plata",
+        "Chalet californiano"
+      ]
+    },
+    {
+      "nombre": "Moderno",
+      "color": "petroleo",
+      "estilos": [
+        "Art déco",
+        "Streamline Moderne",
+        "Expresionismo",
+        "Moderno",
+        "Racionalismo",
+        "Estilo internacional",
+        "Arquitectura orgánica",
+        "Brutalismo",
+        "Moderno tardío",
+        "High-tech"
+      ]
+    },
+    {
+      "nombre": "Contemporáneo",
+      "color": "niebla",
+      "estilos": [
+        "Posmodernismo",
+        "Arquitectura contemporánea",
+        "Neofuturismo",
+        "Minimalismo"
+      ]
+    }
+  ]
 }

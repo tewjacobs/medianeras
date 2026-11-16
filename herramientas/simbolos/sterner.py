@@ -586,14 +586,14 @@ COLORES = {
     'an-globo': ('#f2efe6', '#e6e2d6'), 'an-globo-c': ('#ffffff', '#f4f2ec'), 'an-globo-s': ('#cfcabd', '#bdb8ab'),
     'an-vereda': ('#a49e94', '#8a857c'), 'an-vereda-j': ('#8b857b', '#736e66'),
     'an-cordon': ('#8d8a84', '#77746f'), 'an-cordon-c': ('#b8b5ae', '#9d9a94'),
-    'nouveau-fondo': ('#efe6d2', '#2b2722'), 'nouveau-fondo-marco': ('#2b2722', '#efe6d2'),
+    'nouveau-ocre': ('#c9a24e', '#30260f'), 'nouveau-ocre-marco': ('#365db1', '#cfd9f0'),
 }
 con_sombras(COLORES, SOMBREABLES)
 con_sombras(COLORES, ('an-piedra-s', 'an-madera-s'), 0.85, 's')        # an-piedra-ss / an-madera-ss: más hondo
 
 if __name__ == '__main__':
     p = version()
-    p.update(placa='nouveau-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-             marco='nouveau-fondo-marco')
+    p.update(placa='nouveau-ocre', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+             marco='nouveau-ocre-marco')
     guardar(sys.argv[1], 'estilos', 'Art nouveau', p, COLORES, 'an-|nouveau-')
     print(len(p['lineas']), 'líneas, largo', p['largo'])

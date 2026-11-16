@@ -10,15 +10,25 @@ const h = (etiqueta, props = {}, ...hijos) => {
 
 // Cada obra: colección y clave en simbolos.json, sus fotos y tres fondos (claro, oscuro) para elegir.
 const OBRAS = [
-  ['programas', 'Educativo', 'Educativo · Ciudad Universitaria (FADU)', ['estudios:academico/images (6).jpeg', 'estudios:academico/images (5).jpeg'], {
-    'A · mostaza': ['#d6b45a', '#33290f'],
-    'B · terracota': ['#c47a58', '#341f16'],
-    'C · salvia': ['#a3ae8e', '#262b20'],
-    'D · jacarandá': ['#a495c4', '#242033'],
-    'E · río marrón': ['#a08a6c', '#2b241b'],
+  ['estilos', 'Art nouveau', 'Art nouveau · taller Sterner (Bruselas)', ['art nouveau/rkh79myno1l71.jpg'], {
+    'A · verde Horta': ['#7f9a6a', '#1f2a1c'],
+    'B · violeta vitral': ['#8c7aa6', '#251f30'],
+    'C · ocre dorado': ['#c9a24e', '#30260f'],
+    'D · bronce verdoso': ['#6f9a8c', '#1b2a26'],
+    'E · borgoña': ['#8a3f48', '#2b1417'],
+    'F · oliva': ['#a49a4a', '#2a2712'],
+    'G · malva': ['#b28aa0', '#2e2129'],
+    'H · pizarra': ['#5f6f86', '#1e232b'],
+  }],
+  ['estilos', 'Chalet californiano', 'Chalet californiano · Ciudad Evita', ['chalet californiano/Screenshot 2026-11-15 at 12.43.44.png'], {
+    'A · pasto': ['#8aa65a', '#232b16'],
+    'B · eucalipto': ['#8fa596', '#1f2622'],
+    'C · jacarandá': ['#9c88c2', '#241f33'],
+    'D · ocre siesta': ['#d0a24e', '#33260f'],
+    'E · aceituna': ['#8a8a52', '#26261a'],
     'F · rosa tiza': ['#d4a9a0', '#33242a'],
-    'G · verde tipa': ['#8a9a4e', '#232913'],
-    'H · ladrillo': ['#a65a44', '#2e1912'],
+    'G · ciruela': ['#7a4a5e', '#2a1820'],
+    'H · tierra': ['#9a7a5a', '#2b2219'],
   }],
 ];
 

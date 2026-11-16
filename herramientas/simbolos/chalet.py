@@ -2,7 +2,7 @@
 # Medida en px sobre referencias/simbolos/chalet californiano/Screenshot 2026-11-15 at 12.43.44.png,
 # reducida a 1400 × 875, recortada de x 260 a 1010 e y 330 a 570 y agrandada al doble (1500 × 480).
 # A la izquierda el ala baja con techo a cuatro aguas de tejas coloniales, la pared blanca con la ventana
-# de reja ornamental y el pilar de piedra; la galería con la pared terracota, la ventana enrejada y la
+# de reja ornamental y el pilar de piedra; la galería con la pared blanca (en sombra), la ventana enrejada y la
 # puerta de madera; dos chimeneas con su sombrerete. A la derecha el hastial a dos aguas, poco empinado,
 # con el borde de tejas, la ventana en arco de persiana sobre el revoque blanco que baja en diagonal (la
 # escalera de adentro), la piedra laja, el farol negro, la puerta baja en arco y el ala del costado con su
@@ -144,7 +144,7 @@ def version():
 
     # Pilar de piedra y la galería en sombra.
     P(l, 'ce-galeria', 480, 800, 218, 362)
-    P(l, 'ce-terracota', 486, 536, 226, 362)
+    P(l, 'ce-blanco', 486, 536, 226, 362)                                         # pared blanca (oscura solo por la sombra)
     piedra(l, 536, 800, 226, 362)
     P(l, 'ce-marco', 540, 680, 222, 326)                                           # ventana con reja
     P(l, 'ce-vidrio', 546, 674, 228, 320)
@@ -297,9 +297,33 @@ def version():
             fx, fyy = cx - w * 0.6 + j * w * 0.4, 396 - h * (0.55 + 0.3 * ((j + k) % 2))
             P(l, 'ce-flor', fx - 4, fx + 4, fyy - 6, fyy)
 
+    # Murito bajo típico de Ciudad Evita, adelante de todo: revoque blanco con el borde de arriba en curva
+    # hacia abajo entre pilar y pilar, tapa de ladrillo que sigue la curva, reja negra de barrotes con punta
+    # y pilares blancos con su sombrerete.
+    PIL = ((X0, X0 + 36), (586, 622), (1236, 1272), (X1 - 36, X1))
+    def tope(x):
+        for (_, a), (b, _) in zip(PIL, PIL[1:]):
+            if a <= x <= b: return 438 + 20 * math.sin(math.pi * (x - a) / (b - a))
+        return 438
+    for (_, a), (b, _) in zip(PIL, PIL[1:]):
+        for x in range(a + 10, b - 4, 22):                                         # barrotes con punta
+            P(l, 'ce-negro', x, x + 4, 352, tope(x + 2))
+            P(l, 'ce-negro', x - 2, x + 6, 348, 352)
+        P(l, 'ce-negro', a, b, 360, 364)                                           # planchuela de arriba
+    celdas(l, X0, X1, 400, Y1, lambda x, y: None if y < tope(x) else
+           'ce-ladrillo-c' if y < tope(x) + 4 else 'ce-ladrillo' if y < tope(x) + 9 else
+           'ce-blanco-s' if y < tope(x) + 14 else 'ce-blanco')
+    for a, b in PIL:                                                               # pilares
+        P(l, 'ce-blanco', a, b, 336, Y1)
+        P(l, 'ce-blanco-c', a, a + 6, 336, Y1)
+        P(l, 'ce-blanco-s', b - 6, b, 336, Y1)
+        P(l, 'ce-blanco-c', a - 4, b + 4, 326, 332)                                # sombrerete
+        P(l, 'ce-ladrillo', a - 4, b + 4, 322, 326)
+        P(l, 'ce-blanco-s', a, b, 332, 338)
+
     return {'nota': 'Un chalet californiano de Ciudad Evita: techos de tejas coloniales, el hastial poco '
                     'empinado con la ventana en arco de persiana, revoque blanco y piedra laja, la galería con '
-                    'la puerta de madera, la reja ornamental, el farol negro y el jardín con el formio.',
+                    'la puerta de madera, la reja ornamental, el farol negro, el jardín con el formio y el murito bajo con reja.',
             'direccion': 'horizontal', 'separacion': 0, 'largo': LARGO, 'lineas': l.lineas()}
 
 SOMBREABLES = ('ce-hoja', 'ce-piedra-r', 'ce-vidrio-c', 'ce-puerta-c', 'ce-blanco-c', 'ce-teja', 'ce-blanco', 'ce-piedra', 'ce-piedra-c', 'ce-piedra-o', 'ce-junta', 'ce-terracota',
@@ -313,7 +337,7 @@ COLORES = {
     'ce-vidrio': ('#3b3f44', '#33373b'), 'ce-vidrio-c': ('#5a6168', '#4e545a'), 'ce-cortina': ('#d9d4c8', '#c2bdb2'),
     'ce-reja': ('#f4f2ec', '#dedcd6'), 'ce-marco': ('#e9e5da', '#d3cfc5'),
     'ce-puerta': ('#8e4d26', '#7f4522'), 'ce-puerta-c': ('#ad6535', '#9b5a30'), 'ce-puerta-o': ('#6a3819', '#5f3216'), 'ce-oro': ('#d9b45a', '#c6a352'),
-    'ce-sombra': ('#9c968a', '#86817a'), 'ce-galeria': ('#b9b1a0', '#a69f8f'), 'ce-ladrillo': ('#b5603f', '#a25639'),
+    'ce-sombra': ('#9c968a', '#86817a'), 'ce-galeria': ('#b9b1a0', '#a69f8f'), 'ce-ladrillo': ('#b5603f', '#a25639'), 'ce-ladrillo-c': ('#cf7c58', '#bb6f4f'),
     'ce-tablilla': ('#f3f1eb', '#dddbd5'), 'ce-tablilla-o': ('#b9b5ab', '#a5a198'),
     'ce-piso': ('#9a5a3e', '#8a5038'),
     'ce-negro': ('#1f1f1f', '#1a1a1a'), 'ce-farol': ('#5a5440', '#4f4a39'), 'ce-farol-c': ('#c9b98a', '#b6a87d'),
@@ -324,13 +348,13 @@ COLORES = {
     'ce-formio': ('#4b5a35', '#43512f'), 'ce-formio-c': ('#7d8c4e', '#707e46'), 'ce-formio-o': ('#2f3a24', '#2a3420'),
     'ce-flor': ('#e98aa8', '#d67e9a'), 'ce-tierra': ('#5a4636', '#4e3d2f'),
     'ce-adoquin': ('#9a948c', '#7f7a73'), 'ce-adoquin-c': ('#b3ada4', '#958f88'),
-    'californiano-fondo': ('#efe6d2', '#2b2722'), 'californiano-fondo-marco': ('#2b2722', '#efe6d2'),
+    'californiano-eucalipto': ('#8fa596', '#1f2622'), 'californiano-eucalipto-marco': ('#705a69', '#e0d9dd'),
 }
 con_sombras(COLORES, SOMBREABLES)
 
 if __name__ == '__main__':
     p = version()
-    p.update(placa='californiano-fondo', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
-             marco='californiano-fondo-marco')
+    p.update(placa='californiano-eucalipto', aire=round((1.5 + 0.06 * max(p['largo'], len(p['lineas']))) * 10) / 10,
+             marco='californiano-eucalipto-marco')
     guardar(sys.argv[1], 'estilos', 'Chalet californiano', p, COLORES, 'ce-|californiano-')
     print(len(p['lineas']), 'líneas, largo', p['largo'])

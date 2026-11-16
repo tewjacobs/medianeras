@@ -4,9 +4,9 @@
 import { el, flecha, mensaje, agregar, bandaPerfil, enlacePerfil, chipsPerfil, tapaObra } from '../ui.js';
 import {
   TIPOS_PERFIL, NIVELES_UBICACION, nombrePerfil, rutaPerfil, perfilDe, partituraDe,
-  ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto, anioReferencia,
+  ancestrosEstilo, hijosEstilo, estiloConAncestros, compararTexto, anioReferencia, colorEstilo,
 } from '../datos.js';
-import { separador, colorCss } from '../grafica.js';
+import { separador, colorCss, simbolo, simboloNeutro } from '../grafica.js';
 import { grillaObras, cargarEstadisticas } from './obras.js';
 
 export const INDICES = Object.fromEntries(Object.entries(TIPOS_PERFIL).map(([tipo, def]) => [def.indice, tipo]));
@@ -23,10 +23,11 @@ export function obrasDePerfil(datos, tipo, valor) {
   return datos.obras.filter((o) => TIPOS_PERFIL[tipo].valores(o).includes(valor));
 }
 
-// El valor de un perfil a partir del slug de la dirección. Por ahora solo existen los perfiles
-// que tienen obras.
+// El valor de un perfil a partir del slug de la dirección. Existen los perfiles que tienen obras
+// y los estilos cargados en perfiles.json, aunque todavía no tengan obras.
 function valorDeSlug(datos, tipo, s) {
   const valor = datos.slugs[tipo]?.get(s);
+  if (valor && tipo === 'estilo' && datos.perfiles.estilos?.[valor]) return valor;
   return valor && obrasDePerfil(datos, tipo, valor).length ? valor : null;
 }
 
@@ -219,9 +220,30 @@ export function renderIndice(contenedor, { datos, partes, titulo }) {
   const def = TIPOS_PERFIL[tipo];
   titulo(def.plural);
   const cantidad = (v) => obrasDePerfil(datos, tipo, v).length;
-  const valores = [...datos.slugs[tipo].values()].filter((v) => cantidad(v) > 0);
+  // Los estilos cargados en perfiles.json aparecen aunque todavía no tengan obras.
+  const valores = [...datos.slugs[tipo].values()].filter((v) => cantidad(v) > 0 || (tipo === 'estilo' && datos.perfiles.estilos?.[v]));
   const fila = (v, nivel = 0) => el('li', { class: 'indice-fila', style: nivel ? `--nivel:${nivel}` : null },
     el('a', { href: rutaPerfil(tipo, v) }, el('span', {}, nombrePerfil(tipo, v)), el('span', { class: 'indice-puntos', 'aria-hidden': 'true' }), el('span', { class: 'indice-cantidad' }, cantidad(v))));
+
+  // Estilos: por familias (perfiles.json), cada una con la grilla de símbolos de sus estilos.
+  const familias = tipo === 'estilo' ? datos.perfiles.familiasEstilos ?? [] : [];
+  if (familias.length) {
+    const ficha = (v) => el('a', { class: 'familia-ficha' + (cantidad(v) ? '' : ' sin-obras'), href: rutaPerfil(tipo, v) },
+      el('div', { class: 'familia-caja' + (datos.simbolos?.estilos?.[v] ? '' : ' sin-simbolo') },
+        simbolo(datos.simbolos?.estilos?.[v] ?? simboloNeutro(colorEstilo(v)), { ancho: 100, alto: 100, margen: 8, fijo: true, superficie: 0.42, clase: 'tapa-grafica' })),
+      el('span', { class: 'familia-nombre' }, nombrePerfil(tipo, v)),
+      el('span', { class: 'familia-cuenta' }, plural(cantidad(v))));
+    contenedor.append(
+      el('div', { class: 'perfil' }, el('h2', { class: 'perfil-nombre' }, def.plural), el('p', { class: 'perfil-datos' }, `${valores.length} en total`)),
+      ...familias.map((f) => {
+        const suyos = f.estilos.filter((v) => valores.includes(v));
+        return suyos.length && el('section', { class: 'familia', style: `--fam:${colorCss(f.color)}` },
+          el('h3', {}, f.nombre, el('span', { class: 'familia-total' }, ` · ${suyos.length} estilos`)),
+          el('div', { class: 'familia-grilla' }, suyos.map(ficha)));
+      }).filter(Boolean),
+    );
+    return;
+  }
 
   let filas;
   if (tipo === 'estilo') {
